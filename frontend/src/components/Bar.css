@@ -1,0 +1,11 @@
+.top-bar {
+    background-color: #2D5A74;
+    color: white;
+    position: absolute;
+    height: 15vh;
+    width: 100vw;
+    left: 0px;
+    top: 0px;
+    display: flex;
+  flex-direction: row;
+}
