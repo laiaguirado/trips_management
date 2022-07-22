@@ -2,10 +2,10 @@
     background-color: #2D5A74;
     color: white;
     position: absolute;
-    height: 15vh;
+    height: 10vh;
     width: 100vw;
     left: 0px;
     top: 0px;
     display: flex;
-  flex-direction: row;
+    flex-direction: row;
 }

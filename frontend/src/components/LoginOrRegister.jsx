@@ -19,6 +19,7 @@ const LoginOrRegister = ({ onLogin }) => {
   };
 
   const login = async (userData) => {
+    onLogin();
   };
 
   const register = async (userData) => {
