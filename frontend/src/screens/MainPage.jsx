@@ -1,11 +1,17 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
+import "./MainPage.css"
 import Bar from '../components/Bar'
+import TripCard from "../components/TripCard"
 
 function MainPage() {
-    const trip = {
-        id: "1234"
-    }
+    //aqui haremos la llamada a la API para obtener tripsList
+    const tripsList = [
+        {id: 123,
+         tripName:"London"},
+        {id:456,
+        tripName:"Paris"}
+    ]
     const navigate = useNavigate();
     return (
         <div>
@@ -13,8 +19,13 @@ function MainPage() {
             <div>
                 <h3>Main Page</h3>
                 <div>
-                    <button className='button' onClick={() => navigate(`/trip/${trip.id}`, { replace: false })}>Trip Name 1</button>
-                    <button className='button' onClick={() => navigate(`/trip/${trip.id}`, { replace: false })}>Trip Name 2</button>
+                    {tripsList.map((trip) => (
+                        <TripCard
+                            key={trip.id}
+                            trip={trip}
+                            onClick={() => navigate(`/trip/${trip.id}`, { replace: false })}
+                        />
+                    ))}
                 </div>
             </div>
         </div>

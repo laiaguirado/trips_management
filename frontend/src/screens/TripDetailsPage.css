@@ -1,0 +1,49 @@
+.trip-details-page{
+    margin-top:5rem;
+    padding:0rem 10rem 1rem;
+    background-color: #F4F1E5;
+}
+
+.trip-details-page .details-info{
+    background-color: #FFFFFF;
+    border-radius: .5rem;
+    margin: 1rem;
+    padding:1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.trip-details-page .details-info:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.trip-details-page .return{
+    width: 2.5em;
+    height: 3rem;
+    border-radius: .5rem;
+}
+
+.trip-details-page .return:hover{
+    cursor: pointer;
+    color: #FFFFFF;
+    background-color: #B7CBE7;
+}
+
+.trip-details-page .delete-trip{
+    background-color: #AD3D25;
+    color: #FFFFFF;
+    border:0px;
+    border-radius: 1.5rem;
+    margin: 1rem;
+    padding:1rem;
+    transition: all 0.1s ease-in-out;
+}
+
+.trip-details-page .delete-trip:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.trip-details-page .details-info , .trip-details-page .return{
+    color: #937B5F;
+}
