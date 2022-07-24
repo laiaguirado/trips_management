@@ -7,7 +7,12 @@ function AccomodationPage() {
   return (
     <div className="accomodation-page">
       <Bar />
-      <div> AccomodationPage</div>
+      <h1>ACCOMODATION</h1>
+      <h2>Dates: </h2>
+      <h2>Address: </h2>
+      <h2>Contact: </h2>
+      <h2>Notes: </h2>
+      <h2>Files: </h2>
       <button onClick={() => window.history.go(-1)}>Go back</button>
     </div>
   );
