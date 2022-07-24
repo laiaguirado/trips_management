@@ -4,7 +4,7 @@ import "./MainPage.css";
 import Bar from "../components/Bar";
 import TripCard from "../components/TripCard";
 
-function MainPage() {
+function MainPage({ onLogout }) {
   //aqui haremos la llamada a la API para obtener tripsList
   const tripsList = [
     {
@@ -24,6 +24,9 @@ function MainPage() {
   return (
     <div>
       <Bar />
+      <button className="logout-button" onClick={onLogout}>
+        Logout
+      </button>
       <div>
         <h3>Main Page</h3>
         <div>

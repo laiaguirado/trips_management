@@ -1,21 +1,27 @@
-import { useState } from 'react'
-import './App.css'
-import LoginOrRegisterPage from './screens/LoginOrRegisterPage'
-import MainPage from './screens/MainPage';
+import { useState } from "react";
+import "./App.css";
+import LoginOrRegisterPage from "./screens/LoginOrRegisterPage";
+import MainPage from "./screens/MainPage";
+import * as tk from "./token";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [token, setToken] = useState(tk.readToken);
 
-  const login = () => {
-    console.log("I press the login")
+  const login = (token) => {
+    setToken(token);
+    tk.saveToken(token);
   };
 
   const logout = () => {
-    console.log("I press the logout")
+    setToken(null);
+    tk.deleteToken();
   };
 
-  //return <LoginOrRegisterPage onLogin={login} />
-  return <MainPage onLogout={logout}/>
+  if (token === null) {
+    return <LoginOrRegisterPage onLogin={login} />;
+  } else {
+    return <MainPage onLogout={logout} />;
+  }
 }
 
-export default App
+export default App;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./LoginOrRegister.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import * as api from "../api";
 
 const LoginOrRegister = ({ onLogin }) => {
   const [userName, setUserName] = useState("");
@@ -19,14 +20,27 @@ const LoginOrRegister = ({ onLogin }) => {
   };
 
   const login = async (userData) => {
-    onLogin();
+    const { success, token, error } = await api.login(userData);
+    if (success) {
+      onLogin(token);
+    } else {
+      setMessage(`Couldn't login: ${error}`);
+    }
   };
 
-  const register = async (userData) => {};
+  const register = async (userData) => {
+    console.log(userData);
+    const { success, error } = await api.register(userData);
+    if (success) {
+      setMessage("User created");
+    } else {
+      setMessage(`Couldn't create user: ${error}`);
+    }
+  };
 
   const submit = (e) => {
     e.preventDefault();
-    (mode === "login" ? login : register)({ userName, email, password });
+    (mode === "login" ? login : register)({ name: userName, email, password });
   };
 
   const title = mode === "login" ? "Login" : "Register";
