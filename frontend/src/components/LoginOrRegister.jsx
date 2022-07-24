@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./LoginOrRegister.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 const LoginOrRegister = ({ onLogin }) => {
   const [userName, setUserName] = useState("");
@@ -22,8 +22,7 @@ const LoginOrRegister = ({ onLogin }) => {
     onLogin();
   };
 
-  const register = async (userData) => {
-  };
+  const register = async (userData) => {};
 
   const submit = (e) => {
     e.preventDefault();
@@ -42,19 +41,34 @@ const LoginOrRegister = ({ onLogin }) => {
         <label>
           <div>
             <FontAwesomeIcon icon={faUser} />
-            <input type="text" placeholder="User name" value={userName} onChange={(event) => setUserName(event.target.value)}/>
+            <input
+              type="text"
+              placeholder="User name"
+              value={userName}
+              onChange={(event) => setUserName(event.target.value)}
+            />
           </div>
         </label>
         <label>
           <div>
             <FontAwesomeIcon icon={faEnvelope} />
-            <input type="text" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
+            <input
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
           </div>
         </label>
         <label>
           <div>
             <FontAwesomeIcon icon={faLock} />
-            <input type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
           </div>
         </label>
         <input className="mode" type="submit" value={formButton} />
