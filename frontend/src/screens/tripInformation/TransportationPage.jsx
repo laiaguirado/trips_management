@@ -1,15 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Bar from "../components/Bar";
+import Bar from "../../components/Bar";
 
-function AccomodationPage() {
+function TransportationPage() {
   return (
     <div>
       <Bar />
-      <div> AccomodationPage</div>
+      <div> TransportationPage</div>
       <button onClick={() => window.history.go(-1)}>Go back</button>
     </div>
   );
 }
 
-export default AccomodationPage;
+export default TransportationPage;
