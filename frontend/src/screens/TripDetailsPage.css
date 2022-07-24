@@ -17,13 +17,13 @@
     transform: scale(1.2);
 }
 
-.trip-details-page .return{
+.trip-details-page .return-icon{
     width: 2.5em;
     height: 3rem;
     border-radius: .5rem;
 }
 
-.trip-details-page .return:hover{
+.trip-details-page .return-icon:hover{
     cursor: pointer;
     color: #FFFFFF;
     background-color: #B7CBE7;
@@ -44,6 +44,6 @@
     transform: scale(1.2);
 }
 
-.trip-details-page .details-info , .trip-details-page .return{
+.trip-details-page .details-info , .trip-details-page .return-icon{
     color: #937B5F;
 }

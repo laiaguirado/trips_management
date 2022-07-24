@@ -9,5 +9,10 @@
 .trip-card:hover{
     cursor: pointer;
     background-color: #B7CBE7;
-    transform: scale(1.2);
+    transform: scale(1.1);
+}
+
+img{
+    width: auto;
+    height: 5vw;
 }
