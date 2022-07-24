@@ -3,7 +3,7 @@ const uniqueValidator = require("mongoose-unique-validator");
 
 const capitalize = (val) => {
   if (typeof val !== "string") val = "";
-  val = val.toLowerCase();
+  val = val.toLowerCase().trim();
   return val.charAt(0).toUpperCase() + val.substring(1);
 };
 
@@ -29,7 +29,8 @@ const userSchema = mongoose.Schema(
       required: [true, "{PATH} is required"],
       trim: true,
       maxlength: [50, "'{VALUE}' is too long"],
-      match: [/^[a-zA-Z0-9]+$/, " '{VALUE}' is invalid"],
+      match: [/^[a-zA-Z\s]*$/, " '{VALUE}' is invalid"],
+
       set: capitalize,
     },
   },
