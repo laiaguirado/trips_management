@@ -1,36 +1,36 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 const extendSchema = require('mongoose-extend-schema');
-const {componentSchema} = require("../component.model")
+const { componentSchema } = require("../component.model")
 
-const accommodationSchema = extendSchema(componentSchema,{
-    web:{
+const accommodationSchema = extendSchema(componentSchema, {
+    web: {
         type: String,
         trim: true,
-        required:true
+        required: true
     },
-    description:{
+    description: {
         type: String,
         maxlength: [250, "'{VALUE}' is too long"],
     },
-    location:{
-        type:String,
-        required:true,
+    location: {
+        type: String,
+        required: true,
     },
-    startDate:{
-        type:Date,
-        required:true,
+    startDate: {
+        type: Date,
+        required: true,
     },
     endDate: {
-        type:Date,
-        required:true,
+        type: Date,
+        required: true,
     },
-    phone:{
-        type:Number,
-        required:true,
+    phone: {
+        type: Number,
+        required: true,
         trim: true,
     },
-    email:{
+    email: {
         type: String,
         uniqueCaseInsensitive: true,
         required: true,
