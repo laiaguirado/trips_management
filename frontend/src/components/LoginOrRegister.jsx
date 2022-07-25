@@ -40,7 +40,11 @@ const LoginOrRegister = ({ onLogin }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    (mode === "login" ? login : register)({ name: userName, email, password });
+    (mode === "login" ? login : register)({
+      username: userName,
+      email,
+      password,
+    });
   };
 
   const title = mode === "login" ? "Login" : "Register";
