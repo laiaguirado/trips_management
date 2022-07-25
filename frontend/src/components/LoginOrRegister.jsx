@@ -38,7 +38,7 @@ const LoginOrRegister = ({ onLogin }) => {
     }
   };
 
-  function InputUsername() {
+  function inputUsername(onChange) {
     if (mode === "register") {
       return (
         <div>
@@ -47,7 +47,7 @@ const LoginOrRegister = ({ onLogin }) => {
             type="text"
             placeholder="User name"
             value={userName}
-            onChange={(event) => setUserName(event.target.value)}
+            onChange={onChange}
           />
         </div>
       );
@@ -75,7 +75,7 @@ const LoginOrRegister = ({ onLogin }) => {
       <form className="login" onSubmit={submit}>
         <h1>{title}</h1>
         <label>
-          <InputUsername />
+          {inputUsername((event) => setUserName(event.target.value))}
         </label>
         <label>
           <div>
