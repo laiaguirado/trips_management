@@ -2,9 +2,9 @@ const { errMalformed, errUnauthorized } = require("../../errors");
 const User = require("./user.model");
 const auth = require("./auth/auth.service");
 
-const createUser = async ({ email, password, name }) => {
+const createUser = async ({ email, password, username }) => {
   const encryptedPassword = await auth.encryptPassword(password);
-  return await User.create({ email, name, password: encryptedPassword });
+  return await User.create({ email, username, password: encryptedPassword });
 };
 
 const authenticateUser = async ({ email, password }) => {
@@ -23,7 +23,7 @@ const authenticateUser = async ({ email, password }) => {
   if (!passwordMatch) {
     errUnauthorized("Wrong email or password");
   }
-  const token = auth.createToken(email, userDb._id, userDb.name);
+  const token = auth.createToken(email, userDb._id, userDb.username);
   return token;
 };
 

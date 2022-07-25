@@ -24,13 +24,12 @@ const userSchema = mongoose.Schema(
       required: true,
       select: false,
     },
-    name: {
+    username: {
       type: String,
       required: [true, "{PATH} is required"],
       trim: true,
       maxlength: [50, "'{VALUE}' is too long"],
       match: [/^[a-zA-Z\s]*$/, " '{VALUE}' is invalid"],
-
       set: capitalize,
     },
   },
@@ -40,7 +39,6 @@ userSchema.plugin(uniqueValidator, {
   message: "Error, Value '{VALUE}' duplicate. Expected  {PATH} to be {TYPE}.",
 });
 userSchema.index({ email: 1 });
-
 const User = mongoose.model("user", userSchema);
 
 module.exports = User;

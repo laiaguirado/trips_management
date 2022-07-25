@@ -12,8 +12,8 @@ const comparePasswords = async (password, dbPassword) => {
   return bcrypt.compare(password, dbPassword);
 };
 
-const createToken = (email, _id, name) => {
-  const token = jwt.sign({ email, _id, name }, config.JWT_SECRET, {
+const createToken = (email, _id, username) => {
+  const token = jwt.sign({ email, _id, username }, config.JWT_SECRET, {
     expiresIn: config.JWT_EXPIRATION,
   });
   return {

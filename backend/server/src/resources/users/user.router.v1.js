@@ -5,8 +5,8 @@ const { needsAuthToken } = require("./auth/auth.middleware");
 const User = require("./user.service");
 
 const test = async (req, res) => {
-  const { email: user, _id, name } = req.userInfo;
-  res.status(200).json({ ok: true, user, id: _id, name });
+  const { email, _id, username } = req.userInfo;
+  res.status(200).json({ ok: true, email, id: _id, username });
 };
 
 const register = async (req, res) => {

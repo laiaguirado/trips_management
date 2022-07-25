@@ -11,8 +11,8 @@ const needsAuthToken = async (req, res, next) => {
       errUnauthorized(`Authorization header doesn't start with "Bearer"`);
     }
     const token = header.slice("Bearer ".length);
-    const { email, _id, name } = auth.decodeToken(token);
-    req.userInfo = { email, _id, name };
+    const { email, _id, username } = auth.decodeToken(token);
+    req.userInfo = { email, _id, username };
     next();
   } catch (e) {
     next(e);
