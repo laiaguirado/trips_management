@@ -16,7 +16,6 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.5",
     "mongoose-extend-schema": "^1.0.0",
-    "mongoose-unique-validator": "^3.1.0",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
