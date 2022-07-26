@@ -4,6 +4,7 @@ const config = require("../../../config");
 const { errUnauthorized } = require("../../../errors");
 
 const encryptPassword = async (password) => {
+  if (!password) return "";
   const salt = await bcrypt.genSalt();
   return await bcrypt.hash(password, salt);
 };
