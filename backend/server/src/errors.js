@@ -24,6 +24,15 @@ const errorHandler = (err, req, res, next) => {
     const { code, message } = err;
     return res.status(code).send({ error: message });
   }
+  // Mongoose validation errors
+  if (err.name === "ValidationError") {
+    message = Object.getOwnPropertyNames(err.errors).reduce(
+      (message, prop) => `${message} - ${err.errors[prop].message}.`,
+      ""
+    );
+    return res.status(400).send({ error: message });
+  }
+
   res.status(500).send({
     error: config.isDevelopment
       ? `Internal Server Error: ${err}`
