@@ -17,6 +17,7 @@ const LoginOrRegister = ({ onLogin }) => {
     setUserName("");
     setEmail("");
     setPassword("");
+    setMessage("");
   };
 
   const login = async (userData) => {
@@ -29,7 +30,6 @@ const LoginOrRegister = ({ onLogin }) => {
   };
 
   const register = async (userData) => {
-    console.log(userData);
     const { success, error } = await api.register(userData);
     if (success) {
       setMessage("User created");
@@ -37,6 +37,24 @@ const LoginOrRegister = ({ onLogin }) => {
       setMessage(`Couldn't create user: ${error}`);
     }
   };
+
+  function inputUsername(onChange) {
+    if (mode === "register") {
+      return (
+        <div>
+          <FontAwesomeIcon icon={faUser} />
+          <input
+            type="text"
+            placeholder="User name"
+            value={userName}
+            onChange={onChange}
+          />
+        </div>
+      );
+    } else {
+      return "";
+    }
+  }
 
   const submit = (e) => {
     e.preventDefault();
@@ -57,15 +75,7 @@ const LoginOrRegister = ({ onLogin }) => {
       <form className="login" onSubmit={submit}>
         <h1>{title}</h1>
         <label>
-          <div>
-            <FontAwesomeIcon icon={faUser} />
-            <input
-              type="text"
-              placeholder="User name"
-              value={userName}
-              onChange={(event) => setUserName(event.target.value)}
-            />
-          </div>
+          {inputUsername((event) => setUserName(event.target.value))}
         </label>
         <label>
           <div>
