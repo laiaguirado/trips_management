@@ -1,5 +1,41 @@
 .accomodation-page {
-  margin-top: 5rem;
-  padding: 0rem 10rem 1rem;
-  /*background-color: white;*/
+  margin: 5vh 5vw 5vh 5vw;
+  background-color: #f3f0e487;
+  text-align: left;
+  border-radius: 25px;
+}
+
+.flex-container {
+  margin-top: 10vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.accomodation-page h2 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.accomodation-page img {
+  margin-top: 5vh;
+  width: 35vw;
+  max-width: 360px;
+  height: auto;
+  display: block;
+  border-radius: 25px;
+}
+
+.accomodation-page h2 span {
+  font-weight: normal;
+}
+
+.upload {
+  background-color: white;
+  width: 90%;
+  height: 50px;
+  margin-left: 10px;
+  border-radius: 10px;
+  text-align: center;
 }
