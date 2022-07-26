@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+<<<<<<< HEAD
 const extendSchema = require("mongoose-extend-schema");
 const { componentSchema } = require("../component.model");
 
@@ -38,6 +39,48 @@ const accommodationSchema = extendSchema(componentSchema, {
     match: [/\S+@\S+\.\S+/, " '{VALUE}' is invalid"],
     immutable: true,
   },
+=======
+const uniqueValidator = require("mongoose-unique-validator");
+const extendSchema = require('mongoose-extend-schema');
+const { componentSchema } = require("../component.model")
+
+const accommodationSchema = extendSchema(componentSchema, {
+    web: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    description: {
+        type: String,
+        maxlength: [250, "'{VALUE}' is too long"],
+    },
+    location: {
+        type: String,
+        required: true,
+    },
+    startDate: {
+        type: Date,
+        required: true,
+    },
+    endDate: {
+        type: Date,
+        required: true,
+    },
+    phone: {
+        type: Number,
+        required: true,
+        trim: true,
+    },
+    email: {
+        type: String,
+        uniqueCaseInsensitive: true,
+        required: true,
+        trim: true,
+        lowercase: true,
+        match: [/\S+@\S+\.\S+/, " '{VALUE}' is invalid"],
+        immutable: true,
+    }
+>>>>>>> 4c08f5dd3ffba66afe17faa2a67b847a1a998983
 });
 
 accommodationSchema.index({ phone: 1 });
