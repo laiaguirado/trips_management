@@ -19,9 +19,11 @@ app.get("/", async (req, res) => {
 });
 
 require("./resources/users/user.controllers").addRoutesTo(app);
-require("./resources/components/accommodation/accommodation.controller").addRoutesTo(app);
+require("./resources/travel/travel.controler").addRoutesTo(app);
+require("./resources/components/accommodation/accommodation.controller").addRoutesTo(
+  app
+);
 require("./resources/comments/comments.controller").addRoutesTo(app);
-
 
 app.all("/*", async (req, res, next) => {
   next(new TripManagementApiError(404, `Not Found`));

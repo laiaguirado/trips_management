@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 const { TripManagementApiError } = require("../../errors");
-
-const capitalize = (val) => {
-  if (typeof val !== "string") val = "";
-  val = val.toLowerCase().trim();
-  return val.charAt(0).toUpperCase() + val.substring(1);
-};
+const { capitalize } = require("../../helper");
 
 const userSchema = mongoose.Schema(
   {
