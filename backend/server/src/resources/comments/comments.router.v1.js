@@ -20,7 +20,7 @@ const create = async(req,res)=>{
     accommodation.comments.push(comment);
     await accommodation.save()
 
-    res.status(200).json({ status: `Comment added to resource: ${compId}` });
+    res.status(200).json({ status: `Comment ${comment._id} added to resource: ${compId}` });
    
 }
 
