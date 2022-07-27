@@ -5,22 +5,28 @@ const { catchErrors, TripManagementApiError } = require("../../errors");
 
 const Comment = require("./comments.service");
 const Accomodation = require("../components/accommodation/accommodation.service")
+const User = require("../users/user.service")
 
 const create = async(req,res)=>{
     const compId = req.params.id
     const { comment_text } = req.body;
+    const { user_id } = req.body;
     console.log(compId);
     console.log(comment_text );
 
     const comment = await Comment.createOne(comment_text,compId);
-    console.log(comment)
+
     const accommodation = await Accomodation.findOneById(compId);
-    console.log(accommodation)
+
+    const user = await User.findById(user_id);
 
     accommodation.comments.push(comment);
     await accommodation.save()
 
-    res.status(200).json({ status: `Comment ${comment._id} added to resource: ${compId}` });
+    user.comments.push(comment);
+    await user.save()
+
+    res.status(200).json({ status: `User ${user_id} added Comment ${comment._id} to resource: ${compId}` });
    
 }
 
