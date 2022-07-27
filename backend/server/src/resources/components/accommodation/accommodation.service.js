@@ -21,4 +21,15 @@ const createAccommodation = async ({ web, location, startDate, endDate, phone, e
       res.status(500).json({ error: 'Internal error' });
     }
   }
-  module.exports = {createAccommodation,findAll,findByTravelId };
+
+  const findOneById = async(id)=>{
+    try{
+    return await Accommodation.findOne({ _id: id })
+    } catch(e){
+      console.log(e);
+      res.status(500).json({ error: 'Internal error' });
+    }
+  }
+
+
+  module.exports = {createAccommodation,findAll,findByTravelId, findOneById };
