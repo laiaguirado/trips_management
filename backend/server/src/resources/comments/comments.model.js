@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const commentsSchema = mongoose.Schema(
     {
         idUser:{
-            type:String
+            type: mongoose.Schema.Types.ObjectId,
+            ref:"user"
         },
         idTravel:{
             type:String

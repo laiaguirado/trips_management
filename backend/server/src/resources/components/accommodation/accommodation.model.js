@@ -38,12 +38,6 @@ const accommodationSchema = extendSchema(componentSchema, {
         match: [/\S+@\S+\.\S+/, " '{VALUE}' is invalid"],
         immutable: true,
     },
-    comments:[
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref:"comment"
-        }
-    ]
 });
 
 accommodationSchema.index({ phone: 1 });

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const extendSchema = require("mongoose-extend-schema");
 
 const componentSchema = mongoose.Schema(
     {
@@ -22,8 +21,10 @@ const componentSchema = mongoose.Schema(
         {type:mongoose.Schema.Types.ObjectId,
         ref:"comment"}
       ],
-   
-   
+      scores:[
+        {type:mongoose.Schema.Types.ObjectId,
+        ref:"score"}
+      ],  
     idTravel: {
       type: String,
       required: true,
