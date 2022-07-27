@@ -21,6 +21,7 @@ app.get("/", async (req, res) => {
 require("./resources/users/user.controllers").addRoutesTo(app);
 require("./resources/components/accommodation/accommodation.controller").addRoutesTo(app);
 require("./resources/comments/comments.controller").addRoutesTo(app);
+require("./resources/score/score.controller").addRoutesTo(app);
 
 
 app.all("/*", async (req, res, next) => {

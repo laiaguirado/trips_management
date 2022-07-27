@@ -27,4 +27,22 @@ const authenticateUser = async ({ email, password }) => {
   return token;
 };
 
-module.exports = { createUser, authenticateUser };
+const findAll = async()=>{
+  try{
+    return await User.find().lean().exec();
+  }catch(e){
+    console.log(e);
+    res.status(500).json({ error: 'Internal error' });
+  }
+}
+
+const findById = async(id)=>{
+  try{
+    return await User.findOne({_id:id});
+  }catch(e){
+    console.log(e);
+    res.status(500).json({ error: 'Internal error' });
+  }
+}
+
+module.exports = { createUser, authenticateUser, findAll, findById };
