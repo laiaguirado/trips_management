@@ -1,36 +1,79 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./MainPage.css";
+import * as api from "../api";
 import Bar from "../components/Bar";
 import TripCard from "../components/TripCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import AddTrip from "../components/AddTrip";
 
 function MainPage({ onLogout }) {
-  //aqui haremos la llamada a la API para obtener tripsList
-  const tripsList = [
-    {
-      id: 123,
-      tripName: "London",
-      tripImage:
-        "https://cdn.londonandpartners.com/-/media/images/london/visit/things-to-do/sightseeing/london-attractions/coca-cola-london-eye/the-london-eye-2-640x360.jpg?mw=640&hash=F7D574072DAD523443450DF57E3B91530064E4EE",
-    },
-    {
-      id: 456,
-      tripName: "Paris",
-      tripImage:
-        "https://upload.wikimedia.org/wikipedia/commons/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg",
-    },
-  ];
+  const [userData, setUserData] = useState(null);
+  const [tripList, setTripList] = useState([]);
+  const [message, setMessage] = useState(null);
+  const [adding, setAdding] = useState(false);
   const navigate = useNavigate();
+
+  const getUserData = async () => {
+    const { success, userData, error } = await api.getUserData();
+    if (success) {
+      setUserData(userData);
+    } else {
+      setMessage(error);
+    }
+  };
+
+  const loadTripList = async () => {
+    const { success, tripList, error } = await api.getTripList();
+    if (success) {
+      setTripList(tripList);
+      setMessage(null);
+    } else {
+      setTripList([]);
+      setMessage(error);
+    }
+  };
+
+  const addTrip = async (newTripData) => {
+    const { success, added, error } = await api.addTrip(newTripData);
+    if (success) {
+      setTripList((tripList) => [...tripList, added]);
+      setAdding(false);
+    } else {
+      setMessage(error);
+    }
+  };
+
+  function addTripForm() {
+    if (adding === false) {
+      return (
+        <div className="add-trip-button" onClick={() => setAdding(true)}>
+          <FontAwesomeIcon icon={faPlus} />
+        </div>
+      );
+    } else {
+      return <AddTrip onAdd={addTrip} />;
+    }
+  }
+
+  useEffect(() => {
+    getUserData();
+    loadTripList();
+  }, []);
+
   return (
-    <div>
-      <Bar />
+    <div className="main-page">
+      <Bar mode="login" userData={userData} onLogout={onLogout} />
+      <div>{message}</div>
       <button className="logout-button" onClick={onLogout}>
         Logout
       </button>
       <div>
         <h3>Main Page</h3>
-        <div>
-          {tripsList.map((trip) => (
+        <div>{addTripForm()}</div>
+        <div className="trip-list">
+          {tripList.map((trip) => (
             <TripCard
               key={trip.id}
               trip={trip}
