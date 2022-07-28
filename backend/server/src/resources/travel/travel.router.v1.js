@@ -20,6 +20,8 @@ const getTravelByUser = async (req, res) => {
 
 const createTravel = async (req, res) => {
   const dataTravel = req.body;
+  const { _id } = req.userInfo;
+  dataTravel.creator = _id;
   res.status(200).json(await Travel.createTravel(dataTravel));
 };
 
@@ -47,7 +49,6 @@ const deleteTravel = async (req, res) => {
 const addUserToTravel = async (req, res) => {
   const { idTravel, idUser } = req.params;
   const travel = await Travel.addUserToTravel(idTravel, idUser);
-  // console.log(travel);
   res.status(200).json(travel);
 };
 

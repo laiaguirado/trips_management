@@ -11,6 +11,7 @@ const getAllTravel = async () => {
   //  return Travel.find().lean().exec();
   return Travel.find()
     .populate("travellers", ["email", "username"])
+    .populate({ path: "creator", select: "email -_id" })
     .lean()
     .exec();
 };
@@ -55,7 +56,7 @@ const addUserToTravel = async (idTravel, idUser) => {
       { $push: { travellers: idUser } },
       { new: true, useFindAndModify: false, runValidators: true }
     );
-    console.log(travel);
+
     const user = await User.findOneAndUpdate(
       { _id: idUser },
       { $push: { travels: idTravel } },

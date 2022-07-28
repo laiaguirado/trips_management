@@ -21,16 +21,16 @@ const login = async (req, res) => {
   res.status(200).json(token);
 };
 
-const getAll = async(req,res) =>{
+const getAll = async (req, res) => {
   const docs = await User.findAll();
-    res.status(200).json({ results: [docs] });
-}
+  res.status(200).json({ results: [docs] });
+};
 
 const router = express.Router();
 
 router.post("/register", catchErrors(register));
 router.post("/login", catchErrors(login));
-router.get("/getAll", catchErrors(getAll))
+router.get("/getAll", needsAuthToken, catchErrors(getAll));
 if (config.isDevelopment) {
   router.get("/test", needsAuthToken, catchErrors(test));
 }

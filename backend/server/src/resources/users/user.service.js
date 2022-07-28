@@ -27,17 +27,18 @@ const authenticateUser = async ({ email, password }) => {
   return token;
 };
 
-const findAll = async()=>{
-  try{
-    return await User.find().lean().exec();
-  }catch(e){
-    console.log(e);
-    res.status(500).json({ error: 'Internal error' });
-  }
-}
+const findAll = async () => {
+  return await User.find()
+    .populate({
+      path: "travelis",
+      select: "-_id -travellers",
+    })
+    .lean()
+    .exec();
+};
 
-const findById = async(id)=>{
-    return await User.findOne({_id:id});
-}
+const findById = async (id) => {
+  return await User.findOne({ _id: id });
+};
 
 module.exports = { createUser, authenticateUser, findAll, findById };

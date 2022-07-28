@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const { capitalize, FKIntegrity } = require("../../helper");
+const image = require("../../SchemaType/SchemaImageType");
+
+mongoose.Schema.Types.Image = image;
 
 const travelSchema = new mongoose.Schema(
   {
@@ -29,6 +32,18 @@ const travelSchema = new mongoose.Schema(
     endDate: {
       type: Date,
       required: [true, "{PATH} is required"],
+    },
+    creator: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
+    image: {
+      type: mongoose.Schema.Types.Image,
+      required: true,
+      validate: {
+        validator: (v) => v,
+        message: (props) => `Image is wrong`,
+      },
     },
     travellers: [
       {
