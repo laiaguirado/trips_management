@@ -27,14 +27,24 @@ const userSchema = mongoose.Schema(
       match: [/^[a-zA-Z0-9\s]*$/, "'username' is invalid"],
       set: capitalize,
     },
-    scores:[{
-      type: mongoose.Schema.Types.ObjectId,
-      ref:"score"
-    }],
-    comments:[{
-      type: mongoose.Schema.Types.ObjectId,
-      ref:"comment"
-    }]
+    scores: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "score",
+      },
+    ],
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "comment",
+      },
+    ],
+    travels: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Travel",
+      },
+    ],
   },
   { timestamps: true }
 );

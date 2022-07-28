@@ -14,22 +14,29 @@ const travelSchema = new mongoose.Schema(
     description: {
       type: String,
       required: false,
-      maxlength: [1000, "{TYPE} is too long"],
+      maxlength: [1000, "{PATH} is too long"],
     },
     location: {
       type: String,
       required: false,
-      maxlength: [1000, "{TYPE} is too long"],
+      maxlength: [1000, "{PATH} is too long"],
     },
 
     startDate: {
       type: Date,
-      required: [true, "{TYPE} is required"],
+      required: [true, "{PATH} is required"],
     },
     endDate: {
       type: Date,
-      required: [true, "{TYPE} is required"],
+      required: [true, "{PATH} is required"],
     },
+    travellers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        unique: true,
+      },
+    ],
   },
   { timestamps: true }
 );

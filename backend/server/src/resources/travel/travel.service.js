@@ -1,5 +1,7 @@
 const Travel = require("./travel.model");
+const User = require("../users/user.model");
 const { errMalformed } = require("../../errors");
+const { runTransaction } = require("../../db");
 
 const getTravelByUser = async (_id) => {
   return Travel.find({ _id }).lean().exec();
@@ -21,7 +23,7 @@ const updateTravel = async ({
   endDate,
   location,
 }) => {
-  const travelUpdated = await Travel.findByIdAndUpdate(
+  const travelUpdated = await Travel.findOneAndUpdate(
     { _id },
     { name, description, startDate, endDate, location }
   )
@@ -42,10 +44,29 @@ const deleteTravel = async (_id) => {
   return deleted;
 };
 
+const addUserToTravel = async (idTravel, idUser) => {
+  const travel = await runTransaction(async () => {
+    const travel = await Travel.findOneAndUpdate(
+      { _id: idTravel },
+      { $push: { travellers: idUser } },
+      { new: true, useFindAndModify: false }
+    );
+
+    const user = await User.findOneAndUpdate(
+      { _id: idUser },
+      { $push: { travels: idTravel } },
+      { new: true, useFindAndModify: false }
+    );
+    return travel;
+  });
+  return travel;
+};
+
 module.exports = {
   createTravel,
   updateTravel,
   getTravelByUser,
   getAllTravel,
   deleteTravel,
+  addUserToTravel,
 };
