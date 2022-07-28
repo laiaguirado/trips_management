@@ -3,14 +3,17 @@ const User = require("../users/user.model");
 const { errMalformed } = require("../../errors");
 const { runTransaction } = require("../../helper");
 
-const getTravelByUser = async (_id) => {
-  return Travel.find({ _id }).populate("travellers").lean().exec();
+const getTravelById = async (_id) => {
+  return Travel.find({ _id })
+    .populate({ path: "travellers", select: "email username" })
+    .populate({ path: "creator", select: "email -_id" })
+    .lean()
+    .exec();
 };
 
 const getAllTravel = async () => {
-  //  return Travel.find().lean().exec();
   return Travel.find()
-    .populate("travellers", ["email", "username"])
+    .populate({ path: "travellers", select: "email username -travels" })
     .populate({ path: "creator", select: "email -_id" })
     .lean()
     .exec();
@@ -70,7 +73,7 @@ const addUserToTravel = async (idTravel, idUser) => {
 module.exports = {
   createTravel,
   updateTravel,
-  getTravelByUser,
+  getTravelById,
   getAllTravel,
   deleteTravel,
   addUserToTravel,

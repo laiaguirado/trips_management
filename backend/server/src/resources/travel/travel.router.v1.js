@@ -13,9 +13,9 @@ const getAllTravel = async (req, res) => {
   res.status(200).json(await Travel.getAllTravel());
 };
 
-const getTravelByUser = async (req, res) => {
-  const { _id } = req.userInfo;
-  res.status(200).json(await Travel.getTravelByUser(_id));
+const getTravelById = async (req, res) => {
+  const { _id } = req.params;
+  res.status(200).json(await Travel.getTravelById(_id));
 };
 
 const createTravel = async (req, res) => {
@@ -54,8 +54,8 @@ const addUserToTravel = async (req, res) => {
 
 const router = express.Router();
 
-router.get("/me", needsAuthToken, catchErrors(getTravelByUser));
 router.get("/", needsAuthToken, catchErrors(getAllTravel));
+router.get("/:_id", needsAuthToken, catchErrors(getTravelById));
 router.post("/", needsAuthToken, catchErrors(createTravel));
 router.post(
   "/:idTravel/traveller/:idUser",
