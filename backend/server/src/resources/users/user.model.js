@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { TripManagementApiError } = require("../../errors");
-const { capitalize } = require("../../helper");
+const { capitalize, FKIntegrity } = require("../../helper");
 
 const userSchema = mongoose.Schema(
   {
@@ -43,6 +43,15 @@ const userSchema = mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "travel",
+        validate: {
+          isAsync: true,
+          validator: async function (v) {
+            return await FKIntegrity(mongoose.model("travel"), v).catch(
+              (err) => false
+            );
+          },
+          message: `Travel doesn't exist`,
+        },
       },
     ],
   },

@@ -53,13 +53,13 @@ const addUserToTravel = async (idTravel, idUser) => {
     const travel = await Travel.findOneAndUpdate(
       { _id: idTravel },
       { $push: { travellers: idUser } },
-      { new: true, useFindAndModify: false }
+      { new: true, useFindAndModify: false, runValidators: true }
     );
-
+    console.log(travel);
     const user = await User.findOneAndUpdate(
       { _id: idUser },
       { $push: { travels: idTravel } },
-      { new: true, useFindAndModify: false }
+      { new: true, useFindAndModify: false, runValidators: true }
     );
     return travel;
   });

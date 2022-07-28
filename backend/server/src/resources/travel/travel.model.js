@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { capitalize } = require("../../helper");
+const { capitalize, FKIntegrity } = require("../../helper");
 
 const travelSchema = new mongoose.Schema(
   {
@@ -34,7 +34,15 @@ const travelSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
-        unique: true,
+        validate: {
+          isAsync: true,
+          validator: async function (v) {
+            return await FKIntegrity(mongoose.model("user"), v).catch(
+              (err) => false
+            );
+          },
+          message: `User doesn't exist`,
+        },
       },
     ],
   },
