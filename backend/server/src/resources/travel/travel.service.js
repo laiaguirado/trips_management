@@ -4,11 +4,15 @@ const { errMalformed } = require("../../errors");
 const { runTransaction } = require("../../db");
 
 const getTravelByUser = async (_id) => {
-  return Travel.find({ _id }).lean().exec();
+  return Travel.find({ _id }).populate("travellers").lean().exec();
 };
 
 const getAllTravel = async () => {
-  return Travel.find().lean().exec();
+  //  return Travel.find().lean().exec();
+  return Travel.find()
+    .populate("travellers", ["email", "username"])
+    .lean()
+    .exec();
 };
 
 const createTravel = async (travel) => {
