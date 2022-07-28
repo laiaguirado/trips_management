@@ -26,7 +26,7 @@ function TripDetailsPage() {
 
   return (
     <div className="trip-details-page">
-      <Bar />
+      <Bar mode="login" />
       <div>
         <div
           className="return-icon"

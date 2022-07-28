@@ -4,6 +4,8 @@
     margin: 1rem;
     padding:1rem;
     transition: all 0.2s ease-in-out;
+    width: 7.15rem;
+    background-color: #F4F1E5;
 }
 
 .trip-card:hover{

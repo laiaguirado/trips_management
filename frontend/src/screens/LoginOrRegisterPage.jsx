@@ -5,7 +5,7 @@ import LoginOrRegister from "../components/LoginOrRegister";
 function LoginOrRegisterPage({ onLogin }) {
   return (
     <div>
-      <Bar />
+      <Bar mode="logout" />
       <LoginOrRegister onLogin={onLogin} />
     </div>
   );
