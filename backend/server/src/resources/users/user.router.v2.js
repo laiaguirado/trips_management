@@ -5,7 +5,7 @@ const User = require("./user.service");
 
 const test = async (req, res) => {
   res.status(200).json({
-    status: `This version is just to show how to add API versions`,
+    status: `This version is just to show how to add API versions.`,
   });
 };
 
