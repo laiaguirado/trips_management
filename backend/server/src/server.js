@@ -18,7 +18,7 @@ app.get("/", async (req, res) => {
   res.status(200).send({ API: "This is the TRIPS MANAGEMENT API" });
 });
 
-require("./resources/users/user.controllers").addRoutesTo(app);
+require("./resources/users/user.controller").addRoutesTo(app);
 require("./resources/travel/travel.controler").addRoutesTo(app);
 require("./resources/components/accommodation/accommodation.controller").addRoutesTo(
   app
