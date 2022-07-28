@@ -42,7 +42,7 @@ const userSchema = mongoose.Schema(
     travels: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Travel",
+        ref: "travel",
       },
     ],
   },

@@ -33,7 +33,7 @@ const travelSchema = new mongoose.Schema(
     travellers: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "user",
         unique: true,
       },
     ],
