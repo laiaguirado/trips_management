@@ -5,30 +5,15 @@ const createAccommodation = async ({ web, location, startDate, endDate, phone, e
   };
 
   const findAll = async () => {
-    try{
       return await Accommodation.find().lean().exec();
-    }catch (e){
-      console.log(e);
-      res.status(500).json({ error: 'Internal error' });
-    }
   };
 
   const findByTravelId = async(_idTravel)=>{
-    try{
     return await Accommodation.findOne({ idTravel: _idTravel })
-    } catch(e){
-      console.log(e);
-      res.status(500).json({ error: 'Internal error' });
-    }
   }
 
   const findOneById = async(id)=>{
-    try{
     return await Accommodation.findOne({ _id: id })
-    } catch(e){
-      console.log(e);
-      res.status(500).json({ error: 'Internal error' });
-    }
   }
 
 

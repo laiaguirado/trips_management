@@ -37,12 +37,7 @@ const findAll = async()=>{
 }
 
 const findById = async(id)=>{
-  try{
     return await User.findOne({_id:id});
-  }catch(e){
-    console.log(e);
-    res.status(500).json({ error: 'Internal error' });
-  }
 }
 
 module.exports = { createUser, authenticateUser, findAll, findById };
