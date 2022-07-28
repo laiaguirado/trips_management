@@ -16,23 +16,8 @@ const disconnect = async () => {
   return mongoose.connection.close();
 };
 
-const runTransaction = async (handler) => {
-  let result; //Wrapper for get result of session.withTransaction
-  try {
-    const session = await conn.startSession();
-    await session.withTransaction(async () => {
-      result = await handler();
-    });
-    session.endSession();
-  } catch (error) {
-    session.endSession();
-    throw error;
-  }
-  return result;
-};
-
 module.exports = {
   connect,
   disconnect,
-  runTransaction,
+  conn,
 };

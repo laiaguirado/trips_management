@@ -1,7 +1,7 @@
 const Travel = require("./travel.model");
 const User = require("../users/user.model");
 const { errMalformed } = require("../../errors");
-const { runTransaction } = require("../../db");
+const { runTransaction } = require("../../helper");
 
 const getTravelByUser = async (_id) => {
   return Travel.find({ _id }).populate("travellers").lean().exec();
