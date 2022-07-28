@@ -22,7 +22,7 @@ const createTravel = async (req, res) => {
   const dataTravel = req.body;
   const { _id } = req.userInfo;
   dataTravel.creator = _id;
-  res.status(200).json(await Travel.createTravel(dataTravel));
+  res.status(201).json(await Travel.createTravel(dataTravel));
 };
 
 const updateTravel = async (req, res) => {

@@ -16,7 +16,7 @@ const test = async (req, res) => {
 const register = async (req, res) => {
   const userData = req.body;
   await User.createUser(userData);
-  res.status(200).json({ status: `User created` });
+  res.status(201).json({ status: `User created` });
 };
 
 const login = async (req, res) => {

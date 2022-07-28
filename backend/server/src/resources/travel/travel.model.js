@@ -11,7 +11,7 @@ const travelSchema = new mongoose.Schema(
       required: [true, "{PATH} is required"],
       trim: true,
       maxlength: [50, "{PATH} is too long"],
-      match: [/^[a-zA-Z\s]*$/, "{PATH} is invalid"],
+      match: [/^[a-zA-Z0-9\s]*$/, "{PATH} is invalid"],
       set: capitalize,
     },
     description: {
