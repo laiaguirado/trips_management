@@ -13,7 +13,7 @@ const getTravelById = async (_id) => {
 
 const getAllTravel = async () => {
   return Travel.find()
-    .populate({ path: "travellers", select: "email username -travels" })
+    .populate({ path: "travellers", select: "email username" })
     .populate({ path: "creator", select: "email -_id" })
     .lean()
     .exec();

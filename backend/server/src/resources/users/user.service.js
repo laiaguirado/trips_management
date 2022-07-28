@@ -38,7 +38,9 @@ const findAll = async () => {
 };
 
 const findById = async (id) => {
-  return await User.findOne({ _id: id });
+  return await User.findOne({ _id: id }).populate({
+    path: "travels",
+  });
 };
 
 module.exports = { createUser, authenticateUser, findAll, findById };
