@@ -30,7 +30,7 @@ const authenticateUser = async ({ email, password }) => {
 const findAll = async () => {
   return await User.find()
     .populate({
-      path: "travelis",
+      path: "travels",
       select: "-_id -travellers",
     })
     .lean()
