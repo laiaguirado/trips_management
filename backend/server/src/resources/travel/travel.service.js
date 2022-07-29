@@ -70,6 +70,24 @@ const addUserToTravel = async (idTravel, idUser) => {
   return travel;
 };
 
+const deleteUserToTravel = async (idTravel, idUser) => {
+  const travel = await runTransaction(async () => {
+    const travel = await Travel.findOneAndUpdate(
+      { _id: idTravel },
+      { $pull: { travellers: idUser } },
+      { new: true, useFindAndModify: false }
+    );
+
+    const user = await User.findOneAndUpdate(
+      { _id: idUser },
+      { $pull: { travels: idTravel } },
+      { new: true, useFindAndModify: false }
+    );
+    return travel;
+  });
+  return travel;
+};
+
 module.exports = {
   createTravel,
   updateTravel,
@@ -77,4 +95,5 @@ module.exports = {
   getAllTravel,
   deleteTravel,
   addUserToTravel,
+  deleteUserToTravel,
 };

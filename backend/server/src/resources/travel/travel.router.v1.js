@@ -52,6 +52,12 @@ const addUserToTravel = async (req, res) => {
   res.status(200).json(travel);
 };
 
+const deleteUserToTravel = async (req, res) => {
+  const { idTravel, idUser } = req.params;
+  const travel = await Travel.deleteUserToTravel(idTravel, idUser);
+  res.status(200).json(travel);
+};
+
 const router = express.Router();
 
 router.get("/", needsAuthToken, catchErrors(getAllTravel));
@@ -62,6 +68,12 @@ router.post(
   needsAuthToken,
   catchErrors(addUserToTravel)
 );
+router.delete(
+  "/:idTravel/traveller/:idUser",
+  needsAuthToken,
+  catchErrors(deleteUserToTravel)
+);
+
 router.put("/:_id", needsAuthToken, catchErrors(updateTravel));
 router.delete("/:_id", needsAuthToken, catchErrors(deleteTravel));
 
