@@ -9,11 +9,22 @@ class image extends mongoose.SchemaType {
     super(key, options, "Image");
   }
   cast = function (val) {
-    if (!val.data && !val.extension && !val.url) {
-      return false;
-    }
-    return val;
+    return isUrl(val) || isFile(val) ? val : false;
   };
 }
+
+const isFile = (val) => {
+  return (
+    val &&
+    val.hasOwnProperty("extension") &&
+    val.extension.length != 0 &&
+    val.hasOwnProperty("data") &&
+    val.data.length != 0
+  );
+};
+
+const isUrl = (val) => {
+  return val && val.hasOwnProperty("url") && val.url.length != 0;
+};
 
 module.exports = image;

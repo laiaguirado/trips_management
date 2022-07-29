@@ -39,7 +39,6 @@ const travelSchema = new mongoose.Schema(
     },
     image: {
       type: mongoose.Schema.Types.Image,
-      required: true,
       validate: {
         validator: (v) => v,
         message: (props) => `Image is wrong`,
