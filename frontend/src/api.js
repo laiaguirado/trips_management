@@ -83,6 +83,28 @@ export const getTripList = async () => {
   }
 };
 
+export const getTrip = async (tripId) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/travel/${tripId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const trip = await response.json();
+    console.log("API")
+    console.log(trip);
+    if (response.status === 200) {
+      return { success: true, trip: trip[0] };
+    } else {
+      return { success: false, error: "Couldn't fetch trip" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
 export const addTrip = async (newTripData) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));

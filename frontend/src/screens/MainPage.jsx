@@ -75,9 +75,9 @@ function MainPage({ onLogout }) {
         <div className="trip-list">
           {tripList.map((trip) => (
             <TripCard
-              key={trip.id}
+              key={trip._id}
               trip={trip}
-              onClick={() => navigate(`/trip/${trip.id}`, { replace: false })}
+              onClick={() => navigate(`/trip/${trip._id}`, { replace: false })}
             />
           ))}
         </div>
