@@ -70,7 +70,22 @@ const travelSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "comment",
       }
-    ]
+    ],
+    restaurants: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "restoration",
+        validate: {
+          isAsync: true,
+          validator: async function (v) {
+            return await FKIntegrity(mongoose.model("restoration"), v).catch(
+              (err) => false
+            );
+          },
+          message: `Restaurant doesn't exist`,
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
