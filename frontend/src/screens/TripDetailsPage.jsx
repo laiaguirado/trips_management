@@ -12,10 +12,12 @@ import {
   faUtensils,
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
+import DeleteTripCard from "../components/DeleteTripCard";
 
 function TripDetailsPage() {
   const [trip, setTrip] = useState([]);
   const [message, setMessage] = useState(null);
+  const [deleting, setDeleting] = useState(false);
   const { tripId } = useParams();
   const navigate = useNavigate();
 
@@ -36,6 +38,28 @@ function TripDetailsPage() {
       setMessage(error);
     }
   };
+
+  function deleteButton() {
+    if (deleting === false) {
+      return (
+        <div
+          className="delete-trip"
+          onClick={() => {
+            setDeleting(true);
+          }}
+        >
+          <FontAwesomeIcon icon={faTrashCan} /> DELETE TRIP
+        </div>
+      );
+    } else {
+      return (
+        <DeleteTripCard
+          onDelete={() => deleteTrip(tripId)}
+          deleting={() => setDeleting(false)}
+        />
+      );
+    }
+  }
 
   useEffect(() => {
     getTripData();
@@ -103,14 +127,7 @@ function TripDetailsPage() {
           <FontAwesomeIcon className="icon" icon={faUtensils} size="2x" />
           Places To Eat
         </div>
-        <div
-          className="delete-trip"
-          onClick={() => {
-            deleteTrip(tripId);
-          }}
-        >
-          <FontAwesomeIcon icon={faTrashCan} /> DELETE TRIP
-        </div>
+        <div>{deleteButton()}</div>
       </div>
     </div>
   );
