@@ -1,0 +1,40 @@
+.delete-trip-card{
+    border-radius: 1rem;
+    background-color: #F0CDC3;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-trip-card .options{
+    display: flex;
+    flex-direction: row;
+}
+
+.delete-trip-card .option{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-trip-card .option-no{
+    border-bottom-left-radius: 1rem;
+    background-color: #D29985;
+    width: 10rem;
+    height: 2rem;
+}
+
+.delete-trip-card .option-yes{
+    border-bottom-right-radius: 1rem;
+    background-color: #B7553E;
+    width: 10rem;
+    height: 2rem;
+}
+
+.delete-trip-card .option:hover{
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
