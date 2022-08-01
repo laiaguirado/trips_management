@@ -74,15 +74,29 @@ const addIdUserToTravel = async (idUser, idTravel) => {
   return travel;
 };
 
+const deleteMeToTravel = async (req, res) => {
+  const { idTravel } = req.params;
+  const { _id } = req.userInfo;
+  const travel = await deleteUserToTravelById(idTravel, _id);
+  res.status(200).json(travel);
+};
+
 const deleteUserToTravel = async (req, res) => {
   const { idTravel, email } = req.params;
   const user = await UserService.findByEmail(email);
   if (user) {
-    const travel = await Travel.deleteUserToTravel(idTravel, user._id);
+    const travel = await deleteUserToTravelById(idTravel, user._id);
     res.status(200).json(travel);
   } else {
     errMalformed("User doesn't exists");
   }
+};
+
+const deleteUserToTravelById = async (idTravel, idUser) => {
+  console.log(` idTravel=${idTravel} id = ${idUser}`);
+  const travel = await Travel.deleteUserToTravel(idTravel, idUser);
+  console.log(travel);
+  return travel;
 };
 
 const router = express.Router();
@@ -100,6 +114,12 @@ router.post(
   "/:idTravel/traveller/:email",
   needsAuthToken,
   catchErrors(addUserToTravel)
+);
+
+router.delete(
+  "/:idTravel/traveller/me",
+  needsAuthToken,
+  catchErrors(deleteMeToTravel)
 );
 
 router.delete(
