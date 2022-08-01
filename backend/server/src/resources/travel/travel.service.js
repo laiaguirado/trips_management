@@ -11,6 +11,10 @@ const getTravelById = async (_id) => {
     .exec();
 };
 
+const findTravel = async(_idTravel)=>{
+  return await Travel.findOne({ _id: _idTravel })
+}
+
 const getAllTravel = async () => {
   return Travel.find()
     .populate({ path: "travellers", select: "email username" })
@@ -96,4 +100,5 @@ module.exports = {
   deleteTravel,
   addUserToTravel,
   deleteUserToTravel,
+  findTravel
 };
