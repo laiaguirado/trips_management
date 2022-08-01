@@ -15,39 +15,27 @@ import {
 
 function TripDetailsPage() {
   const [trip, setTrip] = useState([]);
+  const [message, setMessage] = useState(null);
   const { tripId } = useParams();
   const navigate = useNavigate();
 
   const getTripData = async () => {
     const { success, trip, error } = await api.getTrip(tripId);
-    setTrip(trip);
+    if (success) {
+      setTrip(trip);
+    } else {
+      setMessage(error);
+    }
   };
-  console.log(trip);
 
-  /*aqui haremos la llamada a la API para obtener la info del trip con Id correspondiente
-  const trip = {
-    _id: "62e6a3029323d86856ba3ecd",
-    name: "Trip 1.0",
-    description: "This is our first trip to London",
-    location: "London",
-    startDate: "2022-08-01T00:00:00.000Z",
-    endDate: "2022-08-15T00:00:00.000Z",
-    creator: {
-      email: "trip@gmail.com",
-    },
-    travellers: [
-      {
-        _id: "62defb1693e76d3cd1d60da5",
-        email: "trip@gmail.com",
-        username: "Trip",
-      },
-      {
-        _id: "62df0cf82ab1aecb8aaa2ea0",
-        email: "pipi@gmail.cat",
-        username: "Rogerpuey",
-      },
-    ],
-  };*/
+  const deleteTrip = async (tripId) => {
+    const { success, error } = await api.deleteTrip(tripId);
+    if (success) {
+      navigate(`/`, { replace: false });
+    } else {
+      setMessage(error);
+    }
+  };
 
   useEffect(() => {
     getTripData();
@@ -63,6 +51,7 @@ function TripDetailsPage() {
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
+        <div>{message}</div>
         <h3>TripDetailsPage</h3>
         <h1> {trip.name}</h1>
         <h3>
@@ -114,7 +103,12 @@ function TripDetailsPage() {
           <FontAwesomeIcon className="icon" icon={faUtensils} size="2x" />
           Places To Eat
         </div>
-        <div className="delete-trip">
+        <div
+          className="delete-trip"
+          onClick={() => {
+            deleteTrip(tripId);
+          }}
+        >
           <FontAwesomeIcon icon={faTrashCan} /> DELETE TRIP
         </div>
       </div>

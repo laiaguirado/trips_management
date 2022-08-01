@@ -10,7 +10,7 @@ import AddTrip from "../components/AddTrip";
 
 function MainPage({ onLogout }) {
   const [userData, setUserData] = useState(null);
-  const [tripList, setTripList] = useState([]);
+  const [tripList, setTripList] = useState(null);
   const [message, setMessage] = useState(null);
   const [adding, setAdding] = useState(false);
   const navigate = useNavigate();
@@ -38,8 +38,14 @@ function MainPage({ onLogout }) {
   const addTrip = async (newTripData) => {
     const { success, added, error } = await api.addTrip(newTripData);
     if (success) {
-      setTripList((tripList) => [...tripList, added]);
-      setAdding(false);
+      const { success, addedWithTraveller, error } =
+        await api.addCreatorAsMember(added);
+      if (success) {
+        setTripList((tripList) => [...tripList, addedWithTraveller]);
+        setAdding(false);
+      } else {
+        setMessage(error);
+      }
     } else {
       setMessage(error);
     }
@@ -73,13 +79,19 @@ function MainPage({ onLogout }) {
         <h3>Main Page</h3>
         <div>{addTripForm()}</div>
         <div className="trip-list">
-          {tripList.map((trip) => (
-            <TripCard
-              key={trip._id}
-              trip={trip}
-              onClick={() => navigate(`/trip/${trip._id}`, { replace: false })}
-            />
-          ))}
+          {Array.isArray(tripList) === true ? (
+            tripList.map((trip) => (
+              <TripCard
+                key={trip._id}
+                trip={trip}
+                onClick={() =>
+                  navigate(`/trip/${trip._id}`, { replace: false })
+                }
+              />
+            ))
+          ) : (
+            <p></p>
+          )}
         </div>
       </div>
     </div>

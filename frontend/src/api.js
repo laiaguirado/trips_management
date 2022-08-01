@@ -66,7 +66,8 @@ export const getUserData = async () => {
 export const getTripList = async () => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const response = await fetch(`${BASE_URL}/${version}/travel`, {
+    //const response = await fetch(`${BASE_URL}/${version}/travel`, {
+    const response = await fetch(`${BASE_URL}/user/${version}/me/travel`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -93,8 +94,6 @@ export const getTrip = async (tripId) => {
       },
     });
     const trip = await response.json();
-    console.log("API")
-    console.log(trip);
     if (response.status === 200) {
       return { success: true, trip: trip[0] };
     } else {
@@ -126,3 +125,50 @@ export const addTrip = async (newTripData) => {
     return { success: false, error: `Network error: ${e.message}` };
   }
 };
+
+export const addCreatorAsMember = async (added) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const { success, userData } = await getUserData();
+    if (success) {
+      const travelId = added._id;
+      const travellerId = userData.id;
+      const response = await fetch(`${BASE_URL}/${version}/travel/${travelId}/traveller/${travellerId}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      const addedWithTraveller = await response.json();
+      if (response.status === 200) {
+        return { success: true, addedWithTraveller }
+      } else {
+        return { success: false, error: "Couldn't add member in the trip" };
+      }
+    } else {
+      return { success: false, error: "Couldn't add member in the trip" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+}
+
+export const deleteTrip = async (tripId) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/travel/${tripId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    if (response.status === 200) {
+      return { success: true };
+    } else {
+      return { success: false, error: "Couldn't delete trip" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
