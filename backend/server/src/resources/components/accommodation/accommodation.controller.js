@@ -1,5 +1,5 @@
 const addRoutesTo = (app) => {
-    app.use("/accommodation/v1", require("./accommodation.router.v1"));
+    app.use("/v1/accommodation", require("./accommodation.router.v1"));
 
   };
   module.exports = {

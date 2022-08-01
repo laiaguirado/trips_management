@@ -8,8 +8,7 @@ const Accommodation = require("./accommodation.service")
 
   const create = async (req, res) => {
     const accommData = req.body;
-    await Accommodation.createAccommodation(accommData);
-    res.status(200).json({ status: `Accomm created` });
+    res.status(200).json(await Accommodation.createAccommodation(accommData));
   };
   const geAllAccommodations = async (req, res) => {
     const docs = await Accommodation.findAll();
@@ -17,23 +16,23 @@ const Accommodation = require("./accommodation.service")
   };
 
   const getAccommodationByTravel = async(req, res) =>{
-    const {idTravel} = req.body;
+    const {idTravel} = req.params;
     const doc = await Accommodation.findByTravelId(idTravel);
     res.status(200).json({ results: [doc] });
   }
 
   const getAccommodationById = async(req, res) =>{
-    const {id} = req.body;
+    const {id} = req.params;
     const doc = await Accommodation.findOneById(id);
     res.status(200).json({ results: [doc] });
   }
   
   const router = express.Router();
   
-  router.post("/create", catchErrors(create));
+  router.post("/", catchErrors(create));
   router.get("/getAll", catchErrors(geAllAccommodations));
-  router.get("/getByTravelId", catchErrors(getAccommodationByTravel));
-  router.get("/getById", catchErrors(getAccommodationById));
+  router.get("/getByTravelId/:idTravel", catchErrors(getAccommodationByTravel));
+  router.get("/getById/:id", catchErrors(getAccommodationById));
 
 
   module.exports = router;

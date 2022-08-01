@@ -12,6 +12,10 @@ const scoreSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "component",
   },
+  idTravel: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "travel",
+  },
   score:{
     type:Number,
     required:true,
