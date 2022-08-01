@@ -43,4 +43,15 @@ const findById = async (id) => {
   });
 };
 
-module.exports = { createUser, authenticateUser, findAll, findById };
+const findByEmail = async (email) => {
+  const user = await User.findOne({ email: email });
+  return user;
+};
+
+module.exports = {
+  createUser,
+  authenticateUser,
+  findAll,
+  findById,
+  findByEmail,
+};

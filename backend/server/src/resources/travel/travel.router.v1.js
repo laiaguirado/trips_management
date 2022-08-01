@@ -1,8 +1,13 @@
 const express = require("express");
-const { catchErrors, TripManagementApiError } = require("../../errors");
+const {
+  catchErrors,
+  TripManagementApiError,
+  errMalformed,
+} = require("../../errors");
 const config = require("../../config");
 const { needsAuthToken } = require("../users/auth/auth.middleware");
 const Travel = require("./travel.service");
+const UserService = require("../users/user.service");
 
 const test = async (req, res) => {
   const { email, _id, username } = req.userInfo;
@@ -46,16 +51,38 @@ const deleteTravel = async (req, res) => {
   res.status(200).json(await Travel.deleteTravel(_id));
 };
 
-const addUserToTravel = async (req, res) => {
-  const { idTravel, idUser } = req.params;
-  const travel = await Travel.addUserToTravel(idTravel, idUser);
+const addMeToTravel = async (req, res) => {
+  const { idTravel } = req.params;
+  const { _id } = req.userInfo;
+  const travel = await addIdUserToTravel(_id, idTravel);
   res.status(200).json(travel);
 };
 
+const addUserToTravel = async (req, res) => {
+  const { idTravel, email } = req.params;
+  const user = await UserService.findByEmail(email);
+  if (user) {
+    const travel = await addIdUserToTravel(user._id, idTravel);
+    res.status(200).json(travel);
+  } else {
+    errMalformed("User doesn't exists");
+  }
+};
+
+const addIdUserToTravel = async (idUser, idTravel) => {
+  const travel = await Travel.addUserToTravel(idTravel, idUser);
+  return travel;
+};
+
 const deleteUserToTravel = async (req, res) => {
-  const { idTravel, idUser } = req.params;
-  const travel = await Travel.deleteUserToTravel(idTravel, idUser);
-  res.status(200).json(travel);
+  const { idTravel, email } = req.params;
+  const user = await UserService.findByEmail(email);
+  if (user) {
+    const travel = await Travel.deleteUserToTravel(idTravel, user._id);
+    res.status(200).json(travel);
+  } else {
+    errMalformed("User doesn't exists");
+  }
 };
 
 const router = express.Router();
@@ -64,12 +91,19 @@ router.get("/", needsAuthToken, catchErrors(getAllTravel));
 router.get("/:_id", needsAuthToken, catchErrors(getTravelById));
 router.post("/", needsAuthToken, catchErrors(createTravel));
 router.post(
-  "/:idTravel/traveller/:idUser",
+  "/:idTravel/traveller/me",
+  needsAuthToken,
+  catchErrors(addMeToTravel)
+);
+
+router.post(
+  "/:idTravel/traveller/:email",
   needsAuthToken,
   catchErrors(addUserToTravel)
 );
+
 router.delete(
-  "/:idTravel/traveller/:idUser",
+  "/:idTravel/traveller/:email",
   needsAuthToken,
   catchErrors(deleteUserToTravel)
 );

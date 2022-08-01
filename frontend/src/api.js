@@ -129,29 +129,26 @@ export const addTrip = async (newTripData) => {
 export const addCreatorAsMember = async (added) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const { success, userData } = await getUserData();
-    if (success) {
-      const travelId = added._id;
-      const travellerId = userData.id;
-      const response = await fetch(`${BASE_URL}/${version}/travel/${travelId}/traveller/${travellerId}`, {
+    const travelId = added._id;
+    const response = await fetch(
+      `${BASE_URL}/${version}/travel/${travelId}/traveller/me`,
+      {
         method: "POST",
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      });
-      const addedWithTraveller = await response.json();
-      if (response.status === 200) {
-        return { success: true, addedWithTraveller }
-      } else {
-        return { success: false, error: "Couldn't add member in the trip" };
       }
+    );
+    const addedWithTraveller = await response.json();
+    if (response.status === 200) {
+      return { success: true, addedWithTraveller };
     } else {
       return { success: false, error: "Couldn't add member in the trip" };
     }
   } catch (e) {
     return { success: false, error: `Network error: ${e.message}` };
   }
-}
+};
 
 export const deleteTrip = async (tripId) => {
   try {
@@ -171,4 +168,3 @@ export const deleteTrip = async (tripId) => {
     return { success: false, error: `Network error: ${e.message}` };
   }
 };
-

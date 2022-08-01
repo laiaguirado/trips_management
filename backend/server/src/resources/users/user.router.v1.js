@@ -40,12 +40,18 @@ const getTravelsByUser = async (req, res) => {
   }
 };
 
+const getUserByEmail = async (req, res) => {
+  const { email } = req.params;
+  res.status(200).json(await User.findByEmail(email));
+};
+
 const router = express.Router();
 
 router.post("/register", catchErrors(register));
 router.post("/login", catchErrors(login));
 router.get("/getAll", needsAuthToken, catchErrors(getAll));
 router.get("/me/travel", needsAuthToken, catchErrors(getTravelsByUser));
+router.get("/:email", needsAuthToken, catchErrors(getUserByEmail));
 if (config.isDevelopment) {
   router.get("/test", needsAuthToken, catchErrors(test));
 }
