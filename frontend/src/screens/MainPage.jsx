@@ -6,7 +6,7 @@ import Bar from "../components/Bar";
 import TripCard from "../components/TripCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import AddTrip from "../components/AddTrip";
+import AddTripCard from "../components/AddTripCard";
 
 function MainPage({ onLogout }) {
   const [userData, setUserData] = useState(null);
@@ -59,7 +59,7 @@ function MainPage({ onLogout }) {
         </div>
       );
     } else {
-      return <AddTrip onAdd={addTrip} />;
+      return <AddTripCard onAdd={addTrip} adding={() => setAdding(false)} />;
     }
   }
 
@@ -72,9 +72,6 @@ function MainPage({ onLogout }) {
     <div className="main-page">
       <Bar mode="login" userData={userData} onLogout={onLogout} />
       <div>{message}</div>
-      <button className="logout-button" onClick={onLogout}>
-        Logout
-      </button>
       <div>
         <h3>Main Page</h3>
         <div>{addTripForm()}</div>

@@ -1,0 +1,26 @@
+.add-trip-card{
+    border-radius: .5rem;
+    margin: 1rem;
+    padding:1rem;
+    transition: all 0.2s ease-in-out;
+    background-color: #FFFFFF;
+}
+
+.add-trip-card .return-icon{
+    cursor: pointer;
+    color:#937B5F;
+    width: 2.5em;
+    height: 3rem;
+    border-radius: .5rem;
+}
+
+.add-trip-card .return-icon:hover{
+    cursor: pointer;
+    color: #FFFFFF;
+    background-color: #B7CBE7;
+    
+}
+
+.add-trip-card .form-data{
+    color:#937B5F;
+}
