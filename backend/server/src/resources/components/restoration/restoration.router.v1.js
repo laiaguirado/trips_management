@@ -31,7 +31,18 @@ const User = require("../../users/user.service")
 
   };
 
+  const deleteRestoration = async (req, res) => {
+    const { _id } = req.params;
+    res.status(200).json(await Restoration.deleteRest(_id));
+  };
+
+  const getAll = async(req,res)=>{
+    const docs = await Restoration.findAll();
+    res.status(200).json({results:[docs]})
+  }
+
   const router = express.Router();
   router.post("/:idTravel",needsAuthToken, catchErrors(create));
-  
+  router.delete("/:_id",needsAuthToken,catchErrors(deleteRestoration));
+  router.get("/",needsAuthToken,catchErrors(getAll));
   module.exports = router;

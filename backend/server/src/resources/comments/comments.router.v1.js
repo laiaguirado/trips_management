@@ -42,6 +42,6 @@ const getAll = async(req,res) =>{
 const router = express.Router();
 
 router.post("/:id/travel/:travelId", needsAuthToken, catchErrors(create));
-router.get("/getAll", catchErrors(getAll));
+router.get("/", catchErrors(getAll));
 
 module.exports = router;
