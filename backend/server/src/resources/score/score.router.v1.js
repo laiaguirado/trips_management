@@ -33,7 +33,7 @@ const create = async(req,res)=>{
     user.scores.push(score);
     await user.save();
 
-    res.status(200).json({ status: `User: ${username} added Score ${score._id} to resource: ${compId} in the travel ${travel.name}` });
+    res.status(200).json(score);
    
 }
 
