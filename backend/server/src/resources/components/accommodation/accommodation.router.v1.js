@@ -14,7 +14,7 @@ const User = require("../../users/user.service")
     const { email, _id, username } = req.userInfo;
     const {idTravel} = req.params;
 
-    const accommodation = await Accommodation.createAccommodation(accommData,_id,idTravel)
+    const accommodation = await Accommodation.createAccommodation(accommData,idTravel,_id)
 
     const travel = await Travel.findTravel(idTravel);
 
