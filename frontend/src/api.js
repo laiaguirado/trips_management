@@ -168,3 +168,45 @@ export const deleteTrip = async (tripId) => {
     return { success: false, error: `Network error: ${e.message}` };
   }
 };
+
+export const getAccomodationList = async (travelId) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/accommodation/travel/${travelId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const accomodations = await response.json();
+    if (response.status === 200) {
+      return { success: true, accomodationList: accomodations.results };
+    } else {
+      return { success: false, error: "Couldn't fetch accomodations" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
+export const addAccomodation = async (tripId, newAccomodationData) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/accomodation/travel/${tripId}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newAccomodationData),
+    });
+    const added = await response.json();
+    if (response.status === 201) {
+      return { success: true, added };
+    } else {
+      return { success: false, error: "Couldn't add accomodation" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./TripDetailsPage.css";
 import * as api from "../api";
 import Bar from "../components/Bar";
+import DeleteTripCard from "../components/DeleteTripCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
@@ -12,7 +13,6 @@ import {
   faUtensils,
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
-import DeleteTripCard from "../components/DeleteTripCard";
 
 function TripDetailsPage() {
   const [trip, setTrip] = useState([]);
