@@ -6,11 +6,11 @@ import Bar from "../components/Bar";
 import TripCard from "../components/TripCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import AddTrip from "../components/AddTrip";
+import AddTripCard from "../components/AddTripCard";
 
 function MainPage({ onLogout }) {
   const [userData, setUserData] = useState(null);
-  const [tripList, setTripList] = useState([]);
+  const [tripList, setTripList] = useState(null);
   const [message, setMessage] = useState(null);
   const [adding, setAdding] = useState(false);
   const navigate = useNavigate();
@@ -38,8 +38,14 @@ function MainPage({ onLogout }) {
   const addTrip = async (newTripData) => {
     const { success, added, error } = await api.addTrip(newTripData);
     if (success) {
-      setTripList((tripList) => [...tripList, added]);
-      setAdding(false);
+      const { success, addedWithTraveller, error } =
+        await api.addCreatorAsMember(added);
+      if (success) {
+        setTripList((tripList) => [...tripList, addedWithTraveller]);
+        setAdding(false);
+      } else {
+        setMessage(error);
+      }
     } else {
       setMessage(error);
     }
@@ -53,7 +59,7 @@ function MainPage({ onLogout }) {
         </div>
       );
     } else {
-      return <AddTrip onAdd={addTrip} />;
+      return <AddTripCard onAdd={addTrip} adding={() => setAdding(false)} />;
     }
   }
 
@@ -66,20 +72,23 @@ function MainPage({ onLogout }) {
     <div className="main-page">
       <Bar mode="login" userData={userData} onLogout={onLogout} />
       <div>{message}</div>
-      <button className="logout-button" onClick={onLogout}>
-        Logout
-      </button>
       <div>
         <h3>Main Page</h3>
         <div>{addTripForm()}</div>
         <div className="trip-list">
-          {tripList.map((trip) => (
-            <TripCard
-              key={trip._id}
-              trip={trip}
-              onClick={() => navigate(`/trip/${trip._id}`, { replace: false })}
-            />
-          ))}
+          {Array.isArray(tripList) === true ? (
+            tripList.map((trip) => (
+              <TripCard
+                key={trip._id}
+                trip={trip}
+                onClick={() =>
+                  navigate(`/trip/${trip._id}`, { replace: false })
+                }
+              />
+            ))
+          ) : (
+            <p></p>
+          )}
         </div>
       </div>
     </div>

@@ -8,7 +8,6 @@ import AccomodationPage from "./screens/tripInformation/AccomodationPage";
 import TransportationPage from "./screens/tripInformation/TransportationPage";
 import ThingsToDoPage from "./screens/tripInformation/ThingsToDoPage";
 import PlacesToEatPage from "./screens/tripInformation/PlacesToEatPage";
-import AddTrip from "./components/AddTrip";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

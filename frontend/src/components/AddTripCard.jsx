@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import "./AddTrip.css";
+import { useParams, useNavigate } from "react-router-dom";
+import "./AddTripCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
   faCartFlatbedSuitcase,
   faImage,
   faCalendar,
+  faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AddTrip({ onAdd }) {
+function AddTripCard({ onAdd, adding }) {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [image, setImage] = useState("");
@@ -22,10 +24,13 @@ function AddTrip({ onAdd }) {
 
   return (
     <div className="add-trip-card">
+      <div className="return-icon" onClick={adding}>
+        <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+      </div>
       <form className="addtrip" onSubmit={(e) => add(e)}>
         <h1>New Trip</h1>
         <label>
-          <div>
+          <div className="form-data">
             <FontAwesomeIcon icon={faCartFlatbedSuitcase} />
             <input
               type="text"
@@ -36,7 +41,7 @@ function AddTrip({ onAdd }) {
           </div>
         </label>
         <label>
-          <div>
+          <div className="form-data">
             <FontAwesomeIcon icon={faLocationDot} />
             <input
               type="text"
@@ -47,7 +52,7 @@ function AddTrip({ onAdd }) {
           </div>
         </label>
         <label>
-          <div>
+          <div className="form-data">
             <FontAwesomeIcon icon={faImage} />
             <input
               type="text"
@@ -58,7 +63,7 @@ function AddTrip({ onAdd }) {
           </div>
         </label>
         <label>
-          <div>
+          <div className="form-data">
             <FontAwesomeIcon icon={faCalendar} />
             <input
               type="date"
@@ -69,7 +74,7 @@ function AddTrip({ onAdd }) {
           </div>
         </label>
         <label>
-          <div>
+          <div className="form-data">
             <FontAwesomeIcon icon={faCalendar} />
             <input
               type="date"
@@ -85,4 +90,4 @@ function AddTrip({ onAdd }) {
   );
 }
 
-export default AddTrip;
+export default AddTripCard;
