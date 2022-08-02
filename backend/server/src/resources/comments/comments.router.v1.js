@@ -29,7 +29,7 @@ const create = async(req,res)=>{
     travel.comments.push(comment);
     await travel.save()
 
-    res.status(200).json({ status: `User ${username} added Comment ${comment._id} to resource: ${compId} at travel ${travel.name}` });
+    res.status(200).json(comment);
    
 }
 
