@@ -25,6 +25,8 @@ require("./resources/components/accommodation/accommodation.controller").addRout
 );
 require("./resources/comments/comments.controller").addRoutesTo(app);
 require("./resources/score/score.controller").addRoutesTo(app);
+require("./resources/components/restoration/restoration.controller").addRoutesTo(app);
+
 
 app.all("/*", async (req, res, next) => {
   next(new TripManagementApiError(404, `Not Found`));

@@ -2,13 +2,31 @@ const { Router } = require("express");
 const { route } = require("express/lib/application");
 const express = require("express");
 const { catchErrors, TripManagementApiError } = require("../../../errors");
+const { needsAuthToken } = require("../../users/auth/auth.middleware");
+
 
 const Accommodation = require("./accommodation.service")
-
+const Travel = require("../../travel/travel.service")
+const User = require("../../users/user.service")
 
   const create = async (req, res) => {
     const accommData = req.body;
-    res.status(200).json(await Accommodation.createAccommodation(accommData));
+    const { email, _id, username } = req.userInfo;
+    const {idTravel} = req.params;
+
+    const accommodation = await Accommodation.createAccommodation(accommData,idTravel,_id)
+
+    const travel = await Travel.findTravel(idTravel);
+
+    const user = await User.findById(_id); 
+
+    travel.accommodations.push(accommodation);
+    await travel.save();
+
+    user.accommodations.push(accommodation);
+    await user.save();
+
+    res.status(200).json(accommodation);
   };
   const geAllAccommodations = async (req, res) => {
     const docs = await Accommodation.findAll();
@@ -17,8 +35,10 @@ const Accommodation = require("./accommodation.service")
 
   const getAccommodationByTravel = async(req, res) =>{
     const {idTravel} = req.params;
+    console.log(idTravel)
     const doc = await Accommodation.findByTravelId(idTravel);
-    res.status(200).json({ results: [doc] });
+    console.log(doc)
+    res.status(200).json({ results: doc });
   }
 
   const getAccommodationById = async(req, res) =>{
@@ -26,13 +46,19 @@ const Accommodation = require("./accommodation.service")
     const doc = await Accommodation.findOneById(id);
     res.status(200).json({ results: [doc] });
   }
+
+  const deleteAccommodation = async (req, res) => {
+    const { _id } = req.params;
+    res.status(200).json(await Accommodation.deleteAccom(_id));
+  };
   
   const router = express.Router();
   
-  router.post("/", catchErrors(create));
-  router.get("/getAll", catchErrors(geAllAccommodations));
-  router.get("/getByTravelId/:idTravel", catchErrors(getAccommodationByTravel));
-  router.get("/getById/:id", catchErrors(getAccommodationById));
+  router.post("/:idTravel",needsAuthToken, catchErrors(create));
+  router.get("/", needsAuthToken, catchErrors(geAllAccommodations));
+  router.get("/travel/:idTravel", needsAuthToken, catchErrors(getAccommodationByTravel));
+  router.get("/:id", needsAuthToken, catchErrors(getAccommodationById));
+  router.delete("/:_id", needsAuthToken, catchErrors(deleteAccommodation));
 
 
   module.exports = router;
