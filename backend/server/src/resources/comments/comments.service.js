@@ -2,10 +2,11 @@
 const Comment = require("./comments.model");
 
 
-const createOne = async(text,compId)=>{
+const createOne = async(text,compId,_id)=>{
         return await Comment.create({
             comment:text,
-            idComponent:compId
+            idComponent:compId,
+            idUser:_id,
         });
 }
 
