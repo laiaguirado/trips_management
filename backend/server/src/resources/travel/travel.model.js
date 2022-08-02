@@ -70,7 +70,37 @@ const travelSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "comment",
       }
-    ]
+    ],
+    restaurants: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "restoration",
+        validate: {
+          isAsync: true,
+          validator: async function (v) {
+            return await FKIntegrity(mongoose.model("restoration"), v).catch(
+              (err) => false
+            );
+          },
+          message: `Restaurant doesn't exist`,
+        },
+      },
+    ],
+    accommodations: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "accommodation",
+        validate: {
+          isAsync: true,
+          validator: async function (v) {
+            return await FKIntegrity(mongoose.model("accommodation"), v).catch(
+              (err) => false
+            );
+          },
+          message: `Accommodation doesn't exist`,
+        },
+      },
+    ],
   },
   { timestamps: true }
 );

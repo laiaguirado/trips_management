@@ -14,20 +14,14 @@ const create = async(req,res)=>{
     const {_idTravel} = req.params;
     const { email, _id, username } = req.userInfo;
     const { value } = req.body;
-    console.log(compId);
-    console.log(value );
 
     const score = await Score.createOne(value,compId,_id,_idTravel);
-    console.log(score)
 
     const accommodation = await Accomodation.findOneById(compId);
-    console.log(accommodation)
 
     const travel = await Travel.findTravel(_idTravel);
-    console.log(travel)
 
     const user = await User.findById(_id); 
-      console.log(user)
 
     travel.scores.push(score);
     await travel.save();
@@ -38,7 +32,6 @@ const create = async(req,res)=>{
 
     user.scores.push(score);
     await user.save();
-    console.log(user);
 
     res.status(200).json({ status: `User: ${username} added Score ${score._id} to resource: ${compId} in the travel ${travel.name}` });
    
