@@ -35,8 +35,10 @@ const User = require("../../users/user.service")
 
   const getAccommodationByTravel = async(req, res) =>{
     const {idTravel} = req.params;
+    console.log(idTravel)
     const doc = await Accommodation.findByTravelId(idTravel);
-    res.status(200).json({ results: [doc] });
+    console.log(doc)
+    res.status(200).json({ results: doc });
   }
 
   const getAccommodationById = async(req, res) =>{
@@ -44,13 +46,19 @@ const User = require("../../users/user.service")
     const doc = await Accommodation.findOneById(id);
     res.status(200).json({ results: [doc] });
   }
+
+  const deleteAccommodation = async (req, res) => {
+    const { _id } = req.params;
+    res.status(200).json(await Accommodation.deleteAccom(_id));
+  };
   
   const router = express.Router();
   
   router.post("/:idTravel",needsAuthToken, catchErrors(create));
-  router.get("/getAll", catchErrors(geAllAccommodations));
-  router.get("/getByTravelId/:idTravel", catchErrors(getAccommodationByTravel));
-  router.get("/getById/:id", catchErrors(getAccommodationById));
+  router.get("/getAll", needsAuthToken, catchErrors(geAllAccommodations));
+  router.get("/travel/:idTravel", needsAuthToken, catchErrors(getAccommodationByTravel));
+  router.get("/:id", needsAuthToken, catchErrors(getAccommodationById));
+  router.delete("/:_id", needsAuthToken, catchErrors(deleteAccommodation));
 
 
   module.exports = router;
