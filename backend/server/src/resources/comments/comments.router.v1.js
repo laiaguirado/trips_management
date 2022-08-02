@@ -15,7 +15,7 @@ const create = async(req,res)=>{
     const { comment_text } = req.body;
     const {travelId} = req.params;
 
-    const comment = await Comment.createOne(comment_text,compId);
+    const comment = await Comment.createOne(comment_text,compId,_id);
     const accommodation = await Accomodation.findOneById(compId);
     const user = await User.findById(_id);
     const travel = await Travel.findTravel(travelId);
