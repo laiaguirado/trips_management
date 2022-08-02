@@ -14,4 +14,12 @@ const findAll = async() =>{
         return await Comment.find().lean().exec()
 }
 
-module.exports = {createOne,findAll}
+const deleteComment = async(_id) =>{
+        const deleted = await Comment.findByIdAndDelete({_id}).lean().exec();
+        if (deleted === null){
+            errMalformed(`Comment with ${id} not found`);
+        }
+        return deleted
+      }
+
+module.exports = {createOne,findAll, deleteComment}

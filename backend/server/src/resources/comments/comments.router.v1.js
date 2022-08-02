@@ -39,9 +39,15 @@ const getAll = async(req,res) =>{
     res.status(200).json({ results: [docs] });
 }
 
+const deleteOne = async (req, res) => {
+    const { _id } = req.params;
+    res.status(200).json(await Comment.deleteComment(_id));
+  };
+
 const router = express.Router();
 
 router.post("/:id/travel/:travelId", needsAuthToken, catchErrors(create));
-router.get("/", catchErrors(getAll));
+router.get("/",needsAuthToken, catchErrors(getAll));
+router.delete("/:_id",needsAuthToken,catchErrors(deleteOne))
 
 module.exports = router;

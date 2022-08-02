@@ -16,4 +16,8 @@ const createOne = async ({ web, description, location, phone, email, resourceTyp
     return deleted
   }
 
-module.exports = {createOne,deleteRest,findAll}
+  const getOne = async(_id)=>{
+    return await Restoration.findOne({_id})
+  }
+
+module.exports = {createOne,deleteRest,findAll,getOne}
