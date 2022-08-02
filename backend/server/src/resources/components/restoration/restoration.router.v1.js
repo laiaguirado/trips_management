@@ -44,5 +44,5 @@ const User = require("../../users/user.service")
   const router = express.Router();
   router.post("/:idTravel",needsAuthToken, catchErrors(create));
   router.delete("/:_id",needsAuthToken,catchErrors(deleteRestoration));
-  router.get("/getAll",needsAuthToken,catchErrors(getAll));
+  router.get("/",needsAuthToken,catchErrors(getAll));
   module.exports = router;

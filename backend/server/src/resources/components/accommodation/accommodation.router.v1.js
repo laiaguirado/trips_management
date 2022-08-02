@@ -55,7 +55,7 @@ const User = require("../../users/user.service")
   const router = express.Router();
   
   router.post("/:idTravel",needsAuthToken, catchErrors(create));
-  router.get("/getAll", needsAuthToken, catchErrors(geAllAccommodations));
+  router.get("/", needsAuthToken, catchErrors(geAllAccommodations));
   router.get("/travel/:idTravel", needsAuthToken, catchErrors(getAccommodationByTravel));
   router.get("/:id", needsAuthToken, catchErrors(getAccommodationById));
   router.delete("/:_id", needsAuthToken, catchErrors(deleteAccommodation));

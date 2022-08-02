@@ -9,7 +9,6 @@ const createAccommodation = async ({ web, location, startDate, endDate, phone, e
   };
 
   const findByTravelId = async(_idTravel)=>{
-    console.log(_idTravel)
     return await Accommodation.find({idTravel: _idTravel }).exec();
   }
 
