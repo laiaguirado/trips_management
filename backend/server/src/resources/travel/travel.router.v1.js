@@ -87,7 +87,6 @@ const deleteMeToTravel = async (req, res) => {
 
 const deleteUserToTravel = async (req, res) => {
   const { idTravel, email } = req.params;
-  console.log(`Delete user to travel`);
   const user = await UserService.findByEmail(email);
   if (user) {
     const travel = await deleteUserToTravelById(idTravel, user._id);
@@ -102,9 +101,7 @@ const deleteUserToTravel = async (req, res) => {
 };
 
 const deleteUserToTravelById = async (idTravel, idUser) => {
-  console.log(` idTravel=${idTravel} id = ${idUser}`);
   const travel = await Travel.deleteUserToTravel(idTravel, idUser);
-  console.log(travel);
   return travel;
 };
 
