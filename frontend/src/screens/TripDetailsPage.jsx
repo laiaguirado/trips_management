@@ -79,6 +79,10 @@ function TripDetailsPage() {
         <h3>TripDetailsPage</h3>
         <h1 className="trip-name"> {trip.name}</h1>
         <h2 className="trip-location">{trip.location}</h2>
+        <div className="trip-description">
+          <h3>Description:</h3>
+          <div>{trip.description}</div>
+        </div>
         <div className="trip-dates">
           <h3>Dates:</h3>
           <div>

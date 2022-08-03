@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCartFlatbedSuitcase,
+  faGlobe,
   faLocationDot,
   faCalendar,
   faPhone,
   faEnvelope,
   faAngleLeft,
+  faNoteSticky,
 } from "@fortawesome/free-solid-svg-icons";
 
 function AddAccommodationCard({ onAdd, adding, tripId }) {
   const [web, setWeb] = useState("");
+  const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -21,6 +23,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
     e.preventDefault();
     onAdd(tripId, {
       web,
+      description,
       location,
       startDate,
       endDate,
@@ -39,12 +42,23 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
         <h1>New Accommodation</h1>
         <label>
           <div className="form-data">
-            <FontAwesomeIcon icon={faCartFlatbedSuitcase} />
+            <FontAwesomeIcon icon={faGlobe} />
             <input
               type="text"
               placeholder="Web"
               value={web}
               onChange={(event) => setWeb(event.target.value)}
+            />
+          </div>
+        </label>
+        <label>
+          <div className="form-data">
+            <FontAwesomeIcon icon={faNoteSticky} />
+            <input
+              type="text"
+              placeholder="Description"
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
             />
           </div>
         </label>

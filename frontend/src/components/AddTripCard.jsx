@@ -8,10 +8,12 @@ import {
   faImage,
   faCalendar,
   faAngleLeft,
+  faNoteSticky,
 } from "@fortawesome/free-solid-svg-icons";
 
 function AddTripCard({ onAdd, adding }) {
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [image, setImage] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -19,7 +21,7 @@ function AddTripCard({ onAdd, adding }) {
 
   const add = (e) => {
     e.preventDefault();
-    onAdd({ name, location, startDate, endDate });
+    onAdd({ name, description, location, startDate, endDate });
   };
 
   return (
@@ -37,6 +39,17 @@ function AddTripCard({ onAdd, adding }) {
               placeholder="Trip Name"
               value={name}
               onChange={(event) => setName(event.target.value)}
+            />
+          </div>
+        </label>
+        <label>
+          <div className="form-data">
+            <FontAwesomeIcon icon={faNoteSticky} />
+            <input
+              type="text"
+              placeholder="Descrption"
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
             />
           </div>
         </label>

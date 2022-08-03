@@ -201,6 +201,7 @@ export const addAccommodation = async (tripId, newAccommodationData) => {
       body: JSON.stringify(newAccommodationData),
     });
     const added = await response.json();
+    console.log(added)
     if (response.status === 200) {
       return { success: true, added };
     } else {
