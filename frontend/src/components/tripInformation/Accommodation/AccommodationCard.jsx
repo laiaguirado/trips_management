@@ -2,7 +2,6 @@ import React from "react";
 import "./AccommodationCard.css";
 
 function AccommodationCard({ accommodation }) {
-  console.log(accommodation);
   return (
     <div className="accommodation-card">
       <h1>Accommodation card</h1>
