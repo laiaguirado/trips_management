@@ -70,7 +70,7 @@ function AccommodationPage() {
   const editPage = () => {
     console.log("editing");
     //todo change displayed values for inputs
-    //todosave input
+    //todo save input
   };
 
   useEffect(() => {
@@ -82,14 +82,15 @@ function AccommodationPage() {
       <Bar mode="login" />
       <div className="flex-container">
         <div>{message}</div>
-        <div>{addAccommodationForm()}</div>
         <div>
           <h1>ACCOMMODATIONS</h1>
+          <div>{addAccommodationForm()}</div>
           <div className="accommodation-list">
             {accommodationList.map((accommodation) => (
               <AccommodationCard
                 key={accommodation._id}
                 accommodation={accommodation}
+                accommodationList={setAccommodationList}
               />
             ))}
           </div>
