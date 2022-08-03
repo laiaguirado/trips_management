@@ -51,9 +51,9 @@ router.post("/register", catchErrors(register));
 router.post("/login", catchErrors(login));
 router.get("/getAll", needsAuthToken, catchErrors(getAll));
 router.get("/me/travel", needsAuthToken, catchErrors(getTravelsByUser));
-router.get("/:email", needsAuthToken, catchErrors(getUserByEmail));
 if (config.isDevelopment) {
   router.get("/test", needsAuthToken, catchErrors(test));
 }
+router.get("/:email", needsAuthToken, catchErrors(getUserByEmail));
 
 module.exports = router;
