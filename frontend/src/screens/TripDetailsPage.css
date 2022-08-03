@@ -45,3 +45,21 @@
 .trip-details-page .details-info , .trip-details-page .return-icon{
     color: #937B5F;
 }
+
+.trip-details-page .trip-members .member{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.trip-details-page .trip-members .member .delete-icon{
+    color:#AD3D25;
+    padding: 0.25rem;
+    border-radius: 0.2rem;
+}
+
+.trip-details-page .trip-members .member .delete-icon:hover{
+    color:white;
+    background-color: #AD3D25;
+
+}
