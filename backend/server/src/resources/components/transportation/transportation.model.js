@@ -51,7 +51,6 @@ const transportationSchema = extendSchema(componentSchema, {
   },
 });
 
-transportationSchema.index({ name: 1 });
 transportationSchema.index({ type: 1 });
 
 const Transportation = mongoose.model("transportation", transportationSchema);

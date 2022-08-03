@@ -59,17 +59,17 @@ const travelSchema = new mongoose.Schema(
         },
       },
     ],
-    scores:[
+    scores: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "score",
-      }
+      },
     ],
-    comments:[
+    comments: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "comment",
-      }
+      },
     ],
     restaurants: [
       {
@@ -98,6 +98,21 @@ const travelSchema = new mongoose.Schema(
             );
           },
           message: `Accommodation doesn't exist`,
+        },
+      },
+    ],
+    transportation: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "transportation",
+        validate: {
+          isAsync: true,
+          validator: async function (v) {
+            return await FKIntegrity(mongoose.model("transportation"), v).catch(
+              (err) => false
+            );
+          },
+          message: `Transportation doesn't exist`,
         },
       },
     ],
