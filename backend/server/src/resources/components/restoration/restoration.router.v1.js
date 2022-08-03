@@ -46,9 +46,15 @@ const User = require("../../users/user.service")
     res.status(200).json(await Restoration.getOne(_id))
   }
 
+  const getByTravel = async(req,res)=>{
+    const {idTravel} = req.params;
+    res.status(200).json(await Restoration.getByTravelId(idTravel));
+  }
+
   const router = express.Router();
   router.post("/:idTravel",needsAuthToken, catchErrors(create));
   router.delete("/:_id",needsAuthToken,catchErrors(deleteRestoration));
   router.get("/",needsAuthToken,catchErrors(getAll));
   router.get("/:_id",needsAuthToken,catchErrors(getById));
+  router.get("/travel/:idTravel",needsAuthToken,catchErrors(getByTravel))
   module.exports = router;

@@ -43,9 +43,22 @@ const getAll = async(req,res) =>{
     res.status(200).json({ results: [docs] });
 }
 
+const deleteOne = async (req, res) => {
+    const { _id } = req.params;
+    res.status(200).json(await Score.deleteScore(_id));
+  };
+
+  const findByTravel = async(req,res)=>{
+    const {idTravel} = req.params;
+    res.status(200).json({results: await Score.findByTravelId(idTravel)})
+
+  }
+
 const router = express.Router();
 
 router.post("/scoreTravel/:_idTravel/score/:compId",needsAuthToken, catchErrors(create));
 router.get("/", catchErrors(getAll));
+router.delete("/:_id",needsAuthToken,catchErrors(deleteOne));
+router.get("/travel/:idTravel",needsAuthToken,catchErrors(findByTravel))
 
 module.exports = router;

@@ -19,5 +19,8 @@ const createOne = async ({ web, description, location, phone, email, resourceTyp
   const getOne = async(_id)=>{
     return await Restoration.findOne({_id})
   }
+  const getByTravelId = async(idTravel)=>{
+    return await Restoration.find({idTravel }).exec();
+  }
 
-module.exports = {createOne,deleteRest,findAll,getOne}
+module.exports = {createOne,deleteRest,findAll,getOne,getByTravelId}

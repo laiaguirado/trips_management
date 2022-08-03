@@ -15,7 +15,7 @@ const create = async(req,res)=>{
     const { comment_text } = req.body;
     const {travelId} = req.params;
 
-    const comment = await Comment.createOne(comment_text,compId,_id);
+    const comment = await Comment.createOne(comment_text,compId,_id,travelId);
     const accommodation = await Accomodation.findOneById(compId);
     const user = await User.findById(_id);
     const travel = await Travel.findTravel(travelId);
@@ -44,10 +44,17 @@ const deleteOne = async (req, res) => {
     res.status(200).json(await Comment.deleteComment(_id));
   };
 
+  const getCommentsByTravel = async(req, res) =>{
+    const {idTravel} = req.params;
+    const doc = await Comment.findByTravelId(idTravel);
+    res.status(200).json({ results: doc });
+  }
+
 const router = express.Router();
 
 router.post("/:id/travel/:travelId", needsAuthToken, catchErrors(create));
 router.get("/",needsAuthToken, catchErrors(getAll));
-router.delete("/:_id",needsAuthToken,catchErrors(deleteOne))
+router.delete("/:_id",needsAuthToken,catchErrors(deleteOne));
+router.get("/travel/:idTravel",needsAuthToken,catchErrors(getCommentsByTravel))
 
 module.exports = router;

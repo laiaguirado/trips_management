@@ -35,9 +35,7 @@ const User = require("../../users/user.service")
 
   const getAccommodationByTravel = async(req, res) =>{
     const {idTravel} = req.params;
-    console.log(idTravel)
     const doc = await Accommodation.findByTravelId(idTravel);
-    console.log(doc)
     res.status(200).json({ results: doc });
   }
 
