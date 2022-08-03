@@ -1,25 +1,29 @@
-
 const Comment = require("./comments.model");
 
+const createOne = async (text, compId, _id,idTravel) => {
+  return await Comment.create({
+    comment: text,
+    idComponent: compId,
+    idUser: _id,
+    idTravel
 
-const createOne = async(text,compId,_id)=>{
-        return await Comment.create({
-            comment:text,
-            idComponent:compId,
-            idUser:_id,
-        });
-}
+  });
+};
 
-const findAll = async() =>{
-        return await Comment.find().lean().exec()
-}
+const findAll = async () => {
+  return await Comment.find().lean().exec();
+};
 
-const deleteComment = async(_id) =>{
-        const deleted = await Comment.findByIdAndDelete({_id}).lean().exec();
-        if (deleted === null){
-            errMalformed(`Comment with ${id} not found`);
-        }
-        return deleted
-      }
+const deleteComment = async (_id) => {
+  const deleted = await Comment.findByIdAndDelete({ _id }).lean().exec();
+  if (deleted === null) {
+    errMalformed(`Comment with ${id} not found`);
+  }
+  return deleted;
+};
 
-module.exports = {createOne,findAll, deleteComment}
+const findByTravelId = async (idTravel) => {
+  return await Comment.find({ idTravel:idTravel }).exec();
+};
+
+module.exports = { createOne, findAll, deleteComment, findByTravelId };
