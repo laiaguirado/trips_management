@@ -63,6 +63,8 @@ export const getUserData = async () => {
   }
 };
 
+//Trip
+
 export const getTripList = async () => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
@@ -129,9 +131,9 @@ export const addTrip = async (newTripData) => {
 export const addCreatorAsMember = async (added) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const travelId = added._id;
+    const tripId = added._id;
     const response = await fetch(
-      `${BASE_URL}/${version}/travel/${travelId}/traveller/me`,
+      `${BASE_URL}/${version}/travel/${tripId}/traveller/me`,
       {
         method: "POST",
         headers: {
@@ -139,11 +141,11 @@ export const addCreatorAsMember = async (added) => {
         },
       }
     );
-    const addedWithTraveller = await response.json();
+    const addedWithTraveler = await response.json();
     if (response.status === 200) {
-      return { success: true, addedWithTraveller };
+      return { success: true, addedWithTraveler };
     } else {
-      return { success: false, error: "Couldn't add member in the trip" };
+      return { success: false, error: "Couldn't add traveler in the trip" };
     }
   } catch (e) {
     return { success: false, error: `Network error: ${e.message}` };
@@ -169,10 +171,52 @@ export const deleteTrip = async (tripId) => {
   }
 };
 
-export const getAccommodationList = async (travelId) => {
+export const getTravelerByEmail = async (email) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const response = await fetch(`${BASE_URL}/${version}/accommodation/travel/${travelId}`, {
+    const response = await fetch(`${BASE_URL}/user/${version}/${email}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const traveler = await response.json();
+    if (response.status === 200) {
+      return { success: true, traveler };
+    } else {
+      return { success: false, error: "Couldn't fetch traveler" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
+export const addTraveler = async (tripId, travelerId) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/travel/${tripId}/traveller/${travelerId}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const added = await response.json();
+    if (response.status === 200) {
+      return { success: true, added };
+    } else {
+      return { success: false, error: "Couldn't add trip" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
+//Accommodation
+
+export const getAccommodationList = async (tripId) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/accommodation/travel/${tripId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -201,7 +245,6 @@ export const addAccommodation = async (tripId, newAccommodationData) => {
       body: JSON.stringify(newAccommodationData),
     });
     const added = await response.json();
-    console.log(added)
     if (response.status === 200) {
       return { success: true, added };
     } else {

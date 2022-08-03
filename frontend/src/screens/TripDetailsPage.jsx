@@ -4,6 +4,7 @@ import "./TripDetailsPage.css";
 import * as api from "../api";
 import Bar from "../components/Bar";
 import DeleteTripCard from "../components/DeleteTripCard";
+import AddTravelerCard from "../components/AddTravelerCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
@@ -12,12 +13,14 @@ import {
   faCamera,
   faUtensils,
   faTrashCan,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 function TripDetailsPage() {
   const [trip, setTrip] = useState([]);
   const [message, setMessage] = useState(null);
   const [deleting, setDeleting] = useState(false);
+  const [adding, setAdding] = useState(false);
   const { tripId } = useParams();
   const navigate = useNavigate();
 
@@ -25,6 +28,17 @@ function TripDetailsPage() {
     const { success, trip, error } = await api.getTrip(tripId);
     if (success) {
       setTrip(trip);
+    } else {
+      setMessage(error);
+    }
+  };
+
+  const addTraveler = async (tripId, email) => {
+    const { success, added, error } = await api.addTraveler(tripId, email);
+    if (success) {
+      getTripData();
+      setAdding(false);
+      setMessage(null);
     } else {
       setMessage(error);
     }
@@ -61,9 +75,30 @@ function TripDetailsPage() {
     }
   }
 
+  function addTravelerForm() {
+    if (adding === false) {
+      return (
+        <div className="add-traveler-button" onClick={() => setAdding(true)}>
+          <FontAwesomeIcon icon={faPlus} />
+        </div>
+      );
+    } else {
+      return (
+        <AddTravelerCard
+          onAdd={addTraveler}
+          adding={() => {
+            setAdding(false);
+            setMessage(null);
+          }}
+          tripId={tripId}
+        />
+      );
+    }
+  }
+
   useEffect(() => {
     getTripData();
-  }, [tripId]);
+  }, [tripId, trip]);
 
   return (
     <div className="trip-details-page">
@@ -98,7 +133,7 @@ function TripDetailsPage() {
           </div>
         </div>
         <div className="trip-members">
-          <h3>Travellers:</h3>
+          <h3>Travelers:</h3>
           <div>
             {Array.isArray(trip) !== true ? (
               trip.travellers.map((member) => (
@@ -109,6 +144,7 @@ function TripDetailsPage() {
             )}
           </div>
         </div>
+        <div>{addTravelerForm()}</div>
         <div className="trip-details-info">
           <div
             className="details-info"
