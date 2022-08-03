@@ -9,7 +9,7 @@ import {
   faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AddAccomodationCard({ onAdd, adding, tripId }) {
+function AddAccommodationCard({ onAdd, adding, tripId }) {
   const [web, setWeb] = useState("");
   const [location, setLocation] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -31,12 +31,12 @@ function AddAccomodationCard({ onAdd, adding, tripId }) {
   };
 
   return (
-    <div className="add-accomodation-card">
+    <div className="add-accommodation-card">
       <div className="return-icon" onClick={adding}>
         <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
       </div>
-      <form className="addaccomodation" onSubmit={(e) => add(e)}>
-        <h1>New Accomodation</h1>
+      <form className="addaccommodation" onSubmit={(e) => add(e)}>
+        <h1>New Accommodation</h1>
         <label>
           <div className="form-data">
             <FontAwesomeIcon icon={faCartFlatbedSuitcase} />
@@ -103,10 +103,10 @@ function AddAccomodationCard({ onAdd, adding, tripId }) {
             />
           </div>
         </label>
-        <input type="submit" value="Create New Accomodation" />
+        <input type="submit" value="Create New Accommodation" />
       </form>
     </div>
   );
 }
 
-export default AddAccomodationCard;
+export default AddAccommodationCard;

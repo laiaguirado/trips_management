@@ -109,11 +109,11 @@ function TripDetailsPage() {
           <div
             className="details-info"
             onClick={() =>
-              navigate(`/trip/${tripId}/accomodation`, { replace: false })
+              navigate(`/trip/${tripId}/accommodation`, { replace: false })
             }
           >
             <FontAwesomeIcon className="icon" icon={faBed} size="2x" />{" "}
-            Accomodation
+            Accommodation
           </div>
           <div
             className="details-info"

@@ -169,7 +169,7 @@ export const deleteTrip = async (tripId) => {
   }
 };
 
-export const getAccomodationList = async (travelId) => {
+export const getAccommodationList = async (travelId) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
     const response = await fetch(`${BASE_URL}/${version}/accommodation/travel/${travelId}`, {
@@ -178,18 +178,18 @@ export const getAccomodationList = async (travelId) => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    const accomodations = await response.json();
+    const accommodations = await response.json();
     if (response.status === 200) {
-      return { success: true, accomodationList: accomodations.results };
+      return { success: true, accommodationList: accommodations.results };
     } else {
-      return { success: false, error: "Couldn't fetch accomodations" };
+      return { success: false, error: "Couldn't fetch accommodations" };
     }
   } catch (e) {
     return { success: false, error: `Network error: ${e.message}` };
   }
 };
 
-export const addAccomodation = async (tripId, newAccomodationData) => {
+export const addAccommodation = async (tripId, newAccommodationData) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
     const response = await fetch(`${BASE_URL}/${version}/accommodation/${tripId}`, {
@@ -198,13 +198,13 @@ export const addAccomodation = async (tripId, newAccomodationData) => {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newAccomodationData),
+      body: JSON.stringify(newAccommodationData),
     });
     const added = await response.json();
     if (response.status === 200) {
       return { success: true, added };
     } else {
-      return { success: false, error: "Couldn't add accomodation" };
+      return { success: false, error: "Couldn't add accommodation" };
     }
   } catch (e) {
     return { success: false, error: `Network error: ${e.message}` };

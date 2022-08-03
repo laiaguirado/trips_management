@@ -1,4 +1,4 @@
-.accomodation-page {
+.accommodation-page {
   margin: 5vh 5vw 5vh 5vw;
   background-color: #f3f0e487;
   text-align: left;
@@ -13,12 +13,12 @@
   gap: 15px;
 }
 
-.accomodation-page h2 {
+.accommodation-page h2 {
   margin-left: auto;
   margin-right: auto;
 }
 
-.accomodation-page img {
+.accommodation-page img {
   margin-top: 5vh;
   width: 35vw;
   max-width: 360px;
@@ -27,7 +27,7 @@
   border-radius: 25px;
 }
 
-.accomodation-page h2 span {
+.accommodation-page h2 span {
   font-weight: normal;
 }
 
@@ -40,7 +40,7 @@
   text-align: center;
 }
 
-.accomodation-page .add-accomodation-button{
+.accommodation-page .add-accomodation-button{
   border: 2px solid black;
   border-radius: .5rem;
   margin: 1rem;
@@ -48,7 +48,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-.accomodation-page .add-accomodation-button:hover{
+.accommodation-page .add-accommodation-button:hover{
   cursor: pointer;
   background-color: #B7CBE7;
   transform: scale(1.1);

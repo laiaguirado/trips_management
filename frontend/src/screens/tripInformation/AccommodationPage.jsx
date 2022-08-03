@@ -2,38 +2,40 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Bar from "../../components/Bar";
 import * as api from "../../api";
-import "./AccomodationPage.css";
-import AccomodationCard from "../../components/AccomodationCard";
-import AddAccomodationCard from "../../components/AddAccomodationCard";
+import "./AccommodationPage.css";
+import AccommodationCard from "../../components/tripInformation/Accommodation/AccommodationCard";
+import AddAccommodationCard from "../../components/tripInformation/Accommodation/AddAccommodationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-function AccomodationPage() {
-  const [accomodationList, setAccomodationList] = useState([]);
+function AccommodationPage() {
+  const [accommodationList, setAccommodationList] = useState([]);
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
 
-  const loadAccomodationList = async () => {
-    const { success, accomodationList, error } = await api.getAccomodationList(
-      tripId
-    );
+  const loadAccommodationList = async () => {
+    const { success, accommodationList, error } =
+      await api.getAccommodationList(tripId);
     if (success) {
-      setAccomodationList(accomodationList);
+      setAccommodationList(accommodationList);
       setMessage(null);
     } else {
-      setAccomodationList([]);
+      setAccommodationList([]);
       setMessage(error);
     }
   };
 
-  const addAccomodation = async (tripId, newAccomodationData) => {
-    const { success, added, error } = await api.addAccomodation(
+  const addAccommodation = async (tripId, newAccommodationData) => {
+    const { success, added, error } = await api.addAccommodation(
       tripId,
-      newAccomodationData
+      newAccommodationData
     );
     if (success) {
-      setAccomodationList((accomodationList) => [...accomodationList, added]);
+      setAccommodationList((accommodationList) => [
+        ...accommodationList,
+        added,
+      ]);
       setAdding(false);
       setMessage(null);
     } else {
@@ -41,11 +43,11 @@ function AccomodationPage() {
     }
   };
 
-  function addAccomodationForm() {
+  function addAccommodationForm() {
     if (adding === false) {
       return (
         <div
-          className="add-accomodation-button"
+          className="add-accommodation-button"
           onClick={() => setAdding(true)}
         >
           <FontAwesomeIcon icon={faPlus} />
@@ -53,8 +55,8 @@ function AccomodationPage() {
       );
     } else {
       return (
-        <AddAccomodationCard
-          onAdd={addAccomodation}
+        <AddAccommodationCard
+          onAdd={addAccommodation}
           adding={() => {
             setAdding(false);
             setMessage(null);
@@ -72,22 +74,22 @@ function AccomodationPage() {
   };
 
   useEffect(() => {
-    loadAccomodationList();
+    loadAccommodationList();
   }, []);
 
   return (
-    <div className="accomodation-page">
+    <div className="accommodation-page">
       <Bar mode="login" />
       <div className="flex-container">
         <div>{message}</div>
-        <div>{addAccomodationForm()}</div>
+        <div>{addAccommodationForm()}</div>
         <div>
-          <h1>ACCOMODATIONS</h1>
-          <div className="accomodation-list">
-            {accomodationList.map((accomodation) => (
-              <AccomodationCard
-                key={accomodation._id}
-                accomodation={accomodation}
+          <h1>ACCOMMODATIONS</h1>
+          <div className="accommodation-list">
+            {accommodationList.map((accommodation) => (
+              <AccommodationCard
+                key={accommodation._id}
+                accommodation={accommodation}
               />
             ))}
           </div>
@@ -109,7 +111,7 @@ function AccomodationPage() {
             </h2>*/}
         </div>
         {/*<div>
-          <img src="../../src/assets/accomodation.webp"></img>
+          <img src="../../src/assets/accommodation.webp"></img>
           </div>*/}
       </div>
       {/*<h2>
@@ -127,4 +129,4 @@ function AccomodationPage() {
   );
 }
 
-export default AccomodationPage;
+export default AccommodationPage;

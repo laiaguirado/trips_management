@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import TripDetailsPage from "./screens/TripDetailsPage";
-import AccomodationPage from "./screens/tripInformation/AccomodationPage";
+import AccommodationPage from "./screens/tripInformation/AccommodationPage";
 import TransportationPage from "./screens/tripInformation/TransportationPage";
 import ThingsToDoPage from "./screens/tripInformation/ThingsToDoPage";
 import PlacesToEatPage from "./screens/tripInformation/PlacesToEatPage";
@@ -16,9 +16,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" exact element={<App />}></Route>
         <Route path="/trip/:tripId" exact element={<TripDetailsPage />} />
         <Route
-          path="/trip/:tripId/accomodation"
+          path="/trip/:tripId/accommodation"
           exact
-          element={<AccomodationPage />}
+          element={<AccommodationPage />}
         ></Route>
         <Route
           path="/trip/:tripId/transportation"
