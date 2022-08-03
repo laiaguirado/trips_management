@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const extendSchema = require("mongoose-extend-schema");
 const { componentSchema } = require("../component.model");
-const { capitalize } = require("../../helper");
+const { capitalize } = require("../../../helper");
 
 const transportationSchema = extendSchema(componentSchema, {
   name: {
@@ -12,13 +12,16 @@ const transportationSchema = extendSchema(componentSchema, {
     set: capitalize,
   },
   price: {
-    type: string, //TODO CAMBIAR EL TIPO!!!
+    type: String, //TODO CAMBIAR EL TIPO!!!
   },
   type: {
-    type: string,
-    enum:{ ["airplane", "ship", "car", "subway", "tram", "bus", "train"], message: "{VALUE} for {TYPE} is not suported"},
+    type: String,
+    enum: {
+      values: ["airplane", "ship", "car", "subway", "tram", "bus", "train"],
+      message: "{VALUE} for {TYPE} is not suported",
+    },
     default: "airplane",
-    required:[true, "{PATH} is required"]
+    required: [true, "{PATH} is required"],
   },
   web: {
     type: String,
@@ -32,21 +35,19 @@ const transportationSchema = extendSchema(componentSchema, {
     type: String,
     maxlength: [100, "'{PATH}' is too long"],
   },
-  phone: {
-    type: Number,
-    trim: true,
-    match: [/^[0-9\s]*$/, "{PATH} is invalid"],
-  },
   notation: {
-    type: string,
+    type: String,
     maxlength: [500, "'{PATH}' is too long"],
   },
-  email: {
+  typeDetails: {
     type: String,
-    uniqueCaseInsensitive: true,
-    trim: true,
-    lowercase: true,
-    match: [/\S+@\S+\.\S+/, " '{PATH}' is invalid"],
+    maxlength: [500, "'{PATH}' is too long"],
+  },
+  departure: {
+    type: Date,
+  },
+  arrival: {
+    type: Date,
   },
 });
 
