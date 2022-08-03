@@ -38,10 +38,10 @@ function MainPage({ onLogout }) {
   const addTrip = async (newTripData) => {
     const { success, added, error } = await api.addTrip(newTripData);
     if (success) {
-      const { success, addedWithTraveller, error } =
+      const { success, addedWithTraveler, error } =
         await api.addCreatorAsMember(added);
       if (success) {
-        setTripList((tripList) => [...tripList, addedWithTraveller]);
+        setTripList((tripList) => [...tripList, addedWithTraveler]);
         setAdding(false);
       } else {
         setMessage(error);

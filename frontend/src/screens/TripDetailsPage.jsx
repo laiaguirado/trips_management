@@ -14,6 +14,7 @@ import {
   faUtensils,
   faTrashCan,
   faPlus,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 function TripDetailsPage() {
@@ -21,6 +22,7 @@ function TripDetailsPage() {
   const [message, setMessage] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [adding, setAdding] = useState(false);
+  const [travelersList, setTravelersList] = useState(null);
   const { tripId } = useParams();
   const navigate = useNavigate();
 
@@ -28,17 +30,7 @@ function TripDetailsPage() {
     const { success, trip, error } = await api.getTrip(tripId);
     if (success) {
       setTrip(trip);
-    } else {
-      setMessage(error);
-    }
-  };
-
-  const addTraveler = async (tripId, email) => {
-    const { success, added, error } = await api.addTraveler(tripId, email);
-    if (success) {
-      getTripData();
-      setAdding(false);
-      setMessage(null);
+      setTravelersList(trip.travellers);
     } else {
       setMessage(error);
     }
@@ -48,6 +40,26 @@ function TripDetailsPage() {
     const { success, error } = await api.deleteTrip(tripId);
     if (success) {
       navigate(`/`, { replace: false });
+    } else {
+      setMessage(error);
+    }
+  };
+
+  const addTraveler = async (tripId, email) => {
+    const { success, added, error } = await api.addTraveler(tripId, email);
+    if (success) {
+      setTravelersList((travelersList) => [...travelersList, added]);
+      setAdding(false);
+      setMessage(null);
+    } else {
+      setMessage(error);
+    }
+  };
+
+  const deleteTraveler = async (tripId, email) => {
+    const { success, error } = await api.deleteTraveler(tripId, email);
+    if (success) {
+      setTravelersList((prevList) => prevList.filter((t) => t._id !== tripId));
     } else {
       setMessage(error);
     }
@@ -137,7 +149,14 @@ function TripDetailsPage() {
           <div>
             {Array.isArray(trip) !== true ? (
               trip.travellers.map((member) => (
-                <p key={member._id}>{member.username}</p>
+                <div className="member">
+                  <p key={member._id}>
+                    {member.username} ( {member.email} )
+                  </p>
+                  <div onClick={() => deleteTraveler(tripId, member.email)}>
+                    <FontAwesomeIcon className="delete-icon" icon={faXmark} />
+                  </div>
+                </div>
               ))
             ) : (
               <p></p>

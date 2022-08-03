@@ -211,6 +211,25 @@ export const addTraveler = async (tripId, travelerId) => {
   }
 };
 
+export const deleteTraveler = async (tripId, email) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/travel/${tripId}/traveller/${email}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    if (response.status === 200) {
+      return { success: true };
+    } else {
+      return { success: false, error: "Couldn't delete trip" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
 //Accommodation
 
 export const getAccommodationList = async (tripId) => {
