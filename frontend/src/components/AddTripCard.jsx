@@ -47,7 +47,7 @@ function AddTripCard({ onAdd, adding }) {
             <FontAwesomeIcon icon={faNoteSticky} />
             <input
               type="text"
-              placeholder="Descrption"
+              placeholder="Description"
               value={description}
               onChange={(event) => setDescription(event.target.value)}
             />

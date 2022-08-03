@@ -273,3 +273,22 @@ export const addAccommodation = async (tripId, newAccommodationData) => {
     return { success: false, error: `Network error: ${e.message}` };
   }
 };
+
+export const deleteAccommodation = async (tripId) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/accommodation/${tripId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    if (response.status === 200) {
+      return { success: true };
+    } else {
+      return { success: false, error: "Couldn't delete accommodation" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
