@@ -26,7 +26,7 @@ function AddAccomodationCard({ onAdd, adding, tripId }) {
       endDate,
       phone,
       email,
-      resourceType: "accommodation",
+      resourceType: "Accommodation",
     });
   };
 

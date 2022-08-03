@@ -27,7 +27,7 @@ function AccomodationPage() {
     }
   };
 
-  const addAccomodation = async (newAccomodationData) => {
+  const addAccomodation = async (tripId, newAccomodationData) => {
     const { success, added, error } = await api.addAccomodation(
       tripId,
       newAccomodationData

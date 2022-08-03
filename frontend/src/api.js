@@ -192,7 +192,7 @@ export const getAccomodationList = async (travelId) => {
 export const addAccomodation = async (tripId, newAccomodationData) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const response = await fetch(`${BASE_URL}/${version}/accomodation/travel/${tripId}`, {
+    const response = await fetch(`${BASE_URL}/${version}/accommodation/${tripId}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -201,7 +201,7 @@ export const addAccomodation = async (tripId, newAccomodationData) => {
       body: JSON.stringify(newAccomodationData),
     });
     const added = await response.json();
-    if (response.status === 201) {
+    if (response.status === 200) {
       return { success: true, added };
     } else {
       return { success: false, error: "Couldn't add accomodation" };
