@@ -97,7 +97,7 @@ export const getTrip = async (tripId) => {
     });
     const trip = await response.json();
     if (response.status === 200) {
-      return { success: true, trip: trip[0] };
+      return { success: true, trip };
     } else {
       return { success: false, error: "Couldn't fetch trip" };
     }
@@ -287,6 +287,27 @@ export const deleteAccommodation = async (tripId) => {
       return { success: true };
     } else {
       return { success: false, error: "Couldn't delete accommodation" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
+//Transportation
+export const getTransportationList = async (tripId) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/travel/${tripId}/transportation`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const transportations = await response.json();
+    if (response.status === 200) {
+      return { success: true, transportationList: transportations };
+    } else {
+      return { success: false, error: "Couldn't fetch accommodations" };
     }
   } catch (e) {
     return { success: false, error: `Network error: ${e.message}` };

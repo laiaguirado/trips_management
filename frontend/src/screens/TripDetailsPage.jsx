@@ -22,7 +22,6 @@ function TripDetailsPage() {
   const [message, setMessage] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [adding, setAdding] = useState(false);
-  const [travelersList, setTravelersList] = useState(null);
   const { tripId } = useParams();
   const navigate = useNavigate();
 
@@ -30,7 +29,6 @@ function TripDetailsPage() {
     const { success, trip, error } = await api.getTrip(tripId);
     if (success) {
       setTrip(trip);
-      setTravelersList(trip.travellers);
     } else {
       setMessage(error);
     }
@@ -48,7 +46,7 @@ function TripDetailsPage() {
   const addTraveler = async (tripId, email) => {
     const { success, added, error } = await api.addTraveler(tripId, email);
     if (success) {
-      setTravelersList((travelersList) => [...travelersList, added]);
+      getTripData();
       setAdding(false);
       setMessage(null);
     } else {
@@ -59,7 +57,7 @@ function TripDetailsPage() {
   const deleteTraveler = async (tripId, email) => {
     const { success, error } = await api.deleteTraveler(tripId, email);
     if (success) {
-      setTravelersList((prevList) => prevList.filter((t) => t._id !== tripId));
+      getTripData();
     } else {
       setMessage(error);
     }
@@ -111,7 +109,7 @@ function TripDetailsPage() {
 
   useEffect(() => {
     getTripData();
-  }, [tripId, trip]);
+  }, [tripId]);
 
   return (
     <div className="trip-details-page">
