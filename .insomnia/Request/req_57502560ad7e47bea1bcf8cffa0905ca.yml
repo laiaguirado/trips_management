@@ -1,0 +1,25 @@
+_id: req_57502560ad7e47bea1bcf8cffa0905ca
+type: Request
+parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
+modified: 1659566988656
+created: 1659566988656
+url: "{{ _.protocol }}://{{ _.server }}:{{ _.port }}/{{ _.version
+  }}/travel/62ead5b4abbac2bcbb39345f/transportation"
+name: Obtenir transports per viatge
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+metaSortKey: -1659498080400.625
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

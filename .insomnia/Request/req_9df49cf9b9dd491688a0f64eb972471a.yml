@@ -1,0 +1,25 @@
+_id: req_9df49cf9b9dd491688a0f64eb972471a
+type: Request
+parentId: fld_c27ff179c6fc431fb28a828c75624e66
+modified: 1659566988592
+created: 1659566988592
+url: "{{ _.base_url }}/user/{{ _.version }}/test{{ _.protocol }}://{{ _.server
+  }}:{{ _.port }}/{{ _.version }}/travel/id/transportation"
+name: Delete accommodation
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+metaSortKey: -1659426861954
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

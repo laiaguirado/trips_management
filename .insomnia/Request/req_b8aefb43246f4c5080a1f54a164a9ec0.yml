@@ -1,0 +1,30 @@
+_id: req_b8aefb43246f4c5080a1f54a164a9ec0
+type: Request
+parentId: fld_52ab0f906c804bdbb6aa3e0efb463aea
+modified: 1659566954666
+created: 1659566954666
+url: "{{ _.base_url }}/user/{{ _.version }}/login"
+name: Login
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"email": "ab@ab.com",
+    	"password": "12345"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_b213597de4d54451acfe92e56e16ff72
+authentication: {}
+metaSortKey: -1658579090290.6875
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

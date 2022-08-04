@@ -1,0 +1,31 @@
+_id: req_f871a716ff81468b87f9cf73ceba6db8
+type: Request
+parentId: fld_521b7ce77e35449a8973d6d4b0e672e1
+modified: 1659566954610
+created: 1659566954610
+url: "{{ _.base_url }}/user/{{ _.version }}/register"
+name: Create User
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"email": "a@a.com",
+    	"password": "1",
+    	"username":"Natalia Aguado"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_b213597de4d54451acfe92e56e16ff72
+authentication: {}
+metaSortKey: -1658579090340.6875
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

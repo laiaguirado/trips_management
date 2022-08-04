@@ -1,0 +1,24 @@
+_id: req_f7c34a8f881043c1912e0a56b4f140ea
+type: Request
+parentId: fld_13cc3fed9b844d14a8811ff055aa3e3e
+modified: 1659566975034
+created: 1659566975034
+url: "{{ _.base_url }}/{{ _.version }}/travel/62e84bb51cc6ef04f3c7aff2/traveller/me"
+name: Eliminar viatger Loginat
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+metaSortKey: -1658586780163.726
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

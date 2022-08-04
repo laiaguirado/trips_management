@@ -1,0 +1,24 @@
+_id: req_bab6f73631da4c6eac89fb10a8f19a58
+type: Request
+parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
+modified: 1659566988672
+created: 1659566988672
+url: "{{ _.base_url }}/{{ _.version }}/transportation/test"
+name: Test
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+metaSortKey: -1659446781222.125
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

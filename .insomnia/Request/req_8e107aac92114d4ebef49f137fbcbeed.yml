@@ -1,0 +1,21 @@
+_id: req_8e107aac92114d4ebef49f137fbcbeed
+type: Request
+parentId: fld_52ab0f906c804bdbb6aa3e0efb463aea
+modified: 1659566954672
+created: 1659566954672
+url: "{{ _.base_url }}/user/{{ _.version }}/newTest"
+name: Test  (Token manually)
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1658579090190.6875
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

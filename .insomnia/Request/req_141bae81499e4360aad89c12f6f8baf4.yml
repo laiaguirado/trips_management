@@ -1,0 +1,23 @@
+_id: req_141bae81499e4360aad89c12f6f8baf4
+type: Request
+parentId: fld_521b7ce77e35449a8973d6d4b0e672e1
+modified: 1659566954621
+created: 1659566954621
+url: "{{ _.base_url }}/user/{{ _.version }}/test"
+name: Test  (Token manually)
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJfaWQiOiI2MmUzZTZhOTdiZTJmNmE0ZGU4MDA3NDQiLCJ1c2VybmFtZSI6Ik5hdGFsaWEgYWd1YWRvIiwiaWF0IjoxNjU5NTQzOTc5LCJleHAiOjE2NTk2MzAzNzl9.xUDCf1g_4KHkeCChDv8vx_rJIiUEeWriSXMurZB9a3M
+metaSortKey: -1658579090190.6875
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
