@@ -1,10 +1,10 @@
 _id: req_5cb44b5e8ac94442a7ae4dac34aa4565
 type: Request
 parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
-modified: 1659623013859
+modified: 1659624567368
 created: 1659566988664
 url: "{{ _.protocol }}://{{ _.server }}:{{ _.port }}/{{ _.version
-  }}/transportation/62ebd51867a6eb28b1890258"
+  }}/transportation/62ebdbaf8413f1a36f3b84b7"
 name: Obtenir un transport
 description: ""
 method: GET
