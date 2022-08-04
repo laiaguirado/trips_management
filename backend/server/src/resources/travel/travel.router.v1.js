@@ -20,13 +20,7 @@ const getAllTravel = async (req, res) => {
 
 const getTravelById = async (req, res) => {
   const { _id } = req.params;
-  const travel = await Travel.getTravelById(_id);
-  console.log(travel);
-  if (travel) {
-    res.status(200).json(travel);
-  } else {
-    errMalformed("Travel doesn't exists");
-  }
+  res.status(200).json(await Travel.getTravelById(_id));
 };
 
 const createTravel = async (req, res) => {
@@ -113,6 +107,10 @@ const deleteUserToTravelById = async (idTravel, idUser) => {
 
 const router = express.Router();
 
+if (config.isDevelopment) {
+  router.get("/test", needsAuthToken, catchErrors(test));
+}
+
 router.get("/", needsAuthToken, catchErrors(getAllTravel));
 router.get("/:_id", needsAuthToken, catchErrors(getTravelById));
 router.post("/", needsAuthToken, catchErrors(createTravel));
@@ -142,9 +140,5 @@ router.delete(
 
 router.put("/:_id", needsAuthToken, catchErrors(updateTravel));
 router.delete("/:_id", needsAuthToken, catchErrors(deleteTravel));
-
-if (config.isDevelopment) {
-  router.get("/test", needsAuthToken, catchErrors(test));
-}
 
 module.exports = router;

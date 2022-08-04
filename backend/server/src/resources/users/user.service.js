@@ -45,6 +45,9 @@ const findById = async (id) => {
 
 const findByEmail = async (email) => {
   const user = await User.findOne({ email: email });
+  if (user === null) {
+    errMalformed("User doens't exist");
+  }
   return user;
 };
 

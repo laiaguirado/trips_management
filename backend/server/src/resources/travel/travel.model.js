@@ -116,6 +116,21 @@ const travelSchema = new mongoose.Schema(
         },
       },
     ],
+    plans: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "plans",
+        validate: {
+          isAsync: true,
+          validator: async function (v) {
+            return await FKIntegrity(mongoose.model("plans"), v).catch(
+              (err) => false
+            );
+          },
+          message: `Plan doesn't exist`,
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
