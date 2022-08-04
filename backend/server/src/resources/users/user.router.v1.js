@@ -25,9 +25,9 @@ const login = async (req, res) => {
   res.status(200).json(token);
 };
 
-const getAll = async (req, res) => {
-  const docs = await User.findAll();
-  res.status(200).json({ results: [docs] });
+const getAllUsers = async (req, res) => {
+  const docs = await User.findAllUsers();
+  res.status(200).json(docs);
 };
 
 const getTravelsByUser = async (req, res) => {
@@ -49,7 +49,7 @@ const router = express.Router();
 
 router.post("/register", catchErrors(register));
 router.post("/login", catchErrors(login));
-router.get("/getAll", needsAuthToken, catchErrors(getAll));
+router.get("/", needsAuthToken, catchErrors(getAllUsers));
 router.get("/me/travel", needsAuthToken, catchErrors(getTravelsByUser));
 if (config.isDevelopment) {
   router.get("/test", needsAuthToken, catchErrors(test));

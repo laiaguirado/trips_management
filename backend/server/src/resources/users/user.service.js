@@ -27,7 +27,7 @@ const authenticateUser = async ({ email, password }) => {
   return token;
 };
 
-const findAll = async () => {
+const findAllUsers = async () => {
   return await User.find()
     .populate({
       path: "travels",
@@ -51,7 +51,7 @@ const findByEmail = async (email) => {
 module.exports = {
   createUser,
   authenticateUser,
-  findAll,
+  findAllUsers,
   findById,
   findByEmail,
 };
