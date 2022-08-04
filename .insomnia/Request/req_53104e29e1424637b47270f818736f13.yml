@@ -1,0 +1,24 @@
+_id: req_53104e29e1424637b47270f818736f13
+type: Request
+parentId: fld_13cc3fed9b844d14a8811ff055aa3e3e
+modified: 1659566974992
+created: 1659566974992
+url: "{{ _.base_url }}/{{ _.version }}/travel/62e1170cb336c53131af38ea"
+name: Eliminar Travel
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+metaSortKey: -1658763646093.6133
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

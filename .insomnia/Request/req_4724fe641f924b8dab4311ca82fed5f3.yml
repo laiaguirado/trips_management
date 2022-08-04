@@ -1,0 +1,30 @@
+_id: req_4724fe641f924b8dab4311ca82fed5f3
+type: Request
+parentId: fld_c27ff179c6fc431fb28a828c75624e66
+modified: 1659566988577
+created: 1659566988577
+url: "{{ _.base_url }}/{{ _.version
+  }}/accommodation/travel/62e3f5553406f2ccf8eece54"
+name: Get By Travel Id
+description: ""
+method: GET
+body:
+  mimeType: application/json
+  text: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_5f323f17035c489e8081cf9e2fd77b87
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+metaSortKey: -1658774136442
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

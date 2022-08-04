@@ -1,0 +1,25 @@
+_id: req_5cb44b5e8ac94442a7ae4dac34aa4565
+type: Request
+parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
+modified: 1659566988664
+created: 1659566988664
+url: "{{ _.protocol }}://{{ _.server }}:{{ _.port }}/{{ _.version
+  }}/transportation/62eaed3a92c2b2738539c840"
+name: Obtenir un transport
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+metaSortKey: -1659473179309.9375
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

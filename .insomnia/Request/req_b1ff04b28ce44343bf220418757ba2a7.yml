@@ -1,0 +1,21 @@
+_id: req_b1ff04b28ce44343bf220418757ba2a7
+type: Request
+parentId: fld_5228dfbd832c44f6bee9b4e04d284573
+modified: 1659567001262
+created: 1659567001262
+url: "{{ _.base_url }}/{{ _.version }}/score"
+name: Get all Scores
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1658932758278
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

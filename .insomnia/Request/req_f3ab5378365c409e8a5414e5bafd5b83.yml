@@ -1,0 +1,31 @@
+_id: req_f3ab5378365c409e8a5414e5bafd5b83
+type: Request
+parentId: fld_52ab0f906c804bdbb6aa3e0efb463aea
+modified: 1659566954659
+created: 1659566954659
+url: "{{ _.base_url }}/user/{{ _.version }}/register"
+name: Create User
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"email": "ab@ab.com",
+    	"name": "   nATaliA  ",
+    	"password": "12345"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_b213597de4d54451acfe92e56e16ff72
+authentication: {}
+metaSortKey: -1658579090340.6875
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

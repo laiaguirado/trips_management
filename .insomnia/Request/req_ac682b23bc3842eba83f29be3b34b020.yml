@@ -1,0 +1,38 @@
+_id: req_ac682b23bc3842eba83f29be3b34b020
+type: Request
+parentId: fld_c27ff179c6fc431fb28a828c75624e66
+modified: 1659566988563
+created: 1659566988563
+url: "{{ _.base_url }}/{{ _.version }}/accommodation/62ead5b4abbac2bcbb39345f"
+name: Create Accommodation
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"web": "www.google.com",
+    	"location": "  Barcelona",
+    	"startDate": "2002-12-09",
+    	"endDate": "2002-12-09",
+    	"phone": "12345",
+    	"email": "a@aa.com",
+    	"resourceType": "Accommodation"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_4e19e2eddeac41839031c9d30f80abf2
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+metaSortKey: -1658757190680
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

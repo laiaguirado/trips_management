@@ -1,0 +1,22 @@
+_id: env_be5b0b3f755b4d85ae75d2fb13656095
+type: Environment
+parentId: env_a16acd8632a49ecdfbcf17b6d35886899c7496d5
+modified: 1659567343360
+created: 1659567329480
+name: Production
+data:
+  base_url: "{{ _.protocol }}://{{ _.server }}:{{ _.port }}"
+  protocol: http
+  server: localhost
+  port: "8080"
+  path: api
+dataPropertyOrder:
+  "&":
+    - base_url
+    - protocol
+    - server
+    - port
+    - path
+color: "#a91919"
+isPrivate: false
+metaSortKey: 1659567305076

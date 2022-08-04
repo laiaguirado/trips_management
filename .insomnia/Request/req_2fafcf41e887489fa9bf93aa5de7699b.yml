@@ -1,0 +1,24 @@
+_id: req_2fafcf41e887489fa9bf93aa5de7699b
+type: Request
+parentId: fld_a56f4b03bf8542e0a909f7ead70eec10
+modified: 1659566988629
+created: 1659566988629
+url: "{{ _.base_url }}/{{ _.version }}/restoration"
+name: Get All restaurants
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+metaSortKey: -1659445284225
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

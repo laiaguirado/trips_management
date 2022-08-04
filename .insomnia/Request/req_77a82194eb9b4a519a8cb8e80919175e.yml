@@ -1,0 +1,24 @@
+_id: req_77a82194eb9b4a519a8cb8e80919175e
+type: Request
+parentId: fld_a56f4b03bf8542e0a909f7ead70eec10
+modified: 1659566988621
+created: 1659566988621
+url: "{{ _.base_url }}/{{ _.version }}/restoration/62e7ed21d187f4a719c92f24"
+name: Delete restaurant
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+metaSortKey: -1659444775442
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

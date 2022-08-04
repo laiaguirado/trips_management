@@ -1,0 +1,29 @@
+_id: req_eb4373e68b124544ba082c7ec87399e3
+type: Request
+parentId: fld_c27ff179c6fc431fb28a828c75624e66
+modified: 1659566988585
+created: 1659566988585
+url: "{{ _.base_url }}/{{ _.version }}/accommodation/62dea081eeb69606e81fb180"
+name: Get By Id
+description: ""
+method: GET
+body:
+  mimeType: application/json
+  text: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_56233795f50b49fb85eebe838c2771d2
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+metaSortKey: -1658817630461
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
