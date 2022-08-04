@@ -4,13 +4,14 @@ const passParamsToRouterChild = (req, res, next) => {
 };
 const addRoutesTo = (app) => {
   app.use(
+    "/v1/transportation",
+    require("./transportation.router.v1").routerByTransportation
+  );
+
+  app.use(
     "/v1/travel/:idTravel/transportation",
     passParamsToRouterChild,
     require("./transportation.router.v1").routerByTravel
-  );
-  app.use(
-    "/v1/transportation",
-    require("./transportation.router.v1").routerByTransportation
   );
 };
 

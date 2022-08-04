@@ -58,6 +58,10 @@ const routerByTransportation = express.Router();
 routerByTravel.post("/", needsAuthToken, catchErrors(createTransport));
 routerByTravel.get("/", needsAuthToken, catchErrors(getAllTransportation));
 
+if (config.isDevelopment) {
+  routerByTransportation.get("/test", needsAuthToken, catchErrors(test));
+}
+
 routerByTransportation.get(
   "/:idTransportation",
   needsAuthToken,
@@ -69,9 +73,5 @@ routerByTransportation.delete(
   needsAuthToken,
   catchErrors(deleteTransportation)
 );
-
-if (config.isDevelopment) {
-  routerByTravel.get("/test", needsAuthToken, catchErrors(test));
-}
 
 module.exports = { routerByTravel, routerByTransportation };
