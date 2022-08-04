@@ -1,0 +1,24 @@
+_id: req_df0058e991924bfbaba127a613420cb7
+type: Request
+parentId: fld_d1a60b2c6dcb4dbc86a8801693593ffb
+modified: 1659612040280
+created: 1659611560456
+url: "{{ _.base_url }}/{{ _.version }}/plans/test"
+name: Test
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+metaSortKey: -1659446781222.125
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
