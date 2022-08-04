@@ -33,6 +33,8 @@ require("./resources/components/transportation/transportation.controller").addRo
   app
 );
 
+require("./resources/components/plans/plans.controller").addRoutesTo(app);
+
 app.all("/*", async (req, res, next) => {
   next(new TripManagementApiError(404, `Not Found`));
 });

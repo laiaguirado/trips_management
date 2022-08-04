@@ -4,16 +4,26 @@ const { errMalformed } = require("../../errors");
 const { runTransaction } = require("../../helper");
 
 const getTravelById = async (_id) => {
-  return Travel.find({ _id })
+  const travel = await Travel.findOne({ _id })
     .populate({ path: "travellers", select: "email username" })
     .populate({ path: "creator", select: "email -_id" })
     .lean()
     .exec();
+
+  if (travel === null) {
+    errMalformed("Travel doesn't exists!");
+  }
+  return travel;
 };
 
-const findTravel = async(_idTravel)=>{
-  return await Travel.findOne({ _id: _idTravel })
-}
+const findTravel = async (_idTravel) => {
+  const travel = await Travel.findOne({ _id: _idTravel });
+  if (travel === null) {
+    errMalformed("Travel doesn't exists!");
+  }
+
+  return travel;
+};
 
 const getAllTravel = async () => {
   return Travel.find()
@@ -100,5 +110,5 @@ module.exports = {
   deleteTravel,
   addUserToTravel,
   deleteUserToTravel,
-  findTravel
+  findTravel,
 };

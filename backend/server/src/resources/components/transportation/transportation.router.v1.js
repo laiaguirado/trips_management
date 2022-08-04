@@ -30,10 +30,11 @@ const createTransport = async (req, res) => {
     .json(await Transportation.createTransport(transportationInfo));
 };
 
-const getAllTransportation = async (req, res) => {
+const getAllTransportationByTravel = async (req, res) => {
   const { idTravel } = req.paramsParentRouter;
-
-  res.status(200).json(await Transportation.getAllTransportation(idTravel));
+  res
+    .status(200)
+    .json(await Transportation.getAllTransportationByTravel(idTravel));
 };
 
 const getTransportationById = async (req, res) => {
@@ -56,7 +57,11 @@ const routerByTravel = express.Router();
 const routerByTransportation = express.Router();
 
 routerByTravel.post("/", needsAuthToken, catchErrors(createTransport));
-routerByTravel.get("/", needsAuthToken, catchErrors(getAllTransportation));
+routerByTravel.get(
+  "/",
+  needsAuthToken,
+  catchErrors(getAllTransportationByTravel)
+);
 
 if (config.isDevelopment) {
   routerByTransportation.get("/test", needsAuthToken, catchErrors(test));

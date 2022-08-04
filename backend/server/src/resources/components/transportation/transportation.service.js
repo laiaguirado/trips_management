@@ -17,8 +17,8 @@ const createTransport = async (transport) => {
   return transportation;
 };
 
-const getAllTransportation = async (idTravel) => {
-  return await Transportation.find()
+const getAllTransportationByTravel = async (idTravel) => {
+  return await Transportation.find({ idTravel })
     .select({ resourceType: 0 })
     .populate({ path: "idUser", select: "email -_id" })
     .lean()
@@ -32,7 +32,7 @@ const getTransportationById = async (idTransportation) => {
     .lean()
     .exec();
   if (transport === null) {
-    errMalformed(`Transport with '${idTransportation}' not found`);
+    errMalformed(`Transport not found`);
   }
   return transport;
 };
@@ -44,9 +44,9 @@ const deleteTransportation = async (_id) => {
       .exec();
 
     if (deleted === null) {
-      errMalformed(`Transport with '${_id}' not found`);
+      errMalformed(`Transport not found`);
     }
-    console.log(deleted.idTravel);
+
     const travel = await Travel.findOneAndUpdate(
       { _id: deleted.idTravel },
       { $pull: { transportation: _id } },
@@ -60,7 +60,7 @@ const deleteTransportation = async (_id) => {
 
 module.exports = {
   createTransport,
-  getAllTransportation,
+  getAllTransportationByTravel,
   getTransportationById,
   deleteTransportation,
 };
