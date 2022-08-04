@@ -20,7 +20,13 @@ const getAllTravel = async (req, res) => {
 
 const getTravelById = async (req, res) => {
   const { _id } = req.params;
-  res.status(200).json(await Travel.getTravelById(_id));
+  const travel = await Travel.getTravelById(_id);
+  console.log(travel);
+  if (travel) {
+    res.status(200).json(travel);
+  } else {
+    errMalformed("Travel doesn't exists");
+  }
 };
 
 const createTravel = async (req, res) => {
