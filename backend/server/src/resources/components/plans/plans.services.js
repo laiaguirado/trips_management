@@ -56,9 +56,24 @@ const deletePlan = async (_id) => {
   return plan;
 };
 
+const updatePlan = async (_id, planInfo) => {
+  const planUpdated = await Plans.findOneAndUpdate({ _id }, planInfo, {
+    new: true,
+  })
+    .lean()
+    .exec();
+  console.log(planInfo);
+
+  if (planUpdated === null) {
+    errMalformed(`Plan not found`);
+  }
+  return planUpdated;
+};
+
 module.exports = {
   createPlan,
   getAllPlansByTravel,
   getPlanById,
   deletePlan,
+  updatePlan,
 };

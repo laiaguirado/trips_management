@@ -44,6 +44,13 @@ const deletePlan = async (req, res) => {
   res.status(200).json(await Plans.deletePlan(idPlan));
 };
 
+const updatePlan = async (req, res) => {
+  const planInfo = req.body;
+  const { idPlan } = req.params;
+
+  res.status(200).json(await Plans.updatePlan(idPlan, planInfo));
+};
+
 const routerPlansByTravel = express.Router();
 const routerPlansByPlan = express.Router();
 
@@ -56,5 +63,6 @@ if (config.isDevelopment) {
 
 routerPlansByPlan.get("/:idPlan", needsAuthToken, catchErrors(getPlanById));
 routerPlansByPlan.delete("/:idPlan", needsAuthToken, catchErrors(deletePlan));
+routerPlansByPlan.put("/:idPlan", needsAuthToken, catchErrors(updatePlan));
 
 module.exports = { routerPlansByTravel, routerPlansByPlan };

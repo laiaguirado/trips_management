@@ -58,9 +58,26 @@ const deleteTransportation = async (_id) => {
   return transport;
 };
 
+const updateTransportation = async (_id, transportInfo) => {
+  const transportationUpdated = await Transportation.findOneAndUpdate(
+    { _id },
+    transportInfo,
+    { new: true }
+  )
+    .lean()
+    .exec();
+  console.log(transportInfo);
+
+  if (transportationUpdated === null) {
+    errMalformed(`Transportation not found`);
+  }
+  return transportationUpdated;
+};
+
 module.exports = {
   createTransport,
   getAllTransportationByTravel,
   getTransportationById,
   deleteTransportation,
+  updateTransportation,
 };

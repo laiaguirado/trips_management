@@ -53,6 +53,20 @@ const deleteTransportation = async (req, res) => {
     .json(await Transportation.deleteTransportation(idTransportation));
 };
 
+const updateTransportation = async (req, res) => {
+  const transportationInfo = req.body;
+  const { idTransportation } = req.params;
+
+  res
+    .status(200)
+    .json(
+      await Transportation.updateTransportation(
+        idTransportation,
+        transportationInfo
+      )
+    );
+};
+
 const routerByTravel = express.Router();
 const routerByTransportation = express.Router();
 
@@ -77,6 +91,11 @@ routerByTransportation.delete(
   "/:idTransportation",
   needsAuthToken,
   catchErrors(deleteTransportation)
+);
+routerByTransportation.put(
+  "/:idTransportation",
+  needsAuthToken,
+  catchErrors(updateTransportation)
 );
 
 module.exports = { routerByTravel, routerByTransportation };
