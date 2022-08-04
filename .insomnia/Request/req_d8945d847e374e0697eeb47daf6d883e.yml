@@ -1,13 +1,13 @@
-_id: req_5cb44b5e8ac94442a7ae4dac34aa4565
+_id: req_d8945d847e374e0697eeb47daf6d883e
 type: Request
-parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
-modified: 1659623013859
-created: 1659566988664
+parentId: fld_d1a60b2c6dcb4dbc86a8801693593ffb
+modified: 1659622968853
+created: 1659611560464
 url: "{{ _.protocol }}://{{ _.server }}:{{ _.port }}/{{ _.version
-  }}/transportation/62ebd51867a6eb28b1890258"
-name: Obtenir un transport
+  }}/plans/62ebd53c67a6eb28b1890265"
+name: Eliminar plan
 description: ""
-method: GET
+method: DELETE
 body: {}
 parameters: []
 headers: []
@@ -15,7 +15,7 @@ authentication:
   type: bearer
   token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
     'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
-metaSortKey: -1659473179309.9375
+metaSortKey: -1659459980266.0312
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

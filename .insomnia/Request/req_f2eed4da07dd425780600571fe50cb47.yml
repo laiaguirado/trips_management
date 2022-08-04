@@ -1,10 +1,10 @@
 _id: req_f2eed4da07dd425780600571fe50cb47
 type: Request
 parentId: fld_13cc3fed9b844d14a8811ff055aa3e3e
-modified: 1659566975001
+modified: 1659621907478
 created: 1659566975001
 url: "{{ _.base_url }}/{{ _.version
-  }}/travel/62eaa2d2a6560993705b91e1/traveller/a@a.com"
+  }}/travel/62ebd17d8bc0caa1ceafcd04/traveller/a@a.com"
 name: Afegir viatger
 description: ""
 method: POST

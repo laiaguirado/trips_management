@@ -1,27 +1,30 @@
-_id: req_86d9a315a8c14c6f81b3e659259d19b0
+_id: req_ba293ca2d97348048914444f553a9784
 type: Request
-parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
-modified: 1659622678703
-created: 1659566988650
+parentId: fld_d1a60b2c6dcb4dbc86a8801693593ffb
+modified: 1659622812093
+created: 1659611560433
 url: "{{ _.protocol }}://{{ _.server }}:{{ _.port }}/{{ _.version
-  }}/travel/62ebd17d8bc0caa1ceafcd04/transportation"
-name: Crear transport
+  }}/travel/62ebd17d8bc0caa1ceafcd04/plans"
+name: Crear Plan
 description: ""
 method: POST
 body:
   mimeType: application/json
   text: |-
     {
-    	"name": "Vuelo",
-    	"price": 20,
-    	"type": "airplane",
+    	"name": "Plan1",
+    	"location": "C/ Pierre 18",
+    	"openingHour": "10:00",
+    	"closingHour": "18:00",
+    	"closed" : "Primer lunes de cada mes",
     	"web": "http://www.google.com",
-    	"origin": "BCN",
-    	"destination": "Paris",
-    	"notation": "Datos sobre el transporte",
-    	"typeDetails": "Terminal A",
-    	"departure": "2022-08-01 10:00",
-    	"arrival": "2022-08-01 12:00"
+    	"phone": "09877878",
+    	"email": "aaa@aa.com",
+    	"priceAdult": 100,
+    	"priceChildren": 50,
+    	"discount": "5% con carnet de estudiante",
+    	"notation": "Aqui solía venir Bonaparte a veranear",
+    	"duration": "Unas 3h Si ves los jardines 4h"
     }
 parameters: []
 headers:

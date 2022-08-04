@@ -1,10 +1,10 @@
 _id: req_e3d827207a594ed98fd89f16c55c5cbe
 type: Request
 parentId: fld_13cc3fed9b844d14a8811ff055aa3e3e
-modified: 1659566975018
+modified: 1659621851733
 created: 1659566975018
 url: "{{ _.base_url }}/{{ _.version
-  }}/travel/62e84bb51cc6ef04f3c7aff2/traveller/b@b.com"
+  }}/travel/62ebd17d8bc0caa1ceafcd04/traveller/a@a.com"
 name: Eliminar viatger
 description: ""
 method: DELETE

@@ -1,7 +1,7 @@
 _id: req_590c5f1af65a46bbb9aa012a2a46f2a7
 type: Request
 parentId: fld_13cc3fed9b844d14a8811ff055aa3e3e
-modified: 1659606130648
+modified: 1659623021439
 created: 1659566974975
 url: "{{ _.base_url }}/{{ _.version }}/travel"
 name: Obtenir Tots els travels

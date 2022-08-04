@@ -1,11 +1,11 @@
-_id: req_5cb44b5e8ac94442a7ae4dac34aa4565
+_id: req_a5db7a37a9df4000a59aebf701136215
 type: Request
-parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
-modified: 1659623013859
-created: 1659566988664
+parentId: fld_d1a60b2c6dcb4dbc86a8801693593ffb
+modified: 1659622850378
+created: 1659611560449
 url: "{{ _.protocol }}://{{ _.server }}:{{ _.port }}/{{ _.version
-  }}/transportation/62ebd51867a6eb28b1890258"
-name: Obtenir un transport
+  }}/plans/62ebd53c67a6eb28b1890265"
+name: Obtenir un plan
 description: ""
 method: GET
 body: {}

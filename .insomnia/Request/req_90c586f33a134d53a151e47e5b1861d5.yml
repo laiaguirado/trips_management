@@ -1,11 +1,11 @@
-_id: req_5cb44b5e8ac94442a7ae4dac34aa4565
+_id: req_90c586f33a134d53a151e47e5b1861d5
 type: Request
-parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
-modified: 1659623013859
-created: 1659566988664
+parentId: fld_d1a60b2c6dcb4dbc86a8801693593ffb
+modified: 1659622972203
+created: 1659611560442
 url: "{{ _.protocol }}://{{ _.server }}:{{ _.port }}/{{ _.version
-  }}/transportation/62ebd51867a6eb28b1890258"
-name: Obtenir un transport
+  }}/travel/62ebd17d8bc0caa1ceafcd04/plans"
+name: Obtenir plans per viatge
 description: ""
 method: GET
 body: {}
@@ -15,7 +15,7 @@ authentication:
   type: bearer
   token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
     'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
-metaSortKey: -1659473179309.9375
+metaSortKey: -1659498080400.625
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true
