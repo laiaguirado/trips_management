@@ -12,7 +12,7 @@ const transportationSchema = extendSchema(componentSchema, {
     set: capitalize,
   },
   price: {
-    type: String, //TODO CAMBIAR EL TIPO!!!
+    type: Number, //TODO CAMBIAR EL TIPO!!!
   },
   type: {
     type: String,
