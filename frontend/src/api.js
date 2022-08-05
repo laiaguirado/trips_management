@@ -274,10 +274,10 @@ export const addAccommodation = async (tripId, newAccommodationData) => {
   }
 };
 
-export const deleteAccommodation = async (tripId) => {
+export const deleteAccommodation = async (accommodationId) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const response = await fetch(`${BASE_URL}/${version}/accommodation/${tripId}`, {
+    const response = await fetch(`${BASE_URL}/${version}/accommodation/${accommodationId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -307,13 +307,12 @@ export const getTransportationList = async (tripId) => {
     if (response.status === 200) {
       return { success: true, transportationList: transportations };
     } else {
-      return { success: false, error: "Couldn't fetch accommodations" };
+      return { success: false, error: "Couldn't fetch transportation" };
     }
   } catch (e) {
     return { success: false, error: `Network error: ${e.message}` };
   }
 };
-
 
 export const addTransportation = async (tripId, newTransportationData) => {
   try {
@@ -337,10 +336,10 @@ export const addTransportation = async (tripId, newTransportationData) => {
   }
 };
 
-export const deleteTransportation = async (tripId) => {
+export const deleteTransportation = async (transportationId) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const response = await fetch(`${BASE_URL}/${version}/transportation/${tripId}`, {
+    const response = await fetch(`${BASE_URL}/${version}/transportation/${transportationId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -350,6 +349,69 @@ export const deleteTransportation = async (tripId) => {
       return { success: true };
     } else {
       return { success: false, error: "Couldn't delete transportation" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
+
+//Plans
+export const getPlansList = async (tripId) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/travel/${tripId}/plans`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const plans = await response.json();
+    if (response.status === 200) {
+      return { success: true, plansList: plans };
+    } else {
+      return { success: false, error: "Couldn't fetch plans" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
+export const addPlan = async (tripId, newPlanData) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/travel/${tripId}/plans`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPlanData),
+    });
+    const added = await response.json();
+    if (response.status === 201) {
+      return { success: true, added };
+    } else {
+      return { success: false, error: "Couldn't add plan" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
+export const deletePlan = async (planId) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/plans/${planId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    if (response.status === 200) {
+      return { success: true };
+    } else {
+      return { success: false, error: "Couldn't delete plan" };
     }
   } catch (e) {
     return { success: false, error: `Network error: ${e.message}` };
