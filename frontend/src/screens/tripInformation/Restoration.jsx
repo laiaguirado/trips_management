@@ -4,18 +4,18 @@ import Bar from "../../components/Bar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-function PlacesToEatPage() {
+function Restoration() {
   return (
     <div>
       <Bar />
-      <div> PlacesToEatPage</div>
+      <div> Restoration</div>
       <button onClick={() => window.history.go(-1)}>Go back</button>
       <div>
         {" "}
-        <FontAwesomeIcon icon={faStar} /> Place to Eat 1
+        <FontAwesomeIcon icon={faStar} /> Restoration 1
       </div>
     </div>
   );
 }
 
-export default PlacesToEatPage;
+export default Restoration;

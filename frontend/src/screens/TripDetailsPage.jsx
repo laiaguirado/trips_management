@@ -185,20 +185,20 @@ function TripDetailsPage() {
           <div
             className="details-info"
             onClick={() =>
-              navigate(`/trip/${tripId}/thingsToDo`, { replace: false })
+              navigate(`/trip/${tripId}/plans`, { replace: false })
             }
           >
             <FontAwesomeIcon className="icon" icon={faCamera} size="2x" />
-            Things To Do
+            Plans
           </div>
           <div
             className="details-info"
             onClick={() =>
-              navigate(`/trip/${tripId}/placesToEat`, { replace: false })
+              navigate(`/trip/${tripId}/restoration`, { replace: false })
             }
           >
             <FontAwesomeIcon className="icon" icon={faUtensils} size="2x" />
-            Places To Eat
+            Restoration
           </div>
         </div>
         <div>{deleteButton()}</div>

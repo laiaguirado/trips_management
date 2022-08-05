@@ -4,18 +4,18 @@ import Bar from "../../components/Bar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-function ThingsToDoPage() {
+function Plans() {
   return (
     <div>
       <Bar />
-      <div> ThingsToDoPage</div>
+      <div> Plans</div>
       <button onClick={() => window.history.go(-1)}>Go back</button>
       <div>
         {" "}
-        <FontAwesomeIcon icon={faStar} /> Thing To Do 1
+        <FontAwesomeIcon icon={faStar} /> Plan 1
       </div>
     </div>
   );
 }
 
-export default ThingsToDoPage;
+export default Plans;
