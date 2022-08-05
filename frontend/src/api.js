@@ -313,3 +313,45 @@ export const getTransportationList = async (tripId) => {
     return { success: false, error: `Network error: ${e.message}` };
   }
 };
+
+
+export const addTransportation = async (tripId, newTransportationData) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/travel/${tripId}/transportation`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newTransportationData),
+    });
+    const added = await response.json();
+    if (response.status === 201) {
+      return { success: true, added };
+    } else {
+      return { success: false, error: "Couldn't add transportation" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
+export const deleteTransportation = async (tripId) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/transportation/${tripId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    if (response.status === 200) {
+      return { success: true };
+    } else {
+      return { success: false, error: "Couldn't delete transportation" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};

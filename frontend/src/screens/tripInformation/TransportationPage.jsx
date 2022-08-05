@@ -4,6 +4,9 @@ import * as api from "../../api";
 import "./TransportationPage.css";
 import Bar from "../../components/Bar";
 import TransportationCard from "../../components/tripInformation/Transportation/TransportationCard";
+import AddTransportationCard from "../../components/tripInformation/Transportation/AddTransportationCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 function TransportationPage() {
   const [transportationList, setTransportationList] = useState([]);
@@ -24,27 +27,27 @@ function TransportationPage() {
   };
 
   const addTransportation = async (tripId, newTransportationData) => {
-    /*const { success, added, error } = await api.addAccommodation(
+    const { success, added, error } = await api.addTransportation(
       tripId,
-      newAccommodationData
+      newTransportationData
     );
     if (success) {
-      setAccommodationList((accommodationList) => [
-        ...accommodationList,
+      setTransportationList((transportationList) => [
+        ...transportationList,
         added,
       ]);
       setAdding(false);
       setMessage(null);
     } else {
       setMessage(error);
-    }*/
+    }
   };
 
   function addTransportationForm() {
-    /*if (adding === false) {
+    if (adding === false) {
       return (
         <div
-          className="add-accommodation-button"
+          className="add-transportation-button"
           onClick={() => setAdding(true)}
         >
           <FontAwesomeIcon icon={faPlus} />
@@ -52,8 +55,8 @@ function TransportationPage() {
       );
     } else {
       return (
-        <AddAccommodationCard
-          onAdd={addAccommodation}
+        <AddTransportationCard
+          onAdd={addTransportation}
           adding={() => {
             setAdding(false);
             setMessage(null);
@@ -61,7 +64,7 @@ function TransportationPage() {
           tripId={tripId}
         />
       );
-    }*/
+    }
   }
 
   useEffect(() => {
@@ -81,7 +84,7 @@ function TransportationPage() {
               <TransportationCard
                 key={transportation._id}
                 transportation={transportation}
-                transportationList={setTransportationList}
+                modifyTransportationList={setTransportationList}
               />
             ))}
           </div>

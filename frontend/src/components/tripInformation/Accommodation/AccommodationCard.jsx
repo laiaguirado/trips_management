@@ -4,7 +4,7 @@ import * as api from "../../../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-function AccommodationCard({ accommodation, accommodationList }) {
+function AccommodationCard({ accommodation, modifyAccommodationList }) {
   if (!accommodation.web.startsWith("https://")) {
     accommodation.web = "https://" + accommodation.web;
   }
@@ -12,7 +12,7 @@ function AccommodationCard({ accommodation, accommodationList }) {
   const deleteAccommodation = async (accommodationId) => {
     const { success, error } = await api.deleteAccommodation(accommodationId);
     if (success) {
-      accommodationList((prevList) =>
+      modifyAccommodationList((prevList) =>
         prevList.filter((t) => t._id !== accommodationId)
       );
     } else {

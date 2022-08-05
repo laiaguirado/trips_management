@@ -4,40 +4,31 @@ import * as api from "../../../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-function TransportationCard({ transportation, transportationList }) {
-  if (!transportation.web.startsWith("https://")) {
+function TransportationCard({ transportation, modifyTransportationList }) {
+  if (
+    !transportation.web.startsWith("https://") &&
+    !transportation.web.startsWith("http://")
+  ) {
     transportation.web = "https://" + transportation.web;
   }
 
   const deleteTransportation = async (transportationId) => {
-    /*const { success, error } = await api.deleteTransportation(transportationId);
+    const { success, error } = await api.deleteTransportation(transportationId);
     if (success) {
-      transportationList((prevList) =>
+      modifyTransportationList((prevList) =>
         prevList.filter((t) => t._id !== transportationId)
       );
     } else {
       setMessage(error);
-    }*/
+    }
   };
 
   return (
     <div className="transportation-card">
       <h1>Transportation card</h1>
-      <div className="transportation-web transportation-info">
-        <h3>Web page: </h3>
-        <div>
-          <a href={transportation.web} target="_blank">
-            {transportation.web}
-          </a>
-        </div>
-      </div>
       <div className="transportation-name transportation-info">
         <h3>Name: </h3>
         <div>{transportation.name}</div>
-      </div>
-      <div className="transportation-price transportation-info">
-        <h3>Price: </h3>
-        <div>{transportation.price}</div>
       </div>
       <div className="transportation-type transportation-info">
         <h3>Type: </h3>
@@ -46,6 +37,10 @@ function TransportationCard({ transportation, transportationList }) {
       <div className="transportation-typeDetails transportation-info">
         <h3>Type Details: </h3>
         <div>{transportation.typeDetails}</div>
+      </div>
+      <div className="transportation-price transportation-info">
+        <h3>Price: </h3>
+        <div>{transportation.price}</div>
       </div>
       <div className="transportation-location transportation-info">
         <h3>Origin - Destination:</h3>
@@ -63,6 +58,14 @@ function TransportationCard({ transportation, transportationList }) {
               0,
               transportation.arrival.length - 0
             )}
+        </div>
+      </div>
+      <div className="transportation-web transportation-info">
+        <h3>Web page: </h3>
+        <div>
+          <a href={transportation.web} target="_blank">
+            {transportation.web}
+          </a>
         </div>
       </div>
       <div className="transportation-notation transportation-info">

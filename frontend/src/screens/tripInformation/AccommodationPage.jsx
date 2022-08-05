@@ -90,7 +90,7 @@ function AccommodationPage() {
               <AccommodationCard
                 key={accommodation._id}
                 accommodation={accommodation}
-                accommodationList={setAccommodationList}
+                modifyAccommodationList={setAccommodationList}
               />
             ))}
           </div>
