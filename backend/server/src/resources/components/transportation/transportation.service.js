@@ -20,7 +20,8 @@ const createTransport = async (transport) => {
 const getAllTransportationByTravel = async (idTravel) => {
   return await Transportation.find({ idTravel })
     .select({ resourceType: 0 })
-    .populate({ path: "idUser", select: "email -_id" })
+    .populate({ path: "idUser", select: "email id" })
+    .populate({ path: "idTravel", select: "name" })
     .lean()
     .exec();
 };
@@ -28,7 +29,8 @@ const getAllTransportationByTravel = async (idTravel) => {
 const getTransportationById = async (idTransportation) => {
   const transport = await Transportation.findOne({ _id: idTransportation })
     .select({ resourceType: 0 })
-    .populate({ path: "idUser", select: "email -_id" })
+    .populate({ path: "idUser", select: "email id" })
+    .populate({ path: "idTravel", select: "name" })
     .lean()
     .exec();
   if (transport === null) {
