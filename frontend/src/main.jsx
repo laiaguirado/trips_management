@@ -6,8 +6,8 @@ import App from "./App";
 import TripDetailsPage from "./screens/TripDetailsPage";
 import AccommodationPage from "./screens/tripInformation/AccommodationPage";
 import TransportationPage from "./screens/tripInformation/TransportationPage";
-import Plans from "./screens/tripInformation/Plans";
-import Restoration from "./screens/tripInformation/Restoration";
+import PlansPage from "./screens/tripInformation/PlansPage";
+import RestorationPage from "./screens/tripInformation/RestorationPage";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -25,11 +25,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           exact
           element={<TransportationPage />}
         ></Route>
-        <Route path="/trip/:tripId/plans" exact element={<Plans />}></Route>
+        <Route path="/trip/:tripId/plans" exact element={<PlansPage />}></Route>
         <Route
           path="/trip/:tripId/restoration"
           exact
-          element={<Restoration />}
+          element={<RestorationPage />}
         ></Route>
       </Routes>
     </BrowserRouter>

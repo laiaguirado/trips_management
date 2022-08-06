@@ -5,7 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 function AccommodationCard({ accommodation, modifyAccommodationList }) {
-  if (!accommodation.web.startsWith("https://")) {
+  if (
+    !accommodation.web.startsWith("https://") &&
+    !accommodation.web.startsWith("http://")
+  ) {
     accommodation.web = "https://" + accommodation.web;
   }
 
