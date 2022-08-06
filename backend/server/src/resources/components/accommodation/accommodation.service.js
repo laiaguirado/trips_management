@@ -24,5 +24,27 @@ const deleteAccom = async (_id) => {
   return deleted;
 };
 
+const updateAccomodation = async ({
+  _id,
+  web,
+  description,
+  location,
+  startDate,
+  endDate,
+  phone,
+ email
+}) => {
+  const accomUpdated = await Accommodation.findOneAndUpdate(
+    { _id },
+    {web, description, location,startDate,endDate, phone, email}
+  ).lean()
+    .exec();
 
-module.exports = { createAccommodation, findAll, findByTravelId, findOneById, deleteAccom };
+  if (accomUpdated === null) {
+    errMalformed(`Accomodation with id '${_id}' not found`);
+  }
+  return accomUpdated;
+};
+
+
+module.exports = { createAccommodation, findAll, findByTravelId, findOneById, deleteAccom ,updateAccomodation};
