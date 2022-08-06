@@ -41,7 +41,7 @@ const createOne = async ({ web, description, location, phone, email, resourceTyp
   }) => {
     const restUpdated = await Restoration.findOneAndUpdate(
       { _id },
-      {web, description,location,phone,email,kindOfFood,minPrice,maxPrice }
+      {web, description,location,phone,email,kindOfFood,minPrice,maxPrice },{new:true}
     ).lean()
       .exec();
   

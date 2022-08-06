@@ -36,7 +36,7 @@ const updateAccomodation = async ({
 }) => {
   const accomUpdated = await Accommodation.findOneAndUpdate(
     { _id },
-    {web, description, location,startDate,endDate, phone, email}
+    {web, description, location,startDate,endDate, phone, email},{new:true}
   ).lean()
     .exec();
 
