@@ -97,7 +97,7 @@ export const getTrip = async (tripId) => {
     });
     const trip = await response.json();
     if (response.status === 200) {
-      return { success: true, trip: trip[0] };
+      return { success: true, trip: trip };
     } else {
       return { success: false, error: "Couldn't fetch trip" };
     }
@@ -194,12 +194,15 @@ export const getTravelerByEmail = async (email) => {
 export const addTraveler = async (tripId, travelerId) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const response = await fetch(`${BASE_URL}/${version}/travel/${tripId}/traveller/${travelerId}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const response = await fetch(
+      `${BASE_URL}/${version}/travel/${tripId}/traveller/${travelerId}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     const added = await response.json();
     if (response.status === 200) {
       return { success: true, added };
@@ -214,12 +217,15 @@ export const addTraveler = async (tripId, travelerId) => {
 export const deleteTraveler = async (tripId, email) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const response = await fetch(`${BASE_URL}/${version}/travel/${tripId}/traveller/${email}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const response = await fetch(
+      `${BASE_URL}/${version}/travel/${tripId}/traveller/${email}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     if (response.status === 200) {
       return { success: true };
     } else {
@@ -235,12 +241,15 @@ export const deleteTraveler = async (tripId, email) => {
 export const getAccommodationList = async (tripId) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const response = await fetch(`${BASE_URL}/${version}/accommodation/travel/${tripId}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const response = await fetch(
+      `${BASE_URL}/${version}/accommodation/travel/${tripId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     const accommodations = await response.json();
     if (response.status === 200) {
       return { success: true, accommodationList: accommodations.results };
@@ -255,14 +264,17 @@ export const getAccommodationList = async (tripId) => {
 export const addAccommodation = async (tripId, newAccommodationData) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const response = await fetch(`${BASE_URL}/${version}/accommodation/${tripId}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newAccommodationData),
-    });
+    const response = await fetch(
+      `${BASE_URL}/${version}/accommodation/${tripId}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newAccommodationData),
+      }
+    );
     const added = await response.json();
     if (response.status === 200) {
       return { success: true, added };
@@ -277,12 +289,15 @@ export const addAccommodation = async (tripId, newAccommodationData) => {
 export const deleteAccommodation = async (tripId) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const response = await fetch(`${BASE_URL}/${version}/accommodation/${tripId}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const response = await fetch(
+      `${BASE_URL}/${version}/accommodation/${tripId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     if (response.status === 200) {
       return { success: true };
     } else {

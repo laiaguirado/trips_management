@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { ModelContext } from "../model";
+import LoginOrRegisterPage from "../screens/LoginOrRegisterPage";
 import "./TripDetailsPage.css";
 import * as api from "../api";
 import Bar from "../components/Bar";
@@ -111,7 +113,9 @@ function TripDetailsPage() {
 
   useEffect(() => {
     getTripData();
-  }, [tripId, trip]);
+  }, []); //TODO ¡¡¡¡¡Tenia [tripId, trip], pero hace llamadas infinitas!!!!
+
+  const { token } = useContext(ModelContext);
 
   return (
     <div className="trip-details-page">
