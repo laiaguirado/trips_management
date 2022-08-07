@@ -113,7 +113,7 @@ function TripDetailsPage() {
 
   useEffect(() => {
     getTripData();
-  }, []); //TODO ¡¡¡¡¡Tenia [tripId, trip], pero hace llamadas infinitas!!!!
+  }, [tripId]); //TODO ¡¡¡¡¡Tenia [tripId, trip], pero hace llamadas infinitas!!!!
 
   const { token } = useContext(ModelContext);
 

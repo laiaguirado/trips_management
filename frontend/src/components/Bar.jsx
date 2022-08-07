@@ -9,8 +9,8 @@ import {
 import { ModelContext } from "../model";
 import { useContext } from "react";
 
-const Bar = ({ mode, userData }) => {
-  const { logout } = useContext(ModelContext);
+const Bar = ({ mode }) => {
+  const { userData, logout } = useContext(ModelContext);
 
   if (mode === "logout") {
     return (
