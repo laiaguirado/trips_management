@@ -45,12 +45,20 @@ const getUserByEmail = async (req, res) => {
   res.status(200).json(await User.findByEmail(email));
 };
 
+const getUserMe = async (req, res) => {
+  console.log("getUSerMe");
+  const { _id } = req.userInfo;
+  console.log(_id);
+  res.status(200).json(await User.findById(_id));
+};
+
 const router = express.Router();
 
 router.post("/register", catchErrors(register));
 router.post("/login", catchErrors(login));
 router.get("/", needsAuthToken, catchErrors(getAllUsers));
 router.get("/me/travel", needsAuthToken, catchErrors(getTravelsByUser));
+router.get("/me", needsAuthToken, catchErrors(getUserMe));
 if (config.isDevelopment) {
   router.get("/test", needsAuthToken, catchErrors(test));
 }

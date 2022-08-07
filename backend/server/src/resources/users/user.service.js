@@ -37,12 +37,13 @@ const findAllUsers = async () => {
     .exec();
 };
 
-const findById = async (id) => {
-  return await User.findOne({ _id: id }).populate({
-    path: "travels",
-  });
+const findById = async (_id) => {
+  const user = await User.findOne({ _id }).select("email username");
+  if (user === null) {
+    errMalformed("User doens't exist");
+  }
+  return user;
 };
-
 const findByEmail = async (email) => {
   const user = await User.findOne({ email: email });
   if (user === null) {
