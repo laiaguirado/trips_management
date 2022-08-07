@@ -1,7 +1,7 @@
 _id: req_ae4e6fd3af03447fa7278e0ae3d43deb
 type: Request
 parentId: fld_c27ff179c6fc431fb28a828c75624e66
-modified: 1659566988570
+modified: 1659779302798
 created: 1659566988570
 url: "{{ _.base_url }}/{{ _.version }}/accommodation"
 name: Get All Accomodations
@@ -16,8 +16,7 @@ headers:
     description: ""
 authentication:
   type: bearer
-  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
-    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYi5jb20iLCJfaWQiOiI2MmVkMjBjY2M1MDQwMmZlMDNjNDEzYjciLCJ1c2VybmFtZSI6IlZpY3RvciBndWlqYXJybyIsImlhdCI6MTY1OTcwNzYxMywiZXhwIjoxNjU5Nzk0MDEzfQ.Y0fN4GvKMxFvgFTOHtuzHCGFHaZ9www-arMbFrPea08
 metaSortKey: -1658757190630
 isPrivate: false
 settingStoreCookies: true

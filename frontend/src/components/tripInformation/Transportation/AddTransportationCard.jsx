@@ -7,7 +7,6 @@ import {
   faPersonWalkingLuggage,
   faPlaneDeparture,
   faPlaneArrival,
-  //faCalendarClock,
   faSackDollar,
   faCalendar,
   faAngleLeft,

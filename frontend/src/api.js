@@ -357,7 +357,7 @@ export const deleteTransportation = async (transportationId) => {
 
 
 //Plans
-export const getPlansList = async (tripId) => {
+export const getPlanList = async (tripId) => {
   try {
     const { accessToken } = JSON.parse(localStorage.getItem("token"));
     const response = await fetch(`${BASE_URL}/${version}/travel/${tripId}/plans`, {
@@ -368,7 +368,7 @@ export const getPlansList = async (tripId) => {
     });
     const plans = await response.json();
     if (response.status === 200) {
-      return { success: true, plansList: plans };
+      return { success: true, planList: plans };
     } else {
       return { success: false, error: "Couldn't fetch plans" };
     }
