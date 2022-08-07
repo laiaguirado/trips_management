@@ -1,0 +1,23 @@
+_id: req_297ea5984c40401398bccd01c46a5d7e
+type: Request
+parentId: fld_a56f4b03bf8542e0a909f7ead70eec10
+modified: 1659778256341
+created: 1659707325986
+url: "{{ _.base_url }}/{{ _.version }}/restoration/travel/62e403863090f84fd475bdc4"
+name: Get Restaurants by travel
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYi5jb20iLCJfaWQiOiI2MmVkMjBjY2M1MDQwMmZlMDNjNDEzYjciLCJ1c2VybmFtZSI6IlZpY3RvciBndWlqYXJybyIsImlhdCI6MTY1OTcwNzYxMywiZXhwIjoxNjU5Nzk0MDEzfQ.Y0fN4GvKMxFvgFTOHtuzHCGFHaZ9www-arMbFrPea08
+metaSortKey: -1659707325986
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
