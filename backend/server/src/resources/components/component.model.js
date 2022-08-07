@@ -17,24 +17,31 @@ const componentSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    currency: {
+      type: String,
+      required: true,
+      default: "€",
+    },
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "comment"
-      }
+        ref: "comment",
+      },
     ],
     scores: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "score"
-      }
+        ref: "score",
+      },
     ],
     idTravel: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "travel",
       required: true,
     },
     idUser: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
       required: true,
     },
   },

@@ -40,7 +40,7 @@ function TransportationCard({ transportation, modifyTransportationList }) {
       </div>
       <div className="transportation-price transportation-info">
         <h3>Price: </h3>
-        <div>{transportation.price}</div>
+        <div>{transportation.priceWithCurrency}</div>
       </div>
       <div className="transportation-location transportation-info">
         <h3>Origin - Destination:</h3>
