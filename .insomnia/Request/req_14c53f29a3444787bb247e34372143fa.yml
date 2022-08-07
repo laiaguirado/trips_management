@@ -1,23 +1,19 @@
-_id: req_ae4e6fd3af03447fa7278e0ae3d43deb
+_id: req_14c53f29a3444787bb247e34372143fa
 type: Request
-parentId: fld_c27ff179c6fc431fb28a828c75624e66
-modified: 1659779302798
-created: 1659566988570
-url: "{{ _.base_url }}/{{ _.version }}/accommodation"
-name: Get All Accomodations
+parentId: fld_a56f4b03bf8542e0a909f7ead70eec10
+modified: 1659778591239
+created: 1659778551301
+url: "{{ _.base_url }}/{{ _.version }}/restoration/62e7ede227f02a592a715ef6"
+name: Get Restaurant by Id
 description: ""
 method: GET
 body: {}
 parameters: []
-headers:
-  - id: pair_9bd18982784541388423545d2837d084
-    name: Content-Type
-    value: application/json
-    description: ""
+headers: []
 authentication:
   type: bearer
   token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYi5jb20iLCJfaWQiOiI2MmVkMjBjY2M1MDQwMmZlMDNjNDEzYjciLCJ1c2VybmFtZSI6IlZpY3RvciBndWlqYXJybyIsImlhdCI6MTY1OTcwNzYxMywiZXhwIjoxNjU5Nzk0MDEzfQ.Y0fN4GvKMxFvgFTOHtuzHCGFHaZ9www-arMbFrPea08
-metaSortKey: -1658757190630
+metaSortKey: -1659778551301
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

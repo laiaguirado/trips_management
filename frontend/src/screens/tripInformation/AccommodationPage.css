@@ -1,4 +1,4 @@
-.accommodation-page {
+/*.accommodation-page {
   margin: 5vh 5vw 5vh 5vw;
   background-color: #f3f0e487;
   text-align: left;
@@ -39,8 +39,8 @@
   border-radius: 10px;
   text-align: center;
 }
-
-.accommodation-page .add-accomodation-button{
+*/
+.accommodation-page .add-accommodation-button{
   border: 2px solid black;
   border-radius: .5rem;
   margin: 1rem;

@@ -17,6 +17,11 @@ const componentSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    currency: {
+      type: String,
+      required: true,
+      default: "€",
+    },
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,
