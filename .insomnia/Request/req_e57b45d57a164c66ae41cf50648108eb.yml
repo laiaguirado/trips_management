@@ -1,23 +1,33 @@
-_id: req_ae4e6fd3af03447fa7278e0ae3d43deb
+_id: req_e57b45d57a164c66ae41cf50648108eb
 type: Request
 parentId: fld_c27ff179c6fc431fb28a828c75624e66
-modified: 1659779302798
-created: 1659566988570
-url: "{{ _.base_url }}/{{ _.version }}/accommodation"
-name: Get All Accomodations
+modified: 1659780724224
+created: 1659778121505
+url: "{{ _.base_url }}/{{ _.version }}/accommodation/62dea081eeb69606e81fb180"
+name: Update Accommodation
 description: ""
-method: GET
-body: {}
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	 "web":"testacom.com",
+       "description":"desc updated",
+       "location":"location new",
+       "startDate":"0000",
+    	 "endDate":"0000",
+    	"phone":"000",
+       "email":"alksdjf@dsf"
+    }
 parameters: []
 headers:
-  - id: pair_9bd18982784541388423545d2837d084
-    name: Content-Type
+  - name: Content-Type
     value: application/json
-    description: ""
+    id: pair_0793643f339e47bc8b85d32df32be892
 authentication:
   type: bearer
   token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYi5jb20iLCJfaWQiOiI2MmVkMjBjY2M1MDQwMmZlMDNjNDEzYjciLCJ1c2VybmFtZSI6IlZpY3RvciBndWlqYXJybyIsImlhdCI6MTY1OTcwNzYxMywiZXhwIjoxNjU5Nzk0MDEzfQ.Y0fN4GvKMxFvgFTOHtuzHCGFHaZ9www-arMbFrPea08
-metaSortKey: -1658757190630
+metaSortKey: -1659778121505
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

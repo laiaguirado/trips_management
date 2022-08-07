@@ -24,7 +24,6 @@ function TripDetailsPage() {
   const [message, setMessage] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [adding, setAdding] = useState(false);
-  const [travelersList, setTravelersList] = useState(null);
   const { tripId } = useParams();
   const navigate = useNavigate();
 
@@ -32,7 +31,6 @@ function TripDetailsPage() {
     const { success, trip, error } = await api.getTrip(tripId);
     if (success) {
       setTrip(trip);
-      setTravelersList(trip.travellers);
     } else {
       setMessage(error);
     }
@@ -50,7 +48,7 @@ function TripDetailsPage() {
   const addTraveler = async (tripId, email) => {
     const { success, added, error } = await api.addTraveler(tripId, email);
     if (success) {
-      setTravelersList((travelersList) => [...travelersList, added]);
+      getTripData();
       setAdding(false);
       setMessage(null);
     } else {
@@ -61,7 +59,7 @@ function TripDetailsPage() {
   const deleteTraveler = async (tripId, email) => {
     const { success, error } = await api.deleteTraveler(tripId, email);
     if (success) {
-      setTravelersList((prevList) => prevList.filter((t) => t._id !== tripId));
+      getTripData();
     } else {
       setMessage(error);
     }
@@ -113,9 +111,7 @@ function TripDetailsPage() {
 
   useEffect(() => {
     getTripData();
-  }, [tripId]); //TODO ¡¡¡¡¡Tenia [tripId, trip], pero hace llamadas infinitas!!!!
-
-  const { token } = useContext(ModelContext);
+  }, [tripId]);
 
   return (
     <div className="trip-details-page">
@@ -191,20 +187,20 @@ function TripDetailsPage() {
           <div
             className="details-info"
             onClick={() =>
-              navigate(`/trip/${tripId}/thingsToDo`, { replace: false })
+              navigate(`/trip/${tripId}/plans`, { replace: false })
             }
           >
             <FontAwesomeIcon className="icon" icon={faCamera} size="2x" />
-            Things To Do
+            Plans
           </div>
           <div
             className="details-info"
             onClick={() =>
-              navigate(`/trip/${tripId}/placesToEat`, { replace: false })
+              navigate(`/trip/${tripId}/restoration`, { replace: false })
             }
           >
             <FontAwesomeIcon className="icon" icon={faUtensils} size="2x" />
-            Places To Eat
+            Restoration
           </div>
         </div>
         <div>{deleteButton()}</div>

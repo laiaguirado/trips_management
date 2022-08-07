@@ -10,14 +10,11 @@ export const ModelProvider = ({ children }) => {
   // Totes les dades de l'aplicació van aquí
   const [token, setToken] = useState(tk.readToken);
   const [userData, setUserData] = useState(null);
-  const [message, setMessage] = useState(null);
 
   const getUserData = async () => {
     const { success, userData, error } = await api.getUserData();
     if (success) {
       setUserData(userData);
-    } else {
-      setMessage(error);
     }
   };
 

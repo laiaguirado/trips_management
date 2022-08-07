@@ -7,9 +7,8 @@ import App from "./App";
 import TripDetailsPage from "./screens/TripDetailsPage";
 import AccommodationPage from "./screens/tripInformation/AccommodationPage";
 import TransportationPage from "./screens/tripInformation/TransportationPage";
-import ThingsToDoPage from "./screens/tripInformation/ThingsToDoPage";
-import PlacesToEatPage from "./screens/tripInformation/PlacesToEatPage";
-import MainPage from "./screens/MainPage";
+import PlansPage from "./screens/tripInformation/PlansPage";
+import RestorationPage from "./screens/tripInformation/RestorationPage";
 import ProtectedRoute from "./screens/ProtectedRoute";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -46,20 +45,20 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             }
           ></Route>
           <Route
-            path="/trip/:tripId/thingsToDo"
+            path="/trip/:tripId/plans"
             exact
             element={
               <ProtectedRoute>
-                <ThingsToDoPage />
+                <PlansPage />
               </ProtectedRoute>
             }
           ></Route>
           <Route
-            path="/trip/:tripId/placesToEat"
+            path="/trip/:tripId/restoration"
             exact
             element={
               <ProtectedRoute>
-                <PlacesToEatPage />
+                <RestorationPage />
               </ProtectedRoute>
             }
           ></Route>
