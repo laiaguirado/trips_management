@@ -1,0 +1,38 @@
+_id: req_f551ed0a87cc4223b1b33292b8fd77c8
+type: Request
+parentId: fld_a56f4b03bf8542e0a909f7ead70eec10
+modified: 1659780764472
+created: 1659777810947
+url: "{{ _.base_url }}/{{ _.version }}/restoration/62e7ede227f02a592a715ef6"
+name: Udate Restaurant
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	 "web":"testrest.com",
+       "description":"desc updated",
+            "location":"location new",
+            "phone":"0000",
+            "email":"alksdjf@dsf",
+            "kindOfFood":"sushi",
+            "minPrice":"30",
+            "maxPrice":"60"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_9e92717836434b9883840eb7e497f402
+authentication:
+  type: bearer
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYi5jb20iLCJfaWQiOiI2MmVkMjBjY2M1MDQwMmZlMDNjNDEzYjciLCJ1c2VybmFtZSI6IlZpY3RvciBndWlqYXJybyIsImlhdCI6MTY1OTcwNzYxMywiZXhwIjoxNjU5Nzk0MDEzfQ.Y0fN4GvKMxFvgFTOHtuzHCGFHaZ9www-arMbFrPea08
+metaSortKey: -1659777810947
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
