@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ModelContext } from "../model";
+import { useContext } from "react";
 import "./MainPage.css";
 import * as api from "../api";
 import Bar from "../components/Bar";
@@ -8,11 +10,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import AddTripCard from "../components/AddTripCard";
 
-function MainPage({ onLogout }) {
+function MainPage() {
   const [userData, setUserData] = useState(null);
   const [tripList, setTripList] = useState(null);
   const [message, setMessage] = useState(null);
   const [adding, setAdding] = useState(false);
+  const { logout } = useContext(ModelContext);
+
   const navigate = useNavigate();
 
   const getUserData = async () => {
@@ -70,7 +74,7 @@ function MainPage({ onLogout }) {
 
   return (
     <div className="main-page">
-      <Bar mode="login" userData={userData} onLogout={onLogout} />
+      <Bar mode="login" userData={userData} />
       <div>{message}</div>
       <div>
         <h3>Main Page</h3>

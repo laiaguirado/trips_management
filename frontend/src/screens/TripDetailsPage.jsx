@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { ModelContext } from "../model";
+import LoginOrRegisterPage from "../screens/LoginOrRegisterPage";
 import "./TripDetailsPage.css";
 import * as api from "../api";
 import Bar from "../components/Bar";
