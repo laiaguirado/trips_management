@@ -417,3 +417,65 @@ export const deletePlan = async (planId) => {
     return { success: false, error: `Network error: ${e.message}` };
   }
 };
+
+//Restoration
+export const getRestorationList = async (tripId) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/restoration/travel/${tripId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const restoration = await response.json();
+    if (response.status === 200) {
+      return { success: true, restorationList: restoration };
+    } else {
+      return { success: false, error: "Couldn't fetch restoration" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
+export const addRestoration = async (tripId, newRestorationData) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/restoration/${tripId}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newRestorationData),
+    });
+    const added = await response.json();
+    if (response.status === 201) {
+      return { success: true, added };
+    } else {
+      return { success: false, error: "Couldn't add restoration" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
+
+export const deleteRestoration = async (restorationId) => {
+  try {
+    const { accessToken } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`${BASE_URL}/${version}/restoration/${restorationId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    if (response.status === 200) {
+      return { success: true };
+    } else {
+      return { success: false, error: "Couldn't delete restoration" };
+    }
+  } catch (e) {
+    return { success: false, error: `Network error: ${e.message}` };
+  }
+};
