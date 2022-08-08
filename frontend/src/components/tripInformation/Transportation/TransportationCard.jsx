@@ -7,7 +7,8 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 function TransportationCard({ transportation, modifyTransportationList }) {
   if (
     !transportation.web.startsWith("https://") &&
-    !transportation.web.startsWith("http://")
+    !transportation.web.startsWith("http://") &&
+    transportation.web !== ""
   ) {
     transportation.web = "https://" + transportation.web;
   }
