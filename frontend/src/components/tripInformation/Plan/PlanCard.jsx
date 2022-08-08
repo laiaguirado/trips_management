@@ -5,7 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 function PlanCard({ plan, modifyPlanList }) {
-  if (!plan.web.startsWith("https://") && !plan.web.startsWith("http://")) {
+  if (
+    !plan.web.startsWith("https://") &&
+    !plan.web.startsWith("http://") &&
+    plan.web !== ""
+  ) {
     plan.web = "https://" + plan.web;
   }
 

@@ -1,14 +1,13 @@
-.plan-page .add-plan-button{
-    border: 2px solid black;
-    border-radius: .5rem;
-    margin: 1rem;
-    padding:1rem;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .plan-page .add-plan-button:hover{
-    cursor: pointer;
-    background-color: #B7CBE7;
-    transform: scale(1.1);
-  }
-  
+.plan-page .add-plan-button {
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  padding: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.plan-page .add-plan-button:hover {
+  cursor: pointer;
+  background-color: #b7cbe7;
+  transform: scale(1.1);
+}
