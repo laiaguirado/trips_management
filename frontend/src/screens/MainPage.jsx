@@ -11,22 +11,12 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import AddTripCard from "../components/AddTripCard";
 
 function MainPage() {
-  const [userData, setUserData] = useState(null);
   const [tripList, setTripList] = useState(null);
   const [message, setMessage] = useState(null);
   const [adding, setAdding] = useState(false);
-  const { logout } = useContext(ModelContext);
+  const { userData, logout } = useContext(ModelContext);
 
   const navigate = useNavigate();
-
-  const getUserData = async () => {
-    const { success, userData, error } = await api.getUserData();
-    if (success) {
-      setUserData(userData);
-    } else {
-      setMessage(error);
-    }
-  };
 
   const loadTripList = async () => {
     const { success, tripList, error } = await api.getTripList();
@@ -68,7 +58,6 @@ function MainPage() {
   }
 
   useEffect(() => {
-    getUserData();
     loadTripList();
   }, []);
 

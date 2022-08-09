@@ -31,7 +31,7 @@ export const ModelProvider = ({ children }) => {
 
   useEffect(() => {
     getUserData();
-  }, []);
+  }, [token]);
 
   return (
     <ModelContext.Provider
