@@ -48,8 +48,8 @@ const getUserByEmail = async (req, res) => {
 const getUserMe = async (req, res) => {
   console.log("getUSerMe");
   const { _id } = req.userInfo;
-  console.log(_id);
-  res.status(200).json(await User.findById(_id));
+  const { email, username } = await User.findById(_id);
+  res.status(200).json({ _id, email, username });
 };
 
 const router = express.Router();

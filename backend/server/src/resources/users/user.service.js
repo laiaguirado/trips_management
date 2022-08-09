@@ -38,7 +38,7 @@ const findAllUsers = async () => {
 };
 
 const findById = async (_id) => {
-  const user = await User.findOne({ _id }).select("email username").populate({
+  const user = await User.findOne({ _id }).populate({
     path: "travels",
   });
   if (user === null) {
