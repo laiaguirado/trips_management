@@ -1,10 +1,10 @@
 _id: req_3411840993ca4675bcd4a5073dc057d2
 type: Request
 parentId: fld_5dff87fb2587488581c0eb2594595d6f
-modified: 1659567013175
+modified: 1660156617210
 created: 1659567013175
 url: "{{ _.base_url }}/{{ _.version
-  }}/comment/62dea081eeb69606e81fb180/travel/62e403863090f84fd475bdc4"
+  }}/comment/62f3fa79eac31a5539d16884/travel/62f3f8deeac31a5539d16872"
 name: Post a comment
 description: ""
 method: POST
@@ -21,7 +21,7 @@ headers:
     id: pair_420fb7d5234749ed8e2153d758656d88
 authentication:
   type: bearer
-  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+  token: "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe',
     'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
 metaSortKey: -1658908791423
 isPrivate: false
