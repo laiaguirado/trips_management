@@ -21,7 +21,7 @@ const getAllPlansByTravel = async (idTravel) => {
   return await Plans.find({ idTravel })
     .select({ resourceType: 0 })
     .populate({ path: "idUser", select: "email -_id" })
-    .lean()
+    .lean({ getters: true, virtuals: true })
     .exec();
 };
 
@@ -29,7 +29,7 @@ const getPlanById = async (idPlan) => {
   const plan = await Plans.findOne({ _id: idPlan })
     .select({ resourceType: 0 })
     .populate({ path: "idUser", select: "email -_id" })
-    .lean()
+    .lean({ getters: true, virtuals: true })
     .exec();
   if (plan === null) {
     errMalformed(`Plan with not found`);
