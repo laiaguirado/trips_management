@@ -7,7 +7,8 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 function AccommodationCard({ accommodation, modifyAccommodationList }) {
   if (
     !accommodation.web.startsWith("https://") &&
-    !accommodation.web.startsWith("http://")
+    !accommodation.web.startsWith("http://") &&
+    accommodation.web !== null
   ) {
     accommodation.web = "https://" + accommodation.web;
   }

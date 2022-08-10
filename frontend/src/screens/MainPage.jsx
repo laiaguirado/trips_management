@@ -3,26 +3,17 @@ import { useNavigate } from "react-router-dom";
 import "./MainPage.css";
 import * as api from "../api";
 import Bar from "../components/Bar";
-import TripCard from "../components/TripCard";
+import TripCard from "../components/trip/TripCard";
+import AddTripCard from "../components/trip/AddTripCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import AddTripCard from "../components/AddTripCard";
 
-function MainPage({ onLogout }) {
-  const [userData, setUserData] = useState(null);
+function MainPage() {
   const [tripList, setTripList] = useState(null);
   const [message, setMessage] = useState(null);
   const [adding, setAdding] = useState(false);
-  const navigate = useNavigate();
 
-  const getUserData = async () => {
-    const { success, userData, error } = await api.getUserData();
-    if (success) {
-      setUserData(userData);
-    } else {
-      setMessage(error);
-    }
-  };
+  const navigate = useNavigate();
 
   const loadTripList = async () => {
     const { success, tripList, error } = await api.getTripList();
@@ -64,13 +55,12 @@ function MainPage({ onLogout }) {
   }
 
   useEffect(() => {
-    getUserData();
     loadTripList();
   }, []);
 
   return (
     <div className="main-page">
-      <Bar mode="login" userData={userData} onLogout={onLogout} />
+      <Bar mode="login" />
       <div>{message}</div>
       <div>
         <h3>Main Page</h3>

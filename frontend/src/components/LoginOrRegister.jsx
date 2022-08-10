@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./LoginOrRegister.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import * as api from "../api";
+import { ModelContext } from "../model";
 
-const LoginOrRegister = ({ onLogin }) => {
+const LoginOrRegister = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState("login");
   const [message, setMessage] = useState(null);
+
+  const { login } = useContext(ModelContext);
 
   const toggleMode = (e) => {
     e.preventDefault();
@@ -20,10 +23,10 @@ const LoginOrRegister = ({ onLogin }) => {
     setMessage("");
   };
 
-  const login = async (userData) => {
+  const onLogin = async (userData) => {
     const { success, token, error } = await api.login(userData);
     if (success) {
-      onLogin(token);
+      login(token);
     } else {
       setMessage(`Couldn't login: ${error}`);
     }
@@ -58,7 +61,7 @@ const LoginOrRegister = ({ onLogin }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    (mode === "login" ? login : register)({
+    (mode === "login" ? onLogin : register)({
       username: userName,
       email,
       password,

@@ -6,7 +6,7 @@ import "./PlansPage.css";
 import PlanCard from "../../components/tripInformation/Plan/PlanCard";
 import AddPlanCard from "../../components/tripInformation/Plan/AddPlanCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faPlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 function PlansPage() {
   const [planList, setPlanList] = useState([]);
@@ -65,6 +65,9 @@ function PlansPage() {
     <div className="plan-page">
       <Bar mode="login" />
       <div className="flex-container">
+        <div className="return-icon" onClick={() => window.history.go(-1)}>
+          <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+        </div>
         <div>{message}</div>
         <div>
           <h1>PLANS</h1>
@@ -80,7 +83,6 @@ function PlansPage() {
           </div>
         </div>
       </div>
-      <button onClick={() => window.history.go(-1)}>Go back</button>
       <button onClick={() => editPage()}>Edit</button>
     </div>
   );

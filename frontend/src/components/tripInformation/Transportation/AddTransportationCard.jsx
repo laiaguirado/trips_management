@@ -18,6 +18,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
   const [type, setType] = useState("");
   const [typeDetails, setTypeDetails] = useState("");
   const [price, setPrice] = useState("");
+  const [currency, setCurrency] = useState("");
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [departure, setDeparture] = useState("");
@@ -30,6 +31,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
     onAdd(tripId, {
       name,
       price,
+      currency,
       type,
       typeDetails,
       origin,
@@ -61,14 +63,22 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
           </div>
         </label>
         <label>
-          <div className="form-data">
+          <div>
             <FontAwesomeIcon icon={faTruckPlane} />
-            <input
-              type="text"
-              placeholder="Transportation type"
+            <select
+              required
               value={type}
               onChange={(event) => setType(event.target.value)}
-            />
+            >
+              <option value="Select...">Select a transportation</option>
+              <option value="airplane">Airplane</option>
+              <option value="ship">Ship</option>
+              <option value="car">Car</option>
+              <option value="subway">Subway</option>
+              <option value="tram">Tram</option>
+              <option value="bus">Bus</option>
+              <option value="train">Train</option>
+            </select>
           </div>
         </label>
         <label>
@@ -92,6 +102,16 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               onChange={(event) => setPrice(event.target.value)}
             />
           </div>
+          <select
+            required
+            value={currency}
+            onChange={(event) => setCurrency(event.target.value)}
+          >
+            <option value="Select...">Select a currency</option>
+            <option value="€">Euro €</option>
+            <option value="$">Dollar $</option>
+            <option value="£">Libra £</option>
+          </select>
         </label>
         <label>
           <div className="form-data">

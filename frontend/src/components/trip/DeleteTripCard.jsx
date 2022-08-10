@@ -1,5 +1,5 @@
 import React from "react";
-import "./DeleteCard.css";
+import "./DeleteTripCard.css";
 
 function DeleteTripCard({ onDelete, deleting, deleteType }) {
   return (

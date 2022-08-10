@@ -20,17 +20,20 @@ const createTransport = async (transport) => {
 const getAllTransportationByTravel = async (idTravel) => {
   return await Transportation.find({ idTravel })
     .select({ resourceType: 0 })
-    .populate({ path: "idUser", select: "email -_id" })
-    .lean()
+    .populate({ path: "idUser", select: "email id" })
+    .populate({ path: "idTravel", select: "name" })
+    .lean({ getters: true, virtuals: true })
     .exec();
 };
 
 const getTransportationById = async (idTransportation) => {
   const transport = await Transportation.findOne({ _id: idTransportation })
     .select({ resourceType: 0 })
-    .populate({ path: "idUser", select: "email -_id" })
-    .lean()
+    .populate({ path: "idUser", select: "email id" })
+    .populate({ path: "idTravel", select: "name" })
+    .lean({ getters: true, virtuals: true })
     .exec();
+
   if (transport === null) {
     errMalformed(`Transport not found`);
   }
@@ -66,7 +69,6 @@ const updateTransportation = async (_id, transportInfo) => {
   )
     .lean()
     .exec();
-  console.log(transportInfo);
 
   if (transportationUpdated === null) {
     errMalformed(`Transportation not found`);

@@ -39,7 +39,6 @@ const getAllTransportationByTravel = async (req, res) => {
 
 const getTransportationById = async (req, res) => {
   const { idTransportation } = req.params;
-
   res
     .status(200)
     .json(await Transportation.getTransportationById(idTransportation));
