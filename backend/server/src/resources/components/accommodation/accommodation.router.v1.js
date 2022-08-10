@@ -49,6 +49,24 @@ const User = require("../../users/user.service")
     const { _id } = req.params;
     res.status(200).json(await Accommodation.deleteAccom(_id));
   };
+
+  const updateAccomm= async (req, res) => {
+    const { web, description, location,startDate,endDate, phone, email} = req.body;
+    const { _id } = req.params;
+  
+    res.status(200).json(
+      await Accommodation.updateAccomodation({
+        _id,
+        web,
+        description,
+        location,
+        startDate,
+        endDate,
+        phone,
+       email
+      })
+    );
+  };
   
   const router = express.Router();
   
@@ -57,6 +75,8 @@ const User = require("../../users/user.service")
   router.get("/travel/:idTravel", needsAuthToken, catchErrors(getAccommodationByTravel));
   router.get("/:id", needsAuthToken, catchErrors(getAccommodationById));
   router.delete("/:_id", needsAuthToken, catchErrors(deleteAccommodation));
+  router.put("/:_id", needsAuthToken, catchErrors(updateAccomm));
+
 
 
   module.exports = router;

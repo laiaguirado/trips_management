@@ -51,10 +51,30 @@ const User = require("../../users/user.service")
     res.status(200).json(await Restoration.getByTravelId(idTravel));
   }
 
+  const updateRest= async (req, res) => {
+    const { web, description, location, phone, email, kindOfFood, minPrice, maxPrice } = req.body;
+    const { _id } = req.params;
+  
+    res.status(200).json(
+      await Restoration.updateRestoration({
+        _id,
+        web,
+        description,
+        location,
+        phone,
+        email,
+        kindOfFood,
+        minPrice,
+        maxPrice
+      })
+    );
+  };
+
   const router = express.Router();
   router.post("/:idTravel",needsAuthToken, catchErrors(create));
   router.delete("/:_id",needsAuthToken,catchErrors(deleteRestoration));
   router.get("/",needsAuthToken,catchErrors(getAll));
   router.get("/:_id",needsAuthToken,catchErrors(getById));
-  router.get("/travel/:idTravel",needsAuthToken,catchErrors(getByTravel))
+  router.get("/travel/:idTravel",needsAuthToken,catchErrors(getByTravel));
+  router.put("/:_id",needsAuthToken,catchErrors(updateRest));
   module.exports = router;

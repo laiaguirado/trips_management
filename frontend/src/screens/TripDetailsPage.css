@@ -1,64 +1,79 @@
-.trip-details-page{
-    margin-top:5rem;
+.trip-details-page {
+  margin-top: 5rem;
 }
 
-.trip-details-page .details-info{
-    background-color: #FFFFFF;
-    border-radius: .5rem;
-    margin: 1rem;
-    padding:1rem;
-    transition: all 0.2s ease-in-out;
+.trip-details-page .trip-info h1 {
+  margin: 1rem;
 }
 
-.trip-details-page .details-info:hover{
-    cursor: pointer;
-    transform: scale(1.2);
+.trip-details-page .trip-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.trip-details-page .return-icon{
-    width: 2.5em;
-    height: 3rem;
-    border-radius: .5rem;
+.trip-details-page .trip-info h3 {
+  margin: 0.5rem 0.5rem;
 }
 
-.trip-details-page .return-icon:hover{
-    cursor: pointer;
-    color: #FFFFFF;
-    background-color: #B7CBE7;
+.trip-details-page .details-info {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  padding: 1rem;
+  transition: all 0.2s ease-in-out;
 }
 
-.trip-details-page .delete-trip{
-    background-color: #AD3D25;
-    color: #FFFFFF;
-    border:0px;
-    border-radius: 1.5rem;
-    margin: 1rem;
-    padding:1rem;
-    transition: all 0.1s ease-in-out;
+.trip-details-page .details-info:hover {
+  cursor: pointer;
+  transform: scale(1.2);
 }
 
-.trip-details-page .delete-trip:hover{
-    cursor: pointer;
-    transform: scale(1.2);
+.trip-details-page .return-icon {
+  width: 2.5em;
+  height: 3rem;
+  border-radius: 0.5rem;
 }
 
-.trip-details-page .details-info , .trip-details-page .return-icon{
-    color: #937B5F;
+.trip-details-page .return-icon:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #b7cbe7;
 }
 
-.trip-details-page .trip-members .member{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.trip-details-page .delete-trip {
+  background-color: #ad3d25;
+  color: #ffffff;
+  border: 0px;
+  border-radius: 1.5rem;
+  margin: 1rem;
+  padding: 1rem;
+  transition: all 0.1s ease-in-out;
 }
 
-.trip-details-page .trip-members .member .delete-icon{
-    color:#AD3D25;
-    padding: 0.25rem;
-    border-radius: 0.2rem;
+.trip-details-page .delete-trip:hover {
+  cursor: pointer;
+  transform: scale(1.2);
 }
 
-.trip-details-page .trip-members .member .delete-icon:hover{
-    color:white;
-    background-color: #AD3D25;
+.trip-details-page .details-info,
+.trip-details-page .return-icon {
+  color: #937b5f;
+}
+
+.trip-details-page .trip-members .member {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.trip-details-page .trip-members .member .delete-icon {
+  color: #ad3d25;
+  padding: 0.25rem;
+  border-radius: 0.2rem;
+}
+
+.trip-details-page .trip-members .member .delete-icon:hover {
+  color: white;
+  background-color: #ad3d25;
 }

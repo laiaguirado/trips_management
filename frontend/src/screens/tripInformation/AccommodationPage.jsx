@@ -6,7 +6,7 @@ import "./AccommodationPage.css";
 import AccommodationCard from "../../components/tripInformation/Accommodation/AccommodationCard";
 import AddAccommodationCard from "../../components/tripInformation/Accommodation/AddAccommodationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 function AccommodationPage() {
   const [accommodationList, setAccommodationList] = useState([]);
@@ -81,6 +81,9 @@ function AccommodationPage() {
     <div className="accommodation-page">
       <Bar mode="login" />
       <div className="flex-container">
+        <div className="return-icon" onClick={() => window.history.go(-1)}>
+          <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+        </div>
         <div>{message}</div>
         <div>
           <h1>ACCOMMODATIONS</h1>
@@ -90,41 +93,12 @@ function AccommodationPage() {
               <AccommodationCard
                 key={accommodation._id}
                 accommodation={accommodation}
-                accommodationList={setAccommodationList}
+                modifyAccommodationList={setAccommodationList}
               />
             ))}
           </div>
-          {/*<h2>
-            Name: <span>Ruthensteiner</span>
-          </h2>
-          <h2>
-            Dates: <span>10/10/2022 - 15/10/2022</span>
-          </h2>
-          <h2>
-            Address:
-            <span> Robert Hamerling Gasse 24, 1150 Vienna, Austria</span>
-          </h2>
-          <h2>
-            Contact:
-            <span>
-              <a href="mailto:contact@gmail.com"> contact@gmail.com</a>
-            </span>
-            </h2>*/}
         </div>
-        {/*<div>
-          <img src="../../src/assets/accommodation.webp"></img>
-          </div>*/}
       </div>
-      {/*<h2>
-        Notes:{" "}
-        <span>
-          You have to arrive after 14:00 if you want to get the keys to your
-          room.
-        </span>
-      </h2>
-      <h2>Files: </h2>
-        <div className="upload">Upload file</div>*/}
-      <button onClick={() => window.history.go(-1)}>Go back</button>
       <button onClick={() => editPage()}>Edit</button>
     </div>
   );

@@ -17,10 +17,38 @@ const createOne = async ({ web, description, location, phone, email, resourceTyp
   }
 
   const getOne = async(_id)=>{
-    return await Restoration.findOne({_id})
+
+    const rest = await Restoration.findOne({_id});
+    if (rest === null){
+      errMalformed(`Restoration with id '${_id}' not found`);
+    }
+    return rest;
   }
   const getByTravelId = async(idTravel)=>{
     return await Restoration.find({idTravel }).exec();
   }
 
-module.exports = {createOne,deleteRest,findAll,getOne,getByTravelId}
+  const updateRestoration = async ({
+    _id,
+    web,
+    description,
+    location,
+    phone,
+    email,
+    kindOfFood,
+    minPrice,
+    maxPrice
+  }) => {
+    const restUpdated = await Restoration.findOneAndUpdate(
+      { _id },
+      {web, description,location,phone,email,kindOfFood,minPrice,maxPrice },{new:true}
+    ).lean()
+      .exec();
+  
+    if (restUpdated === null) {
+      errMalformed(`Restoration with id '${_id}' not found`);
+    }
+    return restUpdated;
+  };
+
+module.exports = {createOne,deleteRest,findAll,getOne,getByTravelId, updateRestoration}

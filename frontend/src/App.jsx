@@ -1,26 +1,15 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ModelContext } from "./model";
 import "./App.css";
 import LoginOrRegisterPage from "./screens/LoginOrRegisterPage";
 import MainPage from "./screens/MainPage";
-import * as tk from "./token";
 
 function App() {
-  const [token, setToken] = useState(tk.readToken);
-
-  const login = (token) => {
-    setToken(token);
-    tk.saveToken(token);
-  };
-
-  const logout = () => {
-    setToken(null);
-    tk.deleteToken();
-  };
-
+  const { token } = useContext(ModelContext);
   if (token === null) {
-    return <LoginOrRegisterPage onLogin={login} />;
+    return <LoginOrRegisterPage />;
   } else {
-    return <MainPage onLogout={logout} />;
+    return <MainPage />;
   }
 }
 
