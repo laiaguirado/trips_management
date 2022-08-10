@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ModelContext } from "../model";
-import { useContext } from "react";
 import "./MainPage.css";
 import * as api from "../api";
 import Bar from "../components/Bar";
-import TripCard from "../components/TripCard";
+import TripCard from "../components/trip/TripCard";
+import AddTripCard from "../components/trip/AddTripCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import AddTripCard from "../components/AddTripCard";
 
 function MainPage() {
   const [tripList, setTripList] = useState(null);
   const [message, setMessage] = useState(null);
   const [adding, setAdding] = useState(false);
-  const { userData, logout } = useContext(ModelContext);
 
   const navigate = useNavigate();
 
@@ -63,7 +60,7 @@ function MainPage() {
 
   return (
     <div className="main-page">
-      <Bar mode="login" userData={userData} />
+      <Bar mode="login" />
       <div>{message}</div>
       <div>
         <h3>Main Page</h3>

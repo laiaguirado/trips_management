@@ -1,3 +1,19 @@
+.restoration-page {
+  margin-top: 5rem;
+}
+
+.restoration-page .return-icon {
+  width: 2.5em;
+  height: 3rem;
+  border-radius: 0.5rem;
+}
+
+.restoration-page .return-icon:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #b7cbe7;
+}
+
 .restoration-page .add-restoration-button {
   border: 2px solid black;
   border-radius: 0.5rem;

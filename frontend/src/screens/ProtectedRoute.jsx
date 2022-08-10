@@ -6,10 +6,8 @@ const ProtectedRoute = ({ children }) => {
   const { token } = useContext(ModelContext);
 
   if (!token) {
-    console.log("protectedRoute no hay token");
     return <Navigate to="/" replace />;
   }
-  console.log("protectedRoute SI hay token");
   return children;
 };
 

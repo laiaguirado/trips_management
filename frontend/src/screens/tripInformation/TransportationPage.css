@@ -1,14 +1,29 @@
-.transportation-page .add-transportation-button{
-    border: 2px solid black;
-    border-radius: .5rem;
-    margin: 1rem;
-    padding:1rem;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .transportation-page .add-transportation-button:hover{
-    cursor: pointer;
-    background-color: #B7CBE7;
-    transform: scale(1.1);
-  }
-  
+.transportation-page {
+  margin-top: 5rem;
+}
+
+.transportation-page .return-icon {
+  width: 2.5em;
+  height: 3rem;
+  border-radius: 0.5rem;
+}
+
+.transportation-page .return-icon:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #b7cbe7;
+}
+
+.transportation-page .add-transportation-button {
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  padding: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.transportation-page .add-transportation-button:hover {
+  cursor: pointer;
+  background-color: #b7cbe7;
+  transform: scale(1.1);
+}

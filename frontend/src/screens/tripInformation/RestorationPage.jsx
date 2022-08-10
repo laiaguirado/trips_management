@@ -6,7 +6,7 @@ import Bar from "../../components/Bar";
 import RestorationCard from "../../components/tripInformation/Restoration/RestorationCard";
 import AddRestorationCard from "../../components/tripInformation/Restoration/AddRestorationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faPlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 function RestorationPage() {
   const [restorationList, setRestorationList] = useState([]);
@@ -70,6 +70,9 @@ function RestorationPage() {
     <div className="restoration-page">
       <Bar mode="login" />
       <div className="flex-container">
+        <div className="return-icon" onClick={() => window.history.go(-1)}>
+          <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+        </div>
         <div>{message}</div>
         <div>
           <h1>RESTORATIONS</h1>
@@ -85,7 +88,6 @@ function RestorationPage() {
           </div>
         </div>
       </div>
-      <button onClick={() => window.history.go(-1)}>Go back</button>
       <button onClick={() => editPage()}>Edit</button>
     </div>
   );

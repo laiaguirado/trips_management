@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ModelContext } from "../model";
-import LoginOrRegisterPage from "../screens/LoginOrRegisterPage";
 import "./TripDetailsPage.css";
 import * as api from "../api";
 import Bar from "../components/Bar";
-import DeleteCard from "../components/DeleteCard";
-import AddTravelerCard from "../components/AddTravelerCard";
+import DeleteTripCard from "../components/trip/DeleteTripCard";
+import AddTravelerCard from "../components/trip/AddTravelerCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
@@ -27,7 +25,7 @@ function TripDetailsPage() {
   const { tripId } = useParams();
   const navigate = useNavigate();
 
-  const getTripData = async () => {
+  const getTripData = async (tripId) => {
     const { success, trip, error } = await api.getTrip(tripId);
     if (success) {
       setTrip(trip);
@@ -48,7 +46,7 @@ function TripDetailsPage() {
   const addTraveler = async (tripId, email) => {
     const { success, added, error } = await api.addTraveler(tripId, email);
     if (success) {
-      getTripData();
+      getTripData(tripId);
       setAdding(false);
       setMessage(null);
     } else {
@@ -59,7 +57,7 @@ function TripDetailsPage() {
   const deleteTraveler = async (tripId, email) => {
     const { success, error } = await api.deleteTraveler(tripId, email);
     if (success) {
-      getTripData();
+      getTripData(tripId);
     } else {
       setMessage(error);
     }
@@ -79,7 +77,7 @@ function TripDetailsPage() {
       );
     } else {
       return (
-        <DeleteCard
+        <DeleteTripCard
           onDelete={() => deleteTrip(tripId)}
           deleting={() => setDeleting(false)}
           deleteType={"Trip"}
@@ -110,13 +108,13 @@ function TripDetailsPage() {
   }
 
   useEffect(() => {
-    getTripData();
+    getTripData(tripId);
   }, [tripId]);
 
   return (
-    <div className="trip-details-page">
+    <div>
       <Bar mode="login" />
-      <div>
+      <div className="trip-details-page">
         <div
           className="return-icon"
           onClick={() => navigate(`/`, { replace: false })}
@@ -124,16 +122,18 @@ function TripDetailsPage() {
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
         <div>{message}</div>
-        <h3>TripDetailsPage</h3>
-        <h1 className="trip-name"> {trip.name}</h1>
-        <h2 className="trip-location">{trip.location}</h2>
-        <div className="trip-description">
-          <h3>Description:</h3>
-          <div>{trip.description}</div>
-        </div>
-        <div className="trip-dates">
-          <h3>Dates:</h3>
-          <div>
+        <div className="trip-info">
+          <h1 className="trip-name"> {trip.name}</h1>
+          <div className="trip-location">
+            <h3>Location: </h3>
+            <div>{trip.location}</div>
+          </div>
+          <div className="trip-description">
+            <h3>Description:</h3>
+            <div>{trip.description}</div>
+          </div>
+          <div className="trip-dates">
+            <h3>Dates:</h3>
             {Array.isArray(trip) !== true ? (
               <div>
                 {trip.startDate.substring(0, trip.startDate.length - 14) +
@@ -144,27 +144,27 @@ function TripDetailsPage() {
               <div></div>
             )}
           </div>
-        </div>
-        <div className="trip-members">
-          <h3>Travelers:</h3>
-          <div>
-            {Array.isArray(trip) !== true ? (
-              trip.travellers.map((member) => (
-                <div className="member">
-                  <p key={member._id}>
-                    {member.username} ( {member.email} )
-                  </p>
-                  <div onClick={() => deleteTraveler(tripId, member.email)}>
-                    <FontAwesomeIcon className="delete-icon" icon={faXmark} />
+          <div className="trip-members">
+            <h3>Travelers:</h3>
+            <div className="travelers-list">
+              {Array.isArray(trip) !== true ? (
+                trip.travellers.map((member) => (
+                  <div className="member" key={member._id}>
+                    <p>
+                      {member.username} ( {member.email} )
+                    </p>
+                    <div onClick={() => deleteTraveler(tripId, member.email)}>
+                      <FontAwesomeIcon className="delete-icon" icon={faXmark} />
+                    </div>
                   </div>
-                </div>
-              ))
-            ) : (
-              <p></p>
-            )}
+                ))
+              ) : (
+                <p></p>
+              )}
+            </div>
           </div>
+          <div>{addTravelerForm()}</div>
         </div>
-        <div>{addTravelerForm()}</div>
         <div className="trip-details-info">
           <div
             className="details-info"
