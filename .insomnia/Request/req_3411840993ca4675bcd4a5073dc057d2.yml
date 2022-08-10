@@ -1,10 +1,9 @@
 _id: req_3411840993ca4675bcd4a5073dc057d2
 type: Request
 parentId: fld_5dff87fb2587488581c0eb2594595d6f
-modified: 1660156617210
+modified: 1660162944409
 created: 1659567013175
-url: "{{ _.base_url }}/{{ _.version
-  }}/comment/62f3fa79eac31a5539d16884/travel/62f3f8deeac31a5539d16872"
+url: "{{ _.base_url }}/{{ _.version }}/comment/{{componentId}}/travel/{{travelId}}"
 name: Post a comment
 description: ""
 method: POST
@@ -12,7 +11,7 @@ body:
   mimeType: application/json
   text: |-
     {
-    	"comment_text":"test text - 180"
+    	"comment_text":"comment 1"
     }
 parameters: []
 headers:
