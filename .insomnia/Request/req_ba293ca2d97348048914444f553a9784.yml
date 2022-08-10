@@ -1,7 +1,7 @@
 _id: req_ba293ca2d97348048914444f553a9784
 type: Request
 parentId: fld_d1a60b2c6dcb4dbc86a8801693593ffb
-modified: 1660155336602
+modified: 1660157491320
 created: 1659611560433
 url: "{{ _.protocol }}://{{ _.server }}:{{ _.port }}/{{ _.version
   }}/travel/62f3f592058451b5d1511a93/plans"
@@ -35,7 +35,7 @@ headers:
     id: pair_2b9592e41cce4475bfa2f5b0de29f2d4
 authentication:
   type: bearer
-  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+  token: "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe',
     'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
 metaSortKey: -1659547882582
 isPrivate: false

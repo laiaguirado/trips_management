@@ -1,10 +1,10 @@
 _id: req_90c586f33a134d53a151e47e5b1861d5
 type: Request
 parentId: fld_d1a60b2c6dcb4dbc86a8801693593ffb
-modified: 1659707335911
+modified: 1660155682985
 created: 1659611560442
 url: "{{ _.protocol }}://{{ _.server }}:{{ _.port }}/{{ _.version
-  }}/travel/62ebd17d8bc0caa1ceafcd04/plans"
+  }}/travel/62f3f592058451b5d1511a93/plans"
 name: Obtenir plans per viatge
 description: ""
 method: GET
