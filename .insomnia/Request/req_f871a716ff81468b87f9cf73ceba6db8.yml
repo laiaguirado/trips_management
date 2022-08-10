@@ -1,9 +1,9 @@
 _id: req_f871a716ff81468b87f9cf73ceba6db8
 type: Request
 parentId: fld_521b7ce77e35449a8973d6d4b0e672e1
-modified: 1660156035410
+modified: 1660171952880
 created: 1659566954610
-url: "{{ _.base_url }}/user/{{ _.version }}/register"
+url: "{{ _.base_url }}/{{ _.version }}/user/register"
 name: Create User
 description: ""
 method: POST

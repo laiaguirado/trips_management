@@ -1,7 +1,7 @@
 _id: env_e05d46e2726b4676b454759c137a612d
 type: Environment
 parentId: env_a16acd8632a49ecdfbcf17b6d35886899c7496d5
-modified: 1659567322884
+modified: 1660162872687
 created: 1659567305026
 name: Development
 data:
@@ -10,6 +10,9 @@ data:
   server: localhost
   port: "8080"
   path: api
+  travelId: 62f384b54ba1fc22b4e4d040
+  componentId: 62f384df4ba1fc22b4e4d058
+  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhaWFAZ21haWwuY29tIiwiX2lkIjoiNjJmMzg0OGY0YmExZmMyMmI0ZTRkMDM5IiwidXNlcm5hbWUiOiJMYWlhZ3VpcmFkbyIsImlhdCI6MTY2MDE2MjY2MiwiZXhwIjoxNjYwMjQ5MDYyfQ.bkM5N4W_VR5uL5G9LUUquHHB2of4PoS5htsIKrZIKkE
 dataPropertyOrder:
   "&":
     - base_url
@@ -17,6 +20,9 @@ dataPropertyOrder:
     - server
     - port
     - path
+    - travelId
+    - componentId
+    - accessToken
 color: "#256808"
 isPrivate: false
 metaSortKey: 1659567305026

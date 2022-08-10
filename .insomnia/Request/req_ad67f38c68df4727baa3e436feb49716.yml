@@ -1,9 +1,9 @@
 _id: req_ad67f38c68df4727baa3e436feb49716
 type: Request
 parentId: fld_521b7ce77e35449a8973d6d4b0e672e1
-modified: 1659621603651
+modified: 1660171987357
 created: 1659566954604
-url: "{{ _.base_url }}/user/{{ _.version }}/test"
+url: "{{ _.base_url }}/{{ _.version }}/user/test"
 name: Test (use Login for get Token)
 description: ""
 method: GET
@@ -12,8 +12,7 @@ parameters: []
 headers: []
 authentication:
   type: bearer
-  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
-    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+  token: "{{accessToken}}"
 metaSortKey: -1658579090240.6875
 isPrivate: false
 settingStoreCookies: true
