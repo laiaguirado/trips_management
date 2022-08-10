@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Bar.css";
+import * as api from "../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSignsPost,

@@ -15,9 +15,11 @@ function RestorationPage() {
   const { tripId } = useParams();
 
   const loadRestorationList = async () => {
-    const { success, restorationList, error } = await api.getRestorationList(
-      tripId
-    );
+    const {
+      success,
+      result: restorationList,
+      error,
+    } = await api.getRestorationList(tripId);
     if (success) {
       setRestorationList(restorationList);
       setMessage(null);
@@ -28,10 +30,11 @@ function RestorationPage() {
   };
 
   const addRestoration = async (tripId, newRestorationData) => {
-    const { success, added, error } = await api.addRestoration(
-      tripId,
-      newRestorationData
-    );
+    const {
+      success,
+      result: added,
+      error,
+    } = await api.addRestoration(tripId, newRestorationData);
     if (success) {
       setRestorationList((restorationList) => [...restorationList, added]);
       setAdding(false);

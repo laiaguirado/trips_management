@@ -15,8 +15,11 @@ function AccommodationPage() {
   const { tripId } = useParams();
 
   const loadAccommodationList = async () => {
-    const { success, accommodationList, error } =
-      await api.getAccommodationList(tripId);
+    const {
+      success,
+      result: accommodationList,
+      error,
+    } = await api.getAccommodationList(tripId);
     if (success) {
       setAccommodationList(accommodationList);
       setMessage(null);
@@ -27,10 +30,11 @@ function AccommodationPage() {
   };
 
   const addAccommodation = async (tripId, newAccommodationData) => {
-    const { success, added, error } = await api.addAccommodation(
-      tripId,
-      newAccommodationData
-    );
+    const {
+      success,
+      result: added,
+      error,
+    } = await api.addAccommodation(tripId, newAccommodationData);
     if (success) {
       setAccommodationList((accommodationList) => [
         ...accommodationList,

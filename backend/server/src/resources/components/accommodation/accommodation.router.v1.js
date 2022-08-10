@@ -32,20 +32,17 @@ const create = async (req, res) => {
   res.status(201).json(accommodation);
 };
 const geAllAccommodations = async (req, res) => {
-  const docs = await Accommodation.findAll();
-  res.status(200).json({ results: [docs] });
+  res.status(200).json(await Accommodation.findAll());
 };
 
 const getAccommodationByTravel = async (req, res) => {
   const { idTravel } = req.params;
-  const doc = await Accommodation.findByTravelId(idTravel);
-  res.status(200).json({ results: doc });
+  res.status(200).json(await Accommodation.findByTravelId(idTravel));
 };
 
 const getAccommodationById = async (req, res) => {
   const { id } = req.params;
-  const doc = await Accommodation.findOneById(id);
-  res.status(200).json({ results: [doc] });
+  res.status(200).json(await Accommodation.findOneById(id));
 };
 
 const deleteAccommodation = async (req, res) => {

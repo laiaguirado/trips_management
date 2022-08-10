@@ -15,7 +15,7 @@ function PlansPage() {
   const { tripId } = useParams();
 
   const loadPlanList = async () => {
-    const { success, planList, error } = await api.getPlanList(tripId);
+    const { success, result: planList, error } = await api.getPlanList(tripId);
     if (success) {
       setPlanList(planList);
       setMessage(null);
@@ -26,7 +26,11 @@ function PlansPage() {
   };
 
   const addPlan = async (tripId, newPlanData) => {
-    const { success, added, error } = await api.addPlan(tripId, newPlanData);
+    const {
+      success,
+      result: added,
+      error,
+    } = await api.addPlan(tripId, newPlanData);
     if (success) {
       setPlanList((planList) => [...planList, added]);
       setAdding(false);

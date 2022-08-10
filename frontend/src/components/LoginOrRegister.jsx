@@ -24,7 +24,7 @@ const LoginOrRegister = () => {
   };
 
   const onLogin = async (userData) => {
-    const { success, token, error } = await api.login(userData);
+    const { success, result: token, error } = await api.login(userData);
     if (success) {
       login(token);
     } else {

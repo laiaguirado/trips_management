@@ -26,7 +26,7 @@ function TripDetailsPage() {
   const navigate = useNavigate();
 
   const getTripData = async (tripId) => {
-    const { success, trip, error } = await api.getTrip(tripId);
+    const { success, result: trip, error } = await api.getTrip(tripId);
     if (success) {
       setTrip(trip);
     } else {
@@ -44,7 +44,11 @@ function TripDetailsPage() {
   };
 
   const addTraveler = async (tripId, email) => {
-    const { success, added, error } = await api.addTraveler(tripId, email);
+    const {
+      success,
+      result: added,
+      error,
+    } = await api.addTraveler(tripId, email);
     if (success) {
       getTripData(tripId);
       setAdding(false);

@@ -8,17 +8,21 @@ export const ModelContext = createContext();
 // Posar aquest component com a component arrel (a dalt de tot de l'arbre)
 export const ModelProvider = ({ children }) => {
   // Totes les dades de l'aplicació van aquí
-  const [token, setToken] = useState(tk.readToken);
   const [userData, setUserData] = useState(null);
+  const [token, setToken] = useState(tk.readToken);
 
+  // Totes les funcions que implementen operacions sobre el model
   const getUserData = async () => {
-    const { success, userData, error } = await api.getUserData();
-    if (success) {
-      setUserData(userData);
+    if (token === null || token === undefined) {
+      setUserData(null);
+    } else {
+      const { success, result: userData, error } = await api.getUserData();
+      if (success) {
+        setUserData(userData);
+      }
     }
   };
 
-  // Totes les funcions que implementen operacions sobre el model
   const login = (token) => {
     setToken(token);
     tk.saveToken(token);

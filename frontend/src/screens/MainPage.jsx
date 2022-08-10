@@ -16,7 +16,7 @@ function MainPage() {
   const navigate = useNavigate();
 
   const loadTripList = async () => {
-    const { success, tripList, error } = await api.getTripList();
+    const { success, result: tripList, error } = await api.getTripList();
     if (success) {
       setTripList(tripList);
       setMessage(null);
@@ -27,10 +27,13 @@ function MainPage() {
   };
 
   const addTrip = async (newTripData) => {
-    const { success, added, error } = await api.addTrip(newTripData);
+    const { success, result: added, error } = await api.addTrip(newTripData);
     if (success) {
-      const { success, addedWithTraveler, error } =
-        await api.addCreatorAsMember(added);
+      const {
+        success,
+        result: addedWithTraveler,
+        error,
+      } = await api.addCreatorAsTraveler(added);
       if (success) {
         setTripList((tripList) => [...tripList, addedWithTraveler]);
         setAdding(false);

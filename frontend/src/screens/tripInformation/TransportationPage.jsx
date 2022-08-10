@@ -15,8 +15,11 @@ function TransportationPage() {
   const { tripId } = useParams();
 
   const loadTransportationList = async () => {
-    const { success, transportationList, error } =
-      await api.getTransportationList(tripId);
+    const {
+      success,
+      result: transportationList,
+      error,
+    } = await api.getTransportationList(tripId);
     if (success) {
       setTransportationList(transportationList);
       setMessage(null);
@@ -27,10 +30,11 @@ function TransportationPage() {
   };
 
   const addTransportation = async (tripId, newTransportationData) => {
-    const { success, added, error } = await api.addTransportation(
-      tripId,
-      newTransportationData
-    );
+    const {
+      success,
+      result: added,
+      error,
+    } = await api.addTransportation(tripId, newTransportationData);
     if (success) {
       setTransportationList((transportationList) => [
         ...transportationList,
