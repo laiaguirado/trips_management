@@ -40,16 +40,32 @@
   text-align: center;
 }
 */
-.accommodation-page .add-accommodation-button{
+.accommodation-page {
+  margin-top: 5rem;
+}
+
+.accommodation-page .return-icon {
+  width: 2.5em;
+  height: 3rem;
+  border-radius: 0.5rem;
+}
+
+.accommodation-page .return-icon:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #b7cbe7;
+}
+
+.accommodation-page .add-accommodation-button {
   border: 2px solid black;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   margin: 1rem;
-  padding:1rem;
+  padding: 1rem;
   transition: all 0.2s ease-in-out;
 }
 
-.accommodation-page .add-accommodation-button:hover{
+.accommodation-page .add-accommodation-button:hover {
   cursor: pointer;
-  background-color: #B7CBE7;
+  background-color: #b7cbe7;
   transform: scale(1.1);
 }

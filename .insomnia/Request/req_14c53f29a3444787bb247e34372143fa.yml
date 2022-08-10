@@ -1,0 +1,23 @@
+_id: req_14c53f29a3444787bb247e34372143fa
+type: Request
+parentId: fld_a56f4b03bf8542e0a909f7ead70eec10
+modified: 1659778591239
+created: 1659778551301
+url: "{{ _.base_url }}/{{ _.version }}/restoration/62e7ede227f02a592a715ef6"
+name: Get Restaurant by Id
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYi5jb20iLCJfaWQiOiI2MmVkMjBjY2M1MDQwMmZlMDNjNDEzYjciLCJ1c2VybmFtZSI6IlZpY3RvciBndWlqYXJybyIsImlhdCI6MTY1OTcwNzYxMywiZXhwIjoxNjU5Nzk0MDEzfQ.Y0fN4GvKMxFvgFTOHtuzHCGFHaZ9www-arMbFrPea08
+metaSortKey: -1659778551301
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

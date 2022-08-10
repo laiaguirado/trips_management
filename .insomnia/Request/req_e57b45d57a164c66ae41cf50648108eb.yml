@@ -1,0 +1,37 @@
+_id: req_e57b45d57a164c66ae41cf50648108eb
+type: Request
+parentId: fld_c27ff179c6fc431fb28a828c75624e66
+modified: 1659780724224
+created: 1659778121505
+url: "{{ _.base_url }}/{{ _.version }}/accommodation/62dea081eeb69606e81fb180"
+name: Update Accommodation
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	 "web":"testacom.com",
+       "description":"desc updated",
+       "location":"location new",
+       "startDate":"0000",
+    	 "endDate":"0000",
+    	"phone":"000",
+       "email":"alksdjf@dsf"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_0793643f339e47bc8b85d32df32be892
+authentication:
+  type: bearer
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYi5jb20iLCJfaWQiOiI2MmVkMjBjY2M1MDQwMmZlMDNjNDEzYjciLCJ1c2VybmFtZSI6IlZpY3RvciBndWlqYXJybyIsImlhdCI6MTY1OTcwNzYxMywiZXhwIjoxNjU5Nzk0MDEzfQ.Y0fN4GvKMxFvgFTOHtuzHCGFHaZ9www-arMbFrPea08
+metaSortKey: -1659778121505
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
