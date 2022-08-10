@@ -1,7 +1,7 @@
 _id: req_e57b45d57a164c66ae41cf50648108eb
 type: Request
 parentId: fld_c27ff179c6fc431fb28a828c75624e66
-modified: 1659780724224
+modified: 1660156579010
 created: 1659778121505
 url: "{{ _.base_url }}/{{ _.version }}/accommodation/62dea081eeb69606e81fb180"
 name: Update Accommodation
