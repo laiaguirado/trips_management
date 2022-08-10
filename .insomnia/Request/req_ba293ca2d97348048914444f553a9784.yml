@@ -1,10 +1,10 @@
 _id: req_ba293ca2d97348048914444f553a9784
 type: Request
 parentId: fld_d1a60b2c6dcb4dbc86a8801693593ffb
-modified: 1659624862499
+modified: 1660155336602
 created: 1659611560433
 url: "{{ _.protocol }}://{{ _.server }}:{{ _.port }}/{{ _.version
-  }}/travel/62ebd17d8bc0caa1ceafcd04/plans"
+  }}/travel/62f3f592058451b5d1511a93/plans"
 name: Crear Plan
 description: ""
 method: POST
@@ -21,7 +21,9 @@ body:
     	"phone": "09877878",
     	"email": "aaa@aa.com",
     	"priceAdult": 100,
-    	"priceChildren": 50,
+    	"currencyPriceAdult": "E",
+    	"priceChildren": 50,	
+      "currencyPriceChildren": "A",
     	"discount": "5% con carnet de estudiante",
     	"notation": "Aqui solía venir Bonaparte a veranear",
     	"duration": "Unas 3h Si ves los jardines 4h"
