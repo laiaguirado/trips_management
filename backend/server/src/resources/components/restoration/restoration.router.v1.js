@@ -25,7 +25,7 @@ const create = async (req, res) => {
   user.restaurants.push(restoration);
   await user.save();
 
-  res.status(200).json(restoration);
+  res.status(201).json(restoration);
 };
 
 const deleteRestoration = async (req, res) => {

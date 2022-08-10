@@ -276,7 +276,7 @@ export const addAccommodation = async (tripId, newAccommodationData) => {
       }
     );
     const added = await response.json();
-    if (response.status === 200) {
+    if (response.status === 201) {
       return { success: true, added };
     } else {
       return { success: false, error: "Couldn't add accommodation" };
