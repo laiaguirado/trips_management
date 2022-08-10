@@ -54,11 +54,19 @@ const deleteOne = async (req, res) => {
 
   }
 
+  const getScoreByComponent = async(req, res) =>{
+    const {idComp} = req.params;
+    const doc = await Score.findByCompId(idComp);
+    res.status(200).json({ results: doc });
+  }
+
 const router = express.Router();
 
 router.post("/scoreTravel/:_idTravel/score/:compId",needsAuthToken, catchErrors(create));
 router.get("/", catchErrors(getAll));
 router.delete("/:_id",needsAuthToken,catchErrors(deleteOne));
 router.get("/travel/:idTravel",needsAuthToken,catchErrors(findByTravel))
+router.get("/component/:idComp",needsAuthToken,catchErrors(getScoreByComponent))
+
 
 module.exports = router;

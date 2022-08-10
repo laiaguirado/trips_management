@@ -50,11 +50,18 @@ const deleteOne = async (req, res) => {
     res.status(200).json({ results: doc });
   }
 
+  const getCommentsByComponent = async(req, res) =>{
+    const {idComp} = req.params;
+    const doc = await Comment.findByCompId(idComp);
+    res.status(200).json({ results: doc });
+  }
+
 const router = express.Router();
 
 router.post("/:id/travel/:travelId", needsAuthToken, catchErrors(create));
 router.get("/",needsAuthToken, catchErrors(getAll));
 router.delete("/:_id",needsAuthToken,catchErrors(deleteOne));
 router.get("/travel/:idTravel",needsAuthToken,catchErrors(getCommentsByTravel))
+router.get("/component/:idComp",needsAuthToken,catchErrors(getCommentsByComponent))
 
 module.exports = router;
