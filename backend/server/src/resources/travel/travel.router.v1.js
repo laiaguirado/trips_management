@@ -115,25 +115,25 @@ router.get("/", needsAuthToken, catchErrors(getAllTravel));
 router.get("/:_id", needsAuthToken, catchErrors(getTravelById));
 router.post("/", needsAuthToken, catchErrors(createTravel));
 router.post(
-  "/:idTravel/traveller/me",
+  "/:idTravel/traveler/me",
   needsAuthToken,
   catchErrors(addMeToTravel)
 );
 
 router.post(
-  "/:idTravel/traveller/:email",
+  "/:idTravel/traveler/:email",
   needsAuthToken,
   catchErrors(addUserToTravel)
 );
 
 router.delete(
-  "/:idTravel/traveller/me",
+  "/:idTravel/traveler/me",
   needsAuthToken,
   catchErrors(deleteMeToTravel)
 );
 
 router.delete(
-  "/:idTravel/traveller/:email",
+  "/:idTravel/traveler/:email",
   needsAuthToken,
   catchErrors(deleteUserToTravel)
 );
