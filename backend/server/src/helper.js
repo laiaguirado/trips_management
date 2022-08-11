@@ -30,4 +30,22 @@ const runTransaction = async (handler) => {
   return result;
 };
 
-module.exports = { capitalize, FKIntegrity, runTransaction };
+const getPrice = (v) => {
+  return `${(v / 100).toFixed(2)}`;
+};
+
+const setPrice = (v) => {
+  return v * 100;
+};
+
+function getPriceWithCurrency() {
+  return `${this.price} ${this.currency}`;
+}
+module.exports = {
+  capitalize,
+  FKIntegrity,
+  runTransaction,
+  getPrice,
+  setPrice,
+  getPriceWithCurrency,
+};

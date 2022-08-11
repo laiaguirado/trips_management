@@ -1,57 +1,77 @@
 const mongoose = require("mongoose");
 const extendSchema = require("mongoose-extend-schema");
+const mongooseLeanGetters = require("mongoose-lean-getters");
+const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const { componentSchema } = require("../component.model");
-const { capitalize } = require("../../../helper");
+const {
+  capitalize,
+  getPrice,
+  setPrice,
+  getPriceWithCurrency,
+} = require("../../../helper");
 
-const transportationSchema = extendSchema(componentSchema, {
-  name: {
-    type: String,
-    maxlength: [50, "{PATH} is too long"],
-    match: [/^[a-zA-Z0-9\s]*$/, "{PATH} is invalid"],
-    required: [true, "{PATH} is required"],
-    set: capitalize,
-  },
-  price: {
-    type: Number, //TODO CAMBIAR EL TIPO!!!
-  },
-  type: {
-    type: String,
-    enum: {
-      values: ["airplane", "ship", "car", "subway", "tram", "bus", "train"],
-      message: "{VALUE} for {TYPE} is not suported",
+const transportationSchema = extendSchema(
+  componentSchema,
+  {
+    name: {
+      type: String,
+      maxlength: [50, "{PATH} is too long"],
+      match: [/^[a-zA-Z0-9\s]*$/, "{PATH} is invalid"],
+      required: [true, "{PATH} is required"],
+      set: capitalize,
     },
-    default: "airplane",
-    required: [true, "{PATH} is required"],
+    price: {
+      type: Number,
+      get: getPrice,
+      set: setPrice,
+    },
+    type: {
+      type: String,
+      enum: {
+        values: ["airplane", "ship", "car", "subway", "tram", "bus", "train"],
+        message: "{VALUE} for {TYPE} is not suported",
+      },
+      default: "airplane",
+      required: [true, "{PATH} is required"],
+    },
+    web: {
+      type: String,
+      trim: true,
+    },
+    origin: {
+      type: String,
+      maxlength: [100, "'{PATH}' is too long"],
+    },
+    destination: {
+      type: String,
+      maxlength: [100, "'{PATH}' is too long"],
+    },
+    notation: {
+      type: String,
+      maxlength: [500, "'{PATH}' is too long"],
+    },
+    typeDetails: {
+      type: String,
+      maxlength: [500, "'{PATH}' is too long"],
+    },
+    departure: {
+      type: Date,
+    },
+    arrival: {
+      type: Date,
+    },
   },
-  web: {
-    type: String,
-    trim: true,
-  },
-  origin: {
-    type: String,
-    maxlength: [100, "'{PATH}' is too long"],
-  },
-  destination: {
-    type: String,
-    maxlength: [100, "'{PATH}' is too long"],
-  },
-  notation: {
-    type: String,
-    maxlength: [500, "'{PATH}' is too long"],
-  },
-  typeDetails: {
-    type: String,
-    maxlength: [500, "'{PATH}' is too long"],
-  },
-  departure: {
-    type: Date,
-  },
-  arrival: {
-    type: Date,
-  },
-});
+  {
+    toJSON: { getters: true, setters: true, virtuals: true },
+    toObject: { getters: true, setters: true, virtuals: true },
+    runSettersOnQuery: true,
+  }
+);
 
 transportationSchema.index({ type: 1 });
+transportationSchema.plugin(mongooseLeanGetters);
+transportationSchema.plugin(mongooseLeanVirtuals);
+transportationSchema.virtual("priceWithCurrency").get(getPriceWithCurrency);
 
 const Transportation = mongoose.model("transportation", transportationSchema);
 

@@ -25,4 +25,8 @@ const findByTravelId = async (idTravel) => {
   return await Score.find({idTravel: idTravel }).exec();
 };
 
-module.exports = { createOne, findAll, deleteScore, findByTravelId };
+const findByCompId = async (idComponent) => {
+  return await Score.find({ idComponent }).exec();
+};
+
+module.exports = { createOne, findAll, deleteScore, findByTravelId, findByCompId };

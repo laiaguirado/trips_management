@@ -26,4 +26,12 @@ const findByTravelId = async (idTravel) => {
   return await Comment.find({ idTravel:idTravel }).exec();
 };
 
-module.exports = { createOne, findAll, deleteComment, findByTravelId };
+const findByCompId = async (idComponent) => {
+  return await Comment.find({ idComponent }).exec();
+};
+
+const findByTravelAndComp = async (idTravel,idComponent) => {
+  return await Comment.find({ idComponent: idComponent, idTravel:idTravel }).exec();
+};
+
+module.exports = { createOne, findAll, deleteComment, findByTravelId, findByCompId, findByTravelAndComp };

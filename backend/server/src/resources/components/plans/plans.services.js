@@ -62,7 +62,6 @@ const updatePlan = async (_id, planInfo) => {
   })
     .lean()
     .exec();
-  console.log(planInfo);
 
   if (planUpdated === null) {
     errMalformed(`Plan not found`);
