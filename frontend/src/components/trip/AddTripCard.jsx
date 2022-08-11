@@ -15,13 +15,14 @@ function AddTripCard({ onAdd, adding }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
+  const [imageFile, setImageFile] = useState("");
   const [image, setImage] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
   const add = (e) => {
     e.preventDefault();
-    onAdd({ name, description, location, startDate, endDate });
+    onAdd({ name, description, location, startDate, endDate, imageFile });
   };
 
   return (
@@ -72,6 +73,18 @@ function AddTripCard({ onAdd, adding }) {
               placeholder="Image"
               value={image}
               onChange={(event) => setImage(event.target.value)}
+            />
+          </div>
+        </label>
+        <label>
+          <div className="form-data">
+            <FontAwesomeIcon icon={faImage} />
+            <input
+              type="file"
+              placeholder="ImageFile"
+              onChange={(event) => {
+                return setImageFile(event.target.files[0]);
+              }}
             />
           </div>
         </label>

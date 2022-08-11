@@ -25,7 +25,6 @@ const storage = multer.diskStorage({
 var upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
-    console.log("fileFilter");
     if (
       file.mimetype == "image/png" ||
       file.mimetype == "image/jpg" ||
@@ -54,9 +53,7 @@ const getTravelById = async (req, res) => {
 };
 
 const createTravel = async (req, res) => {
-  console.log("CreateTravel");
   const dataTravel = req.body;
-  console.log("CreateTravel");
   const { _id } = req.userInfo;
   dataTravel.creator = _id;
   dataTravel.image = {
@@ -64,9 +61,7 @@ const createTravel = async (req, res) => {
     extension: req.file.mimetype,
     data: "NONECESITO",
   };
-  console.log(dataTravel);
   const p = await Travel.createTravel(dataTravel);
-  console.log(p);
   res.status(201).json(p);
 };
 
