@@ -62,3 +62,5 @@ export const deletePlan = (planId) => authApiCall("DELETE", `/plans/${planId}`);
 export const getRestorationList = (tripId) => authApiCall("GET", `/restoration/travel/${tripId}`);
 export const addRestoration = (tripId, newRestorationData) => authApiCall("POST", `/restoration/${tripId}`, newRestorationData);
 export const deleteRestoration = (restorationId) => authApiCall("DELETE", `/restoration/${restorationId}`);
+
+export const getCommentList = (tripId) => authApiCall("GET", `/comment/travel/${tripId}`);
