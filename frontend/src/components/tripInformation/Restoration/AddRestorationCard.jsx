@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./AddRestorationCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
@@ -46,11 +47,11 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
   };
 
   return (
-    <div className="add-plan-card">
+    <div className="add-restoration-card">
       <div className="return-icon" onClick={adding}>
         <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
       </div>
-      <form className="addplan" onSubmit={(e) => add(e)}>
+      <form className="add-restoration" onSubmit={(e) => add(e)}>
         <h1>New Restoration</h1>
         {/*<label>
           <div className="form-data">

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./AddTransportationCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGlobe,
@@ -45,11 +46,11 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
   };
 
   return (
-    <div className="add-accommodation-card">
+    <div className="add-transportation-card">
       <div className="return-icon" onClick={adding}>
         <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
       </div>
-      <form className="addaccommodation" onSubmit={(e) => add(e)}>
+      <form className="add-transportation" onSubmit={(e) => add(e)}>
         <h1>New Transportation</h1>
         <label>
           <div className="form-data">
