@@ -1,7 +1,7 @@
 _id: env_e05d46e2726b4676b454759c137a612d
 type: Environment
 parentId: env_a16acd8632a49ecdfbcf17b6d35886899c7496d5
-modified: 1660162872687
+modified: 1660227974274
 created: 1659567305026
 name: Development
 data:
@@ -10,9 +10,10 @@ data:
   server: localhost
   port: "8080"
   path: api
-  travelId: 62f384b54ba1fc22b4e4d040
-  componentId: 62f384df4ba1fc22b4e4d058
-  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhaWFAZ21haWwuY29tIiwiX2lkIjoiNjJmMzg0OGY0YmExZmMyMmI0ZTRkMDM5IiwidXNlcm5hbWUiOiJMYWlhZ3VpcmFkbyIsImlhdCI6MTY2MDE2MjY2MiwiZXhwIjoxNjYwMjQ5MDYyfQ.bkM5N4W_VR5uL5G9LUUquHHB2of4PoS5htsIKrZIKkE
+  travelId: 62f2ca9c5f80513bad51793c
+  componentId: 62f50a225303a4235e578b62
+  component2Id: 62f2d55513ae532024261efc
+  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhaWFAZ21haWwuY29tIiwiX2lkIjoiNjJlYTc1MDhjOGM1ZWM2MTllODI1YjA1IiwidXNlcm5hbWUiOiJMYWlhZ3VpcmFkbyIsImlhdCI6MTY2MDIyNTgyOCwiZXhwIjoxNjYwMzEyMjI4fQ.gi4Yygp6nJPk6Hx-XksmDoBUT5foGxSDz7-3ivsOyew
 dataPropertyOrder:
   "&":
     - base_url
@@ -22,6 +23,7 @@ dataPropertyOrder:
     - path
     - travelId
     - componentId
+    - component2Id
     - accessToken
 color: "#256808"
 isPrivate: false
