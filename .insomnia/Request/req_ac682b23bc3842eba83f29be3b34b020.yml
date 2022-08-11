@@ -1,9 +1,9 @@
 _id: req_ac682b23bc3842eba83f29be3b34b020
 type: Request
 parentId: fld_c27ff179c6fc431fb28a828c75624e66
-modified: 1659566988563
+modified: 1660156581211
 created: 1659566988563
-url: "{{ _.base_url }}/{{ _.version }}/accommodation/62ead5b4abbac2bcbb39345f"
+url: "{{ _.base_url }}/{{ _.version }}/accommodation/62f3f8deeac31a5539d16872"
 name: Create Accommodation
 description: ""
 method: POST
@@ -26,7 +26,7 @@ headers:
     id: pair_4e19e2eddeac41839031c9d30f80abf2
 authentication:
   type: bearer
-  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+  token: "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe',
     'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
 metaSortKey: -1658757190680
 isPrivate: false

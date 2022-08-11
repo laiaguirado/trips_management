@@ -1,24 +1,20 @@
-_id: req_ae4e6fd3af03447fa7278e0ae3d43deb
+_id: req_69919621f4d34bfabbc75c48cfefb270
 type: Request
-parentId: fld_c27ff179c6fc431fb28a828c75624e66
-modified: 1660156921482
-created: 1659566988570
-url: "{{ _.base_url }}/{{ _.version }}/accommodation"
-name: Get All Accomodations
+parentId: fld_5dff87fb2587488581c0eb2594595d6f
+modified: 1660156623865
+created: 1660156411142
+url: "{{ _.base_url }}/{{ _.version }}/comment/component/62f3fa79eac31a5539d16884"
+name: Get By Component
 description: ""
 method: GET
 body: {}
 parameters: []
-headers:
-  - id: pair_9bd18982784541388423545d2837d084
-    name: Content-Type
-    value: application/json
-    description: ""
+headers: []
 authentication:
   type: bearer
   token: "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe',
     'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
-metaSortKey: -1658757190630
+metaSortKey: -1660156411142
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true
