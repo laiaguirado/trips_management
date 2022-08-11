@@ -8,6 +8,36 @@ const config = require("../../config");
 const { needsAuthToken } = require("../users/auth/auth.middleware");
 const Travel = require("./travel.service");
 const UserService = require("../users/user.service");
+const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
+
+const DIR = "./public/";
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR);
+  },
+  filename: (req, file, cb) => {
+    const fileName = file.originalname.toLowerCase().split(" ").join("-");
+    cb(null, uuidv4() + "-" + fileName);
+  },
+});
+var upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    console.log("fileFilter");
+    if (
+      file.mimetype == "image/png" ||
+      file.mimetype == "image/jpg" ||
+      file.mimetype == "image/jpeg"
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error("Only .png, .jpg and .jpeg format allowed!"));
+    }
+  },
+});
 
 const test = async (req, res) => {
   const { email, _id, username } = req.userInfo;
@@ -24,10 +54,20 @@ const getTravelById = async (req, res) => {
 };
 
 const createTravel = async (req, res) => {
+  console.log("CreateTravel");
   const dataTravel = req.body;
+  console.log("CreateTravel");
   const { _id } = req.userInfo;
   dataTravel.creator = _id;
-  res.status(201).json(await Travel.createTravel(dataTravel));
+  dataTravel.image = {
+    url: req.file.path,
+    extension: req.file.mimetype,
+    data: "NONECESITO",
+  };
+  console.log(dataTravel);
+  const p = await Travel.createTravel(dataTravel);
+  console.log(p);
+  res.status(201).json(p);
 };
 
 const updateTravel = async (req, res) => {
@@ -113,7 +153,12 @@ if (config.isDevelopment) {
 
 router.get("/", needsAuthToken, catchErrors(getAllTravel));
 router.get("/:_id", needsAuthToken, catchErrors(getTravelById));
-router.post("/", needsAuthToken, catchErrors(createTravel));
+router.post(
+  "/",
+  needsAuthToken,
+  upload.single("profileImg"),
+  catchErrors(createTravel)
+);
 router.post(
   "/:idTravel/traveler/me",
   needsAuthToken,
