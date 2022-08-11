@@ -1,10 +1,9 @@
 _id: req_e3d827207a594ed98fd89f16c55c5cbe
 type: Request
-parentId: fld_13cc3fed9b844d14a8811ff055aa3e3e
-modified: 1659621851733
+parentId: fld_a65596e6a92e487da0aa0cb8aa3576bb
+modified: 1660213914209
 created: 1659566975018
-url: "{{ _.base_url }}/{{ _.version
-  }}/travel/62ebd17d8bc0caa1ceafcd04/traveller/a@a.com"
+url: "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/traveler/trip@gmail.com"
 name: Eliminar viatger
 description: ""
 method: DELETE
@@ -13,9 +12,8 @@ parameters: []
 headers: []
 authentication:
   type: bearer
-  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
-    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
-metaSortKey: -1658594469986.7646
+  token: "{{accessToken}}"
+metaSortKey: -1658609849532.8418
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true
