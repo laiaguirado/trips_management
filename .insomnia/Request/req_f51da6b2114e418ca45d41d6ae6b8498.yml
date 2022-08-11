@@ -1,7 +1,7 @@
 _id: req_f51da6b2114e418ca45d41d6ae6b8498
 type: Request
 parentId: fld_13cc3fed9b844d14a8811ff055aa3e3e
-modified: 1660156124132
+modified: 1659621755283
 created: 1659566974964
 url: "{{ _.base_url }}/{{ _.version }}/travel"
 name: Create Travel
@@ -27,7 +27,7 @@ headers:
     id: pair_7ca51590d29840f2a44445ab650e8600
 authentication:
   type: bearer
-  token: "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe',
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
     'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
 metaSortKey: -1658825164677.9219
 isPrivate: false

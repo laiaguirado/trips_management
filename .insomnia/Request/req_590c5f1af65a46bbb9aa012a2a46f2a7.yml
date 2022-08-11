@@ -1,7 +1,7 @@
 _id: req_590c5f1af65a46bbb9aa012a2a46f2a7
 type: Request
 parentId: fld_13cc3fed9b844d14a8811ff055aa3e3e
-modified: 1660156905296
+modified: 1659623021439
 created: 1659566974975
 url: "{{ _.base_url }}/{{ _.version }}/travel"
 name: Obtenir Tots els travels
@@ -12,7 +12,7 @@ parameters: []
 headers: []
 authentication:
   type: bearer
-  token: "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe',
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
     'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
 metaSortKey: -1658702127509.3047
 isPrivate: false

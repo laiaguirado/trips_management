@@ -1,9 +1,9 @@
 _id: req_58b4faf076424d81816afb787ac3f87b
 type: Request
-parentId: fld_a65596e6a92e487da0aa0cb8aa3576bb
-modified: 1660213912542
+parentId: fld_13cc3fed9b844d14a8811ff055aa3e3e
+modified: 1659621944530
 created: 1659566975026
-url: "{{ _.base_url }}/{{ _.version }}/travel/{{ _.travelId }}/traveler/me"
+url: "{{ _.base_url }}/{{ _.version }}/travel/62ebd17d8bc0caa1ceafcd04/traveller/me"
 name: Afegir viatger loginat
 description: ""
 method: POST
@@ -12,8 +12,9 @@ parameters: []
 headers: []
 authentication:
   type: bearer
-  token: "{{accessToken}}"
-metaSortKey: -1658609849582.8418
+  token: "{% response 'body', 'req_be1d022d5a114166a2d211d564613658',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+metaSortKey: -1658602159809.8032
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

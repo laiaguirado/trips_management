@@ -1,9 +1,9 @@
 _id: req_adf5663ce68b49478d593ee0d6df241b
 type: Request
 parentId: fld_13cc3fed9b844d14a8811ff055aa3e3e
-modified: 1660166990941
+modified: 1659621769889
 created: 1659566974984
-url: "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}"
+url: "{{ _.base_url }}/{{ _.version }}/travel/62ebd17d8bc0caa1ceafcd04"
 name: Modificar Travel
 description: ""
 method: PUT
