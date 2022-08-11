@@ -5,15 +5,22 @@ const version = "v1";
 
 const isSuccess = (httpCode) => httpCode === 200 || httpCode === 201;
 
-const apiCall = async (method, path, body, headers) => {
+const apiCall = async (method, path, body, headers, isMultipartForm) => {
   try {
+    let headerCall = { ...headers };
+    let bodyCall = body;
+
+    console.log("apiCall");
+    if (!isMultipartForm) {
+      headerCall["Content-type"] = "application/json";
+      bodyCall = JSON.stringify(body);
+    }
+    console.log(headerCall);
+    console.log(bodyCall);
     const response = await fetch(`${BASE_URL}/${version}${path}`, {
       method,
-      headers: {
-        "Content-Type": "application/json",
-        ...headers,
-      },
-      body: JSON.stringify(body),
+      headers: headerCall,
+      body: bodyCall,
     });
     const json = await response.json();
     if (isSuccess(response.status)) {
@@ -30,49 +37,33 @@ const apiPost = (path, body) => apiCall("POST", path, body);
 export const login = (userData) => apiPost(`/user/login`, userData);
 export const register = (userData) => apiPost(`/user/register`, userData);
 
-const authApiCall = (method, path, body) => {
+const authApiCall = (method, path, body, isMultipartForm) => {
   const { accessToken } = JSON.parse(localStorage.getItem("token"));
-  return apiCall(method, path, body, {
-    Authorization: `Bearer ${accessToken}`,
-  });
+  return apiCall(
+    method,
+    path,
+    body,
+    {
+      Authorization: `Bearer ${accessToken}`,
+    },
+    isMultipartForm
+  );
 };
 export const getUserData = () => authApiCall("GET", `/user/me`);
 
 export const getTripList = () => authApiCall("GET", `/user/me/travel`);
 export const getTrip = (tripId) => authApiCall("GET", `/travel/${tripId}`);
 //export const addTrip = (newTripData) => authApiCall("POST", `/travel`, newTripData);
-export const addTrip = async (newTripData) => {
-  try {
-    console.log("ADDTRIP!!!");
-    console.log(newTripData);
-    const formData = new FormData();
-    formData.append("profileImg", newTripData.imageFile);
-    formData.append("name", newTripData.name);
-    formData.append("description", newTripData.description);
-    formData.append("location", newTripData.location);
-    formData.append("startDate", newTripData.startDate);
-    formData.append("endDate", newTripData.endDate);
+export const addTrip = (newTripData) => {
+  const formData = new FormData();
+  formData.append("profileImg", newTripData.imageFile);
+  formData.append("name", newTripData.name);
+  formData.append("description", newTripData.description);
+  formData.append("location", newTripData.location);
+  formData.append("startDate", newTripData.startDate);
+  formData.append("endDate", newTripData.endDate);
 
-    const { accessToken } = JSON.parse(localStorage.getItem("token"));
-    const response = await fetch(`${BASE_URL}/${version}/travel`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: formData,
-    });
-
-    const added = await response.json();
-    if (response.status === 201) {
-      console.log("ES 201");
-      console.log(added);
-      return { success: true, result: added };
-    } else {
-      return { success: false, error: "Couldn't add trip" };
-    }
-  } catch (e) {
-    return { success: false, error: `Network error: ${e.message}` };
-  }
+  return authApiCall("POST", `/travel`, formData, true);
 };
 
 export const deleteTrip = (tripId) =>
@@ -80,8 +71,6 @@ export const deleteTrip = (tripId) =>
 //export const updateTrip = (updatedTrip) => authApiCall("PUT", `/travel/${tripId}`, updatedTrip);
 
 export const addCreatorAsTraveler = (added) => {
-  console.log("ADDCREATOR");
-  console.log(added._id);
   return authApiCall("POST", `/travel/${added._id}/traveler/me`);
 };
 
