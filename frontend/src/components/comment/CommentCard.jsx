@@ -2,7 +2,7 @@ import React from "react";
 import "./CommentCard.css";
 import moment from "moment";
 
-function CommentCard({ comment, modifyCommentList }) {
+function CommentCard({ componentId, comment, modifyCommentList }) {
   /*const deleteComment = async (commentId) => {
       const { success, error } = await api.deleteComment(commentId);
       if (success) {

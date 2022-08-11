@@ -11,7 +11,6 @@ import { faPlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 function AccommodationPage() {
   const [accommodationList, setAccommodationList] = useState([]);
-  const [commentList, setCommentList] = useState([]);
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
@@ -49,21 +48,6 @@ function AccommodationPage() {
     }
   };
 
-  const loadCommentList = async () => {
-    const {
-      success,
-      result: commentList,
-      error,
-    } = await api.getCommentList(tripId);
-    if (success) {
-      setCommentList(commentList);
-      setMessage(null);
-    } else {
-      setCommentList([]);
-      setMessage(error);
-    }
-  };
-
   function addAccommodationForm() {
     if (adding === false) {
       return (
@@ -96,7 +80,6 @@ function AccommodationPage() {
 
   useEffect(() => {
     loadAccommodationList();
-    loadCommentList();
   }, []);
 
   return (
@@ -114,20 +97,9 @@ function AccommodationPage() {
             {accommodationList.map((accommodation) => (
               <AccommodationCard
                 key={accommodation._id}
+                tripId={tripId}
                 accommodation={accommodation}
                 modifyAccommodationList={setAccommodationList}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="comments">
-          <h4>Comments: </h4>
-          <div className="comments-list">
-            {commentList.map((comment) => (
-              <CommentCard
-                key={comment._id}
-                comment={comment}
-                modifyCommentList={setCommentList}
               />
             ))}
           </div>

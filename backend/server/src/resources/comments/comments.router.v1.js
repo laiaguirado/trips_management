@@ -52,6 +52,12 @@ const getCommentsByComponent = async (req, res) => {
   res.status(200).json(await Comment.findByCompId(idComp));
 }
 
+const getCommentsByTravAndComp = async (req, res) => {
+  const { idComp } = req.params;
+  const { idTravel } = req.params;
+  res.status(200).json(await Comment.findByTravelAndComp(idTravel, idComp));
+}
+
 const router = express.Router();
 
 router.post("/:id/travel/:travelId", needsAuthToken, catchErrors(create));
@@ -59,5 +65,6 @@ router.get("/", needsAuthToken, catchErrors(getAll));
 router.delete("/:_id", needsAuthToken, catchErrors(deleteOne));
 router.get("/travel/:idTravel", needsAuthToken, catchErrors(getCommentsByTravel))
 router.get("/component/:idComp", needsAuthToken, catchErrors(getCommentsByComponent))
+router.get("/travel/:idTravel/component/:idComp", needsAuthToken, catchErrors(getCommentsByTravAndComp))
 
 module.exports = router;

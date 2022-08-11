@@ -63,4 +63,4 @@ export const getRestorationList = (tripId) => authApiCall("GET", `/restoration/t
 export const addRestoration = (tripId, newRestorationData) => authApiCall("POST", `/restoration/${tripId}`, newRestorationData);
 export const deleteRestoration = (restorationId) => authApiCall("DELETE", `/restoration/${restorationId}`);
 
-export const getCommentList = (tripId) => authApiCall("GET", `/comment/travel/${tripId}`);
+export const getCommentList = (tripId, componentId) => authApiCall("GET", `/comment/travel/${tripId}/component/${componentId}`);
