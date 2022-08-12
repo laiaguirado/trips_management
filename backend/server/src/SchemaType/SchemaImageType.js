@@ -9,13 +9,12 @@ class image extends mongoose.SchemaType {
     super(key, options, "Image");
   }
   cast = function (val) {
-    return isUrl(val) || isFile(val) ? val : false;
+    return !isUrl(val) && !isFile(val) ? {} : val;
   };
 }
 
 const isFile = (val) => {
   return (
-    val &&
     val.hasOwnProperty("extension") &&
     val.extension.length != 0 &&
     val.hasOwnProperty("name") &&
@@ -24,7 +23,7 @@ const isFile = (val) => {
 };
 
 const isUrl = (val) => {
-  return val && val.hasOwnProperty("url") && val.url.length != 0;
+  return val.hasOwnProperty("url") && val.url.length != 0;
 };
 
 module.exports = image;

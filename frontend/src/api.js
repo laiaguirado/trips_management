@@ -54,7 +54,7 @@ export const getTrip = (tripId) => authApiCall("GET", `/travel/${tripId}`);
 export const addTrip = (newTripData) => {
   const formData = new FormData();
 
-  formData.append("profileImg", newTripData.imageFile);
+  formData.append("fileImage", newTripData.imageFile);
   formData.append("name", newTripData.name);
   formData.append("description", newTripData.description);
   formData.append("location", newTripData.location);

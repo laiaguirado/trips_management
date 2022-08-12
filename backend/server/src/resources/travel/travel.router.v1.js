@@ -56,11 +56,14 @@ const createTravel = async (req, res) => {
   const dataTravel = req.body;
   const { _id } = req.userInfo;
   dataTravel.creator = _id;
-  dataTravel.image = {
-    url: dataTravel.image,
-    extension: req.file.mimetype,
-    name: `/${req.file.filename}`,
-  };
+
+  if (dataTravel.image || req.file) {
+    dataTravel.image = {
+      url: dataTravel.image,
+      extension: req.file ? req.file.mimetype : "",
+      name: req.file ? `/${req.file.filename}` : "",
+    };
+  }
   res.status(201).json(await Travel.createTravel(dataTravel));
 };
 
@@ -150,7 +153,7 @@ router.get("/:_id", needsAuthToken, catchErrors(getTravelById));
 router.post(
   "/",
   needsAuthToken,
-  upload.single("profileImg"),
+  upload.single("fileImage"),
   catchErrors(createTravel)
 );
 router.post(
