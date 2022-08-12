@@ -2,7 +2,7 @@ import React from "react";
 import "./CommentCard.css";
 import moment from "moment";
 
-function CommentCard({ componentId, comment, modifyCommentList }) {
+function CommentCard({ componentId, comment }) {
   /*const deleteComment = async (commentId) => {
       const { success, error } = await api.deleteComment(commentId);
       if (success) {
@@ -14,7 +14,7 @@ function CommentCard({ componentId, comment, modifyCommentList }) {
       }
     };*/
 
-  function edad(b) {
+  function published(b) {
     let differenceObject = {
       hours: 0,
       minutes: 0,
@@ -35,7 +35,7 @@ function CommentCard({ componentId, comment, modifyCommentList }) {
     return differenceObject;
   }
 
-  let differenceObject = edad(comment.createdAt);
+  let differenceObject = published(comment.createdAt);
   let difference = differenceObject.seconds;
   let time = " seconds";
   if (differenceObject.minutes !== 0) {
@@ -69,12 +69,12 @@ function CommentCard({ componentId, comment, modifyCommentList }) {
         <div className="comment-text">{comment.comment}</div>
       </div>
       {/*<div
-          className="delete-accommodation"
+          className="delete-comment"
           onClick={() => {
             deleteComment(comment._id);
           }}
         >
-          <FontAwesomeIcon icon={faTrashCan} /> DELETE ACCOMMODATION
+          <FontAwesomeIcon icon={faTrashCan} /> DELETE COMMENT
         </div>*/}
     </div>
   );

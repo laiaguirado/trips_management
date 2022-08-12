@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Bar from "../../components/Bar";
-import * as api from "../../api";
 import "./AccommodationPage.css";
-import AccommodationCard from "../../components/tripInformation/Accommodation/AccommodationCard";
-import AddAccommodationCard from "../../components/tripInformation/Accommodation/AddAccommodationCard";
-import CommentCard from "../../components/comment/CommentCard";
+import Bar from "../../../components/Bar";
+import * as api from "../../../api";
+import AddAccommodationCard from "../../../components/tripInformation/Accommodation/AddAccommodationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,6 +12,7 @@ function AccommodationPage() {
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
+  const navigate = useNavigate();
 
   const loadAccommodationList = async () => {
     const {
@@ -85,27 +84,55 @@ function AccommodationPage() {
   return (
     <div className="accommodation-page">
       <Bar mode="login" />
-      <div className="flex-container">
-        <div className="return-icon" onClick={() => window.history.go(-1)}>
+      <div className="accommodation-info-container">
+        <div
+          className="return-icon"
+          onClick={() => navigate(`/trip/${tripId}`, { replace: false })}
+        >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
+        <button onClick={() => editPage()}>Edit</button>
         <div>{message}</div>
         <div>
           <h1>ACCOMMODATIONS</h1>
           <div>{addAccommodationForm()}</div>
           <div className="accommodation-list">
             {accommodationList.map((accommodation) => (
-              <AccommodationCard
+              <div
+                className="accommodation"
                 key={accommodation._id}
-                tripId={tripId}
-                accommodation={accommodation}
-                modifyAccommodationList={setAccommodationList}
-              />
+                onClick={() =>
+                  navigate(
+                    `/trip/${tripId}/accommodation/${accommodation._id}`,
+                    {
+                      replace: false,
+                    }
+                  )
+                }
+              >
+                <div className="accommodation-location">
+                  <h3>Location:</h3>
+                  <div>{accommodation.location}</div>
+                </div>
+                <div className="accommodation-dates">
+                  <h3>Dates:</h3>
+                  <div>
+                    {accommodation.startDate.substring(
+                      0,
+                      accommodation.startDate.length - 14
+                    ) +
+                      " / " +
+                      accommodation.endDate.substring(
+                        0,
+                        accommodation.startDate.length - 14
+                      )}
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </div>
-      <button onClick={() => editPage()}>Edit</button>
     </div>
   );
 }

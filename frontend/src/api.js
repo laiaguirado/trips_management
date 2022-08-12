@@ -48,6 +48,7 @@ export const addTraveler = (tripId, travelerId) => authApiCall("POST", `/travel/
 export const deleteTraveler = (tripId, email) => authApiCall("DELETE", `/travel/${tripId}/traveler/${email}`);
 
 export const getAccommodationList = (tripId) => authApiCall("GET", `/accommodation/travel/${tripId}`);
+export const getAccommodation = (accommodationId) => authApiCall("GET", `/accommodation/${accommodationId}`);
 export const addAccommodation = (tripId, newAccommodationData) => authApiCall("POST", `/accommodation/${tripId}`, newAccommodationData);
 export const deleteAccommodation = (accommodationId) => authApiCall("DELETE", `/accommodation/${accommodationId}`);
 
@@ -64,3 +65,4 @@ export const addRestoration = (tripId, newRestorationData) => authApiCall("POST"
 export const deleteRestoration = (restorationId) => authApiCall("DELETE", `/restoration/${restorationId}`);
 
 export const getCommentList = (tripId, componentId) => authApiCall("GET", `/comment/travel/${tripId}/component/${componentId}`);
+export const addComment = (tripId, componentId, newCommentData) => authApiCall("POST", `/comment/${componentId}/travel/${tripId}`, newCommentData);

@@ -1,7 +1,7 @@
 import React from "react";
-import "./DeleteTripCard.css";
+import "./DeleteCard.css";
 
-function DeleteTripCard({ onDelete, deleting, deleteType }) {
+function DeleteCard({ onDelete, deleting, deleteType }) {
   return (
     <div className="delete-trip-card">
       <h2> Delete {deleteType}</h2>
@@ -18,4 +18,4 @@ function DeleteTripCard({ onDelete, deleting, deleteType }) {
   );
 }
 
-export default DeleteTripCard;
+export default DeleteCard;

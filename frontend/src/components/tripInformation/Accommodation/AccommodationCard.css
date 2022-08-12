@@ -1,32 +1,13 @@
-.accommodation-card{
-    border: 1px solid black;
+.accommodation-card h1 {
+  margin: 1rem;
 }
 
-.accommodation-card h1{
-    margin:1rem;
+.accommodation-card .accommodation-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.accommodation-card .accommodation-info{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.accommodation-card h3{
-    margin: 0.2rem 0.5rem;
-}
-
-.accommodation-card .delete-accommodation{
-    background-color: #AD3D25;
-    color: #FFFFFF;
-    border:0px;
-    border-radius: 1.5rem;
-    margin: 1rem;
-    padding:1rem;
-    transition: all 0.1s ease-in-out;
-}
-
-.accommodation-card .delete-accommodation:hover{
-    cursor: pointer;
-    transform: scale(1.2);
+.accommodation-card h3 {
+  margin: 0.2rem 0.5rem;
 }

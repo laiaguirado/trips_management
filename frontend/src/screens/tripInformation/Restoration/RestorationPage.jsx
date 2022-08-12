@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import * as api from "../../api";
 import "./RestorationPage.css";
-import Bar from "../../components/Bar";
-import RestorationCard from "../../components/tripInformation/Restoration/RestorationCard";
-import AddRestorationCard from "../../components/tripInformation/Restoration/AddRestorationCard";
+import * as api from "../../../api";
+import Bar from "../../../components/Bar";
+import RestorationCard from "../../../components/tripInformation/Restoration/RestorationCard";
+import AddRestorationCard from "../../../components/tripInformation/Restoration/AddRestorationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faPlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 

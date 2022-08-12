@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./TripDetailsPage.css";
 import * as api from "../api";
 import Bar from "../components/Bar";
-import DeleteTripCard from "../components/trip/DeleteTripCard";
+import DeleteCard from "../components/DeleteCard";
 import AddTravelerCard from "../components/trip/AddTravelerCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -81,7 +81,7 @@ function TripDetailsPage() {
       );
     } else {
       return (
-        <DeleteTripCard
+        <DeleteCard
           onDelete={() => deleteTrip(tripId)}
           deleting={() => setDeleting(false)}
           deleteType={"Trip"}

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Bar from "../../components/Bar";
-import * as api from "../../api";
+import Bar from "../../../components/Bar";
+import * as api from "../../../api";
 import "./PlansPage.css";
-import PlanCard from "../../components/tripInformation/Plan/PlanCard";
-import AddPlanCard from "../../components/tripInformation/Plan/AddPlanCard";
+import PlanCard from "../../../components/tripInformation/Plan/PlanCard";
+import AddPlanCard from "../../../components/tripInformation/Plan/AddPlanCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faPlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 

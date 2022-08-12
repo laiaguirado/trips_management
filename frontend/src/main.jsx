@@ -5,11 +5,12 @@ import { ModelProvider } from "./model";
 import "./index.css";
 import App from "./App";
 import TripDetailsPage from "./screens/TripDetailsPage";
-import AccommodationPage from "./screens/tripInformation/AccommodationPage";
-import TransportationPage from "./screens/tripInformation/TransportationPage";
-import PlansPage from "./screens/tripInformation/PlansPage";
-import RestorationPage from "./screens/tripInformation/RestorationPage";
+import AccommodationPage from "./screens/tripInformation/Accommodation/AccommodationPage";
+import TransportationPage from "./screens/tripInformation/Transportation/TransportationPage";
+import PlansPage from "./screens/tripInformation/Plans/PlansPage";
+import RestorationPage from "./screens/tripInformation/Restoration/RestorationPage";
 import ProtectedRoute from "./screens/ProtectedRoute";
+import AccommodationDetailsPage from "./screens/tripInformation/Accommodation/AccommodationDetailsPage";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -32,6 +33,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             element={
               <ProtectedRoute>
                 <AccommodationPage />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/trip/:tripId/accommodation/:accommodationId"
+            exact
+            element={
+              <ProtectedRoute>
+                <AccommodationDetailsPage />
               </ProtectedRoute>
             }
           ></Route>

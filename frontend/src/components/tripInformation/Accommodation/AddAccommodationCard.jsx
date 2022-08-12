@@ -43,12 +43,12 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
         <h1>New Accommodation</h1>
         <label>
           <div className="form-data">
-            <FontAwesomeIcon icon={faGlobe} />
+            <FontAwesomeIcon icon={faLocationDot} />
             <input
               type="text"
-              placeholder="Web"
-              value={web}
-              onChange={(event) => setWeb(event.target.value)}
+              placeholder="Location"
+              value={location}
+              onChange={(event) => setLocation(event.target.value)}
             />
           </div>
         </label>
@@ -60,17 +60,6 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               placeholder="Description"
               value={description}
               onChange={(event) => setDescription(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faLocationDot} />
-            <input
-              type="text"
-              placeholder="Location"
-              value={location}
-              onChange={(event) => setLocation(event.target.value)}
             />
           </div>
         </label>
@@ -93,6 +82,17 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               placeholder="End Date"
               value={endDate}
               onChange={(event) => setEndDate(event.target.value)}
+            />
+          </div>
+        </label>
+        <label>
+          <div className="form-data">
+            <FontAwesomeIcon icon={faGlobe} />
+            <input
+              type="text"
+              placeholder="Web"
+              value={web}
+              onChange={(event) => setWeb(event.target.value)}
             />
           </div>
         </label>

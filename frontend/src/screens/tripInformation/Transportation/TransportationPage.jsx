@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import * as api from "../../api";
 import "./TransportationPage.css";
-import Bar from "../../components/Bar";
-import TransportationCard from "../../components/tripInformation/Transportation/TransportationCard";
-import AddTransportationCard from "../../components/tripInformation/Transportation/AddTransportationCard";
+import * as api from "../../../api";
+import Bar from "../../../components/Bar";
+import TransportationCard from "../../../components/tripInformation/Transportation/TransportationCard";
+import AddTransportationCard from "../../../components/tripInformation/Transportation/AddTransportationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
