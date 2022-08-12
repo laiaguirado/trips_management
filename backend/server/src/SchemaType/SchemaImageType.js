@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 class image extends mongoose.SchemaType {
   url;
   extension;
-  data;
+  name;
 
   constructor(key, options) {
     super(key, options, "Image");
@@ -18,8 +18,8 @@ const isFile = (val) => {
     val &&
     val.hasOwnProperty("extension") &&
     val.extension.length != 0 &&
-    val.hasOwnProperty("data") &&
-    val.data.length != 0
+    val.hasOwnProperty("name") &&
+    val.name.length != 0
   );
 };
 

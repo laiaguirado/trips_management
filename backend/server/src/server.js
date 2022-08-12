@@ -13,6 +13,7 @@ app.use(express.json());
 app.disable("x-powered-by");
 
 app.use("/", express.static(config.FRONTEND_DIR));
+app.use("/upload", express.static(config.FRONTEND_DIR_UPLOAD));
 
 app.get("/", async (req, res) => {
   res.status(200).send({ API: "This is the TRIPS MANAGEMENT API" });

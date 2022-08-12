@@ -22,7 +22,15 @@ function AddTripCard({ onAdd, adding }) {
 
   const add = (e) => {
     e.preventDefault();
-    onAdd({ name, description, location, startDate, endDate, imageFile });
+    onAdd({
+      name,
+      description,
+      location,
+      startDate,
+      endDate,
+      image,
+      imageFile,
+    });
   };
 
   return (

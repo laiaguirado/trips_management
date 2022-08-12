@@ -10,13 +10,10 @@ const apiCall = async (method, path, body, headers, isMultipartForm) => {
     let headerCall = { ...headers };
     let bodyCall = body;
 
-    console.log("apiCall");
     if (!isMultipartForm) {
       headerCall["Content-type"] = "application/json";
       bodyCall = JSON.stringify(body);
     }
-    console.log(headerCall);
-    console.log(bodyCall);
     const response = await fetch(`${BASE_URL}/${version}${path}`, {
       method,
       headers: headerCall,
@@ -56,12 +53,14 @@ export const getTrip = (tripId) => authApiCall("GET", `/travel/${tripId}`);
 //export const addTrip = (newTripData) => authApiCall("POST", `/travel`, newTripData);
 export const addTrip = (newTripData) => {
   const formData = new FormData();
+
   formData.append("profileImg", newTripData.imageFile);
   formData.append("name", newTripData.name);
   formData.append("description", newTripData.description);
   formData.append("location", newTripData.location);
   formData.append("startDate", newTripData.startDate);
   formData.append("endDate", newTripData.endDate);
+  formData.append("image", newTripData.image);
 
   return authApiCall("POST", `/travel`, formData, true);
 };

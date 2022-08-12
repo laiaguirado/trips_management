@@ -11,7 +11,7 @@ const UserService = require("../users/user.service");
 const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 
-const DIR = "./public/";
+const DIR = `${config.FRONTEND_DIR_UPLOAD}`;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -57,12 +57,11 @@ const createTravel = async (req, res) => {
   const { _id } = req.userInfo;
   dataTravel.creator = _id;
   dataTravel.image = {
-    url: req.file.path,
+    url: dataTravel.image,
     extension: req.file.mimetype,
-    data: "NONECESITO",
+    name: `/${req.file.filename}`,
   };
-  const p = await Travel.createTravel(dataTravel);
-  res.status(201).json(p);
+  res.status(201).json(await Travel.createTravel(dataTravel));
 };
 
 const updateTravel = async (req, res) => {
