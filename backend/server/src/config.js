@@ -3,6 +3,7 @@ require("dotenv").config();
 const envVarNames = [
   "NODE_ENV",
   "FRONTEND_DIR",
+  "FRONTEND_DIR_UPLOAD",
   "SERVER_PORT",
   "JWT_SECRET",
   "JWT_EXPIRATION",

@@ -8,6 +8,35 @@ const config = require("../../config");
 const { needsAuthToken } = require("../users/auth/auth.middleware");
 const Travel = require("./travel.service");
 const UserService = require("../users/user.service");
+const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
+
+const DIR = `${config.FRONTEND_DIR_UPLOAD}`;
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR);
+  },
+  filename: (req, file, cb) => {
+    const fileName = file.originalname.toLowerCase().split(" ").join("-");
+    cb(null, uuidv4() + "-" + fileName);
+  },
+});
+var upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype == "image/png" ||
+      file.mimetype == "image/jpg" ||
+      file.mimetype == "image/jpeg"
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error("Only .png, .jpg and .jpeg format allowed!"));
+    }
+  },
+});
 
 const test = async (req, res) => {
   const { email, _id, username } = req.userInfo;
@@ -27,6 +56,14 @@ const createTravel = async (req, res) => {
   const dataTravel = req.body;
   const { _id } = req.userInfo;
   dataTravel.creator = _id;
+
+  if (dataTravel.image || req.file) {
+    dataTravel.image = {
+      url: dataTravel.image,
+      extension: req.file ? req.file.mimetype : "",
+      name: req.file ? `/${req.file.filename}` : "",
+    };
+  }
   res.status(201).json(await Travel.createTravel(dataTravel));
 };
 
@@ -113,7 +150,12 @@ if (config.isDevelopment) {
 
 router.get("/", needsAuthToken, catchErrors(getAllTravel));
 router.get("/:_id", needsAuthToken, catchErrors(getTravelById));
-router.post("/", needsAuthToken, catchErrors(createTravel));
+router.post(
+  "/",
+  needsAuthToken,
+  upload.single("fileImage"),
+  catchErrors(createTravel)
+);
 router.post(
   "/:idTravel/traveler/me",
   needsAuthToken,
