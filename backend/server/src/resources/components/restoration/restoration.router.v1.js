@@ -3,6 +3,7 @@ const { route } = require("express/lib/application");
 const express = require("express");
 const { catchErrors, TripManagementApiError } = require("../../../errors");
 const { needsAuthToken } = require("../../users/auth/auth.middleware");
+const RESOURCETYPE = "Restoration";
 
 const Restoration = require("./restoration.service");
 const Travel = require("../../travel/travel.service");
@@ -12,6 +13,7 @@ const create = async (req, res) => {
   const data = req.body;
   const { email, _id, username } = req.userInfo;
   const { idTravel } = req.paramsParentRouter;
+  data.resourceType = RESOURCETYPE;
 
   const restoration = await Restoration.createOne(data, _id, idTravel);
 
