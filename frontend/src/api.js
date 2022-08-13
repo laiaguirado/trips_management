@@ -50,7 +50,7 @@ export const getUserData = () => authApiCall("GET", `/user/me`);
 
 export const getTripList = () => authApiCall("GET", `/user/me/travel`);
 export const getTrip = (tripId) => authApiCall("GET", `/travel/${tripId}`);
-//export const addTrip = (newTripData) => authApiCall("POST", `/travel`, newTripData);
+//export const addTrip = (newTripData) => authApiCall("POST", `/travel`, newTripData, true);
 export const addTrip = (newTripData) => {
   const formData = new FormData();
 
@@ -64,58 +64,30 @@ export const addTrip = (newTripData) => {
 
   return authApiCall("POST", `/travel`, formData, true);
 };
-
-export const deleteTrip = (tripId) =>
-  authApiCall("DELETE", `/travel/${tripId}`);
+export const deleteTrip = (tripId) => authApiCall("DELETE", `/travel/${tripId}`);
 //export const updateTrip = (updatedTrip) => authApiCall("PUT", `/travel/${tripId}`, updatedTrip);
-export const addCreatorAsTraveler = (added) =>
-  authApiCall("POST", `/travel/${added._id}/traveler/me`);
 
-export const getTravelerByEmail = (email) =>
-  authApiCall("GET", `/user/${email}`);
-export const addTraveler = (tripId, travelerId) =>
-  authApiCall("POST", `/travel/${tripId}/traveler/${travelerId}`);
-export const deleteTraveler = (tripId, email) =>
-  authApiCall("DELETE", `/travel/${tripId}/traveler/${email}`);
+export const addCreatorAsTraveler = (added) => authApiCall("POST", `/travel/${added._id}/traveler/me`);
+export const getTravelerByEmail = (email) => authApiCall("GET", `/user/${email}`);
+export const addTraveler = (tripId, travelerId) => authApiCall("POST", `/travel/${tripId}/traveler/${travelerId}`);
+export const deleteTraveler = (tripId, email) => authApiCall("DELETE", `/travel/${tripId}/traveler/${email}`);
 
-export const getAccommodationList = (tripId) =>
-  authApiCall("GET", `/accommodation/travel/${tripId}`);
-export const getAccommodation = (accommodationId) =>
-  authApiCall("GET", `/accommodation/${accommodationId}`);
-export const addAccommodation = (tripId, newAccommodationData) =>
-  authApiCall("POST", `/accommodation/${tripId}`, newAccommodationData);
-export const deleteAccommodation = (accommodationId) =>
-  authApiCall("DELETE", `/accommodation/${accommodationId}`);
+export const getAccommodationList = (tripId) => authApiCall("GET", `/accommodation/travel/${tripId}`);
+export const getAccommodation = (accommodationId) => authApiCall("GET", `/accommodation/${accommodationId}`);
+export const addAccommodation = (tripId, newAccommodationData) => authApiCall("POST", `/accommodation/${tripId}`, newAccommodationData);
+export const deleteAccommodation = (accommodationId) => authApiCall("DELETE", `/accommodation/${accommodationId}`);
 
-export const getTransportationList = (tripId) =>
-  authApiCall("GET", `/travel/${tripId}/transportation`);
-export const addTransportation = (tripId, newTransportationData) =>
-  authApiCall(
-    "POST",
-    `/travel/${tripId}/transportation`,
-    newTransportationData
-  );
-export const deleteTransportation = (transportationId) =>
-  authApiCall("DELETE", `/transportation/${transportationId}`);
+export const getTransportationList = (tripId) => authApiCall("GET", `/travel/${tripId}/transportation`);
+export const addTransportation = (tripId, newTransportationData) => authApiCall("POST", `/travel/${tripId}/transportation`, newTransportationData);
+export const deleteTransportation = (transportationId) => authApiCall("DELETE", `/transportation/${transportationId}`);
 
-export const getPlanList = (tripId) =>
-  authApiCall("GET", `/travel/${tripId}/plans`);
-export const addPlan = (tripId, newPlanData) =>
-  authApiCall("POST", `/travel/${tripId}/plans`, newPlanData);
+export const getPlanList = (tripId) => authApiCall("GET", `/travel/${tripId}/plans`);
+export const addPlan = (tripId, newPlanData) => authApiCall("POST", `/travel/${tripId}/plans`, newPlanData);
 export const deletePlan = (planId) => authApiCall("DELETE", `/plans/${planId}`);
 
-export const getRestorationList = (tripId) =>
-  authApiCall("GET", `/restoration/travel/${tripId}`);
-export const addRestoration = (tripId, newRestorationData) =>
-  authApiCall("POST", `/restoration/${tripId}`, newRestorationData);
-export const deleteRestoration = (restorationId) =>
-  authApiCall("DELETE", `/restoration/${restorationId}`);
+export const getRestorationList = (tripId) => authApiCall("GET", `/restoration/travel/${tripId}`);
+export const addRestoration = (tripId, newRestorationData) => authApiCall("POST", `/restoration/${tripId}`, newRestorationData);
+export const deleteRestoration = (restorationId) => authApiCall("DELETE", `/restoration/${restorationId}`);
 
-export const getCommentList = (tripId, componentId) =>
-  authApiCall("GET", `/comment/travel/${tripId}/component/${componentId}`);
-export const addComment = (tripId, componentId, newCommentData) =>
-  authApiCall(
-    "POST",
-    `/comment/${componentId}/travel/${tripId}`,
-    newCommentData
-  );
+export const getCommentList = (tripId, componentId) => authApiCall("GET", `/comment/travel/${tripId}/component/${componentId}`);
+export const addComment = (tripId, componentId, newCommentData) => authApiCall("POST", `/comment/${componentId}/travel/${tripId}`, newCommentData);
