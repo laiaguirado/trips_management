@@ -11,8 +11,8 @@ const User = require("../../users/user.service");
 const create = async (req, res) => {
   const data = req.body;
   const { email, _id, username } = req.userInfo;
-  const { idTravel } = req.params;
-  console.log(data);
+  const { idTravel } = req.paramsParentRouter;
+
   const restoration = await Restoration.createOne(data, _id, idTravel);
 
   const travel = await Travel.findTravel(idTravel);
@@ -44,7 +44,7 @@ const getById = async (req, res) => {
 };
 
 const getByTravel = async (req, res) => {
-  const { idTravel } = req.params;
+  const { idTravel } = req.paramsParentRouter;
   res.status(200).json(await Restoration.getByTravelId(idTravel));
 };
 
@@ -76,11 +76,39 @@ const updateRest = async (req, res) => {
   );
 };
 
-const router = express.Router();
-router.post("/:idTravel", needsAuthToken, catchErrors(create));
-router.delete("/:_id", needsAuthToken, catchErrors(deleteRestoration));
-router.get("/", needsAuthToken, catchErrors(getAll));
-router.get("/:_id", needsAuthToken, catchErrors(getById));
-router.get("/travel/:idTravel", needsAuthToken, catchErrors(getByTravel));
-router.put("/:_id", needsAuthToken, catchErrors(updateRest));
-module.exports = router;
+//const router = express.Router();
+
+const routerRestorationByTravel = express.Router();
+const routerRestorationByResporation = express.Router();
+
+routerRestorationByTravel.post("/", needsAuthToken, catchErrors(create));
+routerRestorationByTravel.get("/", needsAuthToken, catchErrors(getByTravel));
+
+routerRestorationByResporation.delete(
+  "/:_id",
+  needsAuthToken,
+  catchErrors(deleteRestoration)
+);
+routerRestorationByResporation.get(
+  "/:_id",
+  needsAuthToken,
+  catchErrors(getById)
+);
+routerRestorationByResporation.put(
+  "/:_id",
+  needsAuthToken,
+  catchErrors(updateRest)
+);
+
+routerRestorationByResporation.get("/", needsAuthToken, catchErrors(getAll));
+
+// router.post("/:idTravel", needsAuthToken, catchErrors(create));
+// router.delete("/:_id", needsAuthToken, catchErrors(deleteRestoration));
+// router.get("/", needsAuthToken, catchErrors(getAll));    OTRO ROUTER
+// router.get("/:_id", needsAuthToken, catchErrors(getById));
+// router.get("/travel/:idTravel", needsAuthToken, catchErrors(getByTravel));
+// router.put("/:_id", needsAuthToken, catchErrors(updateRest));
+module.exports = {
+  routerRestorationByTravel,
+  routerRestorationByResporation,
+};

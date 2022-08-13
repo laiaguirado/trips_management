@@ -46,7 +46,6 @@ const getUserByEmail = async (req, res) => {
 };
 
 const getUserMe = async (req, res) => {
-  console.log("getUSerMe");
   const { _id } = req.userInfo;
   const { email, username } = await User.findById(_id);
   res.status(200).json({ _id, email, username });
