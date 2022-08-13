@@ -6,7 +6,14 @@ function TripCard({ trip, onClick }) {
     <div className="trip-card" onClick={onClick}>
       <h3>{trip.name}</h3>
       <h4>{trip.location}</h4>
-      <img src={trip.image} alt="trip-image" />
+      {trip.image !== undefined ? (
+        <img
+          src={"../../../src/assets/upload" + trip.image.name}
+          alt="trip-image"
+        />
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 }

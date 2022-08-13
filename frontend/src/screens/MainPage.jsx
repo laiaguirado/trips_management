@@ -37,6 +37,7 @@ function MainPage() {
       if (success) {
         setTripList((tripList) => [...tripList, addedWithTraveler]);
         setAdding(false);
+        setMessage(null);
       } else {
         setMessage(error);
       }
