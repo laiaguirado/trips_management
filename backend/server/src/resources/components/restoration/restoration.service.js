@@ -1,5 +1,8 @@
+const { runTransaction } = require("../../../helper");
 const { errMalformed } = require("../../../errors");
 const Restoration = require("./restoration.model");
+const Travel = require("../../travel/travel.model");
+const User = require("../../users/user.model");
 
 const createOne = async (
   {
@@ -39,18 +42,36 @@ const findAll = async () => {
   return await Restoration.find().lean().exec();
 };
 const deleteRest = async (_id) => {
-  const deleted = await Restoration.findByIdAndDelete({ _id }).lean().exec();
-  if (deleted === null) {
-    errMalformed(`Restoration with ${id} not found`);
-  }
-  return deleted;
+  const restoration = await runTransaction(async () => {
+    const deleted = await Restoration.findByIdAndDelete({ _id })
+      .lean()
+      .exec()
+      .then();
+    if (deleted === null) {
+      errMalformed(`Restoration not found`);
+    }
+
+    const travel = await Travel.findOneAndUpdate(
+      { _id: deleted.idTravel },
+      { $pull: { restaurants: _id } },
+      { new: true, useFindAndModify: false }
+    );
+    const user = await User.findOneAndUpdate(
+      { _id: deleted.idUser },
+      { $pull: { restaurants: _id } },
+      { new: true, useFindAndModify: false }
+    );
+
+    return deleted;
+  });
+  return restoration;
 };
 
 const getOne = async (_id) => {
   const rest = await Restoration.findOne({ _id });
 
   if (rest === null) {
-    errMalformed(`Restoration with id '${_id}' not found`);
+    errMalformed(`Restoration not found`);
   }
   return rest;
 };
@@ -87,7 +108,7 @@ const updateRestoration = async ({
     .exec();
 
   if (restUpdated === null) {
-    errMalformed(`Restoration with id '${_id}' not found`);
+    errMalformed(`Restoration not found`);
   }
   return restUpdated;
 };
