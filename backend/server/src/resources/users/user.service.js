@@ -46,6 +46,23 @@ const findById = async (_id) => {
   }
   return user;
 };
+
+const findByIdAllInfo = async (_id) => {
+  const user = await User.findOne({ _id })
+    .populate({
+      path: "travels",
+    })
+    .populate({
+      path: "restaurants",
+    })
+    .populate({
+      path: "accommodations",
+    });
+  if (user === null) {
+    errMalformed("User doens't exist");
+  }
+  return user;
+};
 const findByEmail = async (email) => {
   const user = await User.findOne({ email: email });
   if (user === null) {
@@ -60,4 +77,5 @@ module.exports = {
   findAllUsers,
   findById,
   findByEmail,
+  findByIdAllInfo,
 };

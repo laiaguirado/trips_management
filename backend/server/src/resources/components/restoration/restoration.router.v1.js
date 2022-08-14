@@ -18,13 +18,11 @@ const create = async (req, res) => {
   const restoration = await Restoration.createOne(data, _id, idTravel);
 
   const travel = await Travel.findTravel(idTravel);
-
-  const user = await User.findById(_id);
-
+  const user = await User.findByIdAllInfo(_id);
   travel.restaurants.push(restoration);
   await travel.save();
 
-  user.restaurants.push(restoration);
+  user.restaurants.push(restoration);  
   await user.save();
 
   res.status(201).json(restoration);

@@ -85,8 +85,8 @@ export const getPlanList = (tripId) => authApiCall("GET", `/travel/${tripId}/pla
 export const addPlan = (tripId, newPlanData) => authApiCall("POST", `/travel/${tripId}/plans`, newPlanData);
 export const deletePlan = (planId) => authApiCall("DELETE", `/plans/${planId}`);
 
-export const getRestorationList = (tripId) => authApiCall("GET", `/restoration/travel/${tripId}`);
-export const addRestoration = (tripId, newRestorationData) => authApiCall("POST", `/restoration/${tripId}`, newRestorationData);
+export const getRestorationList = (tripId) => authApiCall("GET", `/travel/${tripId}/restoration`);
+export const addRestoration = (tripId, newRestorationData) => authApiCall("POST", `/travel/${tripId}/restoration`, newRestorationData);
 export const deleteRestoration = (restorationId) => authApiCall("DELETE", `/restoration/${restorationId}`);
 
 export const getCommentList = (tripId, componentId) => authApiCall("GET", `/comment/travel/${tripId}/component/${componentId}`);
