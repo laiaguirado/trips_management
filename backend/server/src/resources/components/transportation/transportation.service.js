@@ -40,6 +40,15 @@ const getTransportationById = async (idTransportation) => {
   return transport;
 };
 
+const getOne = async (_id) => {
+  const transp = await Transportation.findOne({ _id });
+
+  if (transp === null) {
+    errMalformed(`Transport with id '${_id}' not found`);
+  }
+  return transp;
+};
+
 const deleteTransportation = async (_id) => {
   const transport = await runTransaction(async () => {
     const deleted = await Transportation.findByIdAndDelete({ _id })
@@ -82,4 +91,5 @@ module.exports = {
   getTransportationById,
   deleteTransportation,
   updateTransportation,
+  getOne
 };
