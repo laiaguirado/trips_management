@@ -13,6 +13,7 @@ function PlansPage() {
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
+  const navigate = useNavigate();
 
   const loadPlanList = async () => {
     const { success, result: planList, error } = await api.getPlanList(tripId);
@@ -68,7 +69,44 @@ function PlansPage() {
   return (
     <div className="plan-page">
       <Bar mode="login" />
-      <div className="flex-container">
+      <div className="plan-info-container">
+        <div
+          className="return-icon"
+          onClick={() => navigate(`/trip/${tripId}`, { replace: false })}
+        >
+          <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+        </div>
+        <button onClick={() => editPage()}>Edit</button>
+        <div>{message}</div>
+        <div>
+          <h1>PLANS</h1>
+          <div>{addPlanForm()}</div>
+          <div className="plan-list">
+            {planList.map((plan) => (
+              <div
+                className="plan"
+                key={plan._id}
+                onClick={() =>
+                  navigate(`/trip/${tripId}/plans/${plan._id}`, {
+                    replace: false,
+                  })
+                }
+              >
+                <div className="plan-name">
+                  <h3>Name:</h3>
+                  <div>{plan.name}</div>
+                </div>
+                <div className="plan-location">
+                  <h3>Location:</h3>
+                  <div>{plan.location}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/*<div className="flex-container">
         <div className="return-icon" onClick={() => window.history.go(-1)}>
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
@@ -86,8 +124,7 @@ function PlansPage() {
             ))}
           </div>
         </div>
-      </div>
-      <button onClick={() => editPage()}>Edit</button>
+            </div>*/}
     </div>
   );
 }

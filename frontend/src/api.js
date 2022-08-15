@@ -69,6 +69,7 @@ export const addTransportation = (tripId, newTransportationData) => authApiCall(
 export const deleteTransportation = (transportationId) => authApiCall("DELETE", `/transportation/${transportationId}`);
 
 export const getPlanList = (tripId) => authApiCall("GET", `/travel/${tripId}/plans`);
+export const getPlan = (planId) => authApiCall("GET", `/plans/${planId}`);
 export const addPlan = (tripId, newPlanData) => authApiCall("POST", `/travel/${tripId}/plans`, newPlanData);
 export const deletePlan = (planId) => authApiCall("DELETE", `/plans/${planId}`);
 

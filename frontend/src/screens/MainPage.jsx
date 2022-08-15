@@ -54,7 +54,15 @@ function MainPage() {
         </div>
       );
     } else {
-      return <AddTripCard onAdd={addTrip} adding={() => setAdding(false)} />;
+      return (
+        <AddTripCard
+          onAdd={addTrip}
+          adding={() => {
+            setAdding(false);
+            setMessage(null);
+          }}
+        />
+      );
     }
   }
 
