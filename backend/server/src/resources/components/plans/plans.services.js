@@ -37,6 +37,15 @@ const getPlanById = async (idPlan) => {
   return plan;
 };
 
+const getOne = async (_id) => {
+  const plan = await Plans.findOne({ _id });
+
+  if (plan === null) {
+    errMalformed(`Plan with id '${_id}' not found`);
+  }
+  return plan;
+};
+
 const deletePlan = async (_id) => {
   const plan = await runTransaction(async () => {
     const deleted = await Plans.findByIdAndDelete({ _id }).lean().exec();
@@ -75,4 +84,5 @@ module.exports = {
   getPlanById,
   deletePlan,
   updatePlan,
+  getOne
 };
