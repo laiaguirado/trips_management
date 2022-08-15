@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const { capitalize, FKIntegrity } = require("../../helper");
 const image = require("../../SchemaType/SchemaImageType");
+const Plans = require("../components/plans/plans.model");
+const Accommodation = require("../components/accommodation/accommodation.model");
+const Restoration = require("../components/restoration/restoration.model");
+const Transportation = require("../components/transportation/transportation.model");
+const Users = require("../users/user.model");
 
 mongoose.Schema.Types.Image = image;
 
@@ -135,6 +140,24 @@ const travelSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+travelSchema.pre("findOneAndDelete", async function (next) {
+  const idTravel = this.getQuery()["_id"];
+
+  await Plans.deleteMany({ idTravel: idTravel }).exec();
+  await Transportation.deleteMany({ idTravel: idTravel }).exec();
+  await Accommodation.deleteMany({ idTravel: idTravel }).exec();
+  await Restoration.deleteMany({ idTravel: idTravel }).exec();
+
+  //TODO Eliminar cada restoration, accommodation, plans e restoration eliminada de user.. Si decidimos guardarlo tambien en user..
+  const p = await Users.updateMany(
+    {},
+    { $pull: { travels: new mongoose.Types.ObjectId(idTravel) } }
+  ).exec();
+
+  next();
+});
 const Travel = mongoose.model("travel", travelSchema);
+
+
 
 module.exports = Travel;
