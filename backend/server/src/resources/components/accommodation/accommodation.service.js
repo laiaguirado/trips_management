@@ -1,4 +1,5 @@
 const Accommodation = require("./accommodation.model");
+const Travel = require("../../travel/travel.model")
 
 const createAccommodation = async ({ web, description, location, startDate, endDate, phone, email, resourceType }, idTravel, idUser) => {
   return await Accommodation.create({ web, description, location, startDate, endDate, phone, email, resourceType, idTravel, idUser });
@@ -17,6 +18,12 @@ const findOneById = async (id) => {
 }
 
 const deleteAccom = async (_id) => {
+  console.log(await Travel.find({accommodations: _id }))
+
+  await Travel.findOneAndUpdate({ accommodations: _id }, {
+    $pull: { accommodations: { $in: _id }},
+}, {new:true});
+
   const deleted = await Accommodation.findByIdAndDelete({ _id }).lean().exec();
   if (deleted === null) {
     errMalformed(`Accommodation with '${_id}' not found`);
