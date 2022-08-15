@@ -50,20 +50,7 @@ export const getUserData = () => authApiCall("GET", `/user/me`);
 
 export const getTripList = () => authApiCall("GET", `/user/me/travel`);
 export const getTrip = (tripId) => authApiCall("GET", `/travel/${tripId}`);
-//export const addTrip = (newTripData) => authApiCall("POST", `/travel`, newTripData, true);
-export const addTrip = (newTripData) => {
-  const formData = new FormData();
-
-  formData.append("fileImage", newTripData.imageFile);
-  formData.append("name", newTripData.name);
-  formData.append("description", newTripData.description);
-  formData.append("location", newTripData.location);
-  formData.append("startDate", newTripData.startDate);
-  formData.append("endDate", newTripData.endDate);
-  formData.append("image", newTripData.image);
-
-  return authApiCall("POST", `/travel`, formData, true);
-};
+export const addTrip = (newTripData) => authApiCall("POST", `/travel`, newTripData, true);
 export const deleteTrip = (tripId) => authApiCall("DELETE", `/travel/${tripId}`);
 //export const updateTrip = (updatedTrip) => authApiCall("PUT", `/travel/${tripId}`, updatedTrip);
 

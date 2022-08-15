@@ -8,7 +8,7 @@ function TripCard({ trip, onClick }) {
       <h4>{trip.location}</h4>
       {trip.image !== undefined ? (
         <img
-          src={"../../../src/assets/upload" + trip.image.name}
+          src={"http://localhost:8080/upload" + trip.image.name}
           alt="trip-image"
         />
       ) : (
