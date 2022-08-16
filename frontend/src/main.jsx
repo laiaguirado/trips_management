@@ -16,6 +16,11 @@ import PlansDetailsPage from "./screens/tripInformation/Plans/PlansDetailsPage";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ModelProvider>
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="//fonts.googleapis.com/css?family=Allerta"
+      />
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<App />}></Route>

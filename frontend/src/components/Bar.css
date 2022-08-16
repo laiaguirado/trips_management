@@ -1,4 +1,4 @@
-.top-bar {
+.nav-bar {
   background-color: #2d5a74;
   color: white;
   position: absolute;
@@ -8,20 +8,50 @@
   top: 0px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
-.top-bar .top-info {
-  height: 2rem;
-  margin: 1rem;
+.nav-bar .nav-bar-title {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5rem;
+}
+
+.nav-bar .nav-logo {
+  height: 3rem;
+  width: auto;
+  margin-left: 3rem;
+}
+
+.nav-bar .nav-title {
+  font-size: 2.5rem;
+  font-family: Allerta;
+  font-weight: 100;
+}
+
+.nav-bar .nav-info {
+  margin-right: 3rem;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0rem 0.5rem;
+  gap: 1rem;
 }
 
-.top-bar .logout-button:hover {
+.nav-bar .nav-username .icon {
+  margin-right: 0.5rem;
+}
+
+.nav-bar .nav-logout .icon {
+  margin-right: 0.5rem;
+}
+
+.nav-bar .nav-logout:hover {
   cursor: pointer;
   background-color: #ffffff;
   color: #2d5a74;
+  padding: 1rem;
   border-radius: 1rem;
+  position: absolute;
 }

@@ -15,24 +15,32 @@ const Bar = ({ mode }) => {
 
   if (mode === "logout") {
     return (
-      <div className="top-bar">
-        <FontAwesomeIcon icon={faSignsPost} size="5x" />
-        <h1>MY TRIPS</h1>
+      <div className="nav-bar">
+        <div className="nav-bar-title">
+          <FontAwesomeIcon icon={faSignsPost} className="nav-logo" />
+          <h1 className="nav-title">MY TRIPS</h1>
+        </div>
       </div>
     );
   } else {
     return (
-      <div className="top-bar">
-        <FontAwesomeIcon icon={faSignsPost} size="5x" />
-        <h1>MY TRIPS</h1>
-        <div className="top-info">
-          <FontAwesomeIcon icon={faUser} />
-          {userData !== undefined && userData !== null
-            ? userData.username
-            : "User name"}
+      <div className="nav-bar">
+        <div className="nav-bar-title">
+          <FontAwesomeIcon icon={faSignsPost} size="5x" className="nav-logo" />
+          <h1 className="nav-title">MY TRIPS</h1>
         </div>
-        <div className="logout-button top-info" onClick={logout}>
-          <FontAwesomeIcon icon={faArrowRightFromBracket} /> Logout
+
+        <div className="nav-info">
+          <div className="nav-username">
+            <FontAwesomeIcon icon={faUser} className="icon" />
+            {userData !== undefined && userData !== null
+              ? userData.username
+              : "User name"}
+          </div>
+          <div className="nav-logout" onClick={logout}>
+            <FontAwesomeIcon icon={faArrowRightFromBracket} className="icon" />{" "}
+            Logout
+          </div>
         </div>
       </div>
     );
