@@ -105,26 +105,6 @@ function PlansPage() {
           </div>
         </div>
       </div>
-
-      {/*<div className="flex-container">
-        <div className="return-icon" onClick={() => window.history.go(-1)}>
-          <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
-        </div>
-        <div>{message}</div>
-        <div>
-          <h1>PLANS</h1>
-          <div>{addPlanForm()}</div>
-          <div className="plan-list">
-            {planList.map((plan) => (
-              <PlanCard
-                key={plan._id}
-                plan={plan}
-                modifyPlanList={setPlanList}
-              />
-            ))}
-          </div>
-        </div>
-            </div>*/}
     </div>
   );
 }

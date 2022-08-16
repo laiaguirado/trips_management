@@ -72,7 +72,7 @@ function PlansDetailsPage() {
         <div>{message}</div>
         <PlanCard plan={plan} />
         <div>{deleteButton()}</div>
-        <CommentsCard tripId={tripId} componentId={planId} />
+        <CommentsCard tripId={tripId} componentId={planId} component="plan" />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CommentCard from "./CommentCard";
 import * as api from "../../api";
 
-function CommentsCard({ tripId, componentId }) {
+function CommentsCard({ tripId, componentId, component }) {
   const [commentList, setCommentList] = useState([]);
   const [comment, setComment] = useState("");
   const [message, setMessage] = useState(null);
@@ -28,10 +28,11 @@ function CommentsCard({ tripId, componentId }) {
       success,
       result: newComment,
       error,
-    } = await api.addComment(tripId, componentId, { comment_text: comment });
+    } = await api.addComment(tripId, componentId, component, {
+      comment_text: comment,
+    });
     if (success) {
       setCommentList((commentList) => [...commentList, newComment]);
-      //loadCommentList();
       setComment("");
     } else {
       setMessage(error);
