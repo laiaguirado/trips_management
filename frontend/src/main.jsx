@@ -21,6 +21,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         type="text/css"
         href="//fonts.googleapis.com/css?family=Allerta"
       />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="//fonts.googleapis.com/css?family=Open+Sans"
+      ></link>
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<App />}></Route>
