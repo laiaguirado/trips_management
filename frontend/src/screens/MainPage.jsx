@@ -6,7 +6,7 @@ import Bar from "../components/Bar";
 import TripCard from "../components/trip/TripCard";
 import AddTripCard from "../components/trip/AddTripCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 function MainPage() {
   const [tripList, setTripList] = useState(null);
@@ -49,8 +49,8 @@ function MainPage() {
   function addTripForm() {
     if (adding === false) {
       return (
-        <div className="add-trip-button" onClick={() => setAdding(true)}>
-          <FontAwesomeIcon icon={faPlus} />
+        <div className="new-trip-button" onClick={() => setAdding(true)}>
+          <FontAwesomeIcon icon={faCirclePlus} className="icon" />
         </div>
       );
     } else {
@@ -73,25 +73,21 @@ function MainPage() {
   return (
     <div className="main-page">
       <Bar mode="login" />
-      <div>{message}</div>
-      <div>
-        <h3>Main Page</h3>
-        <div>{addTripForm()}</div>
-        <div className="trip-list">
-          {Array.isArray(tripList) === true ? (
-            tripList.map((trip) => (
-              <TripCard
-                key={trip._id}
-                trip={trip}
-                onClick={() =>
-                  navigate(`/trip/${trip._id}`, { replace: false })
-                }
-              />
-            ))
-          ) : (
-            <p></p>
-          )}
-        </div>
+      <div className="error">{message}</div>
+      <div className="trips">
+        <div className="new-trip">{addTripForm()}</div>
+        {Array.isArray(tripList) === true ? (
+          tripList.map((trip) => (
+            <TripCard
+              className="trip"
+              key={trip._id}
+              trip={trip}
+              onClick={() => navigate(`/trip/${trip._id}`, { replace: false })}
+            />
+          ))
+        ) : (
+          <p></p>
+        )}
       </div>
     </div>
   );

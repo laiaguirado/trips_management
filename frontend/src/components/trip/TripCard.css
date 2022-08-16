@@ -1,20 +1,41 @@
 .trip-card {
   border: 2px solid black;
   border-radius: 0.5rem;
-  margin: 1rem;
-  padding: 1rem;
   transition: all 0.2s ease-in-out;
-  width: 9.5rem;
+  width: 15vw;
+  height: 15vw;
   background-color: #f4f1e5;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
 }
 
 .trip-card:hover {
   cursor: pointer;
-  background-color: #b7cbe7;
   transform: scale(1.1);
 }
 
-img {
-  width: auto;
-  height: 5vw;
+.gradient {
+  background: linear-gradient(transparent, black);
+  border-radius: 0.5rem;
+  width: 15vw;
+  height: 15vw;
+}
+.title {
+  color: white;
+  font-weight: 100;
+  margin: 0;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  font-size: 12px;
+  transform: translate(-50%, -10%);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  min-height: 15vw;
+  min-width: 15vw;
+  opacity: 0.75;
 }
