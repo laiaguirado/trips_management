@@ -53,9 +53,6 @@ const findByIdAllInfo = async (_id) => {
       path: "travels",
     })
     .populate({
-      path: "restaurants",
-    })
-    .populate({
       path: "accommodations",
     });
   if (user === null) {

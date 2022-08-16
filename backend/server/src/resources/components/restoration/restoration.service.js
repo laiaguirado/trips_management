@@ -56,12 +56,6 @@ const deleteRest = async (_id) => {
       { $pull: { restaurants: _id } },
       { new: true, useFindAndModify: false }
     );
-    const user = await User.findOneAndUpdate(
-      { _id: deleted.idUser },
-      { $pull: { restaurants: _id } },
-      { new: true, useFindAndModify: false }
-    );
-
     return deleted;
   });
   return restoration;
