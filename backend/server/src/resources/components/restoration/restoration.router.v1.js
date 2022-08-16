@@ -28,9 +28,6 @@ const create = async (req, res) => {
   res.status(201).json(restoration);
 };
 
-
-
-
 const deleteRestoration = async (req, res) => {
   const { _id } = req.params;
   res.status(200).json(await Restoration.deleteRest(_id));

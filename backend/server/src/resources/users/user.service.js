@@ -48,13 +48,9 @@ const findById = async (_id) => {
 };
 
 const findByIdAllInfo = async (_id) => {
-  const user = await User.findOne({ _id })
-    .populate({
-      path: "travels",
-    })
-    .populate({
-      path: "accommodations",
-    });
+  const user = await User.findOne({ _id }).populate({
+    path: "travels",
+  });
   if (user === null) {
     errMalformed("User doens't exist");
   }

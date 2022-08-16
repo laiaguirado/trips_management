@@ -7,30 +7,30 @@ const { needsAuthToken } = require("../../users/auth/auth.middleware");
 const Accommodation = require("./accommodation.service");
 const Travel = require("../../travel/travel.service");
 const User = require("../../users/user.service");
+const { runTransaction } = require("../../../helper");
 
 const create = async (req, res) => {
   const accommData = req.body;
   const { email, _id, username } = req.userInfo;
   const { idTravel } = req.params;
 
-  const accommodation = await Accommodation.createAccommodation(
-    accommData,
-    idTravel,
-    _id
-  );
+  const accommodation = await runTransaction(async () => {
+    const accommodationCreated = await Accommodation.createAccommodation(
+      accommData,
+      idTravel,
+      _id
+    );
 
-  const travel = await Travel.findTravel(idTravel);
+    const travel = await Travel.findTravel(idTravel);
 
-  const user = await User.findById(_id);
-
-  travel.accommodations.push(accommodation);
-  await travel.save();
-
-  user.accommodations.push(accommodation);
-  await user.save();
-
+    travel.accommodations.push(accommodationCreated);
+    await travel.save();
+    return accommodationCreated;
+  });
   res.status(201).json(accommodation);
 };
+
+
 const geAllAccommodations = async (req, res) => {
   res.status(200).json(await Accommodation.findAll());
 };
