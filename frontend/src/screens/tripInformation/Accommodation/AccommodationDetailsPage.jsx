@@ -76,7 +76,11 @@ function AccommodationDetailsPage() {
         <div>{message}</div>
         <AccommodationCard accommodation={accommodation} />
         <div>{deleteButton()}</div>
-        <CommentsCard tripId={tripId} componentId={accommodationId} />
+        <CommentsCard
+          tripId={tripId}
+          componentId={accommodationId}
+          component="accommodation"
+        />
       </div>
     </div>
   );

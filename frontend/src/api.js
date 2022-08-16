@@ -78,4 +78,4 @@ export const addRestoration = (tripId, newRestorationData) => authApiCall("POST"
 export const deleteRestoration = (restorationId) => authApiCall("DELETE", `/restoration/${restorationId}`);
 
 export const getCommentList = (tripId, componentId) => authApiCall("GET", `/comment/travel/${tripId}/component/${componentId}`);
-export const addComment = (tripId, componentId, newCommentData) => authApiCall("POST", `/comment/${componentId}/travel/${tripId}`, newCommentData);
+export const addComment = (tripId, componentId, component, newCommentData) => authApiCall("POST", `/comment/travel/${tripId}/${component}/${componentId}`, newCommentData);
