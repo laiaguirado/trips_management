@@ -1,17 +1,21 @@
 .nav-bar {
   background-color: #2d5a74;
   color: white;
-  position: absolute;
-  height: 5rem;
+  position: fixed;
+  height: 6vw;
   width: 100vw;
   left: 0px;
   top: 0px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  z-index: 100;
+  min-height: 50px;
+  min-width: 525px;
 }
 
 .nav-bar .nav-bar-title {
+  font-size: 1px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -19,13 +23,13 @@
 }
 
 .nav-bar .nav-logo {
-  height: 3rem;
+  height: 2rem;
   width: auto;
   margin-left: 3rem;
 }
 
 .nav-bar .nav-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-family: Allerta;
   font-weight: 100;
 }
@@ -37,6 +41,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  font-size: 0.75rem;
 }
 
 .nav-bar .nav-username .icon {
@@ -44,14 +49,16 @@
 }
 
 .nav-bar .nav-logout .icon {
-  margin-right: 0.5rem;
+  margin-right: 0.25rem;
+}
+
+.nav-bar .nav-logout {
+  padding: 0.5rem;
 }
 
 .nav-bar .nav-logout:hover {
   cursor: pointer;
   background-color: #ffffff;
   color: #2d5a74;
-  padding: 1rem;
   border-radius: 1rem;
-  position: absolute;
 }

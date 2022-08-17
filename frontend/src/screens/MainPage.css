@@ -1,15 +1,12 @@
 .main-page .trips {
-  margin: auto;
   display: flex;
   flex-flow: row wrap;
-  align-content: space-between;
-  justify-content: flex-start;
+  align-items: flex-start;
   gap: 2vw;
+  margin: 0 6vw;
+  background-color: pink;
 }
 /*todo center gallery*/
-
-.main-page .new-trip {
-}
 
 .main-page .new-trip-button {
   background-color: white;
@@ -31,7 +28,4 @@
 .main-page .new-trip-button:hover {
   cursor: pointer;
   transform: scale(1.1);
-}
-
-.main-page .new-trip-form {
 }

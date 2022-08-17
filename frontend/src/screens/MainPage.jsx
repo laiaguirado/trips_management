@@ -46,7 +46,7 @@ function MainPage() {
     }
   };
 
-  function addTripForm() {
+  /*function addTripForm() {
     if (adding === false) {
       return (
         <div className="new-trip-button" onClick={() => setAdding(true)}>
@@ -55,8 +55,26 @@ function MainPage() {
       );
     } else {
       return (
+        <div>
+          <AddTripCard
+            onAdd={addTrip}
+            adding={() => {
+              setAdding(false);
+              setMessage(null);
+            }}
+          />
+          <div className="new-trip-button" onClick={() => setAdding(true)}>
+            <FontAwesomeIcon icon={faCirclePlus} className="icon" />
+          </div>
+        </div>
+      );
+    }
+  }*/
+
+  function addTripForm() {
+    if (adding) {
+      return (
         <AddTripCard
-          className="new-trip-form"
           onAdd={addTrip}
           adding={() => {
             setAdding(false);
@@ -76,7 +94,12 @@ function MainPage() {
       <Bar mode="login" />
       <div className="error">{message}</div>
       <div className="trips">
-        <div className="new-trip">{addTripForm()}</div>
+        <div className="new-trip">
+          {addTripForm()}
+          <div className="new-trip-button" onClick={() => setAdding(true)}>
+            <FontAwesomeIcon icon={faCirclePlus} className="icon" />
+          </div>
+        </div>
         {Array.isArray(tripList) === true ? (
           tripList.map((trip) => (
             <TripCard

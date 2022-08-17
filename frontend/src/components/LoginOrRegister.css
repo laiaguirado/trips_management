@@ -1,4 +1,5 @@
 .form-container {
+  margin-top: 5vw;
   background: #ffffff;
   width: 20rem;
   height: auto;
@@ -47,6 +48,7 @@
   width: 80%;
   border: none;
   outline: none;
+  color: #937b5f;
 }
 
 .form-container .submit-button {

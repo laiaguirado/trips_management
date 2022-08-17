@@ -1,5 +1,31 @@
 .add-trip-card {
   width: 25rem;
+  position: absolute;
+  z-index: 90;
+}
+
+.add-trip-card .background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(5px);
+}
+
+.popup {
+  width: 100vw;
+  display: flex;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  margin-left: -8vw;
+}
+.add-trip-card .form-container {
+  margin-top: 0;
+  margin-bottom: 5vw;
 }
 
 .return-icon {
