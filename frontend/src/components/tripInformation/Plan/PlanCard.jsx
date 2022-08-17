@@ -18,7 +18,7 @@ function PlanCard({ plan, modifyPlanList }) {
       </div>
       <div className="plan-hours plan-info">
         <h3>Hours (opening - closing):</h3>
-        <div>{plan.openingHour + " / " + plan.closingHour}</div>
+        <div>{plan.openingHour + "h - " + plan.closingHour + "h"}</div>
       </div>
       <div className="plan-phone plan-info">
         <h3>Closed: </h3>
@@ -58,8 +58,8 @@ function PlanCard({ plan, modifyPlanList }) {
       </div>
       <div className="plan-price plan-info">
         <h3>Price: </h3>
-        <div>Adults: {plan.priceAdult}</div>
-        <div>Children: {plan.priceChildren}</div>
+        <div>Adults: {plan.priceAdult + plan.currency}</div>
+        <div>Children: {plan.priceChildren + plan.currency}</div>
       </div>
       <div className="plan-discount plan-info">
         <h3>Discount: </h3>

@@ -4,26 +4,7 @@ import * as api from "../../../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-function RestorationCard({ restoration, modifyRestorationList }) {
-  if (
-    !restoration.web.startsWith("https://") &&
-    !restoration.web.startsWith("http://") &&
-    restoration.web !== ""
-  ) {
-    restoration.web = "https://" + restoration.web;
-  }
-
-  const deleteRestoration = async (restorationId) => {
-    const { success, error } = await api.deleteRestoration(restorationId);
-    if (success) {
-      modifyRestorationList((prevList) =>
-        prevList.filter((t) => t._id !== restorationId)
-      );
-    } else {
-      setMessage(error);
-    }
-  };
-
+function RestorationCard({ restoration }) {
   return (
     <div className="restoration-card">
       <h1>Restoration card</h1>
@@ -31,13 +12,13 @@ function RestorationCard({ restoration, modifyRestorationList }) {
         <h3>Name: </h3>
         <div>{restoration.name}</div>
   </div>*/}
-      <div className="restoration-kindOfFood restoration-info">
-        <h3>Kind of Food: </h3>
-        <div>{restoration.kindOfFood}</div>
-      </div>
       <div className="restoration-description restoration-info">
         <h3>Description: </h3>
         <div>{restoration.description}</div>
+      </div>
+      <div className="restoration-kindOfFood restoration-info">
+        <h3>Kind of Food: </h3>
+        <div>{restoration.kindOfFood}</div>
       </div>
       <div className="restoration-location restoration-info">
         <h3>Location: </h3>
@@ -45,14 +26,32 @@ function RestorationCard({ restoration, modifyRestorationList }) {
       </div>
       <div className="restoration-price restoration-info">
         <h3>Price (min - max):</h3>
-        <div>{restoration.minPrice + " - " + restoration.maxPrice}</div>
+        <div>
+          {restoration.minPrice +
+            " - " +
+            restoration.maxPrice +
+            " " +
+            restoration.currency}
+        </div>
       </div>
       <div className="restoration-web restoration-info">
         <h3>Web page: </h3>
         <div>
-          <a href={restoration.web} target="_blank">
-            {restoration.web}
-          </a>
+          {restoration !== "" ? (
+            !restoration.web.startsWith("https://") &&
+            !restoration.web.startsWith("http://") &&
+            restoration.web !== null ? (
+              <a href={"https://" + restoration.web} target="_blank">
+                {"https://" + restoration.web}
+              </a>
+            ) : (
+              <a href={restoration.web} target="_blank">
+                {restoration.web}
+              </a>
+            )
+          ) : (
+            <p></p>
+          )}
         </div>
       </div>
       <div className="restoration-phone restoration-info">
@@ -67,14 +66,6 @@ function RestorationCard({ restoration, modifyRestorationList }) {
         <h3>Notation: </h3>
         <div>{restoration.notation}</div>
 </div>*/}
-      <div
-        className="delete-restoration"
-        onClick={() => {
-          deleteRestoration(restoration._id);
-        }}
-      >
-        <FontAwesomeIcon icon={faTrashCan} /> DELETE RESTORATION
-      </div>
     </div>
   );
 }
