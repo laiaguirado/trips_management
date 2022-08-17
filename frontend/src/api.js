@@ -22,6 +22,9 @@ const apiCall = async (method, path, body, headers, isMultipartForm) => {
     const json = await response.json();
     if (isSuccess(response.status)) {
       return { success: true, result: json };
+    } else if (response.status === 401) {
+      localStorage.setItem("token", null);
+      return { success: false, error: json.error }
     } else {
       return { success: false, error: json.error };
     }
@@ -65,6 +68,7 @@ export const addAccommodation = (tripId, newAccommodationData) => authApiCall("P
 export const deleteAccommodation = (accommodationId) => authApiCall("DELETE", `/accommodation/${accommodationId}`);
 
 export const getTransportationList = (tripId) => authApiCall("GET", `/travel/${tripId}/transportation`);
+export const getTransportation = (transportationId) => authApiCall("GET", `/transportation/${transportationId}`);
 export const addTransportation = (tripId, newTransportationData) => authApiCall("POST", `/travel/${tripId}/transportation`, newTransportationData);
 export const deleteTransportation = (transportationId) => authApiCall("DELETE", `/transportation/${transportationId}`);
 

@@ -4,26 +4,7 @@ import * as api from "../../../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-function TransportationCard({ transportation, modifyTransportationList }) {
-  if (
-    !transportation.web.startsWith("https://") &&
-    !transportation.web.startsWith("http://") &&
-    transportation.web !== ""
-  ) {
-    transportation.web = "https://" + transportation.web;
-  }
-
-  const deleteTransportation = async (transportationId) => {
-    const { success, error } = await api.deleteTransportation(transportationId);
-    if (success) {
-      modifyTransportationList((prevList) =>
-        prevList.filter((t) => t._id !== transportationId)
-      );
-    } else {
-      setMessage(error);
-    }
-  };
-
+function TransportationCard({ transportation }) {
   return (
     <div className="transportation-card">
       <h1>Transportation card</h1>
@@ -49,37 +30,56 @@ function TransportationCard({ transportation, modifyTransportationList }) {
       </div>
       <div className="transportation-dates transportation-info">
         <h3>Departure - Arrival:</h3>
-        <div>
-          {transportation.departure.substring(
-            0,
-            transportation.departure.length - 0
-          ) +
-            " / " +
-            transportation.arrival.substring(
+        {transportation !== "" ? (
+          <div>
+            {transportation.departure.substring(
               0,
-              transportation.arrival.length - 0
-            )}
-        </div>
+              transportation.departure.length - 14
+            ) +
+              "   " +
+              transportation.departure.substring(
+                11,
+                transportation.departure.length - 8
+              ) +
+              "h / " +
+              transportation.arrival.substring(
+                0,
+                transportation.arrival.length - 14
+              ) +
+              "   " +
+              transportation.arrival.substring(
+                11,
+                transportation.arrival.length - 8
+              )+
+              "h" }
+          </div>
+        ) : (
+          <p></p>
+        )}
       </div>
       <div className="transportation-web transportation-info">
         <h3>Web page: </h3>
         <div>
-          <a href={transportation.web} target="_blank">
-            {transportation.web}
-          </a>
+          {transportation !== "" ? (
+            !transportation.web.startsWith("https://") &&
+            !transportation.web.startsWith("http://") &&
+            transportation.web !== null ? (
+              <a href={"https://" + transportation.web} target="_blank">
+                {"https://" + transportation.web}
+              </a>
+            ) : (
+              <a href={transportation.web} target="_blank">
+                {transportation.web}
+              </a>
+            )
+          ) : (
+            <p></p>
+          )}
         </div>
       </div>
       <div className="transportation-notation transportation-info">
         <h3>Notation: </h3>
         <div>{transportation.notation}</div>
-      </div>
-      <div
-        className="delete-transportation"
-        onClick={() => {
-          deleteTransportation(transportation._id);
-        }}
-      >
-        <FontAwesomeIcon icon={faTrashCan} /> DELETE TRANSPORTATION
       </div>
     </div>
   );

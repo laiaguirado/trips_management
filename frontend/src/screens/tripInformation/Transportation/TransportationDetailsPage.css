@@ -1,0 +1,14 @@
+.transportation-details-page .delete-transportation {
+  background-color: #ad3d25;
+  color: #ffffff;
+  border: 0px;
+  border-radius: 1.5rem;
+  margin: 1rem;
+  padding: 1rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.transportation-details-page .delete-transportation:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}

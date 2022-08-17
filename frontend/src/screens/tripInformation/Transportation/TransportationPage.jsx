@@ -13,6 +13,7 @@ function TransportationPage() {
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
+  const navigate = useNavigate();
 
   const loadTransportationList = async () => {
     const {
@@ -78,26 +79,46 @@ function TransportationPage() {
   return (
     <div className="transportation-page">
       <Bar mode="login" />
-      <div className="flex-container">
-        <div className="return-icon" onClick={() => window.history.go(-1)}>
+      <div className="transportation-info-container">
+        <div
+          className="return-icon"
+          onClick={() => navigate(`/trip/${tripId}`, { replace: false })}
+        >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
+        <button onClick={() => editPage()}>Edit</button>
         <div>{message}</div>
         <div>
-          <h1>TRANSPORTATIONS</h1>
+          <h1>TRANSPORTATION</h1>
           <div>{addTransportationForm()}</div>
           <div className="transportation-list">
             {transportationList.map((transportation) => (
-              <TransportationCard
+              <div
+                className="transportation"
                 key={transportation._id}
-                transportation={transportation}
-                modifyTransportationList={setTransportationList}
-              />
+                onClick={() =>
+                  navigate(
+                    `/trip/${tripId}/transportation/${transportation._id}`,
+                    {
+                      replace: false,
+                    }
+                  )
+                }
+              >
+                <div className="transportation-name">
+                  <h3>{transportation.name}</h3>
+                </div>
+                <div className="transportation-location">
+                  <h4>Origin / Destination:</h4>
+                  <div>
+                    {transportation.origin + " / " + transportation.destination}
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </div>
-      <button onClick={() => editPage()}>Edit</button>
     </div>
   );
 }
