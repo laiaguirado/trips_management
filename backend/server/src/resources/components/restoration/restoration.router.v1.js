@@ -3,6 +3,8 @@ const { route } = require("express/lib/application");
 const express = require("express");
 const { catchErrors, TripManagementApiError } = require("../../../errors");
 const { needsAuthToken } = require("../../users/auth/auth.middleware");
+const { runTransaction } = require("../../../helper");
+
 const RESOURCETYPE = "Restoration";
 
 const Restoration = require("./restoration.service");
@@ -15,16 +17,14 @@ const create = async (req, res) => {
   const { idTravel } = req.paramsParentRouter;
   data.resourceType = RESOURCETYPE;
 
-  const restoration = await Restoration.createOne(data, _id, idTravel);
+  const restoration = await runTransaction(async () => {
+    const restorationCreated = await Restoration.createOne(data, _id, idTravel);
 
-  const travel = await Travel.findTravel(idTravel);
-  const user = await User.findByIdAllInfo(_id);
-  travel.restaurants.push(restoration);
-  await travel.save();
-
-  user.restaurants.push(restoration);  
-  await user.save();
-
+    const travel = await Travel.findTravel(idTravel);
+    travel.restaurants.push(restorationCreated);
+    await travel.save();
+    return restorationCreated;
+  });
   res.status(201).json(restoration);
 };
 

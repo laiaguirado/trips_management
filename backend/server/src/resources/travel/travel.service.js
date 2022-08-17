@@ -59,7 +59,12 @@ const updateTravel = async ({
 };
 
 const deleteTravel = async (_id) => {
-  const deleted = await Travel.findByIdAndDelete({ _id }).lean().exec();
+  const deleted = await Travel.findOneAndDelete(
+    { _id },
+    { runValidators: true }
+  )
+    .lean()
+    .exec();
   if (deleted === null) {
     errMalformed(`Travel with '${_id}' not found`);
   }

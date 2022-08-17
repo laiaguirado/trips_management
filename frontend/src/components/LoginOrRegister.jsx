@@ -44,9 +44,10 @@ const LoginOrRegister = () => {
   function inputUsername(onChange) {
     if (mode === "register") {
       return (
-        <div>
-          <FontAwesomeIcon icon={faUser} />
+        <div className="form-data">
+          <FontAwesomeIcon icon={faUser} className="icon" />
           <input
+            className="input"
             type="text"
             placeholder="User name"
             value={userName}
@@ -69,21 +70,23 @@ const LoginOrRegister = () => {
   };
 
   const title = mode === "login" ? "Login" : "Register";
+  console.log(title);
   const formButton = mode === "login" ? "Login" : "Create New User";
   const linkText = mode === "login" ? "Register" : "Login";
 
   return (
-    <div className="login-or-register">
-      <p>{message}</p>
+    <div className="login-or-register form-container">
+      <p className="error">{message}</p>
       <form className="login" onSubmit={submit}>
-        <h1>{title}</h1>
-        <label>
+        <h1 className="title">{title}</h1>
+        <label className="label">
           {inputUsername((event) => setUserName(event.target.value))}
         </label>
-        <label>
-          <div>
-            <FontAwesomeIcon icon={faEnvelope} />
+        <label className="label">
+          <div className="form-data">
+            <FontAwesomeIcon icon={faEnvelope} className="icon" />
             <input
+              className="input"
               type="text"
               placeholder="Email"
               value={email}
@@ -91,10 +94,11 @@ const LoginOrRegister = () => {
             />
           </div>
         </label>
-        <label>
-          <div>
-            <FontAwesomeIcon icon={faLock} />
+        <label className="label">
+          <div className="form-data">
+            <FontAwesomeIcon icon={faLock} className="icon" />
             <input
+              className="input"
               type="password"
               placeholder="Password"
               value={password}
@@ -102,8 +106,12 @@ const LoginOrRegister = () => {
             />
           </div>
         </label>
-        <input className="mode" type="submit" value={formButton} />
-        <a href="#" className="mode" onClick={toggleMode}>
+        <input
+          className="submit-button form-data"
+          type="submit"
+          value={formButton}
+        />
+        <a href="#" className="change-mode" onClick={toggleMode}>
           {linkText}
         </a>
       </form>

@@ -6,7 +6,8 @@ import MainPage from "./screens/MainPage";
 
 function App() {
   const { token } = useContext(ModelContext);
-  if (token === null || token === undefined) {
+
+  if (token === null) {
     return <LoginOrRegisterPage />;
   } else {
     return <MainPage />;

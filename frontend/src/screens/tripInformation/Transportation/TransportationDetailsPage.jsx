@@ -1,39 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./AccommodationDetailsPage.css";
+import "./TransportationDetailsPage.css";
 import * as api from "../../../api";
 import Bar from "../../../components/Bar";
 import CommentsCard from "../../../components/comment/CommentsCard";
-import AccommodationCard from "../../../components/tripInformation/Accommodation/AccommodationCard";
+import TransportationCard from "../../../components/tripInformation/Transportation/TransportationCard";
 import DeleteCard from "../../../components/DeleteCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
-function AccommodationDetailsPage() {
-  const [accommodation, setAccommodation] = useState("");
+function TransportationDetailsPage() {
+  const [transportation, setTransportation] = useState("");
   const [deleting, setDeleting] = useState(false);
   const [message, setMessage] = useState(null);
-  const { tripId, accommodationId } = useParams();
+  const { tripId, transportationId } = useParams();
   const navigate = useNavigate();
 
-  const loadAccommodation = async () => {
+  const loadTransportation = async () => {
     const {
       success,
-      result: accommodation,
+      result: transportation,
       error,
-    } = await api.getAccommodation(accommodationId);
+    } = await api.getTransportation(transportationId);
     if (success) {
-      setAccommodation(accommodation);
+      setTransportation(transportation);
       setMessage(null);
     } else {
       setMessage(error);
     }
   };
 
-  const deleteAccommodation = async (accommodationId) => {
-    const { success, error } = await api.deleteAccommodation(accommodationId);
+  const deleteTransportation = async (transportationId) => {
+    const { success, error } = await api.deleteTransportation(transportationId);
     if (success) {
-      navigate(`/trip/${tripId}/accommodation`, { replace: false });
+      navigate(`/trip/${tripId}/transportation`, { replace: false });
     } else {
       setMessage(error);
     }
@@ -43,47 +43,47 @@ function AccommodationDetailsPage() {
     if (deleting === false) {
       return (
         <div
-          className="delete-accommodation"
+          className="delete-transportation"
           onClick={() => {
             setDeleting(true);
           }}
         >
-          <FontAwesomeIcon icon={faTrashCan} /> DELETE ACCOMMODATION
+          <FontAwesomeIcon icon={faTrashCan} /> DELETE TRANSPORTATION
         </div>
       );
     } else {
       return (
         <DeleteCard
-          onDelete={() => deleteAccommodation(accommodationId)}
+          onDelete={() => deleteTransportation(transportationId)}
           deleting={() => setDeleting(false)}
-          deleteType={"Accommodation"}
+          deleteType={"Transportation"}
         />
       );
     }
   }
 
   useEffect(() => {
-    loadAccommodation();
-  }, [accommodationId]);
+    loadTransportation();
+  }, [transportationId]);
 
   return (
-    <div className="accommodation-details-page">
+    <div className="transportation-details-page">
       <Bar mode="login" />
       <div className="flex-container">
         <div className="return-icon" onClick={() => window.history.go(-1)}>
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
         <div>{message}</div>
-        <AccommodationCard accommodation={accommodation} />
+        <TransportationCard transportation={transportation} />
         <div>{deleteButton()}</div>
         <CommentsCard
           tripId={tripId}
-          componentId={accommodationId}
-          component="accommodation"
+          componentId={transportationId}
+          component="transportation"
         />
       </div>
     </div>
   );
 }
 
-export default AccommodationDetailsPage;
+export default TransportationDetailsPage;

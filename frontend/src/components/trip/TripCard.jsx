@@ -4,16 +4,18 @@ import "./TripCard.css";
 function TripCard({ trip, onClick }) {
   return (
     <div className="trip-card" onClick={onClick}>
-      <h3>{trip.name}</h3>
-      <h4>{trip.location}</h4>
-      {trip.image !== undefined ? (
-        <img
-          src={"../../../src/assets/upload" + trip.image.name}
-          alt="trip-image"
-        />
-      ) : (
-        <p></p>
-      )}
+      <div className="gradient">
+        {trip.image !== undefined ? (
+          <img
+            className="image"
+            src={"http://localhost:8080/upload" + trip.image.name}
+            alt="trip-image"
+          />
+        ) : (
+          <p></p>
+        )}
+      </div>
+      <h3 className="title">{trip.name}</h3>
     </div>
   );
 }

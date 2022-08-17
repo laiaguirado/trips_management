@@ -141,8 +141,8 @@ const getCommentsByTravAndComp = async (req, res) => {
 
 const router = express.Router();
 
-router.post("/travel/:travelId/accomodation/:idComp", needsAuthToken, catchErrors(createAcom));
-router.post("/travel/:travelId/restaurant/:idComp", needsAuthToken, catchErrors(createRest));
+router.post("/travel/:travelId/accommodation/:idComp", needsAuthToken, catchErrors(createAcom));
+router.post("/travel/:travelId/restoration/:idComp", needsAuthToken, catchErrors(createRest));
 router.post("/travel/:travelId/transportation/:idComp", needsAuthToken, catchErrors(createTransp));
 router.post("/travel/:travelId/plan/:idComp", needsAuthToken, catchErrors(createPlan));
 

@@ -1,25 +1,62 @@
-.top-bar {
+.nav-bar {
   background-color: #2d5a74;
   color: white;
-  position: absolute;
-  height: 5rem;
+  position: fixed;
+  height: 6vw;
   width: 100vw;
   left: 0px;
   top: 0px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  z-index: 100;
+  min-height: 50px;
+  min-width: 525px;
 }
 
-.top-bar .top-info {
-  height: 2rem;
-  margin: 1rem;
+.nav-bar .nav-bar-title {
+  font-size: 1px;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5rem;
+}
+
+.nav-bar .nav-logo {
+  height: 2rem;
+  width: auto;
+  margin-left: 3rem;
+}
+
+.nav-bar .nav-title {
+  font-size: 2rem;
+  font-family: Allerta;
+  font-weight: 100;
+}
+
+.nav-bar .nav-info {
+  margin-right: 3rem;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0rem 0.5rem;
+  gap: 1rem;
+  font-size: 0.75rem;
 }
 
-.top-bar .logout-button:hover {
+.nav-bar .nav-username .icon {
+  margin-right: 0.5rem;
+}
+
+.nav-bar .nav-logout .icon {
+  margin-right: 0.25rem;
+}
+
+.nav-bar .nav-logout {
+  padding: 0.5rem;
+}
+
+.nav-bar .nav-logout:hover {
   cursor: pointer;
   background-color: #ffffff;
   color: #2d5a74;

@@ -1,26 +1,63 @@
-.add-trip-card{
-    border-radius: .5rem;
-    margin: 1rem;
-    padding:1rem;
-    transition: all 0.2s ease-in-out;
-    background-color: #FFFFFF;
+.add-trip-card {
+  width: 25rem;
+  position: absolute;
+  z-index: 90;
 }
 
-.add-trip-card .return-icon{
-    cursor: pointer;
-    color:#937B5F;
-    width: 2.5em;
-    height: 3rem;
-    border-radius: .5rem;
+.add-trip-card .background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(5px);
 }
 
-.add-trip-card .return-icon:hover{
-    cursor: pointer;
-    color: #FFFFFF;
-    background-color: #B7CBE7;
-    
+.popup {
+  width: 100vw;
+  display: flex;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  margin-left: -8vw;
+}
+.add-trip-card .form-container {
+  margin-top: 0;
+  margin-bottom: 5vw;
 }
 
-.add-trip-card .form-data{
-    color:#937B5F;
+.return-icon {
+  cursor: pointer;
+  color: #937b5f;
+  margin: 1rem;
+  width: 2.5em;
+  height: 3rem;
+  border-radius: 0.5rem;
+  position: absolute;
+}
+
+.return-icon:hover {
+  cursor: pointer;
+  background-color: #2d5a74;
+  color: white;
+}
+
+.form-container .date {
+  width: auto;
+  color: #937b5f;
+}
+
+.form-container .description {
+  height: auto;
+  width: 100%;
+  font-family: "Open Sans";
+}
+
+input[type="file"]::file-selector-button {
+  background-color: transparent;
+  border: 0;
+  color: #937b5f;
+  font-family: "Open Sans";
 }

@@ -7,36 +7,31 @@ const { needsAuthToken } = require("../../users/auth/auth.middleware");
 const Accommodation = require("./accommodation.service");
 const Travel = require("../../travel/travel.service");
 const User = require("../../users/user.service");
+const { runTransaction } = require("../../../helper");
 
 const create = async (req, res) => {
   const accommData = req.body;
   const { email, _id, username } = req.userInfo;
-  const { idTravel } = req.params;
+  const { idTravel } = req.paramsParentRouter;
 
-  const accommodation = await Accommodation.createAccommodation(
-    accommData,
-    idTravel,
-    _id
-  );
+  const accommodation = await runTransaction(async () => {
+    const accommodationCreated = await Accommodation.createAccommodation(accommData, idTravel, _id);
 
-  const travel = await Travel.findTravel(idTravel);
+    const travel = await Travel.findTravel(idTravel);
 
-  const user = await User.findById(_id);
-
-  travel.accommodations.push(accommodation);
-  await travel.save();
-
-  user.accommodations.push(accommodation);
-  await user.save();
-
+    travel.accommodations.push(accommodationCreated);
+    await travel.save();
+    return accommodationCreated;
+  });
   res.status(201).json(accommodation);
 };
+
 const geAllAccommodations = async (req, res) => {
   res.status(200).json(await Accommodation.findAll());
 };
 
 const getAccommodationByTravel = async (req, res) => {
-  const { idTravel } = req.params;
+  const { idTravel } = req.paramsParentRouter;
   res.status(200).json(await Accommodation.findByTravelId(idTravel));
 };
 
@@ -51,35 +46,22 @@ const deleteAccommodation = async (req, res) => {
 };
 
 const updateAccomm = async (req, res) => {
-  const { web, description, location, startDate, endDate, phone, email } =
-    req.body;
+  const data = req.body;
   const { _id } = req.params;
 
-  res.status(200).json(
-    await Accommodation.updateAccomodation({
-      _id,
-      web,
-      description,
-      location,
-      startDate,
-      endDate,
-      phone,
-      email,
-    })
-  );
+  res.status(200).json(await Accommodation.updateAccomodation(_id, data));
 };
+
+const routerAccommodationByTravel = express.Router();
+const routerAccommodationByAccommodation = express.Router();
 
 const router = express.Router();
 
-router.post("/:idTravel", needsAuthToken, catchErrors(create));
-router.get("/", needsAuthToken, catchErrors(geAllAccommodations));
-router.get(
-  "/travel/:idTravel",
-  needsAuthToken,
-  catchErrors(getAccommodationByTravel)
-);
-router.get("/:id", needsAuthToken, catchErrors(getAccommodationById));
-router.delete("/:_id", needsAuthToken, catchErrors(deleteAccommodation));
-router.put("/:_id", needsAuthToken, catchErrors(updateAccomm));
+routerAccommodationByTravel.post("/", needsAuthToken, catchErrors(create));
+routerAccommodationByAccommodation.get("/", needsAuthToken, catchErrors(geAllAccommodations));
+routerAccommodationByTravel.get("/", needsAuthToken, catchErrors(getAccommodationByTravel));
+routerAccommodationByAccommodation.get("/:id", needsAuthToken, catchErrors(getAccommodationById));
+routerAccommodationByAccommodation.delete("/:_id", needsAuthToken, catchErrors(deleteAccommodation));
+routerAccommodationByAccommodation.put("/:_id", needsAuthToken, catchErrors(updateAccomm));
 
-module.exports = router;
+module.exports = { routerAccommodationByTravel, routerAccommodationByAccommodation };

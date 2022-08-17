@@ -13,6 +13,7 @@ function RestorationPage() {
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
+  const navigate = useNavigate();
 
   const loadRestorationList = async () => {
     const {
@@ -72,26 +73,41 @@ function RestorationPage() {
   return (
     <div className="restoration-page">
       <Bar mode="login" />
-      <div className="flex-container">
-        <div className="return-icon" onClick={() => window.history.go(-1)}>
+      <div className="restoration-info-container">
+        <div
+          className="return-icon"
+          onClick={() => navigate(`/trip/${tripId}`, { replace: false })}
+        >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
+        <button onClick={() => editPage()}>Edit</button>
         <div>{message}</div>
         <div>
-          <h1>RESTORATIONS</h1>
+          <h1>RESTORATION</h1>
           <div>{addRestorationForm()}</div>
           <div className="restoration-list">
             {restorationList.map((restoration) => (
-              <RestorationCard
+              <div
+                className="restoration"
                 key={restoration._id}
-                restoration={restoration}
-                modifyRestorationList={setRestorationList}
-              />
+                onClick={() =>
+                  navigate(`/trip/${tripId}/restoration/${restoration._id}`, {
+                    replace: false,
+                  })
+                }
+              >
+                <div className="restoration-name">
+                  <h3>{restoration.kindOfFood}</h3>
+                </div>
+                <div className="restoration-location">
+                  <h4>Location:</h4>
+                  <div>{restoration.location}</div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </div>
-      <button onClick={() => editPage()}>Edit</button>
     </div>
   );
 }

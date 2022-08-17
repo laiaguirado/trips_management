@@ -1,7 +1,76 @@
-.login-or-register {
-    background: #FFFFFF;
-    width: 20em;
-    height: 25em;
-    border-radius: 20px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+.form-container {
+  margin-top: 5vw;
+  background: #ffffff;
+  width: 20rem;
+  height: auto;
+  border-radius: 1rem;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  padding: 1rem;
+  color: #937b5f;
+}
+
+::placeholder {
+  color: #937b5f;
+}
+
+.error {
+  color: #ad3d25;
+}
+
+.form-container .title {
+  font-size: 2.5rem;
+  font-family: Allerta;
+  font-weight: 100;
+  color: black;
+}
+
+.form-container label {
+  width: 100%;
+}
+.form-container .form-data {
+  background-color: #efeee1;
+  padding: 0.6rem;
+  width: 80%;
+  display: flex;
+  margin: auto;
+  border-radius: 1.2rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.form-container .icon {
+  margin: 0 0.5rem;
+  margin-top: 0.1rem;
+}
+
+.form-container .input {
+  background-color: transparent;
+  width: 80%;
+  border: none;
+  outline: none;
+  color: #937b5f;
+}
+
+.form-container .submit-button {
+  background-color: #b7cbe7;
+  border: none;
+  width: 85%;
+  text-align: center;
+  display: block;
+  font-weight: 700;
+}
+
+.form-container .submit-button:hover {
+  background-color: #2d5a74;
+  color: white;
+  cursor: pointer;
+}
+
+.login-or-register .change-mode {
+  color: black;
+  text-decoration: underline;
+}
+
+.login-or-register .change-mode:hover {
+  color: #2d5a74;
 }

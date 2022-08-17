@@ -13,6 +13,7 @@ function PlansPage() {
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
+  const navigate = useNavigate();
 
   const loadPlanList = async () => {
     const { success, result: planList, error } = await api.getPlanList(tripId);
@@ -68,26 +69,41 @@ function PlansPage() {
   return (
     <div className="plan-page">
       <Bar mode="login" />
-      <div className="flex-container">
-        <div className="return-icon" onClick={() => window.history.go(-1)}>
+      <div className="plan-info-container">
+        <div
+          className="return-icon"
+          onClick={() => navigate(`/trip/${tripId}`, { replace: false })}
+        >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
+        <button onClick={() => editPage()}>Edit</button>
         <div>{message}</div>
         <div>
           <h1>PLANS</h1>
           <div>{addPlanForm()}</div>
           <div className="plan-list">
             {planList.map((plan) => (
-              <PlanCard
+              <div
+                className="plan"
                 key={plan._id}
-                plan={plan}
-                modifyPlanList={setPlanList}
-              />
+                onClick={() =>
+                  navigate(`/trip/${tripId}/plans/${plan._id}`, {
+                    replace: false,
+                  })
+                }
+              >
+                <div className="plan-name">
+                  <h3>{plan.name}</h3>
+                </div>
+                <div className="plan-location">
+                  <h4>Location:</h4>
+                  <div>{plan.location}</div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </div>
-      <button onClick={() => editPage()}>Edit</button>
     </div>
   );
 }

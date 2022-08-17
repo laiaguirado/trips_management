@@ -11,10 +11,23 @@ import PlansPage from "./screens/tripInformation/Plans/PlansPage";
 import RestorationPage from "./screens/tripInformation/Restoration/RestorationPage";
 import ProtectedRoute from "./screens/ProtectedRoute";
 import AccommodationDetailsPage from "./screens/tripInformation/Accommodation/AccommodationDetailsPage";
+import TransportationDetailsPage from "./screens/tripInformation/Transportation/TransportationDetailsPage";
+import PlansDetailsPage from "./screens/tripInformation/Plans/PlansDetailsPage";
+import RestorationDetailsPage from "./screens/tripInformation/Restoration/RestorationDetailsPage";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ModelProvider>
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="//fonts.googleapis.com/css?family=Allerta"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="//fonts.googleapis.com/css?family=Open+Sans"
+      ></link>
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<App />}></Route>
@@ -55,6 +68,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             }
           ></Route>
           <Route
+            path="/trip/:tripId/transportation/:transportationId"
+            exact
+            element={
+              <ProtectedRoute>
+                <TransportationDetailsPage />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
             path="/trip/:tripId/plans"
             exact
             element={
@@ -64,11 +86,29 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             }
           ></Route>
           <Route
+            path="/trip/:tripId/plans/:planId"
+            exact
+            element={
+              <ProtectedRoute>
+                <PlansDetailsPage />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
             path="/trip/:tripId/restoration"
             exact
             element={
               <ProtectedRoute>
                 <RestorationPage />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/trip/:tripId/restoration/:restorationId"
+            exact
+            element={
+              <ProtectedRoute>
+                <RestorationDetailsPage />
               </ProtectedRoute>
             }
           ></Route>
