@@ -1,4 +1,5 @@
 const Comment = require("./comments.model");
+const Travel = require("../travel/travel.model")
 
 const createOne = async (text, compId, _id,idTravel) => {
   return await Comment.create({
@@ -15,6 +16,10 @@ const findAll = async () => {
 };
 
 const deleteComment = async (_id) => {
+  await Travel.findOneAndUpdate({ comments: _id }, {
+    $pull: { comments: { $in: _id }},
+}, {new:true});
+
   const deleted = await Comment.findByIdAndDelete({ _id }).lean().exec();
   if (deleted === null) {
     errMalformed(`Comment with ${id} not found`);

@@ -19,8 +19,6 @@ const findOneById = async (id) => {
 };
 
 const deleteAccom = async (_id) => {
-  console.log(await Travel.find({accommodations: _id }))
-
   await Travel.findOneAndUpdate({ accommodations: _id }, {
     $pull: { accommodations: { $in: _id }},
 }, {new:true});
