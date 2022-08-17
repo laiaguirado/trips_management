@@ -16,7 +16,6 @@
 }
 
 .trip-card .gradient {
-  /*background: linear-gradient(transparent, black);*/
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 1) 0%,
