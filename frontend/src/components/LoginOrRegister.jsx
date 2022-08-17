@@ -44,7 +44,7 @@ const LoginOrRegister = () => {
   function inputUsername(onChange) {
     if (mode === "register") {
       return (
-        <div className="box">
+        <div className="form-data">
           <FontAwesomeIcon icon={faUser} className="icon" />
           <input
             className="input"
@@ -70,11 +70,12 @@ const LoginOrRegister = () => {
   };
 
   const title = mode === "login" ? "Login" : "Register";
+  console.log(title);
   const formButton = mode === "login" ? "Login" : "Create New User";
   const linkText = mode === "login" ? "Register" : "Login";
 
   return (
-    <div className="login-or-register">
+    <div className="login-or-register form-container">
       <p className="error">{message}</p>
       <form className="login" onSubmit={submit}>
         <h1 className="title">{title}</h1>
@@ -82,7 +83,7 @@ const LoginOrRegister = () => {
           {inputUsername((event) => setUserName(event.target.value))}
         </label>
         <label className="label">
-          <div className="box">
+          <div className="form-data">
             <FontAwesomeIcon icon={faEnvelope} className="icon" />
             <input
               className="input"
@@ -94,7 +95,7 @@ const LoginOrRegister = () => {
           </div>
         </label>
         <label className="label">
-          <div className="box">
+          <div className="form-data">
             <FontAwesomeIcon icon={faLock} className="icon" />
             <input
               className="input"
@@ -105,7 +106,11 @@ const LoginOrRegister = () => {
             />
           </div>
         </label>
-        <input className="submit-button box" type="submit" value={formButton} />
+        <input
+          className="submit-button form-data"
+          type="submit"
+          value={formButton}
+        />
         <a href="#" className="change-mode" onClick={toggleMode}>
           {linkText}
         </a>

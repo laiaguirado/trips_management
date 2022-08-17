@@ -16,7 +16,6 @@ function AddTripCard({ onAdd, adding }) {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [imageFile, setImageFile] = useState("");
-  const [image, setImage] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -27,23 +26,24 @@ function AddTripCard({ onAdd, adding }) {
     formData.append("description", description);
     formData.append("location", location);
     formData.append("fileImage", imageFile);
-    formData.append("image", image);
     formData.append("startDate", startDate);
     formData.append("endDate", endDate);
     onAdd(formData);
   };
-
+  //todo error message
+  //todo mark required fields
   return (
-    <div className="add-trip-card">
+    <div className="add-trip-card form-container ">
       <div className="return-icon" onClick={adding}>
         <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
       </div>
-      <form className="addtrip" onSubmit={(e) => add(e)}>
-        <h1>New Trip</h1>
+      <form className="add-trip" onSubmit={(e) => add(e)}>
+        <h1 className="title">New Trip</h1>
         <label>
           <div className="form-data">
-            <FontAwesomeIcon icon={faCartFlatbedSuitcase} />
+            <FontAwesomeIcon icon={faCartFlatbedSuitcase} className="icon" />
             <input
+              className="input"
               type="text"
               placeholder="Trip Name"
               value={name}
@@ -53,19 +53,9 @@ function AddTripCard({ onAdd, adding }) {
         </label>
         <label>
           <div className="form-data">
-            <FontAwesomeIcon icon={faNoteSticky} />
+            <FontAwesomeIcon icon={faLocationDot} className="icon" />
             <input
-              type="text"
-              placeholder="Description"
-              value={description}
-              onChange={(event) => setDescription(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faLocationDot} />
-            <input
+              className="input"
               type="text"
               placeholder="Location"
               value={location}
@@ -75,50 +65,65 @@ function AddTripCard({ onAdd, adding }) {
         </label>
         <label>
           <div className="form-data">
-            <FontAwesomeIcon icon={faImage} />
+            <FontAwesomeIcon icon={faCalendar} className="icon" />
             <input
+              placeholder="Start Date"
+              className="input date"
               type="text"
-              placeholder="Image"
-              value={image}
-              onChange={(event) => setImage(event.target.value)}
+              value={startDate}
+              onFocus={(event) => (event.target.type = "date")}
+              onBlur={(event) => (event.target.type = "text")}
+              onChange={(event) => setStartDate(event.target.value)}
+              id="date"
             />
           </div>
         </label>
         <label>
           <div className="form-data">
-            <FontAwesomeIcon icon={faImage} />
+            <FontAwesomeIcon icon={faCalendar} className="icon" />
             <input
+              placeholder="End Date"
+              className="input date"
+              type="text"
+              value={endDate}
+              min={startDate}
+              onFocus={(event) => (event.target.type = "date")}
+              onBlur={(event) => (event.target.type = "text")}
+              onChange={(event) => setEndDate(event.target.value)}
+              id="date"
+            />
+          </div>
+        </label>
+        <label>
+          <div className="form-data">
+            <FontAwesomeIcon icon={faImage} className="icon" />
+            <input
+              className="input upload"
               type="file"
-              placeholder="ImageFile"
-              onChange={(event) => {
-                return setImageFile(event.target.files[0]);
+              onInput={(event) => {
+                setImageFile(event.target.files[0]);
               }}
             />
           </div>
         </label>
         <label>
           <div className="form-data">
-            <FontAwesomeIcon icon={faCalendar} />
-            <input
-              type="date"
-              placeholder="Start date"
-              value={startDate}
-              onChange={(event) => setStartDate(event.target.value)}
-            />
+            <FontAwesomeIcon icon={faNoteSticky} className="icon" />
+            <textarea
+              className="input description"
+              rows="5"
+              cols="30"
+              placeholder="Description"
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+            ></textarea>
           </div>
         </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faCalendar} />
-            <input
-              type="date"
-              placeholder="End Date"
-              value={endDate}
-              onChange={(event) => setEndDate(event.target.value)}
-            />
-          </div>
-        </label>
-        <input type="submit" value="Create New Trip" />
+        <input
+          className="submit-button form-data"
+          type="submit"
+          value="Create New Trip"
+        />
       </form>
     </div>
   );

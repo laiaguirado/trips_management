@@ -2,8 +2,8 @@
   border: 2px solid black;
   border-radius: 0.5rem;
   transition: all 0.2s ease-in-out;
-  width: 15vw;
-  height: 15vw;
+  width: 12vw;
+  height: 12vw;
   background-color: #f4f1e5;
   position: relative;
   text-align: center;
@@ -15,13 +15,20 @@
   transform: scale(1.1);
 }
 
-.gradient {
-  background: linear-gradient(transparent, black);
+.trip-card .gradient {
+  /*background: linear-gradient(transparent, black);*/
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 7%,
+    rgba(0, 0, 0, 0) 93%,
+    rgba(0, 0, 0, 0) 100%
+  );
   border-radius: 0.5rem;
   width: 15vw;
   height: 15vw;
 }
-.title {
+.trip-card .title {
   color: white;
   font-weight: 100;
   margin: 0;
@@ -29,10 +36,11 @@
   bottom: 0%;
   left: 50%;
   font-size: 12px;
-  transform: translate(-50%, -10%);
+  transform: translate(-50%, -20%);
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 
-.image {
+.trip-card .image {
   width: 100%;
   height: auto;
   min-height: 15vw;

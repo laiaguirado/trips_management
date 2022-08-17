@@ -56,6 +56,7 @@ function MainPage() {
     } else {
       return (
         <AddTripCard
+          className="new-trip-form"
           onAdd={addTrip}
           adding={() => {
             setAdding(false);

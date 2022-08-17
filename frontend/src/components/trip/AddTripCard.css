@@ -1,26 +1,37 @@
-.add-trip-card{
-    border-radius: .5rem;
-    margin: 1rem;
-    padding:1rem;
-    transition: all 0.2s ease-in-out;
-    background-color: #FFFFFF;
+.add-trip-card {
+  width: 25rem;
 }
 
-.add-trip-card .return-icon{
-    cursor: pointer;
-    color:#937B5F;
-    width: 2.5em;
-    height: 3rem;
-    border-radius: .5rem;
+.return-icon {
+  cursor: pointer;
+  color: #937b5f;
+  margin: 1rem;
+  width: 2.5em;
+  height: 3rem;
+  border-radius: 0.5rem;
+  position: absolute;
 }
 
-.add-trip-card .return-icon:hover{
-    cursor: pointer;
-    color: #FFFFFF;
-    background-color: #B7CBE7;
-    
+.return-icon:hover {
+  cursor: pointer;
+  background-color: #2d5a74;
+  color: white;
 }
 
-.add-trip-card .form-data{
-    color:#937B5F;
+.form-container .date {
+  width: auto;
+  color: #937b5f;
+}
+
+.form-container .description {
+  height: auto;
+  width: 100%;
+  font-family: "Open Sans";
+}
+
+input[type="file"]::file-selector-button {
+  background-color: transparent;
+  border: 0;
+  color: #937b5f;
+  font-family: "Open Sans";
 }

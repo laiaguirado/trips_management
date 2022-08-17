@@ -1,31 +1,26 @@
-.error {
-  color: #ad3d25;
-}
-
-.trips {
-  margin: 0;
+.main-page .trips {
+  margin: auto;
   display: flex;
   flex-flow: row wrap;
   align-content: space-between;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 2vw;
+}
+/*todo center gallery*/
+
+.main-page .new-trip {
 }
 
-.new-trip {
-  width: 15vw;
-  height: 15vw;
-}
-
-.new-trip-button {
+.main-page .new-trip-button {
   background-color: white;
   border-radius: 0.5rem;
-  width: 15vw;
-  height: 15vw;
+  width: 12vw;
+  height: 12vw;
   display: flex;
   transition: all 0.2s ease-in-out;
 }
 
-.new-trip-button .icon {
+.main-page .new-trip-button .icon {
   display: block;
   margin: auto;
   width: 30%;
@@ -33,7 +28,10 @@
   color: #937b5f;
 }
 
-.new-trip-button:hover {
+.main-page .new-trip-button:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+.main-page .new-trip-form {
 }
