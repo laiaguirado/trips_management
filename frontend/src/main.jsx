@@ -11,6 +11,7 @@ import PlansPage from "./screens/tripInformation/Plans/PlansPage";
 import RestorationPage from "./screens/tripInformation/Restoration/RestorationPage";
 import ProtectedRoute from "./screens/ProtectedRoute";
 import AccommodationDetailsPage from "./screens/tripInformation/Accommodation/AccommodationDetailsPage";
+import TransportationDetailsPage from "./screens/tripInformation/Transportation/TransportationDetailsPage";
 import PlansDetailsPage from "./screens/tripInformation/Plans/PlansDetailsPage";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -62,6 +63,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             element={
               <ProtectedRoute>
                 <TransportationPage />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/trip/:tripId/transportation/:transportationId"
+            exact
+            element={
+              <ProtectedRoute>
+                <TransportationDetailsPage />
               </ProtectedRoute>
             }
           ></Route>

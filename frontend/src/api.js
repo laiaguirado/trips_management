@@ -68,6 +68,7 @@ export const addAccommodation = (tripId, newAccommodationData) => authApiCall("P
 export const deleteAccommodation = (accommodationId) => authApiCall("DELETE", `/accommodation/${accommodationId}`);
 
 export const getTransportationList = (tripId) => authApiCall("GET", `/travel/${tripId}/transportation`);
+export const getTransportation = (transportationId) => authApiCall("GET", `/transportation/${transportationId}`);
 export const addTransportation = (tripId, newTransportationData) => authApiCall("POST", `/travel/${tripId}/transportation`, newTransportationData);
 export const deleteTransportation = (transportationId) => authApiCall("DELETE", `/transportation/${transportationId}`);
 
