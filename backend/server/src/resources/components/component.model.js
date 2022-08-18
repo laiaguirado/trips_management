@@ -11,8 +11,6 @@ const componentSchema = mongoose.Schema(
     },
     currency: {
       type: String,
-      required: true,
-      default: "€",
     },
     comments: [
       {

@@ -6,11 +6,16 @@ const { componentSchema } = require("../component.model");
 const { capitalize, getPrice, setPrice } = require("../../../helper");
 
 function getPriceChildrenWithCurrency() {
-  return `${this.priceChildren} ${this.currency}`;
+  const currency = this.currency ? this.currency : "";
+  const priceChildren = this.priceChildren === "0.00" ? "" : this.priceChildren;
+
+  return `${priceChildren} ${currency}`;
 }
 
 function getPriceAdultWithCurrency() {
-  return `${this.priceAdult} ${this.currency}`;
+  const currency = this.currency ? this.currency : "";
+  const priceAdult = this.priceAdult === "0.00" ? "" : this.priceAdult;
+  return `${priceAdult} ${currency}`;
 }
 
 const plansSchema = extendSchema(componentSchema, {
