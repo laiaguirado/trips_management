@@ -40,9 +40,7 @@ function PlanCard({ plan, modifyPlanList }) {
         <h3>Web page: </h3>
         <div>
           {plan !== "" ? (
-            !plan.web.startsWith("https://") &&
-            !plan.web.startsWith("http://") &&
-            plan.web !== null ? (
+            !plan.web.startsWith("https://") && !plan.web.startsWith("http://") && plan.web !== null ? (
               <a href={"https://" + plan.web} target="_blank">
                 {"https://" + plan.web}
               </a>
@@ -58,8 +56,8 @@ function PlanCard({ plan, modifyPlanList }) {
       </div>
       <div className="plan-price plan-info">
         <h3>Price: </h3>
-        <div>Adults: {plan.priceAdult}</div>
-        <div>Children: {plan.priceChildren}</div>
+        <div>Adults: {plan.priceAdultWithCurrency}</div>
+        <div>Children: {plan.priceChildrenWithCurrency}</div>
       </div>
       <div className="plan-discount plan-info">
         <h3>Discount: </h3>

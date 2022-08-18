@@ -6,11 +6,11 @@ const { componentSchema } = require("../component.model");
 const { capitalize, getPrice, setPrice } = require("../../../helper");
 
 function getPriceChildrenWithCurrency() {
-  return `${this.priceChildren} ${this.currencyPriceChildren}`;
+  return `${this.priceChildren} ${this.currency}`;
 }
 
 function getPriceAdultWithCurrency() {
-  return `${this.priceAdult} ${this.currencyPriceAdult}`;
+  return `${this.priceAdult} ${this.currency}`;
 }
 
 const plansSchema = extendSchema(componentSchema, {
@@ -23,7 +23,7 @@ const plansSchema = extendSchema(componentSchema, {
   },
   location: {
     type: String,
-    required: false,
+    required: [true, "{PATH} is required"],
     maxlength: [1000, "{PATH} is too long"],
   },
   openingHour: {
@@ -45,13 +45,13 @@ const plansSchema = extendSchema(componentSchema, {
   },
   phone: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
   },
   email: {
     type: String,
     uniqueCaseInsensitive: true,
-    required: true,
+    required: false,
     trim: true,
     lowercase: true,
     match: [/\S+@\S+\.\S+/, " '{VALUE}' is invalid"],
@@ -62,20 +62,10 @@ const plansSchema = extendSchema(componentSchema, {
     get: getPrice,
     set: setPrice,
   },
-  currencyPriceAdult: {
-    type: String,
-    required: true,
-    default: "€",
-  },
   priceChildren: {
     type: Number,
     get: getPrice,
     set: setPrice,
-  },
-  currencyPriceChildren: {
-    type: String,
-    required: true,
-    default: "€",
   },
   discount: {
     type: String, //TODO formato
