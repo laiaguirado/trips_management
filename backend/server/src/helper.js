@@ -38,11 +38,11 @@ const setPrice = (v) => {
   return v * 100;
 };
 
-function getPriceWithCurrency() {
-  const currency = this.currency !== null ? this.currency : "";
-  const price = this.price === "0.00" ? "" : this.price;
+function getPriceWithCurrency(price, currency) {
+  const currencyOut = currency ? currency : "";
+  const priceOut = price && price !== "0.00" ? price : "";
 
-  return `${price} ${currency}`;
+  return `${priceOut} ${currencyOut}`;
 }
 module.exports = {
   capitalize,

@@ -3,19 +3,14 @@ const mongooseLeanGetters = require("mongoose-lean-getters");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const extendSchema = require("mongoose-extend-schema");
 const { componentSchema } = require("../component.model");
-const { capitalize, getPrice, setPrice } = require("../../../helper");
+const { capitalize, getPrice, setPrice, getPriceWithCurrency } = require("../../../helper");
 
 function getPriceChildrenWithCurrency() {
-  const currency = this.currency ? this.currency : "";
-  const priceChildren = this.priceChildren === "0.00" ? "" : this.priceChildren;
-
-  return `${priceChildren} ${currency}`;
+  return getPriceWithCurrency(this.priceChildren, this.currency);
 }
 
 function getPriceAdultWithCurrency() {
-  const currency = this.currency ? this.currency : "";
-  const priceAdult = this.priceAdult === "0.00" ? "" : this.priceAdult;
-  return `${priceAdult} ${currency}`;
+  return getPriceWithCurrency(this.priceAdult, this.currency);
 }
 
 const plansSchema = extendSchema(componentSchema, {
@@ -88,9 +83,7 @@ plansSchema.index({ type: 1 });
 plansSchema.plugin(mongooseLeanGetters);
 plansSchema.plugin(mongooseLeanVirtuals);
 plansSchema.virtual("priceAdultWithCurrency").get(getPriceAdultWithCurrency);
-plansSchema
-  .virtual("priceChildrenWithCurrency")
-  .get(getPriceChildrenWithCurrency);
+plansSchema.virtual("priceChildrenWithCurrency").get(getPriceChildrenWithCurrency);
 
 const Plans = mongoose.model("plans", plansSchema);
 

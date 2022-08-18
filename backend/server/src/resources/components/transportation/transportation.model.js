@@ -10,6 +10,10 @@ const {
   getPriceWithCurrency,
 } = require("../../../helper");
 
+function getPricePlansWithCurrency() {
+  return getPriceWithCurrency(this.price, this.currency);
+}
+
 const transportationSchema = extendSchema(
   componentSchema,
   {
@@ -71,7 +75,7 @@ const transportationSchema = extendSchema(
 transportationSchema.index({ type: 1 });
 transportationSchema.plugin(mongooseLeanGetters);
 transportationSchema.plugin(mongooseLeanVirtuals);
-transportationSchema.virtual("priceWithCurrency").get(getPriceWithCurrency);
+transportationSchema.virtual("priceWithCurrency").get(getPricePlansWithCurrency);
 
 const Transportation = mongoose.model("transportation", transportationSchema);
 
