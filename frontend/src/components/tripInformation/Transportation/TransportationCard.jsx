@@ -32,26 +32,12 @@ function TransportationCard({ transportation }) {
         <h3>Departure - Arrival:</h3>
         {transportation !== "" ? (
           <div>
-            {transportation.departure.substring(
-              0,
-              transportation.departure.length - 14
-            ) +
-              "   " +
-              transportation.departure.substring(
-                11,
-                transportation.departure.length - 8
-              ) +
-              "h / " +
-              transportation.arrival.substring(
-                0,
-                transportation.arrival.length - 14
-              ) +
-              "   " +
-              transportation.arrival.substring(
-                11,
-                transportation.arrival.length - 8
-              )+
-              "h" }
+            {(transportation.departure != null
+              ? transportation.departure.substring(0, transportation.departure.length - 14) + "   " + transportation.departure.substring(11, transportation.departure.length - 8) + "h / "
+              : "") +
+              (transportation.arrival != null
+                ? transportation.arrival.substring(0, transportation.arrival.length - 14) + "   " + transportation.arrival.substring(11, transportation.arrival.length - 8) + "h"
+                : "")}
           </div>
         ) : (
           <p></p>
@@ -61,9 +47,7 @@ function TransportationCard({ transportation }) {
         <h3>Web page: </h3>
         <div>
           {transportation !== "" ? (
-            !transportation.web.startsWith("https://") &&
-            !transportation.web.startsWith("http://") &&
-            transportation.web !== null ? (
+            !transportation.web.startsWith("https://") && !transportation.web.startsWith("http://") && transportation.web !== null ? (
               <a href={"https://" + transportation.web} target="_blank">
                 {"https://" + transportation.web}
               </a>
