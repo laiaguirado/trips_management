@@ -6,19 +6,20 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import CommentsCard from "../../comment/CommentsCard";
 
 function AccommodationCard({ accommodation }) {
+  //todo mailto
   return (
     <div className="accommodation-card">
-      <h1>Accommodation card</h1>
-      <div className="accommodation-basic-info">
-        <div className="accommodation-location accommodation-info">
+      <h1 className="name">Accommodation</h1>
+      <div className="accommodation-info">
+        <div className="accommodation-location accommodation-detail">
           <h3>Location: </h3>
           <div>{accommodation.location}</div>
         </div>
-        <div className="accommodation-description accommodation-info">
+        <div className="accommodation-description accommodation-detail">
           <h3>Description: </h3>
           <div>{accommodation.description}</div>
         </div>
-        <div className="accommodation-dates accommodation-info">
+        <div className="accommodation-dates accommodation-detail">
           <h3>Dates:</h3>
           {accommodation !== "" ? (
             <div>
@@ -36,7 +37,7 @@ function AccommodationCard({ accommodation }) {
             <p></p>
           )}
         </div>
-        <div className="accommodation-web accommodation-info">
+        <div className="accommodation-web accommodation-detail">
           <h3>Web page: </h3>
           <div>
             {accommodation !== "" ? (
@@ -56,11 +57,11 @@ function AccommodationCard({ accommodation }) {
             )}
           </div>
         </div>
-        <div className="accommodation-phone accommodation-info">
+        <div className="accommodation-phone accommodation-detail">
           <h3>Phone number: </h3>
           <div>{accommodation.phone}</div>
         </div>
-        <div className="accommodation-email accommodation-info">
+        <div className="accommodation-email accommodation-detail">
           <h3>Email: </h3>
           <div>{accommodation.email}</div>
         </div>

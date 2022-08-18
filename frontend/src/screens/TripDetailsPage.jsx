@@ -121,6 +121,7 @@ function TripDetailsPage() {
   }, [tripId]);
   //todo edit page
   //todo put the delete button in the delete page
+  //todo empty fields
   return (
     <div>
       <Bar mode="login" />

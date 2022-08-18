@@ -6,12 +6,13 @@
   border-radius: 1rem;
 }
 
-.trip-details-page .page-return-icon {
+.page-return-icon {
   width: 2.5em;
   height: 3rem;
   border-radius: 0.5rem;
   position: absolute;
   left: 2vw;
+  color: #937b5f;
 }
 
 .edit-icon {
@@ -35,6 +36,7 @@
 
 .trip {
   display: flex;
+  gap: 20px;
 }
 
 .trip .trip-image {
