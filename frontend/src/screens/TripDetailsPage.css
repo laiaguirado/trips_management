@@ -130,10 +130,14 @@
   color: #937b5f;
 }
 
+.member p {
+  margin: 0;
+}
+
 .trip-details-page .trip-members .member .delete-icon {
   color: #ad3d25;
   padding: 0.25rem;
-  margin: 0.5rem;
+  margin: auto;
   border-radius: 0.2rem;
 }
 
