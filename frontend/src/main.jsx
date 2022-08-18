@@ -13,6 +13,7 @@ import ProtectedRoute from "./screens/ProtectedRoute";
 import AccommodationDetailsPage from "./screens/tripInformation/Accommodation/AccommodationDetailsPage";
 import TransportationDetailsPage from "./screens/tripInformation/Transportation/TransportationDetailsPage";
 import PlansDetailsPage from "./screens/tripInformation/Plans/PlansDetailsPage";
+import RestorationDetailsPage from "./screens/tripInformation/Restoration/RestorationDetailsPage";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -99,6 +100,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             element={
               <ProtectedRoute>
                 <RestorationPage />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/trip/:tripId/restoration/:restorationId"
+            exact
+            element={
+              <ProtectedRoute>
+                <RestorationDetailsPage />
               </ProtectedRoute>
             }
           ></Route>
