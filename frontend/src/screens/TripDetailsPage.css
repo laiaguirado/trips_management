@@ -6,7 +6,7 @@
   border-radius: 1rem;
 }
 
-.trip-details-page .return-icon {
+.trip-details-page .page-return-icon {
   width: 2.5em;
   height: 3rem;
   border-radius: 0.5rem;
@@ -71,7 +71,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-.trip-details-page .add-traveler:hover {
+.trip-details-page .add-traveler-button:hover {
   cursor: pointer;
   transform: scale(1.5);
 }

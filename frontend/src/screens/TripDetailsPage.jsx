@@ -27,6 +27,8 @@ function TripDetailsPage() {
   const { tripId } = useParams();
   const navigate = useNavigate();
 
+  document.body.style.overflow = "unset";
+
   const getTripData = async (tripId) => {
     const { success, result: trip, error } = await api.getTrip(tripId);
     if (success) {
@@ -124,7 +126,7 @@ function TripDetailsPage() {
       <Bar mode="login" />
       <div className="trip-details-page">
         <div
-          className="return-icon"
+          className="return-icon page-return-icon"
           onClick={() => navigate(`/`, { replace: false })}
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
