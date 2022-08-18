@@ -39,7 +39,10 @@ const setPrice = (v) => {
 };
 
 function getPriceWithCurrency() {
-  return `${this.price} ${this.currency}`;
+  const currency = this.currency !== null ? this.currency : "";
+  const price = this.price === "0.00" ? "" : this.price;
+
+  return `${price} ${currency}`;
 }
 module.exports = {
   capitalize,

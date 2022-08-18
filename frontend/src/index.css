@@ -21,6 +21,7 @@
   background-size: cover;
   background-attachment: fixed;
   font-family: "Open Sans";
+  min-width: 525px;
 }
 a {
   font-weight: 500;
