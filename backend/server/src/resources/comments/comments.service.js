@@ -12,7 +12,9 @@ const createOne = async (text, compId, _id,idTravel) => {
 };
 
 const findAll = async () => {
-  return await Comment.find().lean().exec();
+  return await Comment.find()
+  .populate({ path: "idUser", select: "email username" })
+  .lean().exec();
 };
 
 const deleteComment = async (_id) => {
@@ -39,4 +41,13 @@ const findByTravelAndComp = async (idTravel,idComponent) => {
   return await Comment.find({ idComponent: idComponent, idTravel:idTravel }).exec();
 };
 
-module.exports = { createOne, findAll, deleteComment, findByTravelId, findByCompId, findByTravelAndComp };
+const updateComm = async (_id, commentData) => {
+  const comentUpdated = await Comment.findOneAndUpdate({ _id }, commentData, { new: true }).lean().exec();
+
+  if (comentUpdated === null) {
+    errMalformed(`Comment not found`);
+  }
+  return comentUpdated;
+};
+
+module.exports = { createOne, findAll, deleteComment, findByTravelId, findByCompId, findByTravelAndComp, updateComm };
