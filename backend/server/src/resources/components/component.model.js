@@ -9,14 +9,6 @@ const componentSchema = mongoose.Schema(
       lowercase: true,
       immutable: true,
     },
-    idTravel: {
-      type: String,
-      required: true,
-    },
-    idUser: {
-      type: String,
-      required: true,
-    },
     currency: {
       type: String,
       required: true,
