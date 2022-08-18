@@ -1,4 +1,9 @@
 .accommodation-details-page {
+  width: auto;
+  padding: 3vw;
+  margin: 3vw;
+  background-color: #fbfaf6a4;
+  border-radius: 1rem;
 }
 
 .accommodation-details-page .delete-accommodation {

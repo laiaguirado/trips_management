@@ -139,6 +139,13 @@ const getCommentsByTravAndComp = async (req, res) => {
   res.status(200).json(await Comment.findByTravelAndComp(idTravel, idComp));
 }
 
+const updateComment= async (req, res) => {
+  const data = req.body;
+  const { _id } = req.params;
+
+  res.status(200).json(await Comment.updateComm(_id, data));
+};
+
 const router = express.Router();
 
 router.post("/travel/:travelId/accommodation/:idComp", needsAuthToken, catchErrors(createAcom));
@@ -146,6 +153,7 @@ router.post("/travel/:travelId/restoration/:idComp", needsAuthToken, catchErrors
 router.post("/travel/:travelId/transportation/:idComp", needsAuthToken, catchErrors(createTransp));
 router.post("/travel/:travelId/plan/:idComp", needsAuthToken, catchErrors(createPlan));
 
+router.put("/:_id", needsAuthToken, catchErrors(updateComment));
 router.get("/", needsAuthToken, catchErrors(getAll));
 router.delete("/:_id", needsAuthToken, catchErrors(deleteOne));
 router.get("/travel/:idTravel", needsAuthToken, catchErrors(getCommentsByTravel))
