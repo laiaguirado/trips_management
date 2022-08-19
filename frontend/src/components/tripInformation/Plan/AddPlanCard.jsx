@@ -28,6 +28,7 @@ function AddPlanCard({ onAdd, adding, tripId }) {
   const [web, setWeb] = useState("");
   const [priceAdult, setPriceAdult] = useState("");
   const [priceChildren, setPriceChildren] = useState("");
+  const [currency, setCurrency] = useState("");
   const [discount, setDiscount] = useState("");
   const [notation, setNotation] = useState("");
 
@@ -40,12 +41,13 @@ function AddPlanCard({ onAdd, adding, tripId }) {
       closingHour,
       closed,
       duration,
+      priceAdult,
+      priceChildren,
+      currency,
+      discount,
       phone,
       email,
       web,
-      priceAdult,
-      priceChildren,
-      discount,
       notation,
       resourceType: "plans",
     });
@@ -126,6 +128,59 @@ function AddPlanCard({ onAdd, adding, tripId }) {
         </label>
         <label>
           <div className="form-data">
+            <FontAwesomeIcon icon={faSackDollar} />
+            <input
+              type="number"
+              placeholder="Adult's price"
+              value={priceAdult}
+              onChange={(event) => setPriceAdult(event.target.value)}
+            />
+          </div>
+          <select
+            required
+            value={currency}
+            onChange={(event) => setCurrency(event.target.value)}
+          >
+            <option value="Select...">Select a currency</option>
+            <option value="€">Euro €</option>
+            <option value="$">Dollar $</option>
+            <option value="£">Libra £</option>
+          </select>
+        </label>
+        <label>
+          <div className="form-data">
+            <FontAwesomeIcon icon={faSackDollar} />
+            <input
+              type="number"
+              placeholder="Children's price"
+              value={priceChildren}
+              onChange={(event) => setPriceChildren(event.target.value)}
+            />
+          </div>
+          <select
+            required
+            value={currency}
+            onChange={(event) => setCurrency(event.target.value)}
+          >
+            <option value="Select...">Select a currency</option>
+            <option value="€">Euro €</option>
+            <option value="$">Dollar $</option>
+            <option value="£">Libra £</option>
+          </select>
+        </label>
+        <label>
+          <div className="form-data">
+            <FontAwesomeIcon icon={faPercent} />
+            <input
+              type="text"
+              placeholder="Discount"
+              value={discount}
+              onChange={(event) => setDiscount(event.target.value)}
+            />
+          </div>
+        </label>
+        <label>
+          <div className="form-data">
             <FontAwesomeIcon icon={faPhone} />
             <input
               type="text"
@@ -154,39 +209,6 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               placeholder="Web"
               value={web}
               onChange={(event) => setWeb(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faSackDollar} />
-            <input
-              type="text"
-              placeholder="Adult's price"
-              value={priceAdult}
-              onChange={(event) => setPriceAdult(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faSackDollar} />
-            <input
-              type="text"
-              placeholder="Children's price"
-              value={priceChildren}
-              onChange={(event) => setPriceChildren(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faPercent} />
-            <input
-              type="text"
-              placeholder="Discount"
-              value={discount}
-              onChange={(event) => setDiscount(event.target.value)}
             />
           </div>
         </label>

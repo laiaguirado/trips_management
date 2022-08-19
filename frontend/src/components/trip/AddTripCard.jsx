@@ -15,7 +15,7 @@ function AddTripCard({ onAdd, adding }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
-  const [imageFile, setImageFile] = useState("");
+  const [image, setImage] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -25,7 +25,7 @@ function AddTripCard({ onAdd, adding }) {
     formData.append("name", name);
     formData.append("description", description);
     formData.append("location", location);
-    formData.append("fileImage", imageFile);
+    formData.append("image", image);
     formData.append("startDate", startDate);
     formData.append("endDate", endDate);
     onAdd(formData);
@@ -107,7 +107,7 @@ function AddTripCard({ onAdd, adding }) {
                   className="input upload"
                   type="file"
                   onInput={(event) => {
-                    setImageFile(event.target.files[0]);
+                    setImage(event.target.files[0]);
                   }}
                 />
               </div>
