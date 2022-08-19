@@ -17,12 +17,12 @@ function AddTravelerCard({ onAdd, adding, tripId }) {
   //todo click backdrop
   //todo error message
   return (
-    <div className="add-trip-card add-traveler-card">
+    <div className="add-card add-traveler-card">
       <div className="form-container">
         <div className="return-icon" onClick={adding}>
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <form className="add-trip" onSubmit={(e) => add(e)}>
+        <form className="add-form" onSubmit={(e) => add(e)}>
           <h1 className="title">New Traveler</h1>
           <label>
             <div className="form-data">

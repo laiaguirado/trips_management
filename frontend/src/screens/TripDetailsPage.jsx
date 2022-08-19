@@ -23,7 +23,6 @@ function TripDetailsPage() {
   const [message, setMessage] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [adding, setAdding] = useState(false);
-  const [imageTrip, setImageTrip] = useState("");
   const { tripId } = useParams();
   const navigate = useNavigate();
 
@@ -33,7 +32,6 @@ function TripDetailsPage() {
     const { success, result: trip, error } = await api.getTrip(tripId);
     if (success) {
       setTrip(trip);
-      setImageTrip("../src/assets/upload/" + trip.image.name);
     } else {
       setMessage(error);
     }
@@ -187,8 +185,14 @@ function TripDetailsPage() {
             </div>
             <div className="add-traveler">{addTravelerForm()}</div>
           </div>
-
-          <img className="trip-image" src={imageTrip}></img>
+          {trip.image !== undefined ? (
+            <img
+              className="trip-image"
+              src={"http://localhost:8080/upload" + trip.image.name}
+            ></img>
+          ) : (
+            <div></div>
+          )}
         </div>
         <div className="trip-details-info">
           <div

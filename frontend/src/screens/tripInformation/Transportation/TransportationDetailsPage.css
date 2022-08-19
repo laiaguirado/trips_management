@@ -1,3 +1,11 @@
+.transportation-details-page {
+  width: auto;
+  padding: 3vw;
+  margin: 3vw;
+  background-color: #fbfaf6a4;
+  border-radius: 1rem;
+}
+
 .transportation-details-page .delete-transportation {
   background-color: #ad3d25;
   color: #ffffff;

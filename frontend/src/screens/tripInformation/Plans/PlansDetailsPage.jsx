@@ -7,7 +7,11 @@ import CommentsCard from "../../../components/comment/CommentsCard";
 import PlanCard from "../../../components/tripInformation/Plan/PlanCard";
 import DeleteCard from "../../../components/DeleteCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashCan,
+  faAngleLeft,
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 
 function PlansDetailsPage() {
   const [plan, setPlan] = useState("");
@@ -66,8 +70,14 @@ function PlansDetailsPage() {
     <div className="plans-details-page">
       <Bar mode="login" />
       <div className="flex-container">
-        <div className="return-icon" onClick={() => window.history.go(-1)}>
+        <div
+          className="return-icon page-return-icon"
+          onClick={() => window.history.go(-1)}
+        >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+        </div>
+        <div className="edit-icon" onClick={() => window.history.go(-1)}>
+          <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
         <div>{message}</div>
         <PlanCard plan={plan} />

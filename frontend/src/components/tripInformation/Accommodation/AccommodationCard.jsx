@@ -37,6 +37,24 @@ function AccommodationCard({ accommodation }) {
             <p></p>
           )}
         </div>
+        <div className="accommodation-checkHour accommodation-detail">
+          <h3>Check In Hour / Check Out Hour:</h3>
+          {accommodation !== "" ? (
+            <div>
+              {accommodation.checkInHour.substring(
+                0,
+                accommodation.checkInHour.length - 0
+              ) +
+                " / " +
+                accommodation.checkOutHour.substring(
+                  0,
+                  accommodation.checkOutHour.length - 0
+                )}
+            </div>
+          ) : (
+            <p></p>
+          )}
+        </div>
         <div className="accommodation-price accommodation-detail">
           <h3>Price: </h3>
           <div>{accommodation.price + accommodation.currency}</div>

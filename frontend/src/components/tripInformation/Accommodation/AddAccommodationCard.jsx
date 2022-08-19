@@ -12,6 +12,7 @@ import {
   faPersonWalkingLuggage,
   faSackDollar,
   faClock,
+  faDollarSign,
 } from "@fortawesome/free-solid-svg-icons";
 
 function AddAccommodationCard({ onAdd, adding, tripId }) {
@@ -32,157 +33,184 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
     e.preventDefault();
     onAdd(tripId, {
       name,
-      notation,
       location,
       startDate,
       endDate,
+      checkInHour,
+      checkOutHour,
+      price,
+      currency,
       web,
       phone,
       email,
+      notation,
       resourceType: "Accommodation",
     });
   };
 
   return (
-    <div className="add-accommodation-card">
-      <div className="return-icon" onClick={adding}>
-        <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+    <div className="add-card add-accommodation-card">
+      <div className="form-container">
+        <div className="return-icon" onClick={adding}>
+          <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+        </div>
+        <form className="add-form" onSubmit={(e) => add(e)}>
+          <h1 className="title">New Accommodation</h1>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
+              <input
+                className="input"
+                type="text"
+                placeholder="Accommodation's name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faLocationDot} className="icon" />
+              <input
+                className="input"
+                type="text"
+                placeholder="Location"
+                value={location}
+                onChange={(event) => setLocation(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faCalendar} className="icon" />
+              <input
+                className="input date"
+                type="date"
+                placeholder="Start date"
+                value={startDate}
+                onChange={(event) => setStartDate(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faCalendar} className="icon" />
+              <input
+                className="input date"
+                type="date"
+                placeholder="End Date"
+                value={endDate}
+                onChange={(event) => setEndDate(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faClock} className="icon" />
+              <input
+                className="input date"
+                type="time"
+                placeholder="Check in Hour"
+                value={checkInHour}
+                onChange={(event) => setCheckInHour(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faClock} className="icon" />
+              <input
+                className="input date"
+                type="time"
+                placeholder="Check out Hour"
+                value={checkOutHour}
+                onChange={(event) => setCheckOutHour(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faSackDollar} className="icon" />
+              <input
+                className="input"
+                type="number"
+                placeholder="Price"
+                value={price}
+                onChange={(event) => setPrice(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faDollarSign} className="icon" />
+              <select
+                className="input date"
+                required
+                value={currency}
+                onChange={(event) => setCurrency(event.target.value)}
+              >
+                <option value="Select...">Select a currency</option>
+                <option value="€">Euro €</option>
+                <option value="$">Dollar $</option>
+                <option value="£">Libra £</option>
+              </select>
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faGlobe} className="icon" />
+              <input
+                className="input"
+                type="text"
+                placeholder="Web"
+                value={web}
+                onChange={(event) => setWeb(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faPhone} className="icon" />
+              <input
+                className="input"
+                type="tel"
+                placeholder="Phone"
+                value={phone}
+                onChange={(event) => setPhone(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faEnvelope} className="icon" />
+              <input
+                className="input"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faNoteSticky} className="icon" />
+              <input
+                className="input"
+                type="text"
+                placeholder="Notation"
+                value={notation}
+                onChange={(event) => setNotation(event.target.value)}
+              />
+            </div>
+          </label>
+          <input
+            className="submit-button form-data"
+            type="submit"
+            value="Create New Accommodation"
+          />
+        </form>
       </div>
-      <form className="add-accommodation" onSubmit={(e) => add(e)}>
-        <h1>New Accommodation</h1>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faPersonWalkingLuggage} />
-            <input
-              type="text"
-              placeholder="Accommodation's name"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faLocationDot} />
-            <input
-              type="text"
-              placeholder="Location"
-              value={location}
-              onChange={(event) => setLocation(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faCalendar} />
-            <input
-              type="date"
-              placeholder="Start date"
-              value={startDate}
-              onChange={(event) => setStartDate(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faCalendar} />
-            <input
-              type="date"
-              placeholder="End Date"
-              value={endDate}
-              onChange={(event) => setEndDate(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faClock} />
-            <input
-              type="time"
-              placeholder="Check in Hour"
-              value={checkInHour}
-              onChange={(event) => setCheckInHour(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faClock} />
-            <input
-              type="time"
-              placeholder="Check out Hour"
-              value={checkOutHour}
-              onChange={(event) => setCheckOutHour(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faSackDollar} />
-            <input
-              type="number"
-              placeholder="Price"
-              value={price}
-              onChange={(event) => setPrice(event.target.value)}
-            />
-          </div>
-          <select
-            required
-            value={currency}
-            onChange={(event) => setCurrency(event.target.value)}
-          >
-            <option value="Select...">Select a currency</option>
-            <option value="€">Euro €</option>
-            <option value="$">Dollar $</option>
-            <option value="£">Libra £</option>
-          </select>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faGlobe} />
-            <input
-              type="text"
-              placeholder="Web"
-              value={web}
-              onChange={(event) => setWeb(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faPhone} />
-            <input
-              type="tel"
-              placeholder="Phone"
-              value={phone}
-              onChange={(event) => setPhone(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faEnvelope} />
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faNoteSticky} />
-            <input
-              type="text"
-              placeholder="Notation"
-              value={notation}
-              onChange={(event) => setNotation(event.target.value)}
-            />
-          </div>
-        </label>
-        <input type="submit" value="Create New Accommodation" />
-      </form>
     </div>
   );
 }

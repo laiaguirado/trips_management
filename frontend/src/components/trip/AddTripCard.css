@@ -1,4 +1,4 @@
-.add-trip-card {
+.add-card {
   width: 25rem;
   position: absolute;
   z-index: 90;
@@ -48,6 +48,7 @@
 .form-container .date {
   width: auto;
   color: #937b5f;
+  cursor: pointer;
 }
 
 .form-container .description {
