@@ -8,7 +8,7 @@ function PlanCard({ plan, modifyPlanList }) {
   return (
     <div className="plan-card">
       <h1>Plan</h1>
-      <div className="transportation-info">
+      <div className="plan-info">
         <div className="plan-name plan-detail">
           <h3>Name: </h3>
           <div>{plan.name} </div>
