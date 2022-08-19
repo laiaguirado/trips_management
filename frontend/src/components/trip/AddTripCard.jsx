@@ -25,9 +25,10 @@ function AddTripCard({ onAdd, adding }) {
     formData.append("name", name);
     formData.append("description", description);
     formData.append("location", location);
-    formData.append("image", image);
+    formData.append("fileImage", image);
     formData.append("startDate", startDate);
     formData.append("endDate", endDate);
+
     onAdd(formData);
   };
   //todo error message

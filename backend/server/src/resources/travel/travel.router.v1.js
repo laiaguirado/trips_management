@@ -57,9 +57,10 @@ const createTravel = async (req, res) => {
   const { _id } = req.userInfo;
   dataTravel.creator = _id;
 
+
   if (dataTravel.image || req.file) {
     dataTravel.image = {
-      url: dataTravel.image,
+      url: dataTravel.image ? dataTravel.image : "",
       extension: req.file ? req.file.mimetype : "",
       name: req.file ? `/${req.file.filename}` : "",
     };
