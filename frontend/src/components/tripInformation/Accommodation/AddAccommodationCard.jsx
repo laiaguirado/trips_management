@@ -32,13 +32,17 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
     e.preventDefault();
     onAdd(tripId, {
       name,
-      notation,
       location,
       startDate,
       endDate,
+      checkInHour,
+      checkOutHour,
+      price,
+      currency,
       web,
       phone,
       email,
+      notation,
       resourceType: "Accommodation",
     });
   };
