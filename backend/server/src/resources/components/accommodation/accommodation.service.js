@@ -2,8 +2,8 @@ const Accommodation = require("./accommodation.model");
 const Travel = require("../../travel/travel.model")
 const { errMalformed } = require("../../../errors");
 
-const createAccommodation = async ({ web, description, location, startDate, endDate, phone, email, resourceType }, idTravel, idUser) => {
-  return await Accommodation.create({ web, description, location, startDate, endDate, phone, email, resourceType, idTravel, idUser });
+const createAccommodation = async (acomodation) => {
+  return await Accommodation.create(acomodation);
 };
 
 const findAll = async () => {
