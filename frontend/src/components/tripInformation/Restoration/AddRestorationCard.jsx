@@ -37,7 +37,8 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
       location,
       minPrice,
       maxPrice,
-      currency,
+      currencyMinPrice: currency,
+      currencyMaxPrice: currency,
       web,
       phone,
       email,
@@ -107,6 +108,16 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               onChange={(event) => setMinPrice(event.target.value)}
             />
           </div>
+          <select
+            required
+            value={currency}
+            onChange={(event) => setCurrency(event.target.value)}
+          >
+            <option value="Select...">Select a currency</option>
+            <option value="€">Euro €</option>
+            <option value="$">Dollar $</option>
+            <option value="£">Libra £</option>
+          </select>
         </label>
         <label>
           <div className="form-data">
