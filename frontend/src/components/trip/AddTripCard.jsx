@@ -32,6 +32,7 @@ function AddTripCard({ onAdd, adding }) {
   };
   //todo error message
   //todo mark required fields
+  //todo cursor on calendar date
   return (
     <div className="add-trip-card">
       <div className="background"></div>
@@ -40,7 +41,7 @@ function AddTripCard({ onAdd, adding }) {
           <div className="return-icon" onClick={adding}>
             <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
           </div>
-          <form className="add-trip" onSubmit={(e) => add(e)}>
+          <form className="add-form" onSubmit={(e) => add(e)}>
             <h1 className="title">New Trip</h1>
             <label>
               <div className="form-data">
