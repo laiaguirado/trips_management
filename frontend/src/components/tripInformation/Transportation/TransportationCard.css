@@ -1,32 +1,29 @@
-.transportation-card{
-    border: 1px solid black;
+.transportation-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
-.transportation-card h1{
-    margin:1rem;
+.transportation-card h1 {
+  padding: 1rem 0;
 }
 
-.transportation-card .transportation-info{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.transportation-card .transportation-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
-.transportation-card h3{
-    margin: 0.2rem 0.5rem;
+.transportation-card .transportation-detail {
+  display: flex;
+  align-items: center;
 }
 
-.transportation-card .delete-transportation{
-    background-color: #AD3D25;
-    color: #FFFFFF;
-    border:0px;
-    border-radius: 1.5rem;
-    margin: 1rem;
-    padding:1rem;
-    transition: all 0.1s ease-in-out;
+.transportation-card h3 {
+  margin: 0.5rem 0.5rem;
 }
-
-.transportation-card .delete-transportation:hover{
-    cursor: pointer;
-    transform: scale(1.2);
+.transportation-card h1 {
+  margin: auto;
 }
