@@ -14,11 +14,13 @@ const RESOURCETYPE = "Accommodation";
 const create = async (req, res) => {
   const { email, _id, username } = req.userInfo;
   const { idTravel } = req.paramsParentRouter;
-  const accommData = req.body;
-  accommData.resourceType = RESOURCETYPE;
+  const accom = req.body;
+  accom.resourceType = RESOURCETYPE;
+  accom.idTravel = idTravel;
+  accom.idUser = _id;
 
   const accommodation = await runTransaction(async () => {
-    const accommodationCreated = await Accommodation.createAccommodation(accommData, idTravel, _id);
+    const accommodationCreated = await Accommodation.createAccommodation(accom);
 
     const travel = await Travel.findTravel(idTravel);
 
