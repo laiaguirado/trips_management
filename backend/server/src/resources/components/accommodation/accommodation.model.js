@@ -3,12 +3,7 @@ const extendSchema = require("mongoose-extend-schema");
 const { componentSchema } = require("../component.model");
 
 const accommodationSchema = extendSchema(componentSchema, {
-  web: {
-    type: String,
-    trim: true,
-    required: true,
-  },
-  name:{
+  name: {
     type: String,
     required: true,
   },
@@ -26,6 +21,10 @@ const accommodationSchema = extendSchema(componentSchema, {
   endDate: {
     type: Date
   },
+  web: {
+    type: String,
+    trim: true,
+  },
   phone: {
     type: Number,
     trim: true,
@@ -38,26 +37,26 @@ const accommodationSchema = extendSchema(componentSchema, {
     match: [/\S+@\S+\.\S+/, " '{PATH}' is invalid"],
     immutable: true,
   },
-  price:{
-    type:Number
+  price: {
+    type: Number
   },
-  petFriendly:{
-    type:Boolean
+  petFriendly: {
+    type: Boolean
   },
-  checkInHour:{
-    type:String
+  checkInHour: {
+    type: String
   },
-  checkOutHour:{
-    type:String
+  checkOutHour: {
+    type: String
   },
-  internet:{
-    type:Boolean
+  internet: {
+    type: Boolean
   },
-  swimmingPool:{
-    type:Boolean
+  swimmingPool: {
+    type: Boolean
   },
-  type:{
-    type:String
+  type: {
+    type: String
   },
 
 });

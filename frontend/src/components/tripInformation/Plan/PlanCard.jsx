@@ -18,7 +18,7 @@ function PlanCard({ plan, modifyPlanList }) {
       </div>
       <div className="plan-hours plan-info">
         <h3>Hours (opening - closing):</h3>
-        <div>{plan.openingHour + " / " + plan.closingHour}</div>
+        <div>{plan.openingHour + "h / " + plan.closingHour + "h"}</div>
       </div>
       <div className="plan-phone plan-info">
         <h3>Closed: </h3>
@@ -27,6 +27,15 @@ function PlanCard({ plan, modifyPlanList }) {
       <div className="plan-duration plan-info">
         <h3>Duration: </h3>
         <div>{plan.duration}</div>
+      </div>
+      <div className="plan-price plan-info">
+        <h3>Price: </h3>
+        <div>Adults: {plan.priceAdultWithCurrency}</div>
+        <div>Children: {plan.priceChildrenWithCurrency}</div>
+      </div>
+      <div className="plan-discount plan-info">
+        <h3>Discount: </h3>
+        <div>{plan.discount}</div>
       </div>
       <div className="plan-phone plan-info">
         <h3>Phone number: </h3>
@@ -40,7 +49,10 @@ function PlanCard({ plan, modifyPlanList }) {
         <h3>Web page: </h3>
         <div>
           {plan !== "" ? (
-            !plan.web.startsWith("https://") && !plan.web.startsWith("http://") && plan.web !== null ? (
+            !plan.web.startsWith("https://") &&
+            !plan.web.startsWith("http://") &&
+            plan.web !== null &&
+            plan.web !== "" ? (
               <a href={"https://" + plan.web} target="_blank">
                 {"https://" + plan.web}
               </a>
@@ -53,15 +65,6 @@ function PlanCard({ plan, modifyPlanList }) {
             <p></p>
           )}
         </div>
-      </div>
-      <div className="plan-price plan-info">
-        <h3>Price: </h3>
-        <div>Adults: {plan.priceAdultWithCurrency}</div>
-        <div>Children: {plan.priceChildrenWithCurrency}</div>
-      </div>
-      <div className="plan-discount plan-info">
-        <h3>Discount: </h3>
-        <div>{plan.discount}</div>
       </div>
       <div className="plan-notation plan-info">
         <h3>Notation: </h3>
