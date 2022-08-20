@@ -15,13 +15,19 @@ function AccommodationCard({ accommodation }) {
           <h3>Name: </h3>
           <div>{accommodation.name}</div>
         </div>
+        <div className="accommodation-type accommodation-detail">
+          <h3>Accommodation type: </h3>
+          <div>{accommodation.type}</div>
+        </div>
         <div className="accommodation-location accommodation-detail">
           <h3>Location: </h3>
           <div>{accommodation.location}</div>
         </div>
         <div className="accommodation-dates accommodation-detail">
           <h3>Dates:</h3>
-          {accommodation !== "" ? (
+          {accommodation !== "" &&
+          accommodation.startDate !== null &&
+          accommodation.endDate !== null ? (
             <div>
               {accommodation.startDate.substring(
                 0,
@@ -39,17 +45,14 @@ function AccommodationCard({ accommodation }) {
         </div>
         <div className="accommodation-checkHour accommodation-detail">
           <h3>Check In Hour / Check Out Hour:</h3>
-          {accommodation !== "" ? (
+          {accommodation !== "" &&
+          accommodation.checkInHour !== "" &&
+          accommodation.checkOutHour !== "" ? (
             <div>
-              {accommodation.checkInHour.substring(
-                0,
-                accommodation.checkInHour.length - 0
-              ) +
-                " / " +
-                accommodation.checkOutHour.substring(
-                  0,
-                  accommodation.checkOutHour.length - 0
-                )}
+              {accommodation.checkInHour +
+                "h / " +
+                accommodation.checkOutHour +
+                "h"}
             </div>
           ) : (
             <p></p>
@@ -57,7 +60,41 @@ function AccommodationCard({ accommodation }) {
         </div>
         <div className="accommodation-price accommodation-detail">
           <h3>Price: </h3>
-          <div>{accommodation.price + accommodation.currency}</div>
+          <div>
+            {accommodation.priceWithCurrency !== ""
+              ? accommodation.priceWithCurrency
+              : ""}
+          </div>
+        </div>
+        <div className="accommodation-petFriendly accommodation-detail">
+          <h3>Pet friendly: </h3>
+          <div>
+            {accommodation.petFriendly !== null
+              ? accommodation.petFriendly === true
+                ? "Yes"
+                : "No"
+              : ""}
+          </div>
+        </div>
+        <div className="accommodation-internet accommodation-detail">
+          <h3>Internet: </h3>
+          <div>
+            {accommodation.internet !== null
+              ? accommodation.internet === true
+                ? "Yes"
+                : "No"
+              : ""}
+          </div>
+        </div>
+        <div className="accommodation-swimmingPool accommodation-detail">
+          <h3>Swimming pool: </h3>
+          <div>
+            {accommodation.swimmingPool !== null
+              ? accommodation.swimmingPool === true
+                ? "Yes"
+                : "No"
+              : ""}
+          </div>
         </div>
         <div className="accommodation-web accommodation-detail">
           <h3>Web page: </h3>
@@ -65,7 +102,8 @@ function AccommodationCard({ accommodation }) {
             {accommodation !== "" ? (
               !accommodation.web.startsWith("https://") &&
               !accommodation.web.startsWith("http://") &&
-              accommodation.web !== null ? (
+              accommodation.web !== null &&
+              accommodation.web !== "" ? (
                 <a href={"https://" + accommodation.web} target="_blank">
                   {"https://" + accommodation.web}
                 </a>

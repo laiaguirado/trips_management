@@ -19,7 +19,11 @@ function PlanCard({ plan, modifyPlanList }) {
         </div>
         <div className="plan-hours plan-detail">
           <h3>Hours (opening - closing):</h3>
-          <div>{plan.openingHour + "h / " + plan.closingHour + "h"}</div>
+          <div>
+            {plan.openingHour !== "" && plan.closingHour !== ""
+              ? plan.openingHour + "h / " + plan.closingHour + "h"
+              : ""}
+          </div>
         </div>
         <div className="plan-phone plan-detail">
           <h3>Closed: </h3>
@@ -31,20 +35,19 @@ function PlanCard({ plan, modifyPlanList }) {
         </div>
         <div className="plan-price plan-detail">
           <h3>Price: </h3>
-          <div>Adults: {plan.priceAdultWithCurrency}</div>
-          <div>Children: {plan.priceChildrenWithCurrency}</div>
+          {plan.priceAdultWithCurrency !== "" &&
+          plan.priceChildrenWithCurrency !== "" ? (
+            <div>
+              <h4>Adults: {plan.priceAdultWithCurrency}</h4>
+              <h4>Children: {plan.priceChildrenWithCurrency}</h4>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
         <div className="plan-discount plan-detail">
           <h3>Discount: </h3>
           <div>{plan.discount}</div>
-        </div>
-        <div className="plan-phone plan-detail">
-          <h3>Phone number: </h3>
-          <div>{plan.phone}</div>
-        </div>
-        <div className="plan-email plan-detail">
-          <h3>Email: </h3>
-          <div>{plan.email}</div>
         </div>
         <div className="plan-web plan-detail">
           <h3>Web page: </h3>
@@ -66,6 +69,14 @@ function PlanCard({ plan, modifyPlanList }) {
               <p></p>
             )}
           </div>
+        </div>
+        <div className="plan-phone plan-detail">
+          <h3>Phone number: </h3>
+          <div>{plan.phone}</div>
+        </div>
+        <div className="plan-email plan-detail">
+          <h3>Email: </h3>
+          <div>{plan.email}</div>
         </div>
         <div className="plan-notation plan-detail">
           <h3>Notation: </h3>

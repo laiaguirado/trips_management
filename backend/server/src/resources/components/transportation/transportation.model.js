@@ -32,7 +32,7 @@ const transportationSchema = extendSchema(
     type: {
       type: String,
       enum: {
-        values: ["airplane", "ship", "car", "subway", "tram", "bus", "train"],
+        values: ["airplane", "ship", "car", "subway", "tram", "bus", "train", "other"],
         message: "{VALUE} for {TYPE} is not suported",
       },
       default: "airplane",

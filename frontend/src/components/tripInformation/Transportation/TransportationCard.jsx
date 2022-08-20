@@ -23,41 +23,48 @@ function TransportationCard({ transportation }) {
         </div>
         <div className="transportation-price transportation-detail">
           <h3>Price: </h3>
-          <div>{transportation.priceWithCurrency}</div>
+          <div>
+            {transportation.priceWithCurrency !== ""
+              ? transportation.priceWithCurrency
+              : ""}
+          </div>
         </div>
         <div className="transportation-location transportation-detail">
           <h3>Origin - Destination:</h3>
           <div>
-            {transportation.origin + " / " + transportation.destination}
+            {transportation.origin !== "" && transportation.destination !== ""
+              ? transportation.origin + " / " + transportation.destination
+              : ""}
           </div>
         </div>
         <div className="transportation-dates transportation-detail">
           <h3>Departure - Arrival:</h3>
           {transportation !== "" ? (
             <div>
-              {(transportation.departure != null
+              {(transportation.departure != null &&
+              transportation.departure !== ""
                 ? transportation.departure.substring(
-                    0,
-                    transportation.departure.length - 14
-                  ) +
-                  "   " +
-                  transportation.departure.substring(
                     11,
                     transportation.departure.length - 8
                   ) +
-                  "h / "
+                  "h " +
+                  transportation.departure.substring(
+                    0,
+                    transportation.departure.length - 14
+                  ) +
+                  " / "
                 : "") +
-                (transportation.arrival != null
+                (transportation.arrival != null && transportation.arrival !== ""
                   ? transportation.arrival.substring(
-                      0,
-                      transportation.arrival.length - 14
-                    ) +
-                    "   " +
-                    transportation.arrival.substring(
                       11,
                       transportation.arrival.length - 8
                     ) +
-                    "h"
+                    "h " +
+                    transportation.arrival.substring(
+                      0,
+                      transportation.arrival.length - 14
+                    ) +
+                    " "
                   : "")}
             </div>
           ) : (
@@ -70,7 +77,8 @@ function TransportationCard({ transportation }) {
             {transportation !== "" ? (
               !transportation.web.startsWith("https://") &&
               !transportation.web.startsWith("http://") &&
-              transportation.web !== null ? (
+              transportation.web !== null &&
+              transportation.web !== "" ? (
                 <a href={"https://" + transportation.web} target="_blank">
                   {"https://" + transportation.web}
                 </a>

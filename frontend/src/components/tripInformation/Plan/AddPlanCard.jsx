@@ -24,13 +24,13 @@ function AddPlanCard({ onAdd, adding, tripId }) {
   const [closingHour, setClosingHour] = useState("");
   const [closed, setClosed] = useState("");
   const [duration, setDuration] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [web, setWeb] = useState("");
   const [priceAdult, setPriceAdult] = useState("");
   const [priceChildren, setPriceChildren] = useState("");
   const [currency, setCurrency] = useState("");
   const [discount, setDiscount] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [web, setWeb] = useState("");
   const [notation, setNotation] = useState("");
 
   const add = (e) => {
@@ -151,11 +151,12 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faDollar} className="icon" />
               <select
                 className="input date"
-                required
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >
-                <option value="Select...">Select a currency</option>
+                <option value="" disabled={true}>
+                  Select a currency
+                </option>
                 <option value="€">Euro €</option>
                 <option value="$">Dollar $</option>
                 <option value="£">Libra £</option>
@@ -179,11 +180,12 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faDollar} className="icon" />
               <select
                 className="input date"
-                required
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >
-                <option value="Select...">Select a currency</option>
+                <option value="" disabled={true}>
+                  Select a currency
+                </option>
                 <option value="€">Euro €</option>
                 <option value="$">Dollar $</option>
                 <option value="£">Libra £</option>
@@ -204,10 +206,22 @@ function AddPlanCard({ onAdd, adding, tripId }) {
           </label>
           <label>
             <div className="form-data">
-              <FontAwesomeIcon icon={faPhone} className="icon" />
+              <FontAwesomeIcon icon={faGlobe} className="icon" />
               <input
                 className="input"
                 type="text"
+                placeholder="Web"
+                value={web}
+                onChange={(event) => setWeb(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faPhone} className="icon" />
+              <input
+                className="input"
+                type="tel"
                 placeholder="Phone number"
                 value={phone}
                 onChange={(event) => setPhone(event.target.value)}
@@ -219,22 +233,10 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faEnvelope} className="icon" />
               <input
                 className="input"
-                type="text"
+                type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-              />
-            </div>
-          </label>
-          <label>
-            <div className="form-data">
-              <FontAwesomeIcon icon={faGlobe} className="icon" />
-              <input
-                className="input"
-                type="text"
-                placeholder="Web"
-                value={web}
-                onChange={(event) => setWeb(event.target.value)}
               />
             </div>
           </label>
@@ -253,7 +255,7 @@ function AddPlanCard({ onAdd, adding, tripId }) {
           <input
             className="submit-button form-data"
             type="submit"
-            value="Create New Transportation"
+            value="Create New Plan"
           />
         </form>
       </div>

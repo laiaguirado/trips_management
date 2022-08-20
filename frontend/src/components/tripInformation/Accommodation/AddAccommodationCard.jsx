@@ -13,10 +13,15 @@ import {
   faSackDollar,
   faClock,
   faDollarSign,
+  faDog,
+  faWifi,
+  faPersonSwimming,
+  faHotel,
 } from "@fortawesome/free-solid-svg-icons";
 
 function AddAccommodationCard({ onAdd, adding, tripId }) {
   const [name, setName] = useState("");
+  const [type, setType] = useState("");
   const [location, setLocation] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -24,6 +29,9 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
   const [checkOutHour, setCheckOutHour] = useState("");
   const [price, setPrice] = useState("");
   const [currency, setCurrency] = useState("");
+  const [petFriendly, setPetFriendly] = useState(null);
+  const [internet, setInternet] = useState(null);
+  const [swimmingPool, setSwimmingPool] = useState(null);
   const [web, setWeb] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -33,6 +41,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
     e.preventDefault();
     onAdd(tripId, {
       name,
+      type,
       location,
       startDate,
       endDate,
@@ -40,6 +49,9 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
       checkOutHour,
       price,
       currency,
+      petFriendly,
+      internet,
+      swimmingPool,
       web,
       phone,
       email,
@@ -67,6 +79,27 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faHotel} className="icon" />
+              <select
+                className="input date"
+                value={type}
+                onChange={(event) => setType(event.target.value)}
+              >
+                <option value="" disabled={true}>
+                  Select an accommodation
+                </option>
+                <option value="Hotel">Hotel</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Camping">Camping</option>
+                <option value="Bungalow">Bungalow</option>
+                <option value="Hostal">Hostal</option>
+                <option value="Chalets">Chalets</option>
+                <option value="Cottages">Cottages</option>
+              </select>
             </div>
           </label>
           <label>
@@ -146,15 +179,52 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faDollarSign} className="icon" />
               <select
                 className="input date"
-                required
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >
-                <option value="Select...">Select a currency</option>
+                <option value="" disabled={true}>
+                  Select a currency
+                </option>
                 <option value="€">Euro €</option>
                 <option value="$">Dollar $</option>
                 <option value="£">Libra £</option>
               </select>
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faDog} className="icon" />
+              <input
+                className="input"
+                type="checkbox"
+                placeholder="Pet friendly"
+                value={petFriendly}
+                onChange={(event) => setPetFriendly(event.target.checked)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faWifi} className="icon" />
+              <input
+                className="input"
+                type="checkbox"
+                placeholder="Internet"
+                value={internet}
+                onChange={(event) => setInternet(event.target.checked)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faPersonSwimming} className="icon" />
+              <input
+                className="input"
+                type="checkbox"
+                placeholder="Swimming pool"
+                value={swimmingPool}
+                onChange={(event) => setSwimmingPool(event.target.checked)}
+              />
             </div>
           </label>
           <label>

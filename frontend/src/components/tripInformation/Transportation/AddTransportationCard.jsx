@@ -32,10 +32,10 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
     e.preventDefault();
     onAdd(tripId, {
       name,
-      price,
-      currency,
       type,
       typeDetails,
+      price,
+      currency,
       origin,
       destination,
       departure,
@@ -71,11 +71,12 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faTruckPlane} className="icon" />
               <select
                 className="input date"
-                required
                 value={type}
                 onChange={(event) => setType(event.target.value)}
               >
-                <option value="Select...">Select a transportation</option>
+                <option value="" disabled={true}>
+                  Select a transportation
+                </option>
                 <option value="airplane">Airplane</option>
                 <option value="ship">Ship</option>
                 <option value="car">Car</option>
@@ -83,6 +84,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
                 <option value="tram">Tram</option>
                 <option value="bus">Bus</option>
                 <option value="train">Train</option>
+                <option value="other">Other</option>
               </select>
             </div>
           </label>
@@ -115,11 +117,12 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faDollarSign} className="icon" />
               <select
                 className="input date"
-                required
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >
-                <option value="Select...">Select a currency</option>
+                <option value="" disabled={true}>
+                  Select a currency
+                </option>
                 <option value="€">Euro €</option>
                 <option value="$">Dollar $</option>
                 <option value="£">Libra £</option>
