@@ -102,12 +102,6 @@ routerRestorationByResporation.put(
 
 routerRestorationByResporation.get("/", needsAuthToken, catchErrors(getAll));
 
-// router.post("/:idTravel", needsAuthToken, catchErrors(create));
-// router.delete("/:_id", needsAuthToken, catchErrors(deleteRestoration));
-// router.get("/", needsAuthToken, catchErrors(getAll));    OTRO ROUTER
-// router.get("/:_id", needsAuthToken, catchErrors(getById));
-// router.get("/travel/:idTravel", needsAuthToken, catchErrors(getByTravel));
-// router.put("/:_id", needsAuthToken, catchErrors(updateRest));
 module.exports = {
   routerRestorationByTravel,
   routerRestorationByResporation,
