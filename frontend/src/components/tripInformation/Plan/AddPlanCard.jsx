@@ -151,6 +151,7 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faDollar} className="icon" />
               <select
                 className="input date"
+                required={priceAdult ? "required" : ""}
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >
@@ -180,6 +181,7 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faDollar} className="icon" />
               <select
                 className="input date"
+                required={priceChildren ? "required" : ""}
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >

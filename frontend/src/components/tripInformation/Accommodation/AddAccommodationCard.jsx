@@ -179,6 +179,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faDollarSign} className="icon" />
               <select
                 className="input date"
+                required={price ? "required" : ""}
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >

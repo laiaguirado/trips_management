@@ -117,6 +117,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faDollar} className="icon" />
               <select
                 className="input date"
+                required={minPrice ? "required" : ""}
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >
@@ -146,6 +147,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faDollar} className="icon" />
               <select
                 className="input date"
+                required={maxPrice ? "required" : ""}
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >
