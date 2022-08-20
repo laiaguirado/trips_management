@@ -32,10 +32,10 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
     e.preventDefault();
     onAdd(tripId, {
       name,
-      price,
-      currency,
       type,
       typeDetails,
+      price,
+      currency,
       origin,
       destination,
       departure,

@@ -9,13 +9,9 @@ function RestorationCard({ restoration }) {
     <div className="restoration-card">
       <h1>Restoration</h1>
       <div className="restoration-info">
-        {/*<div className="restoration-name restoration-detail">
-        <h3>Name: </h3>
-        <div>{restoration.name}</div>
-  </div>*/}
-        <div className="restoration-description restoration-detail">
-          <h3>Description: </h3>
-          <div>{restoration.description}</div>
+        <div className="restoration-name restoration-detail">
+          <h3>Name: </h3>
+          <div>{restoration.name}</div>
         </div>
         <div className="restoration-kindOfFood restoration-detail">
           <h3>Kind of Food: </h3>
@@ -28,9 +24,40 @@ function RestorationCard({ restoration }) {
         <div className="restoration-price restoration-detail">
           <h3>Price (min - max):</h3>
           <div>
-            {restoration.minPriceWithCurrency +
-              " - " +
-              restoration.maxPriceWithCurrency}
+            {restoration.minPriceWithCurrency !== null &&
+            restoration.maxPriceWithCurrency !== null
+              ? restoration.minPriceWithCurrency +
+                " - " +
+                restoration.maxPriceWithCurrency
+              : ""}
+          </div>
+        </div>
+        <div className="restoration-closed restoration-detail">
+          <h3>Closed: </h3>
+          <div>{restoration.closed}</div>
+        </div>
+        <div className="restoration-speciality restoration-detail">
+          <h3>Speciality of the restaurant: </h3>
+          <div>{restoration.speciality}</div>
+        </div>
+        <div className="restoration-takeAway restoration-detail">
+          <h3>Take Away: </h3>
+          <div>
+            {restoration.takeAway !== null
+              ? restoration.takeAway === true
+                ? "Yes"
+                : "No"
+              : ""}
+          </div>
+        </div>
+        <div className="restoration-reserved restoration-detail">
+          <h3>Reservation required: </h3>
+          <div>
+            {restoration.reserved !== null
+              ? restoration.reserved === true
+                ? "Yes"
+                : "No"
+              : ""}
           </div>
         </div>
         <div className="restoration-web restoration-detail">
@@ -39,7 +66,8 @@ function RestorationCard({ restoration }) {
             {restoration !== "" ? (
               !restoration.web.startsWith("https://") &&
               !restoration.web.startsWith("http://") &&
-              restoration.web !== null ? (
+              restoration.web !== null &&
+              restoration.web !== "" ? (
                 <a href={"https://" + restoration.web} target="_blank">
                   {"https://" + restoration.web}
                 </a>
@@ -61,10 +89,10 @@ function RestorationCard({ restoration }) {
           <h3>Email: </h3>
           <div>{restoration.email}</div>
         </div>
-        {/*<div className="restoration-notation restoration-detail">
-        <h3>Notation: </h3>
-        <div>{restoration.notation}</div>
-</div>*/}
+        <div className="restoration-notation restoration-detail">
+          <h3>Notation: </h3>
+          <div>{restoration.description}</div>
+        </div>
       </div>
     </div>
   );

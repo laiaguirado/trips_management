@@ -24,13 +24,13 @@ function AddPlanCard({ onAdd, adding, tripId }) {
   const [closingHour, setClosingHour] = useState("");
   const [closed, setClosed] = useState("");
   const [duration, setDuration] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [web, setWeb] = useState("");
   const [priceAdult, setPriceAdult] = useState("");
   const [priceChildren, setPriceChildren] = useState("");
   const [currency, setCurrency] = useState("");
   const [discount, setDiscount] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [web, setWeb] = useState("");
   const [notation, setNotation] = useState("");
 
   const add = (e) => {
