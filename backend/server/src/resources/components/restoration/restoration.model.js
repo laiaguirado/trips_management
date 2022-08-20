@@ -3,25 +3,31 @@ const extendSchema = require("mongoose-extend-schema");
 const mongooseLeanGetters = require("mongoose-lean-getters");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const { componentSchema } = require("../component.model");
-const { getPrice, setPrice } = require("../../../helper");
+const { capitalize, getPrice, setPrice, getPriceWithCurrency } = require("../../../helper");
 
 function getMaxPriceWithCurrency() {
-  return `${this.maxPrice} ${this.currencyMaxPrice}`;
+  return getPriceWithCurrency(this.maxPrice, this.currency);
 }
 
 function getMinPriceWithCurrency() {
-  return `${this.minPrice} ${this.currencyMinPrice}`;
+  return getPriceWithCurrency(this.minPrice, this.currency);
 }
 
 const restorationSchema = extendSchema(componentSchema, {
+  name: {
+    type: String,
+    maxlength: [50, "{PATH} is too long"],
+    match: [/^[a-zA-Z0-9\s]*$/, "{PATH} is invalid"],
+    required: [true, "{PATH} is required"],
+    set: capitalize,
+  },
   web: {
     type: String,
     trim: true,
-    required: true,
   },
   description: {
     type: String,
-    maxlength: [250, "'{VALUE}' is too long"],
+    maxlength: [250, "'{PATH}' is too long"],
   },
   location: {
     type: String,
@@ -29,16 +35,14 @@ const restorationSchema = extendSchema(componentSchema, {
   },
   phone: {
     type: Number,
-    required: true,
     trim: true,
   },
   email: {
     type: String,
     uniqueCaseInsensitive: true,
-    required: true,
     trim: true,
     lowercase: true,
-    match: [/\S+@\S+\.\S+/, " '{VALUE}' is invalid"],
+    match: [/\S+@\S+\.\S+/, " '{PATH}' is invalid"],
     immutable: true,
   },
   kindOfFood: {
@@ -49,20 +53,22 @@ const restorationSchema = extendSchema(componentSchema, {
     get: getPrice,
     set: setPrice,
   },
-  currencyMinPrice: {
-    type: String,
-    required: true,
-    default: "€",
-  },
   maxPrice: {
     type: Number,
     get: getPrice,
     set: setPrice,
   },
-  currencyMaxPrice: {
+  closed: {
     type: String,
-    required: true,
-    default: "€",
+  },
+  speciality: {
+    type: String,
+  },
+  takeAway: {
+    type: Boolean,
+  },
+  reserved: {
+    type: Boolean,
   },
 });
 

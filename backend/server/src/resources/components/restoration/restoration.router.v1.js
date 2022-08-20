@@ -16,9 +16,11 @@ const create = async (req, res) => {
   const { email, _id, username } = req.userInfo;
   const { idTravel } = req.paramsParentRouter;
   data.resourceType = RESOURCETYPE;
-
+  data.idUser = _id;
+  data.idTravel = idTravel;
+  console.log(data);
   const restoration = await runTransaction(async () => {
-    const restorationCreated = await Restoration.createOne(data, _id, idTravel);
+    const restorationCreated = await Restoration.createOne(data);
 
     const travel = await Travel.findTravel(idTravel);
     travel.restaurants.push(restorationCreated);
