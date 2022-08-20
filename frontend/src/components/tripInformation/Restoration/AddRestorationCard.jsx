@@ -15,6 +15,8 @@ import {
   faEnvelope,
   faDollar,
   faBagShopping,
+  faStar,
+  faBookOpen,
 } from "@fortawesome/free-solid-svg-icons";
 
 function AddRestorationCard({ onAdd, adding, tripId }) {
@@ -168,7 +170,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
           </label>
           <label>
             <div className="form-data">
-              <FontAwesomeIcon icon={faBan} className="icon" />
+              <FontAwesomeIcon icon={faStar} className="icon" />
               <input
                 className="input"
                 type="text"
@@ -192,7 +194,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
           </label>
           <label>
             <div className="form-data">
-              <FontAwesomeIcon icon={faBan} className="icon" />
+              <FontAwesomeIcon icon={faBookOpen} className="icon" />
               <input
                 className="input"
                 type="checkbox"
