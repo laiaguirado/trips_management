@@ -13,13 +13,13 @@ function RestorationCard({ restoration }) {
           <h3>Name: </h3>
           <div>{restoration.name}</div>
         </div>
-        <div className="restoration-kindOfFood restoration-detail">
-          <h3>Kind of Food: </h3>
-          <div>{restoration.kindOfFood}</div>
-        </div>
         <div className="restoration-location restoration-detail">
           <h3>Location: </h3>
           <div>{restoration.location}</div>
+        </div>
+        <div className="restoration-kindOfFood restoration-detail">
+          <h3>Kind of Food: </h3>
+          <div>{restoration.kindOfFood}</div>
         </div>
         <div className="restoration-price restoration-detail">
           <h3>Price (min - max):</h3>

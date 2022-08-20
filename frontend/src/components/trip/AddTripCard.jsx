@@ -78,15 +78,16 @@ function AddTripCard({ onAdd, adding }) {
               <div className="form-data">
                 <FontAwesomeIcon icon={faCalendar} className="icon" />
                 <input
+                  id="date"
                   className="input date"
                   required
                   type="text"
                   placeholder="Start Date"
                   value={startDate}
+                  max={endDate}
                   onFocus={(event) => (event.target.type = "date")}
                   onBlur={(event) => (event.target.type = "text")}
                   onChange={(event) => setStartDate(event.target.value)}
-                  id="date"
                 />
               </div>
             </label>
@@ -94,6 +95,7 @@ function AddTripCard({ onAdd, adding }) {
               <div className="form-data">
                 <FontAwesomeIcon icon={faCalendar} className="icon" />
                 <input
+                  id="date"
                   className="input date"
                   required
                   type="text"
@@ -103,7 +105,6 @@ function AddTripCard({ onAdd, adding }) {
                   onFocus={(event) => (event.target.type = "date")}
                   onBlur={(event) => (event.target.type = "text")}
                   onChange={(event) => setEndDate(event.target.value)}
-                  id="date"
                 />
               </div>
             </label>

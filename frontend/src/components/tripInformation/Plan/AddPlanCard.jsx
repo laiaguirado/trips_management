@@ -93,9 +93,10 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faClock} className="icon" />
               <input
                 className="input date"
-                type="time"
                 placeholder="Opening hour"
                 value={openingHour}
+                onFocus={(event) => (event.target.type = "time")}
+                onBlur={(event) => (event.target.type = "text")}
                 onChange={(event) => setOpeningHour(event.target.value)}
               />
             </div>
@@ -105,9 +106,10 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faClock} className="icon" />
               <input
                 className="input date"
-                type="time"
                 placeholder="Closing hour"
                 value={closingHour}
+                onFocus={(event) => (event.target.type = "time")}
+                onBlur={(event) => (event.target.type = "text")}
                 onChange={(event) => setClosingHour(event.target.value)}
               />
             </div>

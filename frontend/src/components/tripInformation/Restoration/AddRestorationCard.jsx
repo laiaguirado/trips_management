@@ -79,18 +79,6 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
           </label>
           <label>
             <div className="form-data">
-              <FontAwesomeIcon icon={faBurger} className="icon" />
-              <input
-                className="input"
-                type="text"
-                placeholder="Kind of Food"
-                value={kindOfFood}
-                onChange={(event) => setKindOfFood(event.target.value)}
-              />
-            </div>
-          </label>
-          <label>
-            <div className="form-data">
               <FontAwesomeIcon icon={faLocationDot} className="icon" />
               <input
                 className="input"
@@ -99,6 +87,18 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
                 placeholder="Location"
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faBurger} className="icon" />
+              <input
+                className="input"
+                type="text"
+                placeholder="Kind of Food"
+                value={kindOfFood}
+                onChange={(event) => setKindOfFood(event.target.value)}
               />
             </div>
           </label>
@@ -189,10 +189,10 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faBagShopping} className="icon" />
+              <p>Can it be taken away?</p>
               <input
                 className="input"
                 type="checkbox"
-                placeholder="Take away"
                 value={takeAway}
                 onChange={(event) => setTakeAway(event.target.checked)}
               />
@@ -201,10 +201,10 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faBookOpen} className="icon" />
+              <p>Do you have to book?</p>
               <input
                 className="input"
                 type="checkbox"
-                placeholder="Reserved"
                 value={reserved}
                 onChange={(event) => setReserved(event.target.checked)}
               />

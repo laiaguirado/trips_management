@@ -161,9 +161,10 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faCalendar} className="icon" />
               <input
                 className="input date"
-                type="datetime-local"
                 placeholder="Departure time"
                 value={departure}
+                onFocus={(event) => (event.target.type = "datetime-local")}
+                onBlur={(event) => (event.target.type = "text")}
                 onChange={(event) => setDeparture(event.target.value)}
               />
             </div>
@@ -173,9 +174,10 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faCalendar} className="icon" />
               <input
                 className="input date"
-                type="datetime-local"
                 placeholder="Arrival time"
                 value={arrival}
+                onFocus={(event) => (event.target.type = "datetime-local")}
+                onBlur={(event) => (event.target.type = "text")}
                 onChange={(event) => setArrival(event.target.value)}
               />
             </div>

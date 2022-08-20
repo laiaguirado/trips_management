@@ -100,6 +100,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                 <option value="Hostal">Hostal</option>
                 <option value="Chalets">Chalets</option>
                 <option value="Cottages">Cottages</option>
+                <option value="Other">Other</option>
               </select>
             </div>
           </label>
@@ -120,10 +121,13 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
             <div className="form-data">
               <FontAwesomeIcon icon={faCalendar} className="icon" />
               <input
+                id="date"
                 className="input date"
-                type="date"
-                placeholder="Start date"
+                placeholder="Start Date"
                 value={startDate}
+                max={endDate}
+                onFocus={(event) => (event.target.type = "date")}
+                onBlur={(event) => (event.target.type = "text")}
                 onChange={(event) => setStartDate(event.target.value)}
               />
             </div>
@@ -132,10 +136,13 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
             <div className="form-data">
               <FontAwesomeIcon icon={faCalendar} className="icon" />
               <input
+                id="date"
                 className="input date"
-                type="date"
                 placeholder="End Date"
                 value={endDate}
+                min={startDate}
+                onFocus={(event) => (event.target.type = "date")}
+                onBlur={(event) => (event.target.type = "text")}
                 onChange={(event) => setEndDate(event.target.value)}
               />
             </div>
@@ -145,9 +152,10 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faClock} className="icon" />
               <input
                 className="input date"
-                type="time"
                 placeholder="Check in Hour"
                 value={checkInHour}
+                onFocus={(event) => (event.target.type = "time")}
+                onBlur={(event) => (event.target.type = "text")}
                 onChange={(event) => setCheckInHour(event.target.value)}
               />
             </div>
@@ -157,9 +165,10 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faClock} className="icon" />
               <input
                 className="input date"
-                type="time"
                 placeholder="Check out Hour"
                 value={checkOutHour}
+                onFocus={(event) => (event.target.type = "time")}
+                onBlur={(event) => (event.target.type = "text")}
                 onChange={(event) => setCheckOutHour(event.target.value)}
               />
             </div>
@@ -197,10 +206,10 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faDog} className="icon" />
+              <p>Is it pet friendly?</p>
               <input
                 className="input"
                 type="checkbox"
-                placeholder="Pet friendly"
                 value={petFriendly}
                 onChange={(event) => setPetFriendly(event.target.checked)}
               />
@@ -209,10 +218,10 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faWifi} className="icon" />
+              <p>Is there Wi-Fi?</p>
               <input
                 className="input"
                 type="checkbox"
-                placeholder="Internet"
                 value={internet}
                 onChange={(event) => setInternet(event.target.checked)}
               />
@@ -221,10 +230,10 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faPersonSwimming} className="icon" />
+              <p>Is there swimming pool?</p>
               <input
                 className="input"
                 type="checkbox"
-                placeholder="Swimming pool"
                 value={swimmingPool}
                 onChange={(event) => setSwimmingPool(event.target.checked)}
               />
