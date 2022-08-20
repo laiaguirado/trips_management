@@ -42,6 +42,12 @@ const findAll = async () => {
   return await Restoration.find().lean().exec();
 };
 const deleteRest = async (_id) => {
+
+  await Travel.findOneAndUpdate({ restaurants: _id }, {
+    $pull: { restaurants: { $in: _id }},
+}, {new:true});
+
+
   const restoration = await runTransaction(async () => {
     const deleted = await Restoration.findByIdAndDelete({ _id })
       .lean()
