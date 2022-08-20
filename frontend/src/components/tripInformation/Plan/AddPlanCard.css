@@ -1,5 +1,15 @@
 .add-plan-card {
-  background-color: #efeee1;
-  border: 1px solid black;
-  border-radius: 1rem;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-plan-card .form-container {
+  margin: 2rem;
+  margin-top: calc(2rem + 6vw);
 }

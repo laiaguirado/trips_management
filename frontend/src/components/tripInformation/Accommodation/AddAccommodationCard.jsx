@@ -47,7 +47,8 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
       resourceType: "Accommodation",
     });
   };
-
+  //todo dates fields style
+  //todo times fields style
   return (
     <div className="add-card add-accommodation-card">
       <div className="form-container">
