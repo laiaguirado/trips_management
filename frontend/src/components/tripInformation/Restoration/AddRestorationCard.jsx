@@ -38,7 +38,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
       location,
       minPrice,
       maxPrice,
-      currency: currency,
+      currency,
       web,
       phone,
       email,
