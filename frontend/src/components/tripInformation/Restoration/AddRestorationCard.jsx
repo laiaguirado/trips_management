@@ -69,6 +69,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faUtensils} className="icon" />
               <input
                 className="input"
+                required
                 type="text"
                 placeholder="Name"
                 value={name}
@@ -93,6 +94,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faLocationDot} className="icon" />
               <input
                 className="input"
+                required
                 type="text"
                 placeholder="Location"
                 value={location}

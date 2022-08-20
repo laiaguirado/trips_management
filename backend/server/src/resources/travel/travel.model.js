@@ -26,7 +26,7 @@ const travelSchema = new mongoose.Schema(
     },
     location: {
       type: String,
-      required: false,
+      required: true,
       maxlength: [1000, "{PATH} is too long"],
     },
 

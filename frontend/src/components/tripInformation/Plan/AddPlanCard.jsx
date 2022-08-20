@@ -67,6 +67,7 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
               <input
                 className="input"
+                required
                 type="text"
                 placeholder="Plan's name"
                 value={name}
@@ -79,6 +80,7 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faLocationDot} className="icon" />
               <input
                 className="input"
+                required
                 type="text"
                 placeholder="Location"
                 value={location}

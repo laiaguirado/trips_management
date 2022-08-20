@@ -74,6 +74,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
               <input
                 className="input"
+                required
                 type="text"
                 placeholder="Accommodation's name"
                 value={name}
@@ -107,6 +108,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faLocationDot} className="icon" />
               <input
                 className="input"
+                required
                 type="text"
                 placeholder="Location"
                 value={location}

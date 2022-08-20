@@ -29,6 +29,7 @@ function AddTravelerCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
               <input
                 className="input"
+                required
                 type="text"
                 placeholder="Email of the new traveler"
                 value={email}

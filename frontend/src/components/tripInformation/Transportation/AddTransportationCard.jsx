@@ -59,6 +59,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
               <input
                 className="input"
+                required
                 type="text"
                 placeholder="Transport's name"
                 value={name}
@@ -71,6 +72,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faTruckPlane} className="icon" />
               <select
                 className="input date"
+                required
                 value={type}
                 onChange={(event) => setType(event.target.value)}
               >
