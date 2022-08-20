@@ -23,7 +23,11 @@ function TransportationCard({ transportation }) {
         </div>
         <div className="transportation-price transportation-detail">
           <h3>Price: </h3>
-          <div>{transportation.priceWithCurrency}</div>
+          <div>
+            {transportation.priceWithCurrency !== ""
+              ? transportation.priceWithCurrency
+              : ""}
+          </div>
         </div>
         <div className="transportation-location transportation-detail">
           <h3>Origin - Destination:</h3>

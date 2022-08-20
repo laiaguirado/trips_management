@@ -35,8 +35,8 @@ function PlanCard({ plan, modifyPlanList }) {
         </div>
         <div className="plan-price plan-detail">
           <h3>Price: </h3>
-          {plan.priceAdultWithCurrency !== null &&
-          plan.priceChildrenWithCurrency !== null ? (
+          {plan.priceAdultWithCurrency !== "" &&
+          plan.priceChildrenWithCurrency !== "" ? (
             <div>
               <h4>Adults: {plan.priceAdultWithCurrency}</h4>
               <h4>Children: {plan.priceChildrenWithCurrency}</h4>

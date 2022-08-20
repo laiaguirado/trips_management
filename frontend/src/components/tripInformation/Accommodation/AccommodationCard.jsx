@@ -61,8 +61,8 @@ function AccommodationCard({ accommodation }) {
         <div className="accommodation-price accommodation-detail">
           <h3>Price: </h3>
           <div>
-            {accommodation.price !== null
-              ? accommodation.price + accommodation.currency
+            {accommodation.priceWithCurrency !== ""
+              ? accommodation.priceWithCurrency
               : ""}
           </div>
         </div>

@@ -24,8 +24,8 @@ function RestorationCard({ restoration }) {
         <div className="restoration-price restoration-detail">
           <h3>Price (min - max):</h3>
           <div>
-            {restoration.minPriceWithCurrency !== null &&
-            restoration.maxPriceWithCurrency !== null
+            {restoration.minPriceWithCurrency !== "" &&
+            restoration.maxPriceWithCurrency !== ""
               ? restoration.minPriceWithCurrency +
                 " - " +
                 restoration.maxPriceWithCurrency
