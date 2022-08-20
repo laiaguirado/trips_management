@@ -1,4 +1,5 @@
 const Score = require("./score.model");
+const Travel = require("../travel/travel.model");
 
 const createOne = async (value, compId, user_id, idTravel) => {
   return await Score.create({
@@ -14,6 +15,9 @@ const findAll = async () => {
 };
 
 const deleteScore = async (_id) => {
+  await Travel.findOneAndUpdate({ scores: _id }, {
+    $pull: { scores: { $in: _id }},
+}, {new:true});
   const deleted = await Score.findByIdAndDelete({ _id }).lean().exec();
   if (deleted === null) {
     errMalformed(`Score with ${id} not found`);

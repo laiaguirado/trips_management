@@ -15,7 +15,7 @@ function AddTripCard({ onAdd, adding }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
-  const [imageFile, setImageFile] = useState("");
+  const [image, setImage] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -25,13 +25,14 @@ function AddTripCard({ onAdd, adding }) {
     formData.append("name", name);
     formData.append("description", description);
     formData.append("location", location);
-    formData.append("fileImage", imageFile);
+    formData.append("image", image);
     formData.append("startDate", startDate);
     formData.append("endDate", endDate);
     onAdd(formData);
   };
   //todo error message
   //todo mark required fields
+  //todo cursor on calendar date
   return (
     <div className="add-trip-card">
       <div className="background"></div>
@@ -40,7 +41,7 @@ function AddTripCard({ onAdd, adding }) {
           <div className="return-icon" onClick={adding}>
             <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
           </div>
-          <form className="add-trip" onSubmit={(e) => add(e)}>
+          <form className="add-form" onSubmit={(e) => add(e)}>
             <h1 className="title">New Trip</h1>
             <label>
               <div className="form-data">
@@ -107,7 +108,7 @@ function AddTripCard({ onAdd, adding }) {
                   className="input upload"
                   type="file"
                   onInput={(event) => {
-                    setImageFile(event.target.files[0]);
+                    setImage(event.target.files[0]);
                   }}
                 />
               </div>

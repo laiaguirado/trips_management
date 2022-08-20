@@ -7,7 +7,11 @@ import CommentsCard from "../../../components/comment/CommentsCard";
 import TransportationCard from "../../../components/tripInformation/Transportation/TransportationCard";
 import DeleteCard from "../../../components/DeleteCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashCan,
+  faAngleLeft,
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 
 function TransportationDetailsPage() {
   const [transportation, setTransportation] = useState("");
@@ -70,8 +74,14 @@ function TransportationDetailsPage() {
     <div className="transportation-details-page">
       <Bar mode="login" />
       <div className="flex-container">
-        <div className="return-icon" onClick={() => window.history.go(-1)}>
+        <div
+          className="return-icon page-return-icon"
+          onClick={() => window.history.go(-1)}
+        >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+        </div>
+        <div className="edit-icon" onClick={() => window.history.go(-1)}>
+          <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
         <div>{message}</div>
         <TransportationCard transportation={transportation} />

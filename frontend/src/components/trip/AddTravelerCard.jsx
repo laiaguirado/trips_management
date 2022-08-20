@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./AddTravelerCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPersonWalkingLuggage,
@@ -11,26 +12,37 @@ function AddTravelerCard({ onAdd, adding, tripId }) {
     e.preventDefault();
     onAdd(tripId, email);
   };
+
+  document.body.style.overflow = "hidden";
+  //todo click backdrop
+  //todo error message
   return (
-    <div className="add-trip-card">
-      <div className="return-icon" onClick={adding}>
-        <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+    <div className="add-card add-traveler-card">
+      <div className="form-container">
+        <div className="return-icon" onClick={adding}>
+          <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+        </div>
+        <form className="add-form" onSubmit={(e) => add(e)}>
+          <h1 className="title">New Traveler</h1>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
+              <input
+                className="input"
+                type="text"
+                placeholder="Email of the new traveler"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </div>
+          </label>
+          <input
+            className="submit-button form-data"
+            type="submit"
+            value="Create New Traveler"
+          />
+        </form>
       </div>
-      <form className="addtrip" onSubmit={(e) => add(e)}>
-        <h1>New Traveler</h1>
-        <label>
-          <div className="form-data">
-            <FontAwesomeIcon icon={faPersonWalkingLuggage} />
-            <input
-              type="text"
-              placeholder="Email of the new traveler"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </div>
-        </label>
-        <input type="submit" value="Add New Traveler" />
-      </form>
     </div>
   );
 }

@@ -1,10 +1,10 @@
-.add-trip-card {
+.add-card {
   width: 25rem;
   position: absolute;
   z-index: 90;
 }
 
-.add-trip-card .background {
+.background {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -23,6 +23,7 @@
   z-index: 100;
   margin-left: -8vw;
 }
+
 .add-trip-card .form-container {
   margin-top: 0;
   margin-bottom: 5vw;
@@ -47,6 +48,7 @@
 .form-container .date {
   width: auto;
   color: #937b5f;
+  cursor: pointer;
 }
 
 .form-container .description {

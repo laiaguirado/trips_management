@@ -70,7 +70,6 @@ const LoginOrRegister = () => {
   };
 
   const title = mode === "login" ? "Login" : "Register";
-  console.log(title);
   const formButton = mode === "login" ? "Login" : "Create New User";
   const linkText = mode === "login" ? "Register" : "Login";
 

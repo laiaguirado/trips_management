@@ -15,6 +15,7 @@ import {
   faTrashCan,
   faPlus,
   faXmark,
+  faPen,
 } from "@fortawesome/free-solid-svg-icons";
 
 function TripDetailsPage() {
@@ -24,6 +25,8 @@ function TripDetailsPage() {
   const [adding, setAdding] = useState(false);
   const { tripId } = useParams();
   const navigate = useNavigate();
+
+  document.body.style.overflow = "unset";
 
   const getTripData = async (tripId) => {
     const { success, result: trip, error } = await api.getTrip(tripId);
@@ -94,7 +97,7 @@ function TripDetailsPage() {
     if (adding === false) {
       return (
         <div className="add-traveler-button" onClick={() => setAdding(true)}>
-          <FontAwesomeIcon icon={faPlus} />
+          <FontAwesomeIcon icon={faPlus} /> Add Traveler
         </div>
       );
     } else {
@@ -114,60 +117,82 @@ function TripDetailsPage() {
   useEffect(() => {
     getTripData(tripId);
   }, [tripId]);
-
+  //todo edit page
+  //todo put the delete button in the delete page
+  //todo empty fields
   return (
     <div>
       <Bar mode="login" />
       <div className="trip-details-page">
         <div
-          className="return-icon"
+          className="return-icon page-return-icon"
           onClick={() => navigate(`/`, { replace: false })}
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <div>{message}</div>
-        <div className="trip-info">
-          <h1 className="trip-name"> {trip.name}</h1>
-          <div className="trip-location">
-            <h3>Location: </h3>
-            <div>{trip.location}</div>
-          </div>
-          <div className="trip-description">
-            <h3>Description:</h3>
-            <div>{trip.description}</div>
-          </div>
-          <div className="trip-dates">
-            <h3>Dates:</h3>
-            {Array.isArray(trip) !== true ? (
-              <div>
-                {trip.startDate.substring(0, trip.startDate.length - 14) +
-                  " / " +
-                  trip.endDate.substring(0, trip.startDate.length - 14)}
-              </div>
-            ) : (
-              <div></div>
-            )}
-          </div>
-          <div className="trip-members">
-            <h3>Travelers:</h3>
-            <div className="travelers-list">
+        <div
+          className="edit-icon"
+          onClick={() => navigate(`/`, { replace: false })}
+        >
+          <FontAwesomeIcon icon={faPen} size="2x" />{" "}
+        </div>
+        <div className="error">{message}</div>
+        <div className="trip">
+          <div className="trip-info">
+            <h1 className="trip-name"> {trip.name}</h1>
+            <div className="trip-location trip-detail">
+              <h3>Location: </h3>
+              <div>{trip.location}</div>
+            </div>
+
+            <div className="trip-dates trip-detail">
+              <h3>Dates:</h3>
               {Array.isArray(trip) !== true ? (
-                trip.travellers.map((member) => (
-                  <div className="member" key={member._id}>
-                    <p>
-                      {member.username} ( {member.email} )
-                    </p>
-                    <div onClick={() => deleteTraveler(tripId, member.email)}>
-                      <FontAwesomeIcon className="delete-icon" icon={faXmark} />
-                    </div>
-                  </div>
-                ))
+                <div>
+                  {trip.startDate.substring(0, trip.startDate.length - 14) +
+                    " / " +
+                    trip.endDate.substring(0, trip.startDate.length - 14)}
+                </div>
               ) : (
-                <p></p>
+                <div></div>
               )}
             </div>
+            <div className="trip-description trip-detail">
+              <h3>Description:</h3>
+              <div>{trip.description}</div>
+            </div>
+            <div className="trip-members trip-detail">
+              <h3>Travelers:</h3>
+              <div className="travelers-list">
+                {Array.isArray(trip) !== true ? (
+                  trip.travellers.map((member) => (
+                    <div className="member trip-detail" key={member._id}>
+                      <p>
+                        {member.username} ( {member.email} )
+                      </p>
+                      <div onClick={() => deleteTraveler(tripId, member.email)}>
+                        <FontAwesomeIcon
+                          className="delete-icon"
+                          icon={faXmark}
+                        />
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p></p>
+                )}
+              </div>
+            </div>
+            <div className="add-traveler">{addTravelerForm()}</div>
           </div>
-          <div>{addTravelerForm()}</div>
+          {trip.image !== undefined ? (
+            <img
+              className="trip-image"
+              src={"http://localhost:8080/upload" + trip.image.name}
+            ></img>
+          ) : (
+            <div></div>
+          )}
         </div>
         <div className="trip-details-info">
           <div
@@ -209,7 +234,6 @@ function TripDetailsPage() {
         </div>
         <div>{deleteButton()}</div>
         <div className="trip-comments">
-          <h3>Comments:</h3>
           {/*<div>
             {Array.isArray(trip) !== true ? (
               trip.comments.map((comment) => (

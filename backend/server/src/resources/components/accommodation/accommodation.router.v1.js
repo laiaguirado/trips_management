@@ -9,13 +9,18 @@ const Travel = require("../../travel/travel.service");
 const User = require("../../users/user.service");
 const { runTransaction } = require("../../../helper");
 
+const RESOURCETYPE = "Accommodation";
+
 const create = async (req, res) => {
-  const accommData = req.body;
   const { email, _id, username } = req.userInfo;
   const { idTravel } = req.paramsParentRouter;
+  const accom = req.body;
+  accom.resourceType = RESOURCETYPE;
+  accom.idTravel = idTravel;
+  accom.idUser = _id;
 
   const accommodation = await runTransaction(async () => {
-    const accommodationCreated = await Accommodation.createAccommodation(accommData, idTravel, _id);
+    const accommodationCreated = await Accommodation.createAccommodation(accom);
 
     const travel = await Travel.findTravel(idTravel);
 
