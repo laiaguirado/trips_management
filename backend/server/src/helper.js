@@ -31,18 +31,23 @@ const runTransaction = async (handler) => {
 };
 
 const getPrice = (v) => {
+  if (!v) return v;
   return `${(v / 100).toFixed(2)}`;
 };
 
 const setPrice = (v) => {
+  if (!v) return v;
   return v * 100;
 };
 
 function getPriceWithCurrency(price, currency) {
   const currencyOut = currency ? currency : "";
-  const priceOut = price && price !== "0.00" ? price : "";
-
-  return `${priceOut} ${currencyOut}`;
+  if (price !== null && price !== undefined) {
+    const numberFormat = new Intl.NumberFormat("es-ES");
+    const priceFormat = numberFormat.format(price);
+    return `${priceFormat} ${currencyOut}`;
+  }
+  return "";
 }
 module.exports = {
   capitalize,
