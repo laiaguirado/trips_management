@@ -86,11 +86,12 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faHotel} className="icon" />
               <select
                 className="input date"
-                required
                 value={type}
                 onChange={(event) => setType(event.target.value)}
               >
-                <option value="Select...">Select an accommodation</option>
+                <option value="" disabled={true}>
+                  Select an accommodation
+                </option>
                 <option value="Hotel">Hotel</option>
                 <option value="Apartment">Apartment</option>
                 <option value="Camping">Camping</option>
@@ -178,11 +179,12 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faDollarSign} className="icon" />
               <select
                 className="input date"
-                required
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >
-                <option value="Select...">Select a currency</option>
+                <option value="" disabled={true}>
+                  Select a currency
+                </option>
                 <option value="€">Euro €</option>
                 <option value="$">Dollar $</option>
                 <option value="£">Libra £</option>

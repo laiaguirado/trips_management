@@ -117,11 +117,12 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faDollar} className="icon" />
               <select
                 className="input date"
-                required
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >
-                <option value="Select...">Select a currency</option>
+                <option value="" disabled={true}>
+                  Select a currency
+                </option>
                 <option value="€">Euro €</option>
                 <option value="$">Dollar $</option>
                 <option value="£">Libra £</option>
@@ -145,11 +146,12 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faDollar} className="icon" />
               <select
                 className="input date"
-                required
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >
-                <option value="Select...">Select a currency</option>
+                <option value="" disabled={true}>
+                  Select a currency
+                </option>
                 <option value="€">Euro €</option>
                 <option value="$">Dollar $</option>
                 <option value="£">Libra £</option>
