@@ -38,14 +38,6 @@ function PlanCard({ plan, modifyPlanList }) {
           <h3>Discount: </h3>
           <div>{plan.discount}</div>
         </div>
-        <div className="plan-phone plan-detail">
-          <h3>Phone number: </h3>
-          <div>{plan.phone}</div>
-        </div>
-        <div className="plan-email plan-detail">
-          <h3>Email: </h3>
-          <div>{plan.email}</div>
-        </div>
         <div className="plan-web plan-detail">
           <h3>Web page: </h3>
           <div>
@@ -66,6 +58,14 @@ function PlanCard({ plan, modifyPlanList }) {
               <p></p>
             )}
           </div>
+        </div>
+        <div className="plan-phone plan-detail">
+          <h3>Phone number: </h3>
+          <div>{plan.phone}</div>
+        </div>
+        <div className="plan-email plan-detail">
+          <h3>Email: </h3>
+          <div>{plan.email}</div>
         </div>
         <div className="plan-notation plan-detail">
           <h3>Notation: </h3>

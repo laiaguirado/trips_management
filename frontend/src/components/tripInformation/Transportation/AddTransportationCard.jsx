@@ -83,6 +83,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
                 <option value="tram">Tram</option>
                 <option value="bus">Bus</option>
                 <option value="train">Train</option>
+                <option value="other">Other</option>
               </select>
             </div>
           </label>

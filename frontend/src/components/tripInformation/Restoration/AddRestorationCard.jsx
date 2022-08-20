@@ -177,7 +177,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faPhone} className="icon" />
               <input
                 className="input"
-                type="text"
+                type="tel"
                 placeholder="Phone number"
                 value={phone}
                 onChange={(event) => setPhone(event.target.value)}
@@ -189,7 +189,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faEnvelope} className="icon" />
               <input
                 className="input"
-                type="text"
+                type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}

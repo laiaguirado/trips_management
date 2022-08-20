@@ -110,23 +110,12 @@ function AccommodationPage() {
                   )
                 }
               >
+                <div className="accommodation-name">
+                  <h3>{accommodation.name}</h3>
+                </div>
                 <div className="accommodation-location">
                   <h3>Location:</h3>
                   <div>{accommodation.location}</div>
-                </div>
-                <div className="accommodation-dates">
-                  <h3>Dates:</h3>
-                  <div>
-                    {accommodation.startDate.substring(
-                      0,
-                      accommodation.startDate.length - 14
-                    ) +
-                      " / " +
-                      accommodation.endDate.substring(
-                        0,
-                        accommodation.startDate.length - 14
-                      )}
-                  </div>
                 </div>
               </div>
             ))}

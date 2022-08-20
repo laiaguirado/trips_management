@@ -109,10 +109,8 @@ function TransportationPage() {
                   <h3>{transportation.name}</h3>
                 </div>
                 <div className="transportation-location">
-                  <h4>Origin / Destination:</h4>
-                  <div>
-                    {transportation.origin + " / " + transportation.destination}
-                  </div>
+                  <h4>Transportation:</h4>
+                  <div>{transportation.type}</div>
                 </div>
               </div>
             ))}
