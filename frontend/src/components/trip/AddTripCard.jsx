@@ -21,6 +21,7 @@ function AddTripCard({ onAdd, adding }) {
 
   const add = (e) => {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
