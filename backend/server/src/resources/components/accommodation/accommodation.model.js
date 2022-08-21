@@ -58,6 +58,9 @@ const accommodationSchema = extendSchema(componentSchema, {
   type: {
     type: String
   },
+  priceWithCurrency:{
+    type:String
+  }
 
 });
 

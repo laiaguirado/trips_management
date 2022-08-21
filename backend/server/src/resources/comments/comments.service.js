@@ -30,15 +30,24 @@ const deleteComment = async (_id) => {
 };
 
 const findByTravelId = async (idTravel) => {
-  return await Comment.find({ idTravel:idTravel }).exec();
+  return await Comment.find({ idTravel:idTravel })
+  .populate({ path: "idUser", select: "email username" })
+  .lean()
+  .exec();
 };
 
 const findByCompId = async (idComponent) => {
-  return await Comment.find({ idComponent }).exec();
+  return await Comment.find({ idComponent })
+  .populate({ path: "idUser", select: "email username" })
+  .lean()
+  .exec();
 };
 
 const findByTravelAndComp = async (idTravel,idComponent) => {
-  return await Comment.find({ idComponent: idComponent, idTravel:idTravel }).exec();
+  return await Comment.find({ idComponent: idComponent, idTravel:idTravel })
+  .populate({ path: "idUser", select: "email username" })
+  .lean()
+  .exec();
 };
 
 const updateComm = async (_id, commentData) => {
