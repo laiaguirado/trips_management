@@ -206,36 +206,66 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
             <div className="form-data">
               <FontAwesomeIcon icon={faDog} className="icon" />
               <p>Is it pet friendly?</p>
-              <input
-                className="input"
-                type="checkbox"
-                value={petFriendly}
-                onChange={(event) => setPetFriendly(event.target.checked)}
-              />
+              <div>
+                <input
+                  name="petFriendly"
+                  type="radio"
+                  value={petFriendly}
+                  onChange={() => setPetFriendly(true)}
+                />
+                <label>Yes</label>
+                <input
+                  name="petFriendly"
+                  type="radio"
+                  value={petFriendly}
+                  onChange={() => setPetFriendly(false)}
+                />
+                <label>No</label>
+              </div>
             </div>
           </label>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faWifi} className="icon" />
               <p>Is there Wi-Fi?</p>
-              <input
-                className="input"
-                type="checkbox"
-                value={internet}
-                onChange={(event) => setInternet(event.target.checked)}
-              />
+              <div>
+                <input
+                  name="internet"
+                  type="radio"
+                  value={internet}
+                  onChange={() => setInternet(true)}
+                />
+                <label>Yes</label>
+                <input
+                  name="internet"
+                  type="radio"
+                  value={internet}
+                  onChange={() => setInternet(false)}
+                />
+                <label>No</label>
+              </div>
             </div>
           </label>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faPersonSwimming} className="icon" />
               <p>Is there swimming pool?</p>
-              <input
-                className="input"
-                type="checkbox"
-                value={swimmingPool}
-                onChange={(event) => setSwimmingPool(event.target.checked)}
-              />
+              <div>
+                <input
+                  name="swimmingPool"
+                  type="radio"
+                  value={swimmingPool}
+                  onChange={() => setSwimmingPool(true)}
+                />
+                <label>Yes</label>
+                <input
+                  name="swimmingPool"
+                  type="radio"
+                  value={swimmingPool}
+                  onChange={() => setSwimmingPool(false)}
+                />
+                <label>No</label>
+              </div>
             </div>
           </label>
           <label>

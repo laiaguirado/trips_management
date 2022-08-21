@@ -27,6 +27,8 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
   const [maxPrice, setMaxPrice] = useState("");
   const [currency, setCurrency] = useState("");
   const [closed, setClosed] = useState("");
+  const [openingHour, setOpeningHour] = useState("");
+  const [closingHour, setClosingHour] = useState("");
   const [speciality, setSpeciality] = useState("");
   const [takeAway, setTakeAway] = useState(null);
   const [reserved, setReserved] = useState(null);
@@ -44,6 +46,8 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
       minPrice,
       maxPrice,
       currency,
+      openingHour,
+      closingHour,
       closed,
       speciality,
       takeAway,
@@ -51,7 +55,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
       web,
       phone,
       email,
-      description: notation,
+      notation,
     });
   };
 
@@ -70,7 +74,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
                 className="input"
                 required
                 type="text"
-                placeholder="Name"
+                placeholder="Restoration's name"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
@@ -163,6 +167,32 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
           </label>
           <label>
             <div className="form-data">
+              <FontAwesomeIcon icon={faClock} className="icon" />
+              <input
+                className="input date"
+                placeholder="Opening Hour"
+                value={openingHour}
+                onFocus={(event) => (event.target.type = "time")}
+                onBlur={(event) => (event.target.type = "text")}
+                onChange={(event) => setOpeningHour(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faClock} className="icon" />
+              <input
+                className="input date"
+                placeholder="Closing Hour"
+                value={closingHour}
+                onFocus={(event) => (event.target.type = "time")}
+                onBlur={(event) => (event.target.type = "text")}
+                onChange={(event) => setClosingHour(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
               <FontAwesomeIcon icon={faBan} className="icon" />
               <input
                 className="input"
@@ -189,24 +219,44 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
             <div className="form-data">
               <FontAwesomeIcon icon={faBagShopping} className="icon" />
               <p>Can it be taken away?</p>
-              <input
-                className="input"
-                type="checkbox"
-                value={takeAway}
-                onChange={(event) => setTakeAway(event.target.checked)}
-              />
+              <div>
+                <input
+                  name="takeAway"
+                  type="radio"
+                  value={takeAway}
+                  onChange={() => setTakeAway(true)}
+                />
+                <label>Yes</label>
+                <input
+                  name="takeAway"
+                  type="radio"
+                  value={takeAway}
+                  onChange={() => setTakeAway(false)}
+                />
+                <label>No</label>
+              </div>
             </div>
           </label>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faBookOpen} className="icon" />
               <p>Do you have to book?</p>
-              <input
-                className="input"
-                type="checkbox"
-                value={reserved}
-                onChange={(event) => setReserved(event.target.checked)}
-              />
+              <div>
+                <input
+                  name="reserved"
+                  type="radio"
+                  value={reserved}
+                  onChange={() => setReserved(true)}
+                />
+                <label>Yes</label>
+                <input
+                  name="reserved"
+                  type="radio"
+                  value={reserved}
+                  onChange={() => setReserved(false)}
+                />
+                <label>No</label>
+              </div>
             </div>
           </label>
           <label>

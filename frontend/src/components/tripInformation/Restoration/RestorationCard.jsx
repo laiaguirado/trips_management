@@ -32,6 +32,14 @@ function RestorationCard({ restoration }) {
               : ""}
           </div>
         </div>
+        <div className="restoration-hours restoration-detail">
+          <h3>Opening hour - Closing Hour:</h3>
+          <div>
+            {restoration.openingHour !== "" && restoration.closingHour !== ""
+              ? restoration.openingHour + "h - " + restoration.closingHour + "h"
+              : ""}
+          </div>
+        </div>
         <div className="restoration-closed restoration-detail">
           <h3>Closed: </h3>
           <div>{restoration.closed}</div>
@@ -91,7 +99,7 @@ function RestorationCard({ restoration }) {
         </div>
         <div className="restoration-notation restoration-detail">
           <h3>Notation: </h3>
-          <div>{restoration.description}</div>
+          <div>{restoration.notation}</div>
         </div>
       </div>
     </div>
