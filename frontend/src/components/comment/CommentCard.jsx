@@ -2,7 +2,7 @@ import React from "react";
 import "./CommentCard.css";
 import moment from "moment";
 
-function CommentCard({ componentId, comment }) {
+function CommentCard({ comment }) {
   /*const deleteComment = async (commentId) => {
       const { success, error } = await api.deleteComment(commentId);
       if (success) {
@@ -62,7 +62,7 @@ function CommentCard({ componentId, comment }) {
   return (
     <div className="comment-card">
       <div className="comment-info">
-        <div className="comment-user">{comment.idUser}</div>
+        <div className="comment-user">{comment.idUser.username}</div>
         <div className="comment-published-time">
           Published {difference + time} ago
         </div>

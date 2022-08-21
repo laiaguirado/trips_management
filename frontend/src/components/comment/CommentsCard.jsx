@@ -32,7 +32,8 @@ function CommentsCard({ tripId, componentId, component }) {
       comment_text: comment,
     });
     if (success) {
-      setCommentList((commentList) => [...commentList, newComment]);
+      //setCommentList((commentList) => [...commentList, newComment]);
+      loadCommentList();
       setComment("");
     } else {
       setMessage(error);
@@ -49,12 +50,7 @@ function CommentsCard({ tripId, componentId, component }) {
       <h4>Comments: </h4>
       <div className="comments-list">
         {commentList.map((comment) => (
-          <CommentCard
-            key={comment._id}
-            componentId={componentId}
-            comment={comment}
-            modifyCommentList={setCommentList}
-          />
+          <CommentCard key={comment._id} comment={comment} />
         ))}
       </div>
       <form className="add-comment" onSubmit={addComment}>
