@@ -48,6 +48,7 @@ const travelSchema = new mongoose.Schema(
         validator: (v) => v,
         message: (props) => `Image is wrong`,
       },
+      required: [true, "{PATH} is required"],
     },
     travellers: [
       {
@@ -56,9 +57,7 @@ const travelSchema = new mongoose.Schema(
         validate: {
           isAsync: true,
           validator: async function (v) {
-            return await FKIntegrity(mongoose.model("user"), v).catch(
-              (err) => false
-            );
+            return await FKIntegrity(mongoose.model("user"), v).catch((err) => false);
           },
           message: `User doesn't exist`,
         },
@@ -83,9 +82,7 @@ const travelSchema = new mongoose.Schema(
         validate: {
           isAsync: true,
           validator: async function (v) {
-            return await FKIntegrity(mongoose.model("restoration"), v).catch(
-              (err) => false
-            );
+            return await FKIntegrity(mongoose.model("restoration"), v).catch((err) => false);
           },
           message: `Restaurant doesn't exist`,
         },
@@ -98,9 +95,7 @@ const travelSchema = new mongoose.Schema(
         validate: {
           isAsync: true,
           validator: async function (v) {
-            return await FKIntegrity(mongoose.model("accommodation"), v).catch(
-              (err) => false
-            );
+            return await FKIntegrity(mongoose.model("accommodation"), v).catch((err) => false);
           },
           message: `Accommodation doesn't exist`,
         },
@@ -113,9 +108,7 @@ const travelSchema = new mongoose.Schema(
         validate: {
           isAsync: true,
           validator: async function (v) {
-            return await FKIntegrity(mongoose.model("transportation"), v).catch(
-              (err) => false
-            );
+            return await FKIntegrity(mongoose.model("transportation"), v).catch((err) => false);
           },
           message: `Transportation doesn't exist`,
         },
@@ -128,9 +121,7 @@ const travelSchema = new mongoose.Schema(
         validate: {
           isAsync: true,
           validator: async function (v) {
-            return await FKIntegrity(mongoose.model("plans"), v).catch(
-              (err) => false
-            );
+            return await FKIntegrity(mongoose.model("plans"), v).catch((err) => false);
           },
           message: `Plan doesn't exist`,
         },
