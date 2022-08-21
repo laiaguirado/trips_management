@@ -29,9 +29,9 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
   const [checkOutHour, setCheckOutHour] = useState("");
   const [price, setPrice] = useState("");
   const [currency, setCurrency] = useState("");
-  const [petFriendly, setPetFriendly] = useState(null);
-  const [internet, setInternet] = useState(null);
-  const [swimmingPool, setSwimmingPool] = useState(null);
+  const [petFriendly, setPetFriendly] = useState(undefined);
+  const [internet, setInternet] = useState(undefined);
+  const [swimmingPool, setSwimmingPool] = useState(undefined);
   const [web, setWeb] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");

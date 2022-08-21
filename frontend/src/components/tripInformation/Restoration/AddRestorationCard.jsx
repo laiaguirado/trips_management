@@ -30,8 +30,8 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
   const [openingHour, setOpeningHour] = useState("");
   const [closingHour, setClosingHour] = useState("");
   const [speciality, setSpeciality] = useState("");
-  const [takeAway, setTakeAway] = useState(null);
-  const [reserved, setReserved] = useState(null);
+  const [takeAway, setTakeAway] = useState(undefined);
+  const [reserved, setReserved] = useState(undefined);
   const [web, setWeb] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");

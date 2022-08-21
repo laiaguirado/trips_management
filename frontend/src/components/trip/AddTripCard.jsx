@@ -113,6 +113,7 @@ function AddTripCard({ onAdd, adding }) {
                 <FontAwesomeIcon icon={faImage} className="icon" />
                 <input
                   className="input upload"
+                  required
                   type="file"
                   onInput={(event) => {
                     setImage(event.target.files[0]);

@@ -69,7 +69,8 @@ function AccommodationCard({ accommodation }) {
         <div className="accommodation-petFriendly accommodation-detail">
           <h3>Pet friendly: </h3>
           <div>
-            {accommodation.petFriendly !== null
+            {accommodation.petFriendly !== null &&
+            accommodation.petFriendly !== undefined
               ? accommodation.petFriendly === true
                 ? "Yes"
                 : "No"
@@ -79,7 +80,8 @@ function AccommodationCard({ accommodation }) {
         <div className="accommodation-internet accommodation-detail">
           <h3>Internet: </h3>
           <div>
-            {accommodation.internet !== null
+            {accommodation.internet !== null &&
+            accommodation.internet !== undefined
               ? accommodation.internet === true
                 ? "Yes"
                 : "No"
@@ -89,7 +91,8 @@ function AccommodationCard({ accommodation }) {
         <div className="accommodation-swimmingPool accommodation-detail">
           <h3>Swimming pool: </h3>
           <div>
-            {accommodation.swimmingPool !== null
+            {accommodation.swimmingPool !== null &&
+            accommodation.swimmingPool !== undefined
               ? accommodation.swimmingPool === true
                 ? "Yes"
                 : "No"
