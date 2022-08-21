@@ -50,7 +50,6 @@ function AddPlanCard({ onAdd, adding, tripId }) {
       email,
       web,
       notation,
-      resourceType: "plans",
     });
   };
 

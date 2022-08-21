@@ -25,9 +25,9 @@ const restorationSchema = extendSchema(componentSchema, {
     type: String,
     trim: true,
   },
-  description: {
+  notation: {
     type: String,
-    maxlength: [250, "'{PATH}' is too long"],
+    maxlength: [500, "'{PATH}' is too long"],
   },
   location: {
     type: String,
@@ -69,6 +69,14 @@ const restorationSchema = extendSchema(componentSchema, {
   },
   reserved: {
     type: Boolean,
+  },
+  openingHour: {
+    type: String,
+    required: false, //TODO Validar formato HH:MM
+  },
+  closingHour: {
+    type: String,
+    required: false, //TODO Validar formato HH:MM
   },
 });
 

@@ -42,7 +42,6 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
       arrival,
       web,
       notation,
-      resourceType: "transportation",
     });
   };
 
