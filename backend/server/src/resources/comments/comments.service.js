@@ -2,13 +2,19 @@ const Comment = require("./comments.model");
 const Travel = require("../travel/travel.model")
 
 const createOne = async (text, compId, _id,idTravel) => {
-  return await Comment.create({
+   return await Comment.create({
     comment: text,
     idComponent: compId,
     idUser: _id,
     idTravel
 
-  });
+  }).then(
+    comment => {
+      const result = Comment.findById(comment._id)
+        .populate({ path: "idUser", select: "email username" });
+      return result;
+    }
+  );
 };
 
 const findAll = async () => {
