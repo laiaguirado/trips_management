@@ -56,7 +56,6 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
       phone,
       email,
       notation,
-      resourceType: "Accommodation",
     });
   };
   //todo dates fields style

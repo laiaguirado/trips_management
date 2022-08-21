@@ -52,7 +52,6 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
       phone,
       email,
       description: notation,
-      resourceType: "Restoration",
     });
   };
 
