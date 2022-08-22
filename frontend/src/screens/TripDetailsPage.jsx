@@ -1,24 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { ModelContext } from "../model";
 import "./TripDetailsPage.css";
 import * as api from "../api";
 import Bar from "../components/Bar";
 import DeleteCard from "../components/DeleteCard";
 import AddTravelerCard from "../components/trip/AddTravelerCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faBed,
-  faPlane,
-  faCamera,
-  faUtensils,
-  faTrashCan,
-  faPlus,
-  faXmark,
-  faPen,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faBed, faPlane, faCamera, faUtensils, faTrashCan, faPlus, faXmark, faPen } from "@fortawesome/free-solid-svg-icons";
 
 function TripDetailsPage() {
+  const { catchUnauthorized } = useContext(ModelContext);
   const [trip, setTrip] = useState([]);
   const [message, setMessage] = useState(null);
   const [deleting, setDeleting] = useState(false);
@@ -29,7 +21,7 @@ function TripDetailsPage() {
   document.body.style.overflow = "unset";
 
   const getTripData = async (tripId) => {
-    const { success, result: trip, error } = await api.getTrip(tripId);
+    const { success, result: trip, error } = catchUnauthorized(async () => await api.getTrip(tripId));
     if (success) {
       setTrip(trip);
     } else {
@@ -47,11 +39,7 @@ function TripDetailsPage() {
   };
 
   const addTraveler = async (tripId, email) => {
-    const {
-      success,
-      result: added,
-      error,
-    } = await api.addTraveler(tripId, email);
+    const { success, result: added, error } = await api.addTraveler(tripId, email);
     if (success) {
       getTripData(tripId);
       setAdding(false);
@@ -83,13 +71,7 @@ function TripDetailsPage() {
         </div>
       );
     } else {
-      return (
-        <DeleteCard
-          onDelete={() => deleteTrip(tripId)}
-          deleting={() => setDeleting(false)}
-          deleteType={"Trip"}
-        />
-      );
+      return <DeleteCard onDelete={() => deleteTrip(tripId)} deleting={() => setDeleting(false)} deleteType={"Trip"} />;
     }
   }
 
@@ -124,16 +106,10 @@ function TripDetailsPage() {
     <div>
       <Bar mode="login" />
       <div className="trip-details-page">
-        <div
-          className="return-icon page-return-icon"
-          onClick={() => navigate(`/`, { replace: false })}
-        >
+        <div className="return-icon page-return-icon" onClick={() => navigate(`/`, { replace: false })}>
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <div
-          className="edit-icon"
-          onClick={() => navigate(`/`, { replace: false })}
-        >
+        <div className="edit-icon" onClick={() => navigate(`/`, { replace: false })}>
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
         <div className="error">{message}</div>
@@ -147,15 +123,7 @@ function TripDetailsPage() {
 
             <div className="trip-dates trip-detail">
               <h3>Dates:</h3>
-              {Array.isArray(trip) !== true ? (
-                <div>
-                  {trip.startDate.substring(0, trip.startDate.length - 14) +
-                    " / " +
-                    trip.endDate.substring(0, trip.startDate.length - 14)}
-                </div>
-              ) : (
-                <div></div>
-              )}
+              {Array.isArray(trip) !== true ? <div>{trip.startDate.substring(0, trip.startDate.length - 14) + " / " + trip.endDate.substring(0, trip.startDate.length - 14)}</div> : <div></div>}
             </div>
             <div className="trip-description trip-detail">
               <h3>Description:</h3>
@@ -171,10 +139,7 @@ function TripDetailsPage() {
                         {member.username} ( {member.email} )
                       </p>
                       <div onClick={() => deleteTraveler(tripId, member.email)}>
-                        <FontAwesomeIcon
-                          className="delete-icon"
-                          icon={faXmark}
-                        />
+                        <FontAwesomeIcon className="delete-icon" icon={faXmark} />
                       </div>
                     </div>
                   ))
@@ -185,49 +150,21 @@ function TripDetailsPage() {
             </div>
             <div className="add-traveler">{addTravelerForm()}</div>
           </div>
-          {trip.image !== undefined ? (
-            <img
-              className="trip-image"
-              src={"http://localhost:8080/upload" + trip.image.name}
-            ></img>
-          ) : (
-            <div></div>
-          )}
+          {trip.image !== undefined ? <img className="trip-image" src={"http://localhost:8080/upload" + trip.image.name}></img> : <div></div>}
         </div>
         <div className="trip-details-info">
-          <div
-            className="details-info"
-            onClick={() =>
-              navigate(`/trip/${tripId}/accommodation`, { replace: false })
-            }
-          >
-            <FontAwesomeIcon className="icon" icon={faBed} size="2x" />{" "}
-            Accommodation
+          <div className="details-info" onClick={() => navigate(`/trip/${tripId}/accommodation`, { replace: false })}>
+            <FontAwesomeIcon className="icon" icon={faBed} size="2x" /> Accommodation
           </div>
-          <div
-            className="details-info"
-            onClick={() =>
-              navigate(`/trip/${tripId}/transportation`, { replace: false })
-            }
-          >
+          <div className="details-info" onClick={() => navigate(`/trip/${tripId}/transportation`, { replace: false })}>
             <FontAwesomeIcon className="icon" icon={faPlane} size="2x" />
             Transportation
           </div>
-          <div
-            className="details-info"
-            onClick={() =>
-              navigate(`/trip/${tripId}/plans`, { replace: false })
-            }
-          >
+          <div className="details-info" onClick={() => navigate(`/trip/${tripId}/plans`, { replace: false })}>
             <FontAwesomeIcon className="icon" icon={faCamera} size="2x" />
             Plans
           </div>
-          <div
-            className="details-info"
-            onClick={() =>
-              navigate(`/trip/${tripId}/restoration`, { replace: false })
-            }
-          >
+          <div className="details-info" onClick={() => navigate(`/trip/${tripId}/restoration`, { replace: false })}>
             <FontAwesomeIcon className="icon" icon={faUtensils} size="2x" />
             Restoration
           </div>
