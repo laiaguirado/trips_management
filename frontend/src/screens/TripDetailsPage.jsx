@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ModelContext } from "../model";
 import "./TripDetailsPage.css";
 import * as api from "../api";
 import Bar from "../components/Bar";
@@ -10,7 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faBed, faPlane, faCamera, faUtensils, faTrashCan, faPlus, faXmark, faPen } from "@fortawesome/free-solid-svg-icons";
 
 function TripDetailsPage() {
-  const { catchUnauthorized } = useContext(ModelContext);
   const [trip, setTrip] = useState([]);
   const [message, setMessage] = useState(null);
   const [deleting, setDeleting] = useState(false);
@@ -21,7 +19,7 @@ function TripDetailsPage() {
   document.body.style.overflow = "unset";
 
   const getTripData = async (tripId) => {
-    const { success, result: trip, error } = catchUnauthorized(async () => await api.getTrip(tripId));
+    const { success, result: trip, error } = await api.getTrip(tripId);
     if (success) {
       setTrip(trip);
     } else {

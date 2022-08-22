@@ -17,11 +17,8 @@ export const isTokenExpired = () => {
     const token = JSON.parse(tokenStr);
     if (token !== null) {
       const tokenDecode = jwt_decode(token.accessToken);
-      const p = tokenDecode.exp * 1000 < Date.now();
-      console.log(` Token.istokenExpired = ${p}`);
-      return p;
+      return tokenDecode.exp * 1000 < Date.now();
     }
-  }
-  console.log(` token.isTokenExpired. No hay token`);
+  }  
   return true;
 };

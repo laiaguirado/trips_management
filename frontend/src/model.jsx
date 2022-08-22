@@ -39,7 +39,6 @@ export const ModelProvider = ({ children, history }) => {
     //   console.log(`Model useEffect = ${success}`);
     //   if (!success) logout();
     // }
-    console.log("Model.isAuthorized.");
     if (tk.isTokenExpired()) logout();
   };
 
@@ -48,7 +47,6 @@ export const ModelProvider = ({ children, history }) => {
     if (response) {
       if (!response.success) {
         if (response.error === "Token expired") {
-          console.log("Model.CatchUnauthorized token expired");
           logout();
         }
       }

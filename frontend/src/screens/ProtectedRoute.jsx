@@ -21,7 +21,7 @@ const ProtectedRoute = ({ children }) => {
   if (token === null) {
     return <Navigate to="/" replace="true" />;
   }
-  console.log("PRotectedRoute muestro children");
+
   return children;
 };
 
