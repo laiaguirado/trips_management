@@ -32,8 +32,8 @@ function CommentsCard({ tripId, componentId, component }) {
       comment_text: comment,
     });
     if (success) {
-      //setCommentList((commentList) => [...commentList, newComment]);
-      loadCommentList();
+      setCommentList((commentList) => [...commentList, newComment]);
+      //loadCommentList();
       setComment("");
     } else {
       setMessage(error);
