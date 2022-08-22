@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./TripDetailsPage.css";
 import * as api from "../api";
+import * as helper from "../helper";
 import Bar from "../components/Bar";
 import DeleteCard from "../components/DeleteCard";
 import AddTravelerCard from "../components/trip/AddTravelerCard";
@@ -150,9 +151,13 @@ function TripDetailsPage() {
               <h3>Dates:</h3>
               {Array.isArray(trip) !== true ? (
                 <div>
-                  {trip.startDate.substring(0, trip.startDate.length - 14) +
+                  {helper.changeDateOrder(
+                    trip.startDate.substring(0, trip.startDate.length - 14)
+                  ) +
                     " / " +
-                    trip.endDate.substring(0, trip.startDate.length - 14)}
+                    helper.changeDateOrder(
+                      trip.endDate.substring(0, trip.startDate.length - 14)
+                    )}
                 </div>
               ) : (
                 <div></div>
