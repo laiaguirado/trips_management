@@ -77,7 +77,10 @@ const addUserToTravel = async (idTravel, idUser) => {
       { _id: idTravel },
       { $push: { travellers: idUser } },
       { new: true, useFindAndModify: false, runValidators: true }
-    );
+    )
+      .populate({ path: "travellers", select: "email username" })
+      .lean()
+      .exec();
 
     const user = await User.findOneAndUpdate(
       { _id: idUser },
@@ -95,7 +98,10 @@ const deleteUserToTravel = async (idTravel, idUser) => {
       { _id: idTravel },
       { $pull: { travellers: idUser } },
       { new: true, useFindAndModify: false }
-    );
+    )
+      .populate({ path: "travellers", select: "email username" })
+      .lean()
+      .exec();
 
     const user = await User.findOneAndUpdate(
       { _id: idUser },
