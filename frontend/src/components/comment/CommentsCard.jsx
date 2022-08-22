@@ -33,7 +33,6 @@ function CommentsCard({ tripId, componentId, component }) {
     });
     if (success) {
       setCommentList((commentList) => [...commentList, newComment]);
-      //loadCommentList();
       setComment("");
     } else {
       setMessage(error);
