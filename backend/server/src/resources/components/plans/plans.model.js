@@ -17,7 +17,6 @@ const plansSchema = extendSchema(componentSchema, {
   name: {
     type: String,
     maxlength: [50, "{PATH} is too long"],
-    match: [/^[a-zA-Z0-9\s]*$/, "{PATH} is invalid"],
     required: [true, "{PATH} is required"],
     set: capitalize,
   },
