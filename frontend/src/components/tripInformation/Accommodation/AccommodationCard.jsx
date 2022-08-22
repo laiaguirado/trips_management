@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AccommodationCard.css";
 import * as api from "../../../api";
+import * as helper from "../../../helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import CommentsCard from "../../comment/CommentsCard";
@@ -29,14 +30,18 @@ function AccommodationCard({ accommodation }) {
           accommodation.startDate !== null &&
           accommodation.endDate !== null ? (
             <div>
-              {accommodation.startDate.substring(
-                0,
-                accommodation.startDate.length - 14
-              ) +
-                " / " +
-                accommodation.endDate.substring(
+              {helper.changeDateOrder(
+                accommodation.startDate.substring(
                   0,
                   accommodation.startDate.length - 14
+                )
+              ) +
+                " / " +
+                helper.changeDateOrder(
+                  accommodation.endDate.substring(
+                    0,
+                    accommodation.startDate.length - 14
+                  )
                 )}
             </div>
           ) : (

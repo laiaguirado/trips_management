@@ -143,6 +143,7 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <input
                 className="input"
                 type="number"
+                min={0}
                 placeholder="Adult's price"
                 value={priceAdult}
                 onChange={(event) => setPriceAdult(event.target.value)}
@@ -173,6 +174,7 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <input
                 className="input"
                 type="number"
+                min={0}
                 placeholder="Children's price"
                 value={priceChildren}
                 onChange={(event) => setPriceChildren(event.target.value)}
