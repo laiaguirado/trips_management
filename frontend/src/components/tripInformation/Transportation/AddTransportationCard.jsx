@@ -107,6 +107,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <input
                 className="input"
                 type="number"
+                min={0}
                 placeholder="Price"
                 value={price}
                 onChange={(event) => setPrice(event.target.value)}
