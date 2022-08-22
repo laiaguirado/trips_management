@@ -41,6 +41,7 @@ function TripDetailsPage() {
   const addTraveler = async (tripId, email) => {
     const { success, result: added, error } = await api.addTraveler(tripId, email);
     if (success) {
+      //afegir la info del nou traveler al trip en comptes de recarregar tota la info del trip
       getTripData(tripId);
       setAdding(false);
       setMessage(null);
