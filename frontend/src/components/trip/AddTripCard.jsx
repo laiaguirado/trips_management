@@ -36,7 +36,7 @@ function AddTripCard({ onAdd, adding }) {
   //todo mark required fields
   //todo cursor on calendar date
   return (
-    <div className="add-trip-card">
+    <div className="add-card add-trip-card">
       <div className="background"></div>
       <div className="popup">
         <div className="form-container">
