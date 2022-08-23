@@ -69,6 +69,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
 
   return (
     <div className="add-card add-transportation-card">
+      <div className="background" onClick={adding}></div>
       <div className="form-container">
         <div className="return-icon" onClick={adding}>
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}

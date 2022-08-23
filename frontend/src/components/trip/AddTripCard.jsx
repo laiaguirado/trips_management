@@ -49,123 +49,115 @@ function AddTripCard({ onAdd, adding }) {
 
   return (
     <div className="add-card add-trip-card">
-      <div className="background"></div>
-      <div className="popup">
-        <div className="form-container">
-          <div className="return-icon" onClick={adding}>
-            <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
-          </div>
-          <form className="add-form" onSubmit={(e) => add(e)}>
-            <h1 className="title">New Trip</h1>
-            <label>
-              <div className="form-data">
-                <FontAwesomeIcon
-                  icon={faCartFlatbedSuitcase}
-                  className="icon"
-                />
-                <input
-                  className="input"
-                  required
-                  type="text"
-                  placeholder="Trip Name *"
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                />
-              </div>
-            </label>
-            <label>
-              <div className="form-data">
-                <FontAwesomeIcon icon={faLocationDot} className="icon" />
-                <input
-                  className="input"
-                  required
-                  type="text"
-                  placeholder="Location *"
-                  value={location}
-                  onChange={(event) => setLocation(event.target.value)}
-                />
-              </div>
-            </label>
-            <label>
-              <div className="form-data">
-                <FontAwesomeIcon icon={faCalendar} className="icon" />
-                <input
-                  id="date"
-                  className="input date"
-                  required
-                  type="text"
-                  placeholder="Start Date *"
-                  max={endDate}
-                  onFocus={(event) => {
-                    event.target.type = "date";
-                    event.target.value = startDate;
-                  }}
-                  onBlur={(event) => {
-                    event.target.type = "text";
-                    event.target.value = getDateValue(
-                      startDate,
-                      "Start Date *"
-                    );
-                  }}
-                  onChange={(event) => setStartDate(event.target.value)}
-                />
-              </div>
-            </label>
-            <label>
-              <div className="form-data">
-                <FontAwesomeIcon icon={faCalendar} className="icon" />
-                <input
-                  id="date"
-                  className="input date"
-                  required
-                  type="text"
-                  placeholder="End Date *"
-                  min={startDate}
-                  onFocus={(event) => {
-                    event.target.type = "date";
-                    event.target.value = endDate;
-                  }}
-                  onBlur={(event) => {
-                    event.target.type = "text";
-                    event.target.value = getDateValue(endDate, "End Date *");
-                  }}
-                  onChange={(event) => setEndDate(event.target.value)}
-                />
-              </div>
-            </label>
-            <label>
-              <div className="form-data">
-                <FontAwesomeIcon icon={faImage} className="icon" />
-                <input
-                  className="input upload"
-                  required
-                  type="file"
-                  onInput={(event) => {
-                    setImage(event.target.files[0]);
-                  }}
-                />
-              </div>
-            </label>
-            <label>
-              <div className="form-data">
-                <FontAwesomeIcon icon={faNoteSticky} className="icon" />
-                <textarea
-                  className="input description"
-                  rows="5"
-                  cols="30"
-                  placeholder="Description"
-                  value={description}
-                  onChange={(event) => setDescription(event.target.value)}
-                ></textarea>
-              </div>
-            </label>
-            <input
-              className="submit-button form-data"
-              type="submit"
-              value="Create New Trip"
-            />
-          </form>
+      <div className="background" onClick={adding}></div>
+      <div className="form-container">
+        <div className="return-icon" onClick={adding}>
+          <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
+        <form className="add-form" onSubmit={(e) => add(e)}>
+          <h1 className="title">New Trip</h1>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faCartFlatbedSuitcase} className="icon" />
+              <input
+                className="input"
+                required
+                type="text"
+                placeholder="Trip Name *"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faLocationDot} className="icon" />
+              <input
+                className="input"
+                required
+                type="text"
+                placeholder="Location *"
+                value={location}
+                onChange={(event) => setLocation(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faCalendar} className="icon" />
+              <input
+                id="date"
+                className="input date"
+                required
+                type="text"
+                placeholder="Start Date *"
+                max={endDate}
+                onFocus={(event) => {
+                  event.target.type = "date";
+                  event.target.value = startDate;
+                }}
+                onBlur={(event) => {
+                  event.target.type = "text";
+                  event.target.value = getDateValue(startDate, "Start Date *");
+                }}
+                onChange={(event) => setStartDate(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faCalendar} className="icon" />
+              <input
+                id="date"
+                className="input date"
+                required
+                type="text"
+                placeholder="End Date *"
+                min={startDate}
+                onFocus={(event) => {
+                  event.target.type = "date";
+                  event.target.value = endDate;
+                }}
+                onBlur={(event) => {
+                  event.target.type = "text";
+                  event.target.value = getDateValue(endDate, "End Date *");
+                }}
+                onChange={(event) => setEndDate(event.target.value)}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faImage} className="icon" />
+              <input
+                className="input upload"
+                required
+                type="file"
+                onInput={(event) => {
+                  setImage(event.target.files[0]);
+                }}
+              />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faNoteSticky} className="icon" />
+              <textarea
+                className="input description"
+                rows="5"
+                cols="30"
+                placeholder="Description"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+              ></textarea>
+            </div>
+          </label>
+          <input
+            className="submit-button form-data"
+            type="submit"
+            value="Create New Trip"
+          />
+        </form>
       </div>
     </div>
   );

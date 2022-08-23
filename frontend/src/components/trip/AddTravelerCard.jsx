@@ -14,9 +14,9 @@ function AddTravelerCard({ onAdd, adding, tripId }) {
   };
 
   document.body.style.overflow = "hidden";
-  //todo click backdrop
   return (
     <div className="add-card add-traveler-card">
+      <div className="background" onClick={adding}></div>
       <div className="form-container">
         <div className="return-icon" onClick={adding}>
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}

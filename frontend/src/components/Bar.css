@@ -12,6 +12,7 @@
   z-index: 100;
   min-height: 50px;
   min-width: 525px;
+  max-height: 60px;
 }
 
 .nav-bar .nav-bar-title {
