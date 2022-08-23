@@ -6,7 +6,12 @@ import "./PlansPage.css";
 import PlanCard from "../../../components/tripInformation/Plan/PlanCard";
 import AddPlanCard from "../../../components/tripInformation/Plan/AddPlanCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faPlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faCirclePlus,
+  faAngleLeft,
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 
 function PlansPage() {
   const [planList, setPlanList] = useState([]);
@@ -44,8 +49,8 @@ function PlansPage() {
   function addPlanForm() {
     if (adding === false) {
       return (
-        <div className="add-plan-button" onClick={() => setAdding(true)}>
-          <FontAwesomeIcon icon={faPlus} />
+        <div className="add-info-button" onClick={() => setAdding(true)}>
+          <FontAwesomeIcon icon={faCirclePlus} className="icon" />
         </div>
       );
     } else {
@@ -69,22 +74,24 @@ function PlansPage() {
   return (
     <div className="plan-page">
       <Bar mode="login" />
-      <div className="plan-info-container">
+      <div className="info-container">
         <div
-          className="return-icon"
+          className="return-icon page-return-icon"
           onClick={() => navigate(`/trip/${tripId}`, { replace: false })}
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <button onClick={() => editPage()}>Edit</button>
+        <div className="edit-icon" onClick={() => editPage()}>
+          <FontAwesomeIcon icon={faPen} size="2x" />{" "}
+        </div>
         <div>{message}</div>
         <div>
           <h1>PLANS</h1>
           <div>{addPlanForm()}</div>
-          <div className="plan-list">
+          <div className="info-list">
             {planList.map((plan) => (
               <div
-                className="plan"
+                className="info"
                 key={plan._id}
                 onClick={() =>
                   navigate(`/trip/${tripId}/plans/${plan._id}`, {
@@ -92,13 +99,11 @@ function PlansPage() {
                   })
                 }
               >
-                <div className="plan-name">
+                <div className="info-name">
                   <h3>{plan.name}</h3>
                 </div>
-                <div className="plan-location">
-                  <h4>Location:</h4>
-                  <div>{plan.location}</div>
-                </div>
+                <h4>Location:</h4>
+                <div className="info-location">{plan.location}</div>
               </div>
             ))}
           </div>
