@@ -99,11 +99,8 @@ function PlansPage() {
                   })
                 }
               >
-                <div className="info-name">
-                  <h3>{plan.name}</h3>
-                </div>
-                <h4>Location:</h4>
-                <div className="info-location">{plan.location}</div>
+                <h3 className="info-name">{plan.name}</h3>
+                <div className="info-main">{plan.location}</div>
               </div>
             ))}
           </div>

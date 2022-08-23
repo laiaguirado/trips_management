@@ -37,11 +37,25 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 2vw;
   background-color: white;
 }
 
 .info:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+.info-name {
+  width: 30%;
+  text-align: left;
+}
+
+.info-main {
+  width: 30%;
+  text-align: left;
+}
+
+.info-other {
+  width: 10%;
+  text-align: left;
 }

@@ -103,12 +103,9 @@ function RestorationPage() {
                   })
                 }
               >
-                <div className="info-name">
-                  <h3>{restoration.name}</h3>
-                </div>
-                <div>{restoration.kindOfFood}</div>
-                <h4>Location:</h4>
-                <div className="info-location">{restoration.location}</div>
+                <h3 className="info-name">{restoration.name}</h3>
+                <div className="info-main">{restoration.location}</div>
+                <div className="info-other">{restoration.kindOfFood}</div>
               </div>
             ))}
           </div>
