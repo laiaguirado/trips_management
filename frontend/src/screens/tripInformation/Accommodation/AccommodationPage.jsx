@@ -112,9 +112,8 @@ function AccommodationPage() {
                 }
               >
                 <h3 className="info-name">{accommodation.name}</h3>
-
-                <h3>Location:</h3>
-                <div className="info-location">{accommodation.location}</div>
+                <div className="info-main">{accommodation.location}</div>
+                <div className="info-other">{accommodation.type}</div>
               </div>
             ))}
           </div>

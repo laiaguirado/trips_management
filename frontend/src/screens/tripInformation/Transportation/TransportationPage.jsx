@@ -108,11 +108,8 @@ function TransportationPage() {
                   )
                 }
               >
-                <div className="info-name">
-                  <h3>{transportation.name}</h3>
-                </div>
-                <h4>Transportation:</h4>
-                <div className="info-location">{transportation.type}</div>
+                <h3 className="info-name">{transportation.name}</h3>
+                <div className="info-main">{transportation.type}</div>
               </div>
             ))}
           </div>

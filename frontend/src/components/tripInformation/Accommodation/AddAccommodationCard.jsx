@@ -59,7 +59,6 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
   };
 
   //todo style margin-top
-  //todo content accommodation
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -70,9 +69,10 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
       return placeholder;
     }
     const date = new Date(value);
-    const month = date.getMonth() + 1;
-    const stringDate = date.getDate() + "/" + month + "/" + date.getFullYear();
-    return stringDate;
+    const day = ("0" + date.getDate()).slice(-2);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const year = ("0" + date.getFullYear()).slice(-4);
+    return day + "/" + month + "/" + year;
   }
 
   return (

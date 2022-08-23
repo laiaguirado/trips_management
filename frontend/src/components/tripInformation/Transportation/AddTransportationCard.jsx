@@ -49,18 +49,12 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
       return placeholder;
     }
     const date = new Date(value);
-    const month = date.getMonth() + 1;
-    const stringDate =
-      date.getDate() +
-      "/" +
-      month +
-      "/" +
-      date.getFullYear() +
-      " " +
-      date.getHours() +
-      ":" +
-      date.getMinutes();
-    return stringDate;
+    const day = ("0" + date.getDate()).slice(-2);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const year = ("0" + date.getFullYear()).slice(-4);
+    const hours = ("0" + date.getHours()).slice(-2);
+    const minutes = ("0" + date.getMinutes()).slice(-2);
+    return day + "/" + month + "/" + year + " " + hours + ":" + minutes;
   }
 
   useEffect(() => {
