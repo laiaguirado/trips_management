@@ -53,13 +53,7 @@ function TransportationPage() {
   };
 
   function addTransportationForm() {
-    if (adding === false) {
-      return (
-        <div className="add-info-button" onClick={() => setAdding(true)}>
-          <FontAwesomeIcon icon={faCirclePlus} className="icon" />
-        </div>
-      );
-    } else {
+    if (adding) {
       return (
         <AddTransportationCard
           onAdd={addTransportation}
@@ -75,6 +69,7 @@ function TransportationPage() {
 
   useEffect(() => {
     loadTransportationList();
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -90,10 +85,15 @@ function TransportationPage() {
         <div className="edit-icon" onClick={() => editPage()}>
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
-        <div>{message}</div>
+        <div className="error">{message}</div>
         <div>
-          <h1>TRANSPORTATION</h1>
-          <div>{addTransportationForm()}</div>
+          <h1 className="details-title">TRANSPORTATION</h1>
+          <div>
+            {addTransportationForm()}
+            <div className="add-info-button" onClick={() => setAdding(true)}>
+              <FontAwesomeIcon icon={faCirclePlus} className="icon" />
+            </div>
+          </div>
           <div className="info-list">
             {transportationList.map((transportation) => (
               <div

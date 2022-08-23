@@ -68,6 +68,7 @@ function TransportationDetailsPage() {
 
   useEffect(() => {
     loadTransportation();
+    window.scrollTo(0, 0);
   }, [transportationId]);
 
   return (
@@ -83,7 +84,7 @@ function TransportationDetailsPage() {
         <div className="edit-icon" onClick={() => window.history.go(-1)}>
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
-        <div>{message}</div>
+        <div className="error">{message}</div>
         <TransportationCard transportation={transportation} />
         <div>{deleteButton()}</div>
         <CommentsCard

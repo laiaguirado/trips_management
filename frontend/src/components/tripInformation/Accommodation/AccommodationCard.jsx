@@ -7,10 +7,9 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import CommentsCard from "../../comment/CommentsCard";
 
 function AccommodationCard({ accommodation }) {
-  //todo mailto
   return (
     <div className="accommodation-card">
-      <h1 className="name">Accommodation</h1>
+      <h1 className="details-title">Accommodation</h1>
       <div className="accommodation-info">
         <div className="accommodation-name accommodation-detail">
           <h3>Name: </h3>
@@ -131,7 +130,9 @@ function AccommodationCard({ accommodation }) {
         </div>
         <div className="accommodation-email accommodation-detail">
           <h3>Email: </h3>
-          <div>{accommodation.email}</div>
+          <div>
+            <a href={"mailto:" + accommodation.email}>{accommodation.email}</a>
+          </div>
         </div>
         <div className="accommodation-notation accommodation-detail">
           <h3>Notation: </h3>

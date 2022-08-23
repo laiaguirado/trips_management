@@ -68,6 +68,7 @@ function AccommodationDetailsPage() {
 
   useEffect(() => {
     loadAccommodation();
+    window.scrollTo(0, 0);
   }, [accommodationId]);
 
   return (
@@ -83,7 +84,7 @@ function AccommodationDetailsPage() {
         <div className="edit-icon" onClick={() => window.history.go(-1)}>
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
-        <div>{message}</div>
+        <div className="error">{message}</div>
         <AccommodationCard accommodation={accommodation} />
         <div>{deleteButton()}</div>
         <CommentsCard

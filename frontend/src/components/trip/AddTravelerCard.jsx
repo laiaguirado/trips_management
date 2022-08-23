@@ -15,7 +15,6 @@ function AddTravelerCard({ onAdd, adding, tripId }) {
 
   document.body.style.overflow = "hidden";
   //todo click backdrop
-  //todo error message
   return (
     <div className="add-card add-traveler-card">
       <div className="form-container">
@@ -31,7 +30,7 @@ function AddTravelerCard({ onAdd, adding, tripId }) {
                 className="input"
                 required
                 type="text"
-                placeholder="Email of the new traveler"
+                placeholder="Email of the new traveler *"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />

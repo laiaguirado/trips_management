@@ -47,13 +47,7 @@ function PlansPage() {
   };
 
   function addPlanForm() {
-    if (adding === false) {
-      return (
-        <div className="add-info-button" onClick={() => setAdding(true)}>
-          <FontAwesomeIcon icon={faCirclePlus} className="icon" />
-        </div>
-      );
-    } else {
+    if (adding) {
       return (
         <AddPlanCard
           onAdd={addPlan}
@@ -69,6 +63,7 @@ function PlansPage() {
 
   useEffect(() => {
     loadPlanList();
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -84,10 +79,15 @@ function PlansPage() {
         <div className="edit-icon" onClick={() => editPage()}>
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
-        <div>{message}</div>
+        <div className="error">{message}</div>
         <div>
-          <h1>PLANS</h1>
-          <div>{addPlanForm()}</div>
+          <h1 className="details-title">PLANS</h1>
+          <div>
+            {addPlanForm()}
+            <div className="add-info-button" onClick={() => setAdding(true)}>
+              <FontAwesomeIcon icon={faCirclePlus} className="icon" />
+            </div>
+          </div>
           <div className="info-list">
             {planList.map((plan) => (
               <div

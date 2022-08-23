@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddPlanCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,7 +14,6 @@ import {
   faNoteSticky,
   faEnvelope,
   faPercent,
-  faDollar,
 } from "@fortawesome/free-solid-svg-icons";
 
 function AddPlanCard({ onAdd, adding, tripId }) {
@@ -53,6 +52,10 @@ function AddPlanCard({ onAdd, adding, tripId }) {
     });
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="add-card add-plan-card">
       <div className="form-container">
@@ -68,7 +71,7 @@ function AddPlanCard({ onAdd, adding, tripId }) {
                 className="input"
                 required
                 type="text"
-                placeholder="Plan's name"
+                placeholder="Plan's name *"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
@@ -81,7 +84,7 @@ function AddPlanCard({ onAdd, adding, tripId }) {
                 className="input"
                 required
                 type="text"
-                placeholder="Location"
+                placeholder="Location *"
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
               />
@@ -141,18 +144,13 @@ function AddPlanCard({ onAdd, adding, tripId }) {
             <div className="form-data">
               <FontAwesomeIcon icon={faSackDollar} className="icon" />
               <input
-                className="input"
+                className="input price"
                 type="number"
                 min={0}
                 placeholder="Adult's price"
                 value={priceAdult}
                 onChange={(event) => setPriceAdult(event.target.value)}
               />
-            </div>
-          </label>
-          <label>
-            <div className="form-data">
-              <FontAwesomeIcon icon={faDollar} className="icon" />
               <select
                 className="input date"
                 required={priceAdult ? "required" : ""}
@@ -172,18 +170,13 @@ function AddPlanCard({ onAdd, adding, tripId }) {
             <div className="form-data">
               <FontAwesomeIcon icon={faSackDollar} className="icon" />
               <input
-                className="input"
+                className="input price"
                 type="number"
                 min={0}
                 placeholder="Children's price"
                 value={priceChildren}
                 onChange={(event) => setPriceChildren(event.target.value)}
               />
-            </div>
-          </label>
-          <label>
-            <div className="form-data">
-              <FontAwesomeIcon icon={faDollar} className="icon" />
               <select
                 className="input date"
                 required={priceChildren ? "required" : ""}
@@ -250,13 +243,14 @@ function AddPlanCard({ onAdd, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faNoteSticky} className="icon" />
-              <input
-                className="input"
-                type="text"
+              <textarea
+                className="input description"
+                rows="5"
+                cols="30"
                 placeholder="Notes"
                 value={notation}
                 onChange={(event) => setNotation(event.target.value)}
-              />
+              ></textarea>
             </div>
           </label>
           <input

@@ -6,6 +6,12 @@
   border-radius: 1rem;
 }
 
+.details-title {
+  font-family: Allerta;
+  font-weight: 100;
+  margin: 2rem auto;
+}
+
 .page-return-icon {
   width: 2.5em;
   height: 3rem;
@@ -44,6 +50,7 @@
   width: auto;
   max-height: 50vh;
   max-width: 40vw;
+  min-height: 230px;
   margin: auto;
   border-radius: 1rem;
 }
@@ -69,7 +76,7 @@
 }
 
 .trip-details-page .add-traveler {
-  margin: auto;
+  margin: 1rem auto;
   transition: all 0.2s ease-in-out;
 }
 

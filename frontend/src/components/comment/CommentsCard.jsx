@@ -45,7 +45,7 @@ function CommentsCard({ tripId, componentId, component }) {
 
   return (
     <div className="accommodation-comments">
-      <div>{message}</div>
+      <div className="error">{message}</div>
       <h4>Comments: </h4>
       <div className="comments-list">
         {commentList.map((comment) => (

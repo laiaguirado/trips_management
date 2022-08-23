@@ -52,13 +52,7 @@ function AccommodationPage() {
   };
 
   function addAccommodationForm() {
-    if (adding === false) {
-      return (
-        <div className="add-info-button" onClick={() => setAdding(true)}>
-          <FontAwesomeIcon icon={faCirclePlus} className="icon" />
-        </div>
-      );
-    } else {
+    if (adding) {
       return (
         <AddAccommodationCard
           onAdd={addAccommodation}
@@ -74,12 +68,11 @@ function AccommodationPage() {
 
   const editPage = () => {
     console.log("editing");
-    //todo change displayed values for inputs
-    //todo save input
   };
 
   useEffect(() => {
     loadAccommodationList();
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -95,10 +88,15 @@ function AccommodationPage() {
         <div className="edit-icon" onClick={() => editPage()}>
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
-        <div>{message}</div>
+        <div className="error">{message}</div>
         <div>
-          <h1>ACCOMMODATION</h1>
-          <div>{addAccommodationForm()}</div>
+          <h1 className="details-title">ACCOMMODATION</h1>
+          <div>
+            {addAccommodationForm()}{" "}
+            <div className="add-info-button" onClick={() => setAdding(true)}>
+              <FontAwesomeIcon icon={faCirclePlus} className="icon" />
+            </div>
+          </div>
           <div className="info-list">
             {accommodationList.map((accommodation) => (
               <div

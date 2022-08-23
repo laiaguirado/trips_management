@@ -27,6 +27,7 @@
 .add-trip-card .form-container {
   margin-top: 0;
   margin-bottom: 5vw;
+  width: 25rem;
 }
 
 .return-icon {
@@ -51,10 +52,28 @@
   cursor: pointer;
 }
 
+.form-container .checkbox-placeholder {
+  margin: 0;
+  font-size: 13px;
+  margin-right: 1rem;
+}
+
+.form-container .checkbox-option {
+  margin: 0;
+  font-size: 13px;
+  margin-right: 1rem;
+}
+
 .form-container .description {
   height: auto;
+  min-height: 20px;
   width: 100%;
+  min-width: 90%;
   font-family: "Open Sans";
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  cursor: pointer;
 }
 
 input[type="file"]::file-selector-button {

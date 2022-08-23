@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./AddTripCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,9 +32,21 @@ function AddTripCard({ onAdd, adding }) {
 
     onAdd(formData);
   };
-  //todo error message
-  //todo mark required fields
-  //todo cursor on calendar date
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  function getDateValue(value, placeholder) {
+    if (value === "" || value === undefined) {
+      return placeholder;
+    }
+    const date = new Date(value);
+    const month = date.getMonth() + 1;
+    const stringDate = date.getDate() + "/" + month + "/" + date.getFullYear();
+    return stringDate;
+  }
+
   return (
     <div className="add-card add-trip-card">
       <div className="background"></div>
@@ -55,7 +67,7 @@ function AddTripCard({ onAdd, adding }) {
                   className="input"
                   required
                   type="text"
-                  placeholder="Trip Name"
+                  placeholder="Trip Name *"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                 />
@@ -68,7 +80,7 @@ function AddTripCard({ onAdd, adding }) {
                   className="input"
                   required
                   type="text"
-                  placeholder="Location"
+                  placeholder="Location *"
                   value={location}
                   onChange={(event) => setLocation(event.target.value)}
                 />
@@ -82,11 +94,19 @@ function AddTripCard({ onAdd, adding }) {
                   className="input date"
                   required
                   type="text"
-                  placeholder="Start Date"
-                  value={startDate}
+                  placeholder="Start Date *"
                   max={endDate}
-                  onFocus={(event) => (event.target.type = "date")}
-                  onBlur={(event) => (event.target.type = "text")}
+                  onFocus={(event) => {
+                    event.target.type = "date";
+                    event.target.value = startDate;
+                  }}
+                  onBlur={(event) => {
+                    event.target.type = "text";
+                    event.target.value = getDateValue(
+                      startDate,
+                      "Start Date *"
+                    );
+                  }}
                   onChange={(event) => setStartDate(event.target.value)}
                 />
               </div>
@@ -99,11 +119,16 @@ function AddTripCard({ onAdd, adding }) {
                   className="input date"
                   required
                   type="text"
-                  placeholder="End Date"
-                  value={endDate}
+                  placeholder="End Date *"
                   min={startDate}
-                  onFocus={(event) => (event.target.type = "date")}
-                  onBlur={(event) => (event.target.type = "text")}
+                  onFocus={(event) => {
+                    event.target.type = "date";
+                    event.target.value = endDate;
+                  }}
+                  onBlur={(event) => {
+                    event.target.type = "text";
+                    event.target.value = getDateValue(endDate, "End Date *");
+                  }}
                   onChange={(event) => setEndDate(event.target.value)}
                 />
               </div>

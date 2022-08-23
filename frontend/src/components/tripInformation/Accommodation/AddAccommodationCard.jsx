@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddAccommodationCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,7 +12,6 @@ import {
   faPersonWalkingLuggage,
   faSackDollar,
   faClock,
-  faDollarSign,
   faDog,
   faWifi,
   faPersonSwimming,
@@ -58,8 +57,24 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
       notation,
     });
   };
-  //todo dates fields style
-  //todo times fields style
+
+  //todo style margin-top
+  //todo content accommodation
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  function getDateValue(value, placeholder) {
+    if (value === "" || value === undefined) {
+      return placeholder;
+    }
+    const date = new Date(value);
+    const month = date.getMonth() + 1;
+    const stringDate = date.getDate() + "/" + month + "/" + date.getFullYear();
+    return stringDate;
+  }
+
   return (
     <div className="add-card add-accommodation-card">
       <div className="form-container">
@@ -75,7 +90,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                 className="input"
                 required
                 type="text"
-                placeholder="Accommodation's name"
+                placeholder="Accommodation's name *"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
@@ -110,7 +125,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                 className="input"
                 required
                 type="text"
-                placeholder="Location"
+                placeholder="Location *"
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
               />
@@ -123,10 +138,15 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                 id="date"
                 className="input date"
                 placeholder="Start Date"
-                value={startDate}
                 max={endDate}
-                onFocus={(event) => (event.target.type = "date")}
-                onBlur={(event) => (event.target.type = "text")}
+                onFocus={(event) => {
+                  event.target.type = "date";
+                  event.target.value = startDate;
+                }}
+                onBlur={(event) => {
+                  event.target.type = "text";
+                  event.target.value = getDateValue(startDate, "Start Date");
+                }}
                 onChange={(event) => setStartDate(event.target.value)}
               />
             </div>
@@ -138,10 +158,15 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                 id="date"
                 className="input date"
                 placeholder="End Date"
-                value={endDate}
                 min={startDate}
-                onFocus={(event) => (event.target.type = "date")}
-                onBlur={(event) => (event.target.type = "text")}
+                onFocus={(event) => {
+                  event.target.type = "date";
+                  event.target.value = endDate;
+                }}
+                onBlur={(event) => {
+                  event.target.type = "text";
+                  event.target.value = getDateValue(endDate, "End Date");
+                }}
                 onChange={(event) => setEndDate(event.target.value)}
               />
             </div>
@@ -176,18 +201,13 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
             <div className="form-data">
               <FontAwesomeIcon icon={faSackDollar} className="icon" />
               <input
-                className="input"
+                className="input price"
                 type="number"
                 min={0}
                 placeholder="Price"
                 value={price}
                 onChange={(event) => setPrice(event.target.value)}
               />
-            </div>
-          </label>
-          <label>
-            <div className="form-data">
-              <FontAwesomeIcon icon={faDollarSign} className="icon" />
               <select
                 className="input date"
                 required={price ? "required" : ""}
@@ -206,7 +226,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faDog} className="icon" />
-              <p>Is it pet friendly?</p>
+              <p className="checkbox-placeholder">Is it pet friendly?</p>
               <div>
                 <input
                   name="petFriendly"
@@ -214,21 +234,21 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                   value={petFriendly}
                   onChange={() => setPetFriendly(true)}
                 />
-                <label>Yes</label>
+                <label className="checkbox-option">Yes</label>
                 <input
                   name="petFriendly"
                   type="radio"
                   value={petFriendly}
                   onChange={() => setPetFriendly(false)}
                 />
-                <label>No</label>
+                <label className="checkbox-option">No</label>
               </div>
             </div>
           </label>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faWifi} className="icon" />
-              <p>Is there Wi-Fi?</p>
+              <p className="checkbox-placeholder">Is there Wi-Fi?</p>
               <div>
                 <input
                   name="internet"
@@ -236,21 +256,21 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                   value={internet}
                   onChange={() => setInternet(true)}
                 />
-                <label>Yes</label>
+                <label className="checkbox-option">Yes</label>
                 <input
                   name="internet"
                   type="radio"
                   value={internet}
                   onChange={() => setInternet(false)}
                 />
-                <label>No</label>
+                <label className="checkbox-option">No</label>
               </div>
             </div>
           </label>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faPersonSwimming} className="icon" />
-              <p>Is there swimming pool?</p>
+              <p className="checkbox-placeholder">Is there swimming pool?</p>
               <div>
                 <input
                   name="swimmingPool"
@@ -258,14 +278,14 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                   value={swimmingPool}
                   onChange={() => setSwimmingPool(true)}
                 />
-                <label>Yes</label>
+                <label className="checkbox-option">Yes</label>
                 <input
                   name="swimmingPool"
                   type="radio"
                   value={swimmingPool}
                   onChange={() => setSwimmingPool(false)}
                 />
-                <label>No</label>
+                <label className="checkbox-option">No</label>
               </div>
             </div>
           </label>
@@ -308,13 +328,14 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faNoteSticky} className="icon" />
-              <input
-                className="input"
-                type="text"
-                placeholder="Notation"
+              <textarea
+                className="input description"
+                rows="5"
+                cols="30"
+                placeholder="Notes"
                 value={notation}
                 onChange={(event) => setNotation(event.target.value)}
-              />
+              ></textarea>
             </div>
           </label>
           <input

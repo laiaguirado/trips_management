@@ -12,4 +12,5 @@
 .add-plan-card .form-container {
   margin: 2rem;
   margin-top: calc(2rem + 6vw);
+  width: 25rem;
 }
