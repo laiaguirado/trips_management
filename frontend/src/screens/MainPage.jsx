@@ -29,7 +29,7 @@ function MainPage() {
   };
 
   const addTrip = async (newTripData) => {
-    const { success, result: added, error } = catchUnauthorized(async () => await api.addTrip(newTripData)); //TODO catchUnauthorized en proves per controlar 401
+    const { success, result: added, error } = await api.addTrip(newTripData);
     if (success) {
       const { success, result: addedWithTraveler, error } = await api.addCreatorAsTraveler(added);
       if (success) {
