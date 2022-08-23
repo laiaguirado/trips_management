@@ -66,8 +66,13 @@ function MainPage() {
     loadTripList();
   }, []);
 
-  if (tripList === null) {
-    return <Loading />;
+  if (tripList === false) {
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
   }
 
   return (

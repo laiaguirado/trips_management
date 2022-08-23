@@ -3,13 +3,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #222;
 }
-.spinner {
+.loading .spinner {
   height: 3em;
   width: 3em;
   border-radius: 5em;
-  border: 0.3em solid rgba(255, 255, 255, 0.5);
+  border: 0.3em solid #2d5a74;
   border-top-color: transparent;
   animation: infinite;
   animation-name: spin;

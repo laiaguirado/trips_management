@@ -59,7 +59,7 @@ function TripDetailsPage() {
       setAdding(false);
       setMessage(null);
     } else {
-      setMessage(`Couldn't add traveler: ${error}`);
+      setMessage(error);
     }
   };
 
@@ -115,7 +115,12 @@ function TripDetailsPage() {
   }, [tripId]);
 
   if (trip === null) {
-    return <Loading />;
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
   }
 
   //todo edit page
