@@ -1,6 +1,7 @@
 import React from "react";
 import "./TransportationCard.css";
 import * as api from "../../../api";
+import * as helper from "../../../helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
@@ -48,9 +49,11 @@ function TransportationCard({ transportation }) {
                     transportation.departure.length - 8
                   ) +
                   "h " +
-                  transportation.departure.substring(
-                    0,
-                    transportation.departure.length - 14
+                  helper.changeDateOrder(
+                    transportation.departure.substring(
+                      0,
+                      transportation.departure.length - 14
+                    )
                   ) +
                   " / "
                 : "") +
@@ -60,9 +63,11 @@ function TransportationCard({ transportation }) {
                       transportation.arrival.length - 8
                     ) +
                     "h " +
-                    transportation.arrival.substring(
-                      0,
-                      transportation.arrival.length - 14
+                    helper.changeDateOrder(
+                      transportation.arrival.substring(
+                        0,
+                        transportation.arrival.length - 14
+                      )
                     ) +
                     " "
                   : "")}

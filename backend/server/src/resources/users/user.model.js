@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { TripManagementApiError } = require("../../errors");
-const { capitalize, FKIntegrity } = require("../../helper");
+const { FKIntegrity } = require("../../helper");
 
 const userSchema = mongoose.Schema(
   {
@@ -24,8 +24,6 @@ const userSchema = mongoose.Schema(
       required: [true, "{PATH} is required"],
       trim: true,
       maxlength: [50, "'{PATH}' is too long. Max. 50 characters"],
-      match: [/^[a-zA-Z0-9\s]*$/, "'username' is invalid"],
-      set: capitalize,
     },
     scores: [
       {

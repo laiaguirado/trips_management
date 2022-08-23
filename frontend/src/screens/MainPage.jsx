@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./MainPage.css";
 import * as api from "../api";
@@ -7,8 +7,10 @@ import TripCard from "../components/trip/TripCard";
 import AddTripCard from "../components/trip/AddTripCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { ModelContext } from "../model";
 
 function MainPage() {
+  const { catchUnauthorized } = useContext(ModelContext);
   const [tripList, setTripList] = useState(null);
   const [message, setMessage] = useState(null);
   const [adding, setAdding] = useState(false);
@@ -27,13 +29,9 @@ function MainPage() {
   };
 
   const addTrip = async (newTripData) => {
-    const { success, result: added, error } = await api.addTrip(newTripData);
+    const { success, result: added, error } = catchUnauthorized(async () => await api.addTrip(newTripData)); //TODO catchUnauthorized en proves per controlar 401
     if (success) {
-      const {
-        success,
-        result: addedWithTraveler,
-        error,
-      } = await api.addCreatorAsTraveler(added);
+      const { success, result: addedWithTraveler, error } = await api.addCreatorAsTraveler(added);
       if (success) {
         setTripList((tripList) => [...tripList, addedWithTraveler]);
         setAdding(false);
@@ -101,14 +99,7 @@ function MainPage() {
           </div>
         </div>
         {Array.isArray(tripList) === true ? (
-          tripList.map((trip) => (
-            <TripCard
-              className="trip"
-              key={trip._id}
-              trip={trip}
-              onClick={() => navigate(`/trip/${trip._id}`, { replace: false })}
-            />
-          ))
+          tripList.map((trip) => <TripCard className="trip" key={trip._id} trip={trip} onClick={() => navigate(`/trip/${trip._id}`, { replace: false })} />)
         ) : (
           <p></p>
         )}

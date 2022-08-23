@@ -5,6 +5,7 @@ const {
   errMalformed,
 } = require("../../errors");
 const config = require("../../config");
+const auth = require("../users/auth/auth.service");
 const { needsAuthToken } = require("./auth/auth.middleware");
 const User = require("./user.service");
 
@@ -23,6 +24,13 @@ const login = async (req, res) => {
   const loginData = req.body;
   const token = await User.authenticateUser(loginData);
   res.status(200).json(token);
+};
+
+const authenticated = async (req, res) => {
+  const header = req.headers["authorization"];
+  const token = header.slice("Bearer ".length);
+  const data = auth.authenticated(token);
+  res.status(200).json(true);
 };
 
 const getAllUsers = async (req, res) => {
@@ -55,6 +63,7 @@ const router = express.Router();
 
 router.post("/register", catchErrors(register));
 router.post("/login", catchErrors(login));
+router.get("/authenticated", catchErrors(authenticated));
 router.get("/", needsAuthToken, catchErrors(getAllUsers));
 router.get("/me/travel", needsAuthToken, catchErrors(getTravelsByUser));
 router.get("/me", needsAuthToken, catchErrors(getUserMe));

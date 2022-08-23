@@ -23,8 +23,8 @@ const apiCall = async (method, path, body, headers, isMultipartForm) => {
     if (isSuccess(response.status)) {
       return { success: true, result: json };
     } else if (response.status === 401) {
-      localStorage.setItem("token", null);
-      return { success: false, error: json.error }
+      // localStorage.setItem("token", null);
+      return { success: false, error: json.error };
     } else {
       return { success: false, error: json.error };
     }
@@ -38,6 +38,7 @@ export const login = (userData) => apiPost(`/user/login`, userData);
 export const register = (userData) => apiPost(`/user/register`, userData);
 
 const authApiCall = (method, path, body, isMultipartForm) => {
+  console.log(`api.authApiCall ${path}`);
   const { accessToken } = JSON.parse(localStorage.getItem("token"));
   return apiCall(
     method,
@@ -49,6 +50,9 @@ const authApiCall = (method, path, body, isMultipartForm) => {
     isMultipartForm
   );
 };
+
+export const authenticated = () => authApiCall("GET", `/user/authenticated`);
+
 export const getUserData = () => authApiCall("GET", `/user/me`);
 
 export const getTripList = () => authApiCall("GET", `/user/me/travel`);

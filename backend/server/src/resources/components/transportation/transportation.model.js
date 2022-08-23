@@ -20,7 +20,6 @@ const transportationSchema = extendSchema(
     name: {
       type: String,
       maxlength: [50, "{PATH} is too long"],
-      match: [/^[a-zA-Z0-9\s]*$/, "{PATH} is invalid"],
       required: [true, "{PATH} is required"],
       set: capitalize,
     },
@@ -32,7 +31,16 @@ const transportationSchema = extendSchema(
     type: {
       type: String,
       enum: {
-        values: ["airplane", "ship", "car", "subway", "tram", "bus", "train", "other"],
+        values: [
+          "airplane",
+          "ship",
+          "car",
+          "subway",
+          "tram",
+          "bus",
+          "train",
+          "other",
+        ],
         message: "{VALUE} for {TYPE} is not suported",
       },
       default: "airplane",

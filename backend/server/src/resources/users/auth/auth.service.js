@@ -44,9 +44,29 @@ const decodeToken = (token) => {
   }
 };
 
+const authenticated = (token) => {
+  try {
+    const result = jwt.verify(token, config.JWT_SECRET);
+    return true;
+  } catch (e) {
+    switch (e.name) {
+      case "JsonWebTorror": {
+        errUnauthorized(`Wrong token`);
+        break;
+      }
+      case "TokenExpiredError": {
+        errUnauthorized(`Token expired`);
+        break;
+      }
+      default:
+        throw e;
+    }
+  }
+};
 module.exports = {
   encryptPassword,
   comparePasswords,
   createToken,
   decodeToken,
+  authenticated,
 };

@@ -111,6 +111,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <input
                 className="input"
                 type="number"
+                min={0}
                 placeholder="Min price"
                 value={minPrice}
                 onChange={(event) => setMinPrice(event.target.value)}
@@ -141,6 +142,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <input
                 className="input"
                 type="number"
+                min={minPrice}
                 placeholder="Max price"
                 value={maxPrice}
                 onChange={(event) => setMaxPrice(event.target.value)}

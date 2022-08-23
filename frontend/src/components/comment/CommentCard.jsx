@@ -1,6 +1,6 @@
 import React from "react";
 import "./CommentCard.css";
-import moment from "moment";
+import * as helper from "../../helper";
 
 function CommentCard({ comment }) {
   /*const deleteComment = async (commentId) => {
@@ -14,28 +14,7 @@ function CommentCard({ comment }) {
       }
     };*/
 
-  function published(b) {
-    let differenceObject = {
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      days: 0,
-      months: 0,
-      years: 0,
-    };
-    let now = moment();
-    let date = moment(b);
-    differenceObject.years = now.diff(date, "year");
-    differenceObject.months = now.diff(date, "months");
-    differenceObject.days = now.diff(date, "days");
-    differenceObject.hours = now.diff(date, "hours");
-    differenceObject.minutes = now.diff(date, "minutes");
-    differenceObject.seconds = now.diff(date, "seconds");
-
-    return differenceObject;
-  }
-
-  let differenceObject = published(comment.createdAt);
+  let differenceObject = helper.published(comment.createdAt);
   let difference = differenceObject.seconds;
   let time = " seconds";
   if (differenceObject.minutes !== 0) {
