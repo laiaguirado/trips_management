@@ -6,7 +6,11 @@ import Bar from "../../../components/Bar";
 import TransportationCard from "../../../components/tripInformation/Transportation/TransportationCard";
 import AddTransportationCard from "../../../components/tripInformation/Transportation/AddTransportationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCirclePlus,
+  faAngleLeft,
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 
 function TransportationPage() {
   const [transportationList, setTransportationList] = useState([]);
@@ -51,11 +55,8 @@ function TransportationPage() {
   function addTransportationForm() {
     if (adding === false) {
       return (
-        <div
-          className="add-transportation-button"
-          onClick={() => setAdding(true)}
-        >
-          <FontAwesomeIcon icon={faPlus} />
+        <div className="add-info-button" onClick={() => setAdding(true)}>
+          <FontAwesomeIcon icon={faCirclePlus} className="icon" />
         </div>
       );
     } else {
@@ -79,22 +80,24 @@ function TransportationPage() {
   return (
     <div className="transportation-page">
       <Bar mode="login" />
-      <div className="transportation-info-container">
+      <div className="info-container">
         <div
-          className="return-icon"
+          className="return-icon page-return-icon"
           onClick={() => navigate(`/trip/${tripId}`, { replace: false })}
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <button onClick={() => editPage()}>Edit</button>
+        <div className="edit-icon" onClick={() => editPage()}>
+          <FontAwesomeIcon icon={faPen} size="2x" />{" "}
+        </div>
         <div>{message}</div>
         <div>
           <h1>TRANSPORTATION</h1>
           <div>{addTransportationForm()}</div>
-          <div className="transportation-list">
+          <div className="info-list">
             {transportationList.map((transportation) => (
               <div
-                className="transportation"
+                className="info"
                 key={transportation._id}
                 onClick={() =>
                   navigate(
@@ -105,13 +108,11 @@ function TransportationPage() {
                   )
                 }
               >
-                <div className="transportation-name">
+                <div className="info-name">
                   <h3>{transportation.name}</h3>
                 </div>
-                <div className="transportation-location">
-                  <h4>Transportation:</h4>
-                  <div>{transportation.type}</div>
-                </div>
+                <h4>Transportation:</h4>
+                <div className="info-location">{transportation.type}</div>
               </div>
             ))}
           </div>
