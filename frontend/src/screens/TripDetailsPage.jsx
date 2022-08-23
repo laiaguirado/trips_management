@@ -4,13 +4,24 @@ import "./TripDetailsPage.css";
 import * as api from "../api";
 import * as helper from "../helper";
 import Bar from "../components/Bar";
+import Loading from "../components/Loading";
 import DeleteCard from "../components/DeleteCard";
 import AddTravelerCard from "../components/trip/AddTravelerCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faBed, faPlane, faCamera, faUtensils, faTrashCan, faPlus, faXmark, faPen } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleLeft,
+  faBed,
+  faPlane,
+  faCamera,
+  faUtensils,
+  faTrashCan,
+  faPlus,
+  faXmark,
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 
 function TripDetailsPage() {
-  const [trip, setTrip] = useState([]);
+  const [trip, setTrip] = useState(null);
   const [message, setMessage] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [adding, setAdding] = useState(false);
@@ -38,14 +49,17 @@ function TripDetailsPage() {
   };
 
   const addTraveler = async (tripId, email) => {
-    const { success, result: added, error } = await api.addTraveler(tripId, email);
+    const {
+      success,
+      result: added,
+      error,
+    } = await api.addTraveler(tripId, email);
     if (success) {
-      //afegir la info del nou traveler al trip en comptes de recarregar tota la info del trip
-      getTripData(tripId);
+      setTrip(added);
       setAdding(false);
       setMessage(null);
     } else {
-      setMessage(error);
+      setMessage(`Couldn't add traveler: ${error}`);
     }
   };
 
@@ -71,7 +85,13 @@ function TripDetailsPage() {
         </div>
       );
     } else {
-      return <DeleteCard onDelete={() => deleteTrip(tripId)} deleting={() => setDeleting(false)} deleteType={"Trip"} />;
+      return (
+        <DeleteCard
+          onDelete={() => deleteTrip(tripId)}
+          deleting={() => setDeleting(false)}
+          deleteType={"Trip"}
+        />
+      );
     }
   }
 
@@ -99,6 +119,11 @@ function TripDetailsPage() {
   useEffect(() => {
     getTripData(tripId);
   }, [tripId]);
+
+  if (trip === null) {
+    return <Loading />;
+  }
+
   //todo edit page
   //todo put the delete button in the delete page
   //todo empty fields
@@ -106,10 +131,16 @@ function TripDetailsPage() {
     <div>
       <Bar mode="login" />
       <div className="trip-details-page">
-        <div className="return-icon page-return-icon" onClick={() => navigate(`/`, { replace: false })}>
+        <div
+          className="return-icon page-return-icon"
+          onClick={() => navigate(`/`, { replace: false })}
+        >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <div className="edit-icon" onClick={() => navigate(`/`, { replace: false })}>
+        <div
+          className="edit-icon"
+          onClick={() => navigate(`/`, { replace: false })}
+        >
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
         <div className="error">{message}</div>
@@ -151,7 +182,10 @@ function TripDetailsPage() {
                         {member.username} ( {member.email} )
                       </p>
                       <div onClick={() => deleteTraveler(tripId, member.email)}>
-                        <FontAwesomeIcon className="delete-icon" icon={faXmark} />
+                        <FontAwesomeIcon
+                          className="delete-icon"
+                          icon={faXmark}
+                        />
                       </div>
                     </div>
                   ))
@@ -162,21 +196,49 @@ function TripDetailsPage() {
             </div>
             <div className="add-traveler">{addTravelerForm()}</div>
           </div>
-          {trip.image !== undefined ? <img className="trip-image" src={"http://localhost:8080/upload" + trip.image.name}></img> : <div></div>}
+          {trip.image !== undefined ? (
+            <img
+              className="trip-image"
+              src={"http://localhost:8080/upload" + trip.image.name}
+            ></img>
+          ) : (
+            <div></div>
+          )}
         </div>
         <div className="trip-details-info">
-          <div className="details-info" onClick={() => navigate(`/trip/${tripId}/accommodation`, { replace: false })}>
-            <FontAwesomeIcon className="icon" icon={faBed} size="2x" /> Accommodation
+          <div
+            className="details-info"
+            onClick={() =>
+              navigate(`/trip/${tripId}/accommodation`, { replace: false })
+            }
+          >
+            <FontAwesomeIcon className="icon" icon={faBed} size="2x" />{" "}
+            Accommodation
           </div>
-          <div className="details-info" onClick={() => navigate(`/trip/${tripId}/transportation`, { replace: false })}>
+          <div
+            className="details-info"
+            onClick={() =>
+              navigate(`/trip/${tripId}/transportation`, { replace: false })
+            }
+          >
             <FontAwesomeIcon className="icon" icon={faPlane} size="2x" />
             Transportation
           </div>
-          <div className="details-info" onClick={() => navigate(`/trip/${tripId}/plans`, { replace: false })}>
+          <div
+            className="details-info"
+            onClick={() =>
+              navigate(`/trip/${tripId}/plans`, { replace: false })
+            }
+          >
             <FontAwesomeIcon className="icon" icon={faCamera} size="2x" />
             Plans
           </div>
-          <div className="details-info" onClick={() => navigate(`/trip/${tripId}/restoration`, { replace: false })}>
+          <div
+            className="details-info"
+            onClick={() =>
+              navigate(`/trip/${tripId}/restoration`, { replace: false })
+            }
+          >
             <FontAwesomeIcon className="icon" icon={faUtensils} size="2x" />
             Restoration
           </div>

@@ -8,13 +8,13 @@ import AddTripCard from "../components/trip/AddTripCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { ModelContext } from "../model";
+import Loading from "../components/Loading";
 
 function MainPage() {
   const { catchUnauthorized } = useContext(ModelContext);
   const [tripList, setTripList] = useState(null);
   const [message, setMessage] = useState(null);
   const [adding, setAdding] = useState(false);
-
   const navigate = useNavigate();
 
   const loadTripList = async () => {
@@ -31,7 +31,11 @@ function MainPage() {
   const addTrip = async (newTripData) => {
     const { success, result: added, error } = await api.addTrip(newTripData);
     if (success) {
-      const { success, result: addedWithTraveler, error } = await api.addCreatorAsTraveler(added);
+      const {
+        success,
+        result: addedWithTraveler,
+        error,
+      } = await api.addCreatorAsTraveler(added);
       if (success) {
         setTripList((tripList) => [...tripList, addedWithTraveler]);
         setAdding(false);
@@ -87,6 +91,10 @@ function MainPage() {
     loadTripList();
   }, []);
 
+  if (tripList === null) {
+    return <Loading />;
+  }
+
   return (
     <div className="main-page">
       <Bar mode="login" />
@@ -99,7 +107,14 @@ function MainPage() {
           </div>
         </div>
         {Array.isArray(tripList) === true ? (
-          tripList.map((trip) => <TripCard className="trip" key={trip._id} trip={trip} onClick={() => navigate(`/trip/${trip._id}`, { replace: false })} />)
+          tripList.map((trip) => (
+            <TripCard
+              className="trip"
+              key={trip._id}
+              trip={trip}
+              onClick={() => navigate(`/trip/${trip._id}`, { replace: false })}
+            />
+          ))
         ) : (
           <p></p>
         )}
