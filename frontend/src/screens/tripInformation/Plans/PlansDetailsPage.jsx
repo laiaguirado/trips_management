@@ -64,6 +64,7 @@ function PlansDetailsPage() {
 
   useEffect(() => {
     loadPlan();
+    window.scrollTo(0, 0);
   }, [planId]);
 
   return (
@@ -79,7 +80,7 @@ function PlansDetailsPage() {
         <div className="edit-icon" onClick={() => window.history.go(-1)}>
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
-        <div>{message}</div>
+        <div className="error">{message}</div>
         <PlanCard plan={plan} />
         <div>{deleteButton()}</div>
         <CommentsCard tripId={tripId} componentId={planId} component="plan" />

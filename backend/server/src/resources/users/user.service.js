@@ -42,7 +42,7 @@ const findById = async (_id) => {
     path: "travels",
   });
   if (user === null) {
-    errMalformed("User doens't exist");
+    errMalformed("User doesn't exist");
   }
   return user;
 };
@@ -52,14 +52,14 @@ const findByIdAllInfo = async (_id) => {
     path: "travels",
   });
   if (user === null) {
-    errMalformed("User doens't exist");
+    errMalformed("User does't exist");
   }
   return user;
 };
 const findByEmail = async (email) => {
   const user = await User.findOne({ email: email });
   if (user === null) {
-    errMalformed("User doens't exist");
+    errMalformed("User does't exist");
   }
   return user;
 };

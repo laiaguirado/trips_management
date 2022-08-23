@@ -51,13 +51,7 @@ function RestorationPage() {
   };
 
   function addRestorationForm() {
-    if (adding === false) {
-      return (
-        <div className="add-info-button" onClick={() => setAdding(true)}>
-          <FontAwesomeIcon icon={faCirclePlus} className="icon" />
-        </div>
-      );
-    } else {
+    if (adding) {
       return (
         <AddRestorationCard
           onAdd={addRestoration}
@@ -73,6 +67,7 @@ function RestorationPage() {
 
   useEffect(() => {
     loadRestorationList();
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -88,10 +83,15 @@ function RestorationPage() {
         <div className="edit-icon" onClick={() => editPage()}>
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
-        <div>{message}</div>
+        <div className="error">{message}</div>
         <div>
           <h1>RESTORATION</h1>
-          <div>{addRestorationForm()}</div>
+          <div>
+            {addRestorationForm()}
+            <div className="add-info-button" onClick={() => setAdding(true)}>
+              <FontAwesomeIcon icon={faCirclePlus} className="icon" />
+            </div>
+          </div>
           <div className="info-list">
             {restorationList.map((restoration) => (
               <div
@@ -104,8 +104,9 @@ function RestorationPage() {
                 }
               >
                 <div className="info-name">
-                  <h3>{restoration.kindOfFood}</h3>
+                  <h3>{restoration.name}</h3>
                 </div>
+                <div>{restoration.kindOfFood}</div>
                 <h4>Location:</h4>
                 <div className="info-location">{restoration.location}</div>
               </div>

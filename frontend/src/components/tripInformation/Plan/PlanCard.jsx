@@ -7,7 +7,7 @@ import { faStar, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 function PlanCard({ plan, modifyPlanList }) {
   return (
     <div className="plan-card">
-      <h1>Plan</h1>
+      <h1 className="details-title">Plan</h1>
       <div className="plan-info">
         <div className="plan-name plan-detail">
           <h3>Name: </h3>
@@ -76,7 +76,9 @@ function PlanCard({ plan, modifyPlanList }) {
         </div>
         <div className="plan-email plan-detail">
           <h3>Email: </h3>
-          <div>{plan.email}</div>
+          <div>
+            <a href={"mailto:" + plan.email}>{plan.email}</a>
+          </div>
         </div>
         <div className="plan-notation plan-detail">
           <h3>Notation: </h3>

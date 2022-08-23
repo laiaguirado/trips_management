@@ -68,6 +68,7 @@ function RestorationDetailsPage() {
 
   useEffect(() => {
     loadRestoration();
+    window.scrollTo(0, 0);
   }, [restorationId]);
 
   return (
@@ -83,7 +84,7 @@ function RestorationDetailsPage() {
         <div className="edit-icon" onClick={() => window.history.go(-1)}>
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
-        <div>{message}</div>
+        <div className="error">{message}</div>
         <RestorationCard restoration={restoration} />
         <div>{deleteButton()}</div>
         <CommentsCard

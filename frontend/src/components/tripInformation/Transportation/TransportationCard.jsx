@@ -8,7 +8,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 function TransportationCard({ transportation }) {
   return (
     <div className="transportation-card">
-      <h1>Transportation</h1>
+      <h1 className="details-title">Transportation</h1>
       <div className="transportation-info">
         <div className="transportation-name transportation-detail">
           <h3>Name: </h3>

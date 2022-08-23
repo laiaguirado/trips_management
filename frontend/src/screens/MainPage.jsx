@@ -29,7 +29,11 @@ function MainPage() {
   };
 
   const addTrip = async (newTripData) => {
-    const { success, result: added, error } = await api.addTrip(newTripData);
+    const {
+      success,
+      result: added,
+      error,
+    } = catchUnauthorized(async () => await api.addTrip(newTripData)); //TODO catchUnauthorized en proves per controlar 401
     if (success) {
       const {
         success,
@@ -47,31 +51,6 @@ function MainPage() {
       setMessage(error);
     }
   };
-
-  /*function addTripForm() {
-    if (adding === false) {
-      return (
-        <div className="new-trip-button" onClick={() => setAdding(true)}>
-          <FontAwesomeIcon icon={faCirclePlus} className="icon" />
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <AddTripCard
-            onAdd={addTrip}
-            adding={() => {
-              setAdding(false);
-              setMessage(null);
-            }}
-          />
-          <div className="new-trip-button" onClick={() => setAdding(true)}>
-            <FontAwesomeIcon icon={faCirclePlus} className="icon" />
-          </div>
-        </div>
-      );
-    }
-  }*/
 
   function addTripForm() {
     if (adding) {

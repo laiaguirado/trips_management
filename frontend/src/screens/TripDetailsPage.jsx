@@ -96,13 +96,7 @@ function TripDetailsPage() {
   }
 
   function addTravelerForm() {
-    if (adding === false) {
-      return (
-        <div className="add-traveler-button" onClick={() => setAdding(true)}>
-          <FontAwesomeIcon icon={faPlus} /> Add Traveler
-        </div>
-      );
-    } else {
+    if (adding) {
       return (
         <AddTravelerCard
           onAdd={addTraveler}
@@ -127,6 +121,7 @@ function TripDetailsPage() {
   //todo edit page
   //todo put the delete button in the delete page
   //todo empty fields
+
   return (
     <div>
       <Bar mode="login" />
@@ -146,7 +141,7 @@ function TripDetailsPage() {
         <div className="error">{message}</div>
         <div className="trip">
           <div className="trip-info">
-            <h1 className="trip-name"> {trip.name}</h1>
+            <h1 className="trip-name details-title"> {trip.name}</h1>
             <div className="trip-location trip-detail">
               <h3>Location: </h3>
               <div>{trip.location}</div>
@@ -194,7 +189,15 @@ function TripDetailsPage() {
                 )}
               </div>
             </div>
-            <div className="add-traveler">{addTravelerForm()}</div>
+            <div className="add-traveler">
+              {addTravelerForm()}
+              <div
+                className="add-traveler-button"
+                onClick={() => setAdding(true)}
+              >
+                <FontAwesomeIcon icon={faPlus} /> Add Traveler
+              </div>
+            </div>
           </div>
           {trip.image !== undefined ? (
             <img

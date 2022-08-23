@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddTransportationCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,7 +12,6 @@ import {
   faCalendar,
   faAngleLeft,
   faNoteSticky,
-  faDollarSign,
 } from "@fortawesome/free-solid-svg-icons";
 
 function AddTransportationCard({ onAdd, adding, tripId }) {
@@ -45,8 +44,32 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
     });
   };
 
+  function getDateValue(value, placeholder) {
+    if (value === "" || value === undefined) {
+      return placeholder;
+    }
+    const date = new Date(value);
+    const month = date.getMonth() + 1;
+    const stringDate =
+      date.getDate() +
+      "/" +
+      month +
+      "/" +
+      date.getFullYear() +
+      " " +
+      date.getHours() +
+      ":" +
+      date.getMinutes();
+    return stringDate;
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="add-card add-transportation-card">
+      <div className="background" onClick={adding}></div>
       <div className="form-container">
         <div className="return-icon" onClick={adding}>
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
@@ -60,7 +83,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
                 className="input"
                 required
                 type="text"
-                placeholder="Transport's name"
+                placeholder="Transport's name *"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
@@ -76,7 +99,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
                 onChange={(event) => setType(event.target.value)}
               >
                 <option value="" disabled={true}>
-                  Select a transportation
+                  Select a transportation *
                 </option>
                 <option value="airplane">Airplane</option>
                 <option value="ship">Ship</option>
@@ -105,18 +128,13 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
             <div className="form-data">
               <FontAwesomeIcon icon={faSackDollar} className="icon" />
               <input
-                className="input"
+                className="input price"
                 type="number"
                 min={0}
                 placeholder="Price"
                 value={price}
                 onChange={(event) => setPrice(event.target.value)}
               />
-            </div>
-          </label>
-          <label>
-            <div className="form-data">
-              <FontAwesomeIcon icon={faDollarSign} className="icon" />
               <select
                 className="input date"
                 required={price ? "required" : ""}
@@ -162,9 +180,17 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <input
                 className="input date"
                 placeholder="Departure time"
-                value={departure}
-                onFocus={(event) => (event.target.type = "datetime-local")}
-                onBlur={(event) => (event.target.type = "text")}
+                onFocus={(event) => {
+                  event.target.type = "datetime-local";
+                  event.target.value = departure;
+                }}
+                onBlur={(event) => {
+                  event.target.type = "text";
+                  event.target.value = getDateValue(
+                    departure,
+                    "Departure time"
+                  );
+                }}
                 onChange={(event) => setDeparture(event.target.value)}
               />
             </div>
@@ -175,10 +201,17 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <input
                 className="input date"
                 placeholder="Arrival time"
-                value={arrival}
-                onFocus={(event) => (event.target.type = "datetime-local")}
-                onBlur={(event) => (event.target.type = "text")}
-                onChange={(event) => setArrival(event.target.value)}
+                onFocus={(event) => {
+                  event.target.type = "datetime-local";
+                  event.target.value = arrival;
+                }}
+                onBlur={(event) => {
+                  event.target.type = "text";
+                  event.target.value = getDateValue(arrival, "Arrival time");
+                }}
+                onChange={(event) => {
+                  setArrival(event.target.value);
+                }}
               />
             </div>
           </label>
@@ -197,13 +230,14 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faNoteSticky} className="icon" />
-              <input
-                className="input"
-                type="text"
+              <textarea
+                className="input description"
+                rows="5"
+                cols="30"
                 placeholder="Notes"
                 value={notation}
                 onChange={(event) => setNotation(event.target.value)}
-              />
+              ></textarea>
             </div>
           </label>
           <input

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddRestorationCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,7 +13,6 @@ import {
   faAngleLeft,
   faNoteSticky,
   faEnvelope,
-  faDollar,
   faBagShopping,
   faStar,
   faBookOpen,
@@ -59,8 +58,13 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
     });
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="add-card add-restoration-card">
+      <div className="background" onClick={adding}></div>
       <div className="form-container">
         <div className="return-icon" onClick={adding}>
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
@@ -74,7 +78,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
                 className="input"
                 required
                 type="text"
-                placeholder="Restoration's name"
+                placeholder="Restoration's name *"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
@@ -87,7 +91,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
                 className="input"
                 required
                 type="text"
-                placeholder="Location"
+                placeholder="Location *"
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
               />
@@ -109,18 +113,13 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
             <div className="form-data">
               <FontAwesomeIcon icon={faSackDollar} className="icon" />
               <input
-                className="input"
+                className="input price"
                 type="number"
                 min={0}
                 placeholder="Min price"
                 value={minPrice}
                 onChange={(event) => setMinPrice(event.target.value)}
               />
-            </div>
-          </label>
-          <label>
-            <div className="form-data">
-              <FontAwesomeIcon icon={faDollar} className="icon" />
               <select
                 className="input date"
                 required={minPrice ? "required" : ""}
@@ -140,18 +139,13 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
             <div className="form-data">
               <FontAwesomeIcon icon={faSackDollar} className="icon" />
               <input
-                className="input"
+                className="input price"
                 type="number"
                 min={minPrice}
                 placeholder="Max price"
                 value={maxPrice}
                 onChange={(event) => setMaxPrice(event.target.value)}
               />
-            </div>
-          </label>
-          <label>
-            <div className="form-data">
-              <FontAwesomeIcon icon={faDollar} className="icon" />
               <select
                 className="input date"
                 required={maxPrice ? "required" : ""}
@@ -220,7 +214,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faBagShopping} className="icon" />
-              <p>Can it be taken away?</p>
+              <p className="checkbox-placeholder">Can it be taken away?</p>
               <div>
                 <input
                   name="takeAway"
@@ -228,21 +222,21 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
                   value={takeAway}
                   onChange={() => setTakeAway(true)}
                 />
-                <label>Yes</label>
+                <label className="checkbox-option">Yes</label>
                 <input
                   name="takeAway"
                   type="radio"
                   value={takeAway}
                   onChange={() => setTakeAway(false)}
                 />
-                <label>No</label>
+                <label className="checkbox-option">No</label>
               </div>
             </div>
           </label>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faBookOpen} className="icon" />
-              <p>Do you have to book?</p>
+              <p className="checkbox-placeholder">Do you have to book?</p>
               <div>
                 <input
                   name="reserved"
@@ -250,14 +244,14 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
                   value={reserved}
                   onChange={() => setReserved(true)}
                 />
-                <label>Yes</label>
+                <label className="checkbox-option">Yes</label>
                 <input
                   name="reserved"
                   type="radio"
                   value={reserved}
                   onChange={() => setReserved(false)}
                 />
-                <label>No</label>
+                <label className="checkbox-option">No</label>
               </div>
             </div>
           </label>
@@ -300,13 +294,14 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faNoteSticky} className="icon" />
-              <input
-                className="input"
-                type="text"
+              <textarea
+                className="input description"
+                rows="5"
+                cols="30"
                 placeholder="Notes"
                 value={notation}
                 onChange={(event) => setNotation(event.target.value)}
-              />
+              ></textarea>
             </div>
           </label>
           <input

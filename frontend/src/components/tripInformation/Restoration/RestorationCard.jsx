@@ -95,7 +95,9 @@ function RestorationCard({ restoration }) {
         </div>
         <div className="restoration-email restoration-detail">
           <h3>Email: </h3>
-          <div>{restoration.email}</div>
+          <div>
+            <a href={"mailto:" + restoration.email}>{restoration.email}</a>
+          </div>
         </div>
         <div className="restoration-notation restoration-detail">
           <h3>Notation: </h3>

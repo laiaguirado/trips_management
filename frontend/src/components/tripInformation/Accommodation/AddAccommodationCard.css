@@ -11,5 +11,13 @@
 
 .add-accommodation-card .form-container {
   margin: 7vw;
-  width: 25rem;
+  width: 26rem;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator:hover {
+  cursor: pointer;
+}
+
+.add-form .price {
+  width: 50%;
 }
