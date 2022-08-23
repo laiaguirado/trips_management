@@ -6,7 +6,12 @@ import Bar from "../../../components/Bar";
 import RestorationCard from "../../../components/tripInformation/Restoration/RestorationCard";
 import AddRestorationCard from "../../../components/tripInformation/Restoration/AddRestorationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faPlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faCirclePlus,
+  faAngleLeft,
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 
 function RestorationPage() {
   const [restorationList, setRestorationList] = useState([]);
@@ -48,8 +53,8 @@ function RestorationPage() {
   function addRestorationForm() {
     if (adding === false) {
       return (
-        <div className="add-restoration-button" onClick={() => setAdding(true)}>
-          <FontAwesomeIcon icon={faPlus} />
+        <div className="add-info-button" onClick={() => setAdding(true)}>
+          <FontAwesomeIcon icon={faCirclePlus} className="icon" />
         </div>
       );
     } else {
@@ -73,22 +78,24 @@ function RestorationPage() {
   return (
     <div className="restoration-page">
       <Bar mode="login" />
-      <div className="restoration-info-container">
+      <div className="info-container">
         <div
-          className="return-icon"
+          className="return-icon page-return-icon"
           onClick={() => navigate(`/trip/${tripId}`, { replace: false })}
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <button onClick={() => editPage()}>Edit</button>
+        <div className="edit-icon" onClick={() => editPage()}>
+          <FontAwesomeIcon icon={faPen} size="2x" />{" "}
+        </div>
         <div>{message}</div>
         <div>
           <h1>RESTORATION</h1>
           <div>{addRestorationForm()}</div>
-          <div className="restoration-list">
+          <div className="info-list">
             {restorationList.map((restoration) => (
               <div
-                className="restoration"
+                className="info"
                 key={restoration._id}
                 onClick={() =>
                   navigate(`/trip/${tripId}/restoration/${restoration._id}`, {
@@ -96,13 +103,11 @@ function RestorationPage() {
                   })
                 }
               >
-                <div className="restoration-name">
+                <div className="info-name">
                   <h3>{restoration.kindOfFood}</h3>
                 </div>
-                <div className="restoration-location">
-                  <h4>Location:</h4>
-                  <div>{restoration.location}</div>
-                </div>
+                <h4>Location:</h4>
+                <div className="info-location">{restoration.location}</div>
               </div>
             ))}
           </div>
