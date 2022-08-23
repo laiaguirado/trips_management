@@ -1,51 +1,45 @@
 .accommodation-page {
-  margin-top: 5rem;
+  margin-top: 6vw;
 }
 
-.accommodation-page .return-icon {
-  width: 2.5em;
-  height: 3rem;
-  border-radius: 0.5rem;
+.info-container {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
 }
 
-.accommodation-page .return-icon:hover {
-  cursor: pointer;
-  color: #ffffff;
+.add-info-button {
   background-color: #b7cbe7;
-}
-
-.accommodation-page .add-accommodation-button {
-  border: 2px solid black;
+  color: white;
   border-radius: 0.5rem;
   margin: 1rem;
   padding: 1rem;
   transition: all 0.2s ease-in-out;
 }
 
-.accommodation-page .add-accommodation-button:hover {
+.add-info-button:hover {
   cursor: pointer;
   background-color: #b7cbe7;
   transform: scale(1.1);
 }
 
-.accommodation-page .accommodation-list {
-  display: flex;
-  flex-direction: row;
-  flex-flow: row wrap;
+.add-info-button .icon {
+  width: 1.5rem;
+  height: auto;
 }
 
-.accommodation-page .accommodation {
-  border: 2px solid black;
+.info {
   border-radius: 0.5rem;
   margin: 1rem;
-  padding: 1rem;
   transition: all 0.2s ease-in-out;
-  width: 7.15rem;
-  background-color: #f4f1e5;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2vw;
+  background-color: white;
 }
 
-.accommodation-page .accommodation:hover {
+.info:hover {
   cursor: pointer;
-  background-color: #b7cbe7;
   transform: scale(1.1);
 }

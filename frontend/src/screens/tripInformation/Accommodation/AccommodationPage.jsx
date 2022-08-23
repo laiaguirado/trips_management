@@ -5,7 +5,11 @@ import Bar from "../../../components/Bar";
 import * as api from "../../../api";
 import AddAccommodationCard from "../../../components/tripInformation/Accommodation/AddAccommodationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCirclePlus,
+  faAngleLeft,
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 
 function AccommodationPage() {
   const [accommodationList, setAccommodationList] = useState([]);
@@ -50,11 +54,8 @@ function AccommodationPage() {
   function addAccommodationForm() {
     if (adding === false) {
       return (
-        <div
-          className="add-accommodation-button"
-          onClick={() => setAdding(true)}
-        >
-          <FontAwesomeIcon icon={faPlus} />
+        <div className="add-info-button" onClick={() => setAdding(true)}>
+          <FontAwesomeIcon icon={faCirclePlus} className="icon" />
         </div>
       );
     } else {
@@ -84,22 +85,24 @@ function AccommodationPage() {
   return (
     <div className="accommodation-page">
       <Bar mode="login" />
-      <div className="accommodation-info-container">
+      <div className="info-container">
         <div
-          className="return-icon"
+          className="return-icon page-return-icon"
           onClick={() => navigate(`/trip/${tripId}`, { replace: false })}
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <button onClick={() => editPage()}>Edit</button>
+        <div className="edit-icon" onClick={() => editPage()}>
+          <FontAwesomeIcon icon={faPen} size="2x" />{" "}
+        </div>
         <div>{message}</div>
         <div>
-          <h1>ACCOMMODATIONS</h1>
+          <h1>ACCOMMODATION</h1>
           <div>{addAccommodationForm()}</div>
-          <div className="accommodation-list">
+          <div className="info-list">
             {accommodationList.map((accommodation) => (
               <div
-                className="accommodation"
+                className="info"
                 key={accommodation._id}
                 onClick={() =>
                   navigate(
@@ -110,13 +113,10 @@ function AccommodationPage() {
                   )
                 }
               >
-                <div className="accommodation-name">
-                  <h3>{accommodation.name}</h3>
-                </div>
-                <div className="accommodation-location">
-                  <h3>Location:</h3>
-                  <div>{accommodation.location}</div>
-                </div>
+                <h3 className="info-name">{accommodation.name}</h3>
+
+                <h3>Location:</h3>
+                <div className="info-location">{accommodation.location}</div>
               </div>
             ))}
           </div>
