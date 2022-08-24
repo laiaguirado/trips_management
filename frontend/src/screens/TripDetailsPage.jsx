@@ -61,7 +61,13 @@ function TripDetailsPage() {
       setAdding(false);
       setMessage(null);
     } else {
-      setMessage(error);
+      if (error.startsWith("Bad request")) {
+        setMessage(
+          `Couldn't add traveler ${error.substring(11, error.length)}`
+        );
+      } else {
+        setMessage(error);
+      }
     }
   };
 
