@@ -1,5 +1,6 @@
 const Comment = require("./comments.model");
-const Travel = require("../travel/travel.model")
+const Travel = require("../travel/travel.model");
+const User = require("../users/user.model")
 
 const createOne = async (text, compId, _id,idTravel) => {
    return await Comment.create({
@@ -27,6 +28,12 @@ const deleteComment = async (_id) => {
   await Travel.findOneAndUpdate({ comments: _id }, {
     $pull: { comments: { $in: _id }},
 }, {new:true});
+
+await User.findOneAndUpdate({ comments: _id }, {
+  $pull: { comments: { $in: _id }},
+}, {new:true});
+
+
 
   const deleted = await Comment.findByIdAndDelete({ _id }).lean().exec();
   if (deleted === null) {

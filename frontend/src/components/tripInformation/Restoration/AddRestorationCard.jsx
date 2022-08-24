@@ -101,6 +101,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
             <div className="form-data">
               <FontAwesomeIcon icon={faBurger} className="icon" />
               <input
+                list="kindsOfFood"
                 className="input"
                 type="text"
                 placeholder="Kind of Food"
@@ -109,6 +110,15 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               />
             </div>
           </label>
+          <datalist id="kindsOfFood">
+            <option value="Fast Food" />
+            <option value="Buffet" />
+            <option value="Japanese" />
+            <option value="Chinese" />
+            <option value="Mexican" />
+            <option value="Take Away" />
+            <option value="Cocktail bar" />
+          </datalist>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faSackDollar} className="icon" />

@@ -8,13 +8,13 @@ import AddTripCard from "../components/trip/AddTripCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { ModelContext } from "../model";
+import Loading from "../components/Loading";
 
 function MainPage() {
   const { catchUnauthorized } = useContext(ModelContext);
   const [tripList, setTripList] = useState(null);
   const [message, setMessage] = useState(null);
   const [adding, setAdding] = useState(false);
-
   const navigate = useNavigate();
 
   const loadTripList = async () => {
@@ -65,6 +65,15 @@ function MainPage() {
   useEffect(() => {
     loadTripList();
   }, []);
+
+  if (tripList === false) {
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="main-page">

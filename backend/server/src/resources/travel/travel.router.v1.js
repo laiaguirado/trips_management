@@ -8,6 +8,8 @@ const config = require("../../config");
 const { needsAuthToken } = require("../users/auth/auth.middleware");
 const Travel = require("./travel.service");
 const UserService = require("../users/user.service");
+const Comment = require("../comments/comments.service");
+const Score = require("../score/score.service");
 const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 
@@ -85,7 +87,17 @@ const updateTravel = async (req, res) => {
 
 const deleteTravel = async (req, res) => {
   const { _id } = req.params;
+  const comments = await Comment.findByTravelId(_id);
+  const scores = await Score.findByTravelId(_id);
+
+  for (const comment of comments){
+    await Comment.deleteComment(comment._id)
+  }
+  for (const score of scores){
+    await Score.deleteScore(score._id)
+  }
   res.status(200).json(await Travel.deleteTravel(_id));
+
 };
 
 const addMeToTravel = async (req, res) => {

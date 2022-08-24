@@ -4,6 +4,7 @@ import "./TripDetailsPage.css";
 import * as api from "../api";
 import * as helper from "../helper";
 import Bar from "../components/Bar";
+import Loading from "../components/Loading";
 import DeleteCard from "../components/DeleteCard";
 import AddTravelerCard from "../components/trip/AddTravelerCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,7 +21,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function TripDetailsPage() {
-  const [trip, setTrip] = useState([]);
+  const [trip, setTrip] = useState(null);
   const [message, setMessage] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [adding, setAdding] = useState(false);
@@ -54,8 +55,7 @@ function TripDetailsPage() {
       error,
     } = await api.addTraveler(tripId, email);
     if (success) {
-      //afegir la info del nou traveler al trip en comptes de recarregar tota la info del trip
-      getTripData(tripId);
+      setTrip(added);
       setAdding(false);
       setMessage(null);
     } else {
@@ -113,6 +113,20 @@ function TripDetailsPage() {
   useEffect(() => {
     getTripData(tripId);
   }, [tripId]);
+
+  if (trip === null) {
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
+  }
+
+  //todo edit page
+  //todo put the delete button in the delete page
+  //todo empty fields
+
   return (
     <div>
       <Bar mode="login" />

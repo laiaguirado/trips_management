@@ -1,0 +1,26 @@
+.loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading .spinner {
+  height: 3em;
+  width: 3em;
+  border-radius: 5em;
+  border: 0.3em solid #2d5a74;
+  border-top-color: transparent;
+  animation: infinite;
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  transform: rotate(0.25turn);
+}
+@keyframes spin {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}

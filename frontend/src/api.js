@@ -38,7 +38,6 @@ export const login = (userData) => apiPost(`/user/login`, userData);
 export const register = (userData) => apiPost(`/user/register`, userData);
 
 const authApiCall = (method, path, body, isMultipartForm) => {
-  console.log(`api.authApiCall ${path}`);
   const { accessToken } = JSON.parse(localStorage.getItem("token"));
   return apiCall(
     method,

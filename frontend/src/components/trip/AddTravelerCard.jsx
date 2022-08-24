@@ -29,8 +29,8 @@ function AddTravelerCard({ onAdd, adding, tripId }) {
               <input
                 className="input"
                 required
-                type="text"
-                placeholder="Email of the new traveler *"
+                type="email"
+                placeholder="Email of the new traveler"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
