@@ -140,6 +140,19 @@ function AccommodationCard({ accommodation }) {
             </div>
           </div>
         )}
+        {accommodation.breakfast !== undefined && (
+          <div className="accommodation-breakfast accommodation-detail">
+            <h3>Breakfast included: </h3>
+            <div>
+              {accommodation.breakfast !== null &&
+              accommodation.breakfast !== undefined
+                ? accommodation.breakfast === true
+                  ? "Yes"
+                  : "No"
+                : ""}
+            </div>
+          </div>
+        )}
         {accommodation.web && (
           <div className="accommodation-web accommodation-detail">
             <h3>Web page: </h3>
