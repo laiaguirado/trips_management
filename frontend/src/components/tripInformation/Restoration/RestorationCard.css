@@ -18,7 +18,7 @@
 
 .restoration-card .restoration-detail {
   display: flex;
-  align-items: center;
+  align-items: baseline;
 }
 
 .restoration-card h3 {

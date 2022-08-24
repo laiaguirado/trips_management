@@ -106,7 +106,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                 onChange={(event) => setType(event.target.value)}
               >
                 <option value="" disabled={true}>
-                  Select an accommodation
+                  Select an accommodation type
                 </option>
                 <option value="Hotel">Hotel</option>
                 <option value="Apartment">Apartment</option>

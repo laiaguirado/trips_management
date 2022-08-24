@@ -64,7 +64,7 @@
 
 .trip-details-page .trip-detail {
   display: flex;
-  align-items: center;
+  align-items: baseline;
 }
 
 .trip-details-page .trip-info h1 {
@@ -73,6 +73,11 @@
 
 .trip-details-page .trip-info h3 {
   margin: 0.5rem 0.5rem;
+}
+
+.notation-text {
+  white-space: pre-wrap;
+  text-align: left;
 }
 
 .trip-details-page .add-traveler {

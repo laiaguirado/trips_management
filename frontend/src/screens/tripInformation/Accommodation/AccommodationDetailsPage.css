@@ -1,5 +1,7 @@
 .accommodation-details-page {
   width: auto;
+  min-width: 40vw;
+  max-width: 70vw;
   padding: 3vw;
   margin: 3vw;
   background-color: #fbfaf6a4;

@@ -18,7 +18,7 @@
 
 .plan-card .plan-detail {
   display: flex;
-  align-items: center;
+  align-items: baseline;
 }
 
 .plan-card h3 {

@@ -18,7 +18,7 @@
 
 .transportation-card .transportation-detail {
   display: flex;
-  align-items: center;
+  align-items: baseline;
 }
 
 .transportation-card h3 {

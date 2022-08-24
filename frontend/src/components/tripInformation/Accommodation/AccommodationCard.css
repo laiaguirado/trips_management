@@ -14,9 +14,13 @@
 
 .accommodation-card .accommodation-detail {
   display: flex;
-  align-items: center;
+  align-items: baseline;
 }
 
 .accommodation-card h3 {
   margin: 0.5rem 0.5rem;
+}
+
+a {
+  text-decoration: underline;
 }

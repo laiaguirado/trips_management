@@ -123,10 +123,6 @@ function TripDetailsPage() {
     );
   }
 
-  //todo edit page
-  //todo put the delete button in the delete page
-  //todo empty fields
-
   return (
     <div>
       <Bar mode="login" />
@@ -168,10 +164,12 @@ function TripDetailsPage() {
                 <div></div>
               )}
             </div>
-            <div className="trip-description trip-detail">
-              <h3>Description:</h3>
-              <div>{trip.description}</div>
-            </div>
+            {trip.description && (
+              <div className="trip-description trip-detail">
+                <h3>Description:</h3>
+                <div className="notation-text">{trip.description}</div>
+              </div>
+            )}
             <div className="trip-members trip-detail">
               <h3>Travelers:</h3>
               <div className="travelers-list">
