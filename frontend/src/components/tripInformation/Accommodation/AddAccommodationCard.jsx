@@ -87,6 +87,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
               <input
                 className="input"
+                maxLength="50"
                 required
                 type="text"
                 placeholder="Accommodation's name *"
@@ -122,6 +123,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faLocationDot} className="icon" />
               <input
                 className="input"
+                maxLength="200"
                 required
                 type="text"
                 placeholder="Location *"
@@ -330,6 +332,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faNoteSticky} className="icon" />
               <textarea
                 className="input description"
+                maxLength="500"
                 rows="5"
                 cols="30"
                 placeholder="Notes"

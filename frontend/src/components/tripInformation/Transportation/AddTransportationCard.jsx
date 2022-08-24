@@ -75,6 +75,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
               <input
                 className="input"
+                maxLength="50"
                 required
                 type="text"
                 placeholder="Transport's name *"
@@ -111,6 +112,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faTicket} className="icon" />
               <input
                 className="input"
+                maxLength="500"
                 type="text"
                 placeholder="Terminal, number bus, ..."
                 value={typeDetails}
@@ -149,6 +151,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faPlaneDeparture} className="icon" />
               <input
                 className="input"
+                maxLength="100"
                 type="text"
                 placeholder="Origin's place"
                 value={origin}
@@ -161,6 +164,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faPlaneArrival} className="icon" />
               <input
                 className="input"
+                maxLength="100"
                 type="text"
                 placeholder="Destination's place"
                 value={destination}
@@ -226,6 +230,7 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faNoteSticky} className="icon" />
               <textarea
                 className="input description"
+                maxLength="500"
                 rows="5"
                 cols="30"
                 placeholder="Notes"

@@ -23,7 +23,7 @@ const plansSchema = extendSchema(componentSchema, {
   location: {
     type: String,
     required: [true, "{PATH} is required"],
-    maxlength: [1000, "{PATH} is too long"],
+    maxlength: [200, "{PATH} is too long"],
   },
   openingHour: {
     type: String,

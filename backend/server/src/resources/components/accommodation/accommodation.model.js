@@ -17,15 +17,18 @@ function getPriceAccommodationWithCurrency() {
 const accommodationSchema = extendSchema(componentSchema, {
   name: {
     type: String,
-    required: true,
+    maxlength: [50, "{PATH} is too long"],
+    required: [true, "{PATH} is required"],
+    set: capitalize,
   },
   notation: {
     type: String,
-    maxlength: [250, "'{PATH}' is too long"],
+    maxlength: [500, "'{PATH}' is too long"],
   },
   location: {
     type: String,
-    required: true,
+    required: [true, "{PATH} is required"],
+    maxlength: [200, "{PATH} is too long"],
   },
   startDate: {
     type: Date

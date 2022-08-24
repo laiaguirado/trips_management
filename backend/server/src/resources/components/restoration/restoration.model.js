@@ -30,7 +30,8 @@ const restorationSchema = extendSchema(componentSchema, {
   },
   location: {
     type: String,
-    required: true,
+    required: [true, "{PATH} is required"],
+    maxlength: [200, "{PATH} is too long"],
   },
   phone: {
     type: Number,
