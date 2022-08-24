@@ -282,6 +282,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faPhone} className="icon" />
               <input
                 className="input"
+                pattern="[0-9]{9}"
                 type="tel"
                 placeholder="Phone number"
                 value={phone}
