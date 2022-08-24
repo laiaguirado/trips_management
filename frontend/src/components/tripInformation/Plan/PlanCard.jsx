@@ -1,8 +1,5 @@
 import React from "react";
 import "./PlanCard.css";
-import * as api from "../../../api";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 function PlanCard({ plan, modifyPlanList }) {
   return (

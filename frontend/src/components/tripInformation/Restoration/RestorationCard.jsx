@@ -1,8 +1,5 @@
 import React from "react";
 import "./RestorationCard.css";
-import * as api from "../../../api";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 function RestorationCard({ restoration }) {
   return (

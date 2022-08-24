@@ -1,9 +1,6 @@
 import React from "react";
 import "./TransportationCard.css";
-import * as api from "../../../api";
 import * as helper from "../../../helper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 function TransportationCard({ transportation }) {
   return (
