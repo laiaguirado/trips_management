@@ -1,4 +1,29 @@
 .comment-card {
-  border: 1px solid black;
-  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.comment-info {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.comment-user {
+  font-weight: 700;
+  text-align: left;
+  margin-left: 1.25rem;
+}
+
+.comment-published-time {
+  font-size: 10px;
+  font-weight: 100;
+  margin-left: 2rem;
+}
+
+.comment-text {
+  background-color: #b7cbe795;
+  padding: 1rem;
+  border-radius: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  white-space: pre-wrap;
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./CommentsCard.css";
 import CommentCard from "./CommentCard";
 import * as api from "../../api";
 
@@ -23,6 +24,7 @@ function CommentsCard({ tripId, componentId, component }) {
   };
 
   const addComment = async (e) => {
+    console.log(comment);
     e.preventDefault();
     const {
       success,
@@ -42,9 +44,9 @@ function CommentsCard({ tripId, componentId, component }) {
   useEffect(() => {
     loadCommentList();
   }, [componentId]);
-
+  //todo test wraps
   return (
-    <div className="accommodation-comments">
+    <div className="comments">
       <div className="error">{message}</div>
       <h4>Comments: </h4>
       <div className="comments-list">
@@ -53,13 +55,16 @@ function CommentsCard({ tripId, componentId, component }) {
         ))}
       </div>
       <form className="add-comment" onSubmit={addComment}>
-        <input
-          type="text"
-          placeholder="Post your comment here..."
+        <div className="comment-user">New comment:</div>
+        <textarea
+          className="input"
+          rows="3"
+          cols="30"
+          placeholder="Write your comment here..."
           value={comment}
           onChange={(event) => setComment(event.target.value)}
-        />
-        <input type="submit" value="POST" />
+        ></textarea>
+        <input type="submit" value="POST" className="post-button" />
       </form>
     </div>
   );

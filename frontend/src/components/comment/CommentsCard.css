@@ -1,0 +1,50 @@
+.comments {
+  width: 90%;
+  margin: auto;
+}
+
+.comments h4 {
+  text-align: left;
+}
+.comments-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: column wrap;
+  gap: 0.25rem;
+}
+
+.add-comment {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column wrap;
+  gap: 0.25rem;
+}
+
+.add-comment .input {
+  outline: none;
+  color: #937b5f;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1.2rem;
+  border-style: solid;
+  border-color: #2d5a746d;
+  height: auto;
+  resize: vertical;
+  min-height: 20px;
+  font-family: "Open Sans";
+}
+
+.add-comment .post-button {
+  width: 5rem;
+  background-color: #b7cbe7;
+  padding: 0.5rem;
+  border-radius: 2rem;
+  border: none;
+}
+
+.add-comment .post-button:hover {
+  background-color: #2d5a74;
+  color: white;
+  cursor: pointer;
+}

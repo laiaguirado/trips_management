@@ -41,10 +41,13 @@ function CommentCard({ comment }) {
   return (
     <div className="comment-card">
       <div className="comment-info">
-        <div className="comment-user">{comment.idUser.username}</div>
-        <div className="comment-published-time">
-          Published {difference + time} ago
+        <div className="comment-user">
+          {comment.idUser.username}
+          <span className="comment-published-time">
+            Published {difference + time} ago
+          </span>
         </div>
+
         <div className="comment-text">{comment.comment}</div>
       </div>
       {/*<div
