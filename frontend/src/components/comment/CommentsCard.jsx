@@ -44,7 +44,6 @@ function CommentsCard({ tripId, componentId, component }) {
   useEffect(() => {
     loadCommentList();
   }, [componentId]);
-  //todo test wraps
   return (
     <div className="comments">
       <div className="error">{message}</div>

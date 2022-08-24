@@ -5,6 +5,36 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 function RestorationCard({ restoration }) {
+  function getHours() {
+    const openingHour =
+      restoration.openingHour === null || restoration.openingHour === ""
+        ? "-"
+        : restoration.openingHour + "h";
+
+    const closingHour =
+      restoration.closingHour === null || restoration.closingHour === ""
+        ? "-"
+        : restoration.closingHour + "h";
+
+    return openingHour + " / " + closingHour;
+  }
+
+  function getPrices() {
+    const minPriceWithCurrency =
+      restoration.minPriceWithCurrency === null ||
+      restoration.minPriceWithCurrency === ""
+        ? "-"
+        : restoration.minPriceWithCurrency;
+
+    const maxPriceWithCurrency =
+      restoration.maxPriceWithCurrency === null ||
+      restoration.maxPriceWithCurrency === ""
+        ? "-"
+        : restoration.maxPriceWithCurrency;
+
+    return minPriceWithCurrency + " / " + maxPriceWithCurrency;
+  }
+
   return (
     <div className="restoration-card">
       <h1 className="details-title">RESTORATION</h1>
@@ -27,27 +57,13 @@ function RestorationCard({ restoration }) {
           restoration.maxPriceWithCurrency) && (
           <div className="restoration-price restoration-detail">
             <h3>Price (min - max):</h3>
-            <div>
-              {restoration.minPriceWithCurrency !== "" &&
-              restoration.maxPriceWithCurrency !== ""
-                ? restoration.minPriceWithCurrency +
-                  " - " +
-                  restoration.maxPriceWithCurrency
-                : ""}
-            </div>
+            <div>{getPrices()}</div>
           </div>
         )}
         {(restoration.openingHour || restoration.closingHour) && (
           <div className="restoration-hours restoration-detail">
             <h3>Opening hour - Closing Hour:</h3>
-            <div>
-              {restoration.openingHour !== "" && restoration.closingHour !== ""
-                ? restoration.openingHour +
-                  "h - " +
-                  restoration.closingHour +
-                  "h"
-                : ""}
-            </div>
+            <div>{getHours()}</div>
           </div>
         )}
         {restoration.closed && (

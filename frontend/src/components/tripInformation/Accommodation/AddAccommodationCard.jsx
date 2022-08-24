@@ -58,8 +58,6 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
     });
   };
 
-  //todo style margin-top
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

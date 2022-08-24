@@ -6,6 +6,76 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 function TransportationCard({ transportation }) {
+  function getOriginDestination() {
+    const origin =
+      transportation.origin === null || transportation.origin === ""
+        ? "-"
+        : transportation.origin;
+
+    const destination =
+      transportation.destination === null || transportation.destination === ""
+        ? "-"
+        : transportation.destination;
+
+    return origin + " / " + destination;
+  }
+
+  function getDepartureArrival() {
+    if (transportation.arrival === null || transportation.arrival === "") {
+      return (
+        transportation.departure.substring(
+          11,
+          transportation.departure.length - 8
+        ) +
+        "h " +
+        helper.changeDateOrder(
+          transportation.departure.substring(
+            0,
+            transportation.departure.length - 14
+          )
+        ) +
+        " / -"
+      );
+    }
+
+    if (transportation.departure === null || transportation.departure === "") {
+      return (
+        "- / " +
+        transportation.arrival.substring(
+          11,
+          transportation.arrival.length - 8
+        ) +
+        "h " +
+        helper.changeDateOrder(
+          transportation.arrival.substring(
+            0,
+            transportation.arrival.length - 14
+          )
+        )
+      );
+    }
+
+    return (
+      transportation.departure.substring(
+        11,
+        transportation.departure.length - 8
+      ) +
+      "h " +
+      helper.changeDateOrder(
+        transportation.departure.substring(
+          0,
+          transportation.departure.length - 14
+        )
+      ) +
+      " / " +
+      transportation.arrival.substring(11, transportation.arrival.length - 8) +
+      "h " +
+      helper.changeDateOrder(
+        transportation.arrival.substring(0, transportation.arrival.length - 14)
+      )
+    );
+  }
+
   return (
     <div className="transportation-card">
       <h1 className="details-title">TRANSPORTATION</h1>
@@ -37,52 +107,13 @@ function TransportationCard({ transportation }) {
         {(transportation.origin || transportation.destination) && (
           <div className="transportation-location transportation-detail">
             <h3>Origin - Destination:</h3>
-            <div>
-              {transportation.origin !== "" && transportation.destination !== ""
-                ? transportation.origin + " / " + transportation.destination
-                : ""}
-            </div>
+            <div>{getOriginDestination()}</div>
           </div>
         )}
         {(transportation.departure || transportation.arrival) && (
           <div className="transportation-dates transportation-detail">
             <h3>Departure - Arrival:</h3>
-            {transportation !== "" ? (
-              <div>
-                {(transportation.departure != null &&
-                transportation.departure !== ""
-                  ? transportation.departure.substring(
-                      11,
-                      transportation.departure.length - 8
-                    ) +
-                    "h " +
-                    helper.changeDateOrder(
-                      transportation.departure.substring(
-                        0,
-                        transportation.departure.length - 14
-                      )
-                    ) +
-                    " / "
-                  : "") +
-                  (transportation.arrival != null &&
-                  transportation.arrival !== ""
-                    ? transportation.arrival.substring(
-                        11,
-                        transportation.arrival.length - 8
-                      ) +
-                      "h " +
-                      helper.changeDateOrder(
-                        transportation.arrival.substring(
-                          0,
-                          transportation.arrival.length - 14
-                        )
-                      ) +
-                      " "
-                    : "")}
-              </div>
-            ) : (
-              <p></p>
-            )}
+            {getDepartureArrival()}
           </div>
         )}
         {transportation.web && (

@@ -7,6 +7,52 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import CommentsCard from "../../comment/CommentsCard";
 
 function AccommodationCard({ accommodation }) {
+  function getDates() {
+    if (accommodation.startDate === null) {
+      return (
+        "- / " + helper.changeDateOrder(accommodation.endDate.substring(0))
+      );
+    }
+
+    if (accommodation.endDate === null) {
+      return (
+        helper.changeDateOrder(
+          accommodation.startDate.substring(
+            0,
+            accommodation.startDate.length - 14
+          )
+        ) + " / -"
+      );
+    }
+
+    return (
+      helper.changeDateOrder(
+        accommodation.startDate.substring(
+          0,
+          accommodation.startDate.length - 14
+        )
+      ) +
+      " / " +
+      helper.changeDateOrder(
+        accommodation.endDate.substring(0, accommodation.startDate.length - 14)
+      )
+    );
+  }
+
+  function getHours() {
+    const checkIn =
+      accommodation.checkInHour === null || accommodation.checkInHour === ""
+        ? "-"
+        : accommodation.checkInHour + "h";
+
+    const checkOut =
+      accommodation.checkOutHour === null || accommodation.checkOut === ""
+        ? "-"
+        : accommodation.checkOutHour + "h";
+
+    return checkIn + " / " + checkOut;
+  }
+
   return (
     <div className="accommodation-card">
       <h1 className="details-title">ACCOMMODATION</h1>
@@ -29,23 +75,9 @@ function AccommodationCard({ accommodation }) {
           <div className="accommodation-dates accommodation-detail">
             <h3>Dates:</h3>
             {accommodation !== "" &&
-            accommodation.startDate !== null &&
-            accommodation.endDate !== null ? (
-              <div>
-                {helper.changeDateOrder(
-                  accommodation.startDate.substring(
-                    0,
-                    accommodation.startDate.length - 14
-                  )
-                ) +
-                  " / " +
-                  helper.changeDateOrder(
-                    accommodation.endDate.substring(
-                      0,
-                      accommodation.startDate.length - 14
-                    )
-                  )}
-              </div>
+            (accommodation.startDate !== null ||
+              accommodation.endDate !== null) ? (
+              <div>{getDates()}</div>
             ) : (
               <p></p>
             )}
@@ -55,14 +87,9 @@ function AccommodationCard({ accommodation }) {
           <div className="accommodation-checkHour accommodation-detail">
             <h3>Check In Hour / Check Out Hour:</h3>
             {accommodation !== "" &&
-            accommodation.checkInHour !== "" &&
-            accommodation.checkOutHour !== "" ? (
-              <div>
-                {accommodation.checkInHour +
-                  "h / " +
-                  accommodation.checkOutHour +
-                  "h"}
-              </div>
+            (accommodation.checkInHour !== "" ||
+              accommodation.checkOutHour !== "") ? (
+              <div>{getHours()}</div>
             ) : (
               <p></p>
             )}

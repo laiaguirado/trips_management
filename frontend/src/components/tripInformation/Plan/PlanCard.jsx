@@ -5,6 +5,50 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 function PlanCard({ plan, modifyPlanList }) {
+  function getHours() {
+    const openingHour =
+      plan.openingHour === null || plan.openingHour === ""
+        ? "-"
+        : plan.openingHour + "h";
+
+    const closingHour =
+      plan.closingHour === null || plan.closingHour === ""
+        ? "-"
+        : plan.closingHour + "h";
+
+    return openingHour + " / " + closingHour;
+  }
+
+  function getPrice() {
+    if (
+      plan.priceChildrenWithCurrency === "" ||
+      plan.priceChildrenWithCurrency === null
+    ) {
+      return (
+        <div>
+          <h4>Adults: {plan.priceAdultWithCurrency}</h4>
+        </div>
+      );
+    }
+
+    if (
+      plan.priceAdultWithCurrency === "" ||
+      plan.priceAdultWithCurrency === null
+    ) {
+      return (
+        <div>
+          <h4>Children: {plan.priceChildrenWithCurrency}</h4>
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        <h4>Adults: {plan.priceAdultWithCurrency}</h4>
+        <h4>Children: {plan.priceChildrenWithCurrency}</h4>
+      </div>
+    );
+  }
   return (
     <div className="plan-card">
       <h1 className="details-title">PLAN</h1>
@@ -20,11 +64,7 @@ function PlanCard({ plan, modifyPlanList }) {
         {(plan.openingHour || plan.closingHour) && (
           <div className="plan-hours plan-detail">
             <h3>Hours (opening - closing):</h3>
-            <div>
-              {plan.openingHour !== "" && plan.closingHour !== ""
-                ? plan.openingHour + "h / " + plan.closingHour + "h"
-                : ""}
-            </div>
+            <div>{getHours()}</div>
           </div>
         )}
         {plan.closed && (
@@ -42,15 +82,7 @@ function PlanCard({ plan, modifyPlanList }) {
         {(plan.priceAdultWithCurrency || plan.priceChildrenWithCurrency) && (
           <div className="plan-price plan-detail">
             <h3>Price: </h3>
-            {plan.priceAdultWithCurrency !== "" &&
-            plan.priceChildrenWithCurrency !== "" ? (
-              <div>
-                <h4>Adults: {plan.priceAdultWithCurrency}</h4>
-                <h4>Children: {plan.priceChildrenWithCurrency}</h4>
-              </div>
-            ) : (
-              <div></div>
-            )}
+            {getPrice()}
           </div>
         )}
         {plan.discount && (
