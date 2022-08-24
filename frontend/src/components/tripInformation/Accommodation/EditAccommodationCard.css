@@ -1,0 +1,22 @@
+.accommodation-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.accommodation-card .accommodation-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.accommodation-card .accommodation-detail {
+  display: flex;
+  align-items: center;
+}
+
+.accommodation-card h3 {
+  margin: 0.5rem 0.5rem;
+}
