@@ -14,6 +14,8 @@
   background-color: #b7cbe7;
   color: white;
   border-radius: 0.5rem;
+  border-style: solid;
+  border-color: #2d5a746d;
   margin: 1rem;
   padding: 1rem;
   transition: all 0.2s ease-in-out;
@@ -32,6 +34,8 @@
 
 .info {
   border-radius: 0.5rem;
+  border-style: solid;
+  border-color: #2d5a746d;
   margin: 1rem;
   transition: all 0.2s ease-in-out;
   display: flex;
