@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./RestorationDetailsPage.css";
 import * as api from "../../../api";
 import Bar from "../../../components/Bar";
+import Loading from "../../../components/Loading";
 import CommentsCard from "../../../components/comment/CommentsCard";
 import RestorationCard from "../../../components/tripInformation/Restoration/RestorationCard";
 import DeleteCard from "../../../components/DeleteCard";
@@ -14,7 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function RestorationDetailsPage() {
-  const [restoration, setRestoration] = useState("");
+  const [restoration, setRestoration] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId, restorationId } = useParams();
@@ -30,6 +31,7 @@ function RestorationDetailsPage() {
       setRestoration(restoration);
       setMessage(null);
     } else {
+      setRestoration(null);
       setMessage(error);
     }
   };
@@ -70,6 +72,15 @@ function RestorationDetailsPage() {
     loadRestoration();
     window.scrollTo(0, 0);
   }, [restorationId]);
+
+  if (restoration === null) {
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="restoration-details-page">

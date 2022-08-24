@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./MainPage.css";
 import * as api from "../api";
 import Bar from "../components/Bar";
+import Loading from "../components/Loading";
 import TripCard from "../components/trip/TripCard";
 import AddTripCard from "../components/trip/AddTripCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { ModelContext } from "../model";
-import Loading from "../components/Loading";
 
 function MainPage() {
   const { catchUnauthorized } = useContext(ModelContext);
@@ -23,7 +23,7 @@ function MainPage() {
       setTripList(tripList);
       setMessage(null);
     } else {
-      setTripList([]);
+      setTripList(null);
       setMessage(error);
     }
   };
@@ -66,7 +66,7 @@ function MainPage() {
     loadTripList();
   }, []);
 
-  if (tripList === false) {
+  if (tripList === null) {
     return (
       <div>
         <Bar mode="login" />

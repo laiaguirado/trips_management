@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./RestorationPage.css";
-import * as api from "../../../api";
+import Loading from "../../../components/Loading";
 import Bar from "../../../components/Bar";
-import RestorationCard from "../../../components/tripInformation/Restoration/RestorationCard";
+import * as api from "../../../api";
 import AddRestorationCard from "../../../components/tripInformation/Restoration/AddRestorationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,7 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function RestorationPage() {
-  const [restorationList, setRestorationList] = useState([]);
+  const [restorationList, setRestorationList] = useState(null);
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
@@ -30,7 +30,7 @@ function RestorationPage() {
       setRestorationList(restorationList);
       setMessage(null);
     } else {
-      setRestorationList([]);
+      setRestorationList(null);
       setMessage(error);
     }
   };
@@ -69,6 +69,15 @@ function RestorationPage() {
     loadRestorationList();
     window.scrollTo(0, 0);
   }, []);
+
+  if (restorationList === null) {
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="restoration-page">

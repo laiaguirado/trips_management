@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./TransportationPage.css";
 import * as api from "../../../api";
 import Bar from "../../../components/Bar";
-import TransportationCard from "../../../components/tripInformation/Transportation/TransportationCard";
+import Loading from "../../../components/Loading";
 import AddTransportationCard from "../../../components/tripInformation/Transportation/AddTransportationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,7 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function TransportationPage() {
-  const [transportationList, setTransportationList] = useState([]);
+  const [transportationList, setTransportationList] = useState(null);
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
@@ -29,7 +29,7 @@ function TransportationPage() {
       setTransportationList(transportationList);
       setMessage(null);
     } else {
-      setTransportationList([]);
+      setTransportationList(null);
       setMessage(error);
     }
   };
@@ -71,6 +71,15 @@ function TransportationPage() {
     loadTransportationList();
     window.scrollTo(0, 0);
   }, []);
+
+  if (transportationList === null) {
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="transportation-page">

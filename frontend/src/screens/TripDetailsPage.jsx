@@ -34,7 +34,9 @@ function TripDetailsPage() {
     const { success, result: trip, error } = await api.getTrip(tripId);
     if (success) {
       setTrip(trip);
+      setMessage(null);
     } else {
+      setTrip(null);
       setMessage(error);
     }
   };
