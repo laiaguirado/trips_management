@@ -4,7 +4,7 @@ import "./RestorationCard.css";
 function RestorationCard({ restoration }) {
   return (
     <div className="restoration-card">
-      <h1>RESTORATION</h1>
+      <h1 className="details-title">RESTORATION</h1>
       <div className="restoration-info">
         <div className="restoration-name restoration-detail">
           <h3>Name: </h3>

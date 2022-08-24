@@ -85,7 +85,7 @@ function RestorationPage() {
         </div>
         <div className="error">{message}</div>
         <div>
-          <h1>RESTORATION</h1>
+          <h1 className="details-title">RESTORATION</h1>
           <div>
             {addRestorationForm()}
             <div className="add-info-button" onClick={() => setAdding(true)}>
