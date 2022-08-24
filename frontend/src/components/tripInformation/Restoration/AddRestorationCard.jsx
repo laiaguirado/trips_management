@@ -6,6 +6,7 @@ import {
   faClock,
   faBan,
   faBurger,
+  faPersonWalkingLuggage,
   faPhone,
   faGlobe,
   faUtensils,
@@ -73,7 +74,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
           <h1 className="title">New Restoration</h1>
           <label>
             <div className="form-data">
-              <FontAwesomeIcon icon={faUtensils} className="icon" />
+              <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
               <input
                 className="input"
                 maxLength="50"
@@ -101,7 +102,7 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
           </label>
           <label>
             <div className="form-data">
-              <FontAwesomeIcon icon={faBurger} className="icon" />
+              <FontAwesomeIcon icon={faUtensils} className="icon" />
               <input
                 list="kindsOfFood"
                 className="input"
