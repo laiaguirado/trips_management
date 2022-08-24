@@ -33,6 +33,7 @@ function AccommodationDetailsPage() {
       setAccommodation(accommodation);
       setMessage(null);
     } else {
+      setAccommodation(null);
       setMessage(error);
     }
   };

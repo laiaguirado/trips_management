@@ -27,6 +27,7 @@ function PlansDetailsPage() {
       setPlan(plan);
       setMessage(null);
     } else {
+      setPlan(null);
       setMessage(error);
     }
   };

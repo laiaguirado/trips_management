@@ -31,6 +31,7 @@ function TransportationDetailsPage() {
       setTransportation(transportation);
       setMessage(null);
     } else {
+      setTransportation(null);
       setMessage(error);
     }
   };

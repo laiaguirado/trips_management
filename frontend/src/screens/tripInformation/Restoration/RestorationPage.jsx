@@ -30,7 +30,7 @@ function RestorationPage() {
       setRestorationList(restorationList);
       setMessage(null);
     } else {
-      setRestorationList([]);
+      setRestorationList(null);
       setMessage(error);
     }
   };

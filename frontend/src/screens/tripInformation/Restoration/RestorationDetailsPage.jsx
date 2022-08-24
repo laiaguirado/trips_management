@@ -31,6 +31,7 @@ function RestorationDetailsPage() {
       setRestoration(restoration);
       setMessage(null);
     } else {
+      setRestoration(null);
       setMessage(error);
     }
   };

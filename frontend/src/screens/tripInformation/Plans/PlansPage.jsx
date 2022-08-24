@@ -26,7 +26,7 @@ function PlansPage() {
       setPlanList(planList);
       setMessage(null);
     } else {
-      setPlanList([]);
+      setPlanList(null);
       setMessage(error);
     }
   };

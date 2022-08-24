@@ -23,7 +23,7 @@ function MainPage() {
       setTripList(tripList);
       setMessage(null);
     } else {
-      setTripList([]);
+      setTripList(null);
       setMessage(error);
     }
   };

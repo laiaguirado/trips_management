@@ -29,7 +29,7 @@ function TransportationPage() {
       setTransportationList(transportationList);
       setMessage(null);
     } else {
-      setTransportationList([]);
+      setTransportationList(null);
       setMessage(error);
     }
   };

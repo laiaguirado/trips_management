@@ -29,7 +29,7 @@ function AccommodationPage() {
       setAccommodationList(accommodationList);
       setMessage(null);
     } else {
-      setAccommodationList([]);
+      setAccommodationList(null);
       setMessage(error);
     }
   };
