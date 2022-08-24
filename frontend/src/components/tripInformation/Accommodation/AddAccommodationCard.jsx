@@ -5,6 +5,7 @@ import {
   faGlobe,
   faLocationDot,
   faCalendar,
+  faUtensils,
   faPhone,
   faEnvelope,
   faAngleLeft,
@@ -31,6 +32,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
   const [petFriendly, setPetFriendly] = useState(undefined);
   const [internet, setInternet] = useState(undefined);
   const [swimmingPool, setSwimmingPool] = useState(undefined);
+  const [breakfast, setBreakfast] = useState(undefined);
   const [web, setWeb] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -51,6 +53,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
       petFriendly,
       internet,
       swimmingPool,
+      breakfast,
       web,
       phone,
       email,
@@ -290,6 +293,32 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               </div>
             </div>
           </label>
+          {type === "Hotel" ? (
+            <label>
+              <div className="form-data">
+                <FontAwesomeIcon icon={faUtensils} className="icon" />
+                <p className="checkbox-placeholder">Is breakfast included?</p>
+                <div>
+                  <input
+                    name="breakfastIncluded"
+                    type="radio"
+                    value={breakfast}
+                    onChange={() => setBreakfast(true)}
+                  />
+                  <label className="checkbox-option">Yes</label>
+                  <input
+                    name="breakfastIncluded"
+                    type="radio"
+                    value={breakfast}
+                    onChange={() => setBreakfast(false)}
+                  />
+                  <label className="checkbox-option">No</label>
+                </div>
+              </div>
+            </label>
+          ) : (
+            ""
+          )}
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faGlobe} className="icon" />

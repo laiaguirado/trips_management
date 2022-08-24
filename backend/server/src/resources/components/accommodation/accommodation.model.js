@@ -72,6 +72,9 @@ const accommodationSchema = extendSchema(componentSchema, {
   },
   type: {
     type: String
+  },
+  breakfast: {
+    type: Boolean
   }
 },
   {
