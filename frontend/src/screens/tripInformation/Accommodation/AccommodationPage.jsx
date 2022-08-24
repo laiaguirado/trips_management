@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./AccommodationPage.css";
 import Bar from "../../../components/Bar";
+import Loading from "../../../components/Loading";
 import * as api from "../../../api";
 import AddAccommodationCard from "../../../components/tripInformation/Accommodation/AddAccommodationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function AccommodationPage() {
-  const [accommodationList, setAccommodationList] = useState([]);
+  const [accommodationList, setAccommodationList] = useState(null);
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
@@ -74,6 +75,15 @@ function AccommodationPage() {
     loadAccommodationList();
     window.scrollTo(0, 0);
   }, []);
+
+  if (accommodationList === null) {
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="accommodation-page">

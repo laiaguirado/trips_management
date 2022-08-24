@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Bar from "../../../components/Bar";
+import Loading from "../../../components/Loading";
 import * as api from "../../../api";
 import "./PlansPage.css";
-import PlanCard from "../../../components/tripInformation/Plan/PlanCard";
 import AddPlanCard from "../../../components/tripInformation/Plan/AddPlanCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,7 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function PlansPage() {
-  const [planList, setPlanList] = useState([]);
+  const [planList, setPlanList] = useState(null);
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
@@ -65,6 +65,15 @@ function PlansPage() {
     loadPlanList();
     window.scrollTo(0, 0);
   }, []);
+
+  if (planList === null) {
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="plan-page">

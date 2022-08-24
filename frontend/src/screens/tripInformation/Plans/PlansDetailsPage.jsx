@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./PlansDetailsPage.css";
 import * as api from "../../../api";
 import Bar from "../../../components/Bar";
+import Loading from "../../../components/Loading";
 import CommentsCard from "../../../components/comment/CommentsCard";
 import PlanCard from "../../../components/tripInformation/Plan/PlanCard";
 import DeleteCard from "../../../components/DeleteCard";
@@ -14,7 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function PlansDetailsPage() {
-  const [plan, setPlan] = useState("");
+  const [plan, setPlan] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId, planId } = useParams();
@@ -66,6 +67,15 @@ function PlansDetailsPage() {
     loadPlan();
     window.scrollTo(0, 0);
   }, [planId]);
+
+  if (plan === null) {
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="plans-details-page">

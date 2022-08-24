@@ -3,15 +3,20 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./AccommodationDetailsPage.css";
 import * as api from "../../../api";
 import Bar from "../../../components/Bar";
+import Loading from "../../../components/Loading";
 import CommentsCard from "../../../components/comment/CommentsCard";
 import AccommodationCard from "../../../components/tripInformation/Accommodation/AccommodationCard";
 import EditAccommodationCard from "../../../components/tripInformation/Accommodation/EditAccommodationCard.jsx";
 import DeleteCard from "../../../components/DeleteCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faAngleLeft, faPen } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashCan,
+  faAngleLeft,
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 
 function AccommodationDetailsPage() {
-  const [accommodation, setAccommodation] = useState("");
+  const [accommodation, setAccommodation] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState(null);
@@ -19,7 +24,11 @@ function AccommodationDetailsPage() {
   const navigate = useNavigate();
 
   const loadAccommodation = async () => {
-    const { success, result: accommodation, error } = await api.getAccommodation(accommodationId);
+    const {
+      success,
+      result: accommodation,
+      error,
+    } = await api.getAccommodation(accommodationId);
     if (success) {
       setAccommodation(accommodation);
       setMessage(null);
@@ -50,7 +59,13 @@ function AccommodationDetailsPage() {
         </div>
       );
     } else {
-      return <DeleteCard onDelete={() => deleteAccommodation(accommodationId)} deleting={() => setDeleting(false)} deleteType={"Accommodation"} />;
+      return (
+        <DeleteCard
+          onDelete={() => deleteAccommodation(accommodationId)}
+          deleting={() => setDeleting(false)}
+          deleteType={"Accommodation"}
+        />
+      );
     }
   }
 
@@ -67,11 +82,23 @@ function AccommodationDetailsPage() {
     window.scrollTo(0, 0);
   }, [accommodationId]);
 
+  if (accommodation === null) {
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <div className="accommodation-details-page">
       <Bar mode="login" />
       <div className="flex-container">
-        <div className="return-icon page-return-icon" onClick={() => window.history.go(-1)}>
+        <div
+          className="return-icon page-return-icon"
+          onClick={() => window.history.go(-1)}
+        >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
         <div className="edit-icon" onClick={() => setEditing(true)}>
@@ -80,7 +107,11 @@ function AccommodationDetailsPage() {
         <div className="error">{message}</div>
         {showComponentMode()}
         <div>{deleteButton()}</div>
-        <CommentsCard tripId={tripId} componentId={accommodationId} component="accommodation" />
+        <CommentsCard
+          tripId={tripId}
+          componentId={accommodationId}
+          component="accommodation"
+        />
       </div>
     </div>
   );

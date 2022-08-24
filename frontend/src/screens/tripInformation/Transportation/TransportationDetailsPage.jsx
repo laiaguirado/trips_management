@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./TransportationDetailsPage.css";
 import * as api from "../../../api";
 import Bar from "../../../components/Bar";
+import Loading from "../../../components/Loading";
 import CommentsCard from "../../../components/comment/CommentsCard";
 import TransportationCard from "../../../components/tripInformation/Transportation/TransportationCard";
 import DeleteCard from "../../../components/DeleteCard";
@@ -14,7 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function TransportationDetailsPage() {
-  const [transportation, setTransportation] = useState("");
+  const [transportation, setTransportation] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId, transportationId } = useParams();
@@ -70,6 +71,15 @@ function TransportationDetailsPage() {
     loadTransportation();
     window.scrollTo(0, 0);
   }, [transportationId]);
+
+  if (transportation === null) {
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="transportation-details-page">
