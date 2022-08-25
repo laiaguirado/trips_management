@@ -1,0 +1,78 @@
+.edit-card .transportation-info {
+  width: 100%;
+}
+
+.edit-card .add-form {
+  width: 100%;
+}
+
+.edit-card .transportation-detail div {
+  flex-grow: 1;
+}
+
+.edit-card .form-data {
+  background-color: white;
+  border: solid #efeee1;
+  padding: 0.6rem;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  margin: auto;
+  border-radius: 1.2rem;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.edit-card label {
+  width: 100%;
+  background-color: #2d5a74;
+}
+.edit-card .input {
+  background-color: transparent;
+  width: 80%;
+  border: none;
+  outline: none;
+  color: #937b5f;
+}
+
+.edit-card .submit-button {
+  background-color: #b7cbe7;
+  border: none;
+  width: 85%;
+  text-align: center;
+  display: block;
+  font-weight: 700;
+}
+
+.edit-card .submit-button:hover {
+  background-color: #2d5a74;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-card .date {
+  width: auto;
+  color: #937b5f;
+  cursor: pointer;
+}
+
+.edit-card .checkbox-placeholder {
+  margin: 0;
+  font-size: 13px;
+  margin-right: 1rem;
+}
+
+.edit-card .checkbox-option {
+  margin: 0;
+  font-size: 13px;
+  margin-right: 1rem;
+}
+
+.edit-card .description {
+  height: auto;
+  min-height: 20px;
+  width: 100%;
+  min-width: 90%;
+  resize: vertical;
+  font-family: "Open Sans";
+}

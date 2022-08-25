@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./EditTransportationCard.css";
 
 function EditTransportationCard({ transportation, transportationId, onEdit }) {
-  console.log(transportation);
-  console.log(transportation.id);
-  console.log(onEdit);
   const [name, setName] = useState(transportation.name);
   const [type, setType] = useState(transportation.type);
   const [typeDetails, setTypeDetails] = useState(transportation.typeDetails);
@@ -47,7 +44,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
   };
 
   return (
-    <div className="transportation-card">
+    <div className="transportation-card edit-card">
       <h1 className="details-title">TRANSPORTATION</h1>
       <div className="transportation-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
