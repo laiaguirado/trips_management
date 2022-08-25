@@ -1,0 +1,8 @@
+.edit-card .plan-info {
+  width: 100%;
+}
+
+.edit-card .plan-detail label,
+.edit-card .plan-detail div {
+  flex-grow: 1;
+}

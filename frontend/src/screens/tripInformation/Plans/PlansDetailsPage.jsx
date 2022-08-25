@@ -6,6 +6,7 @@ import Bar from "../../../components/Bar";
 import Loading from "../../../components/Loading";
 import CommentsCard from "../../../components/comment/CommentsCard";
 import PlanCard from "../../../components/tripInformation/Plan/PlanCard";
+import EditPlanCard from "../../../components/tripInformation/Plan/EditPlanCard.jsx";
 import DeleteCard from "../../../components/DeleteCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,6 +19,7 @@ function PlansDetailsPage() {
   const [plan, setPlan] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [message, setMessage] = useState(null);
+  const [editing, setEditing] = useState(false);
   const { tripId, planId } = useParams();
   const navigate = useNavigate();
 
@@ -39,6 +41,26 @@ function PlansDetailsPage() {
     } else {
       setMessage(error);
     }
+  };
+
+  const onEdit = async (planId, planData) => {
+    const {
+      success,
+      result: added,
+      error,
+    } = await api.updateTransportation(planId, planData);
+    if (success) {
+      setTransportation(planData);
+      setEditing(false);
+      setMessage(null);
+    } else {
+      setMessage(error);
+    }
+  };
+
+  const returnEditing = () => {
+    setEditing(false);
+    setMessage(null);
   };
 
   function deleteButton() {
@@ -78,23 +100,35 @@ function PlansDetailsPage() {
     );
   }
 
+  function showComponentMode() {
+    if (!editing) {
+      return (
+        <>
+          <PlanCard plan={plan} />
+          <div>{deleteButton()}</div>
+          <CommentsCard tripId={tripId} componentId={planId} component="plan" />
+        </>
+      );
+    } else {
+      return <EditPlanCard plan={plan} planId={planId} onEdit={onEdit} />;
+    }
+  }
+
   return (
     <div className="plans-details-page">
       <Bar mode="login" />
       <div className="flex-container">
         <div
           className="return-icon page-return-icon"
-          onClick={() => window.history.go(-1)}
+          onClick={() => (!editing ? window.history.go(-1) : returnEditing())}
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <div className="edit-icon" onClick={() => window.history.go(-1)}>
+        <div className="edit-icon" onClick={() => setEditing(true)}>
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
         <div className="error">{message}</div>
-        <PlanCard plan={plan} />
-        <div>{deleteButton()}</div>
-        <CommentsCard tripId={tripId} componentId={planId} component="plan" />
+        {showComponentMode()}
       </div>
     </div>
   );
