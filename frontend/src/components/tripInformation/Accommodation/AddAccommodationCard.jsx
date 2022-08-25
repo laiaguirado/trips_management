@@ -29,10 +29,10 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
   const [checkOutHour, setCheckOutHour] = useState("");
   const [price, setPrice] = useState("");
   const [currency, setCurrency] = useState("");
-  const [petFriendly, setPetFriendly] = useState(undefined);
-  const [internet, setInternet] = useState(undefined);
-  const [swimmingPool, setSwimmingPool] = useState(undefined);
-  const [breakfast, setBreakfast] = useState(undefined);
+  const [petFriendly, setPetFriendly] = useState(null);
+  const [internet, setInternet] = useState(null);
+  const [swimmingPool, setSwimmingPool] = useState(null);
+  const [breakfast, setBreakfast] = useState(null);
   const [web, setWeb] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -40,6 +40,9 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
 
   const add = (e) => {
     e.preventDefault();
+    console.log(`PEt =${petFriendly}`);
+    console.log(`SWimming ${swimmingPool}`);
+    console.log(`Breakfast ${breakfast}`);
     onAdd(tripId, {
       name,
       type,
@@ -235,14 +238,14 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                 <input
                   name="petFriendly"
                   type="radio"
-                  value={petFriendly}
+                  value={true}
                   onChange={() => setPetFriendly(true)}
                 />
                 <label className="checkbox-option">Yes</label>
                 <input
                   name="petFriendly"
                   type="radio"
-                  value={petFriendly}
+                  value={false}
                   onChange={() => setPetFriendly(false)}
                 />
                 <label className="checkbox-option">No</label>
@@ -279,14 +282,14 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                 <input
                   name="swimmingPool"
                   type="radio"
-                  value={swimmingPool}
+                  value={true}
                   onChange={() => setSwimmingPool(true)}
                 />
                 <label className="checkbox-option">Yes</label>
                 <input
                   name="swimmingPool"
                   type="radio"
-                  value={swimmingPool}
+                  value={false}
                   onChange={() => setSwimmingPool(false)}
                 />
                 <label className="checkbox-option">No</label>
@@ -302,14 +305,14 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                   <input
                     name="breakfastIncluded"
                     type="radio"
-                    value={breakfast}
+                    value={true}
                     onChange={() => setBreakfast(true)}
                   />
                   <label className="checkbox-option">Yes</label>
                   <input
                     name="breakfastIncluded"
                     type="radio"
-                    value={breakfast}
+                    value={false}
                     onChange={() => setBreakfast(false)}
                   />
                   <label className="checkbox-option">No</label>
