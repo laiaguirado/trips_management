@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./PlanCard.css";
 import "./EditPlanCard.css";
 
 function EditPlanCard({ plan, planId, onEdit }) {

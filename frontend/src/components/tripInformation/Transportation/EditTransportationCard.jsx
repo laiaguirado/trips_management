@@ -12,7 +12,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
   const [departure, setDeparture] = useState(transportation.departure);
   const [arrival, setArrival] = useState(transportation.arrival);
   const [web, setWeb] = useState(transportation.web);
-  const [notation, setNotation] = useState("");
+  const [notation, setNotation] = useState(transportation.notation);
 
   function getDateValue(value, placeholder) {
     if (value === "" || value === undefined) {

@@ -41,7 +41,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
   const [web, setWeb] = useState(accommodation.web);
   const [phone, setPhone] = useState(accommodation.phone);
   const [email, setEmail] = useState(accommodation.email);
-  const [notation, setNotation] = useState("");
+  const [notation, setNotation] = useState(accommodation.notation);
 
   function getDateValue(value, placeholder) {
     if (value === "" || value === undefined) {
@@ -142,64 +142,78 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
           </div>
           <div className="accommodation-dates accommodation-detail">
             <h3>Dates:</h3>
-            <label>
-              <div className="form-data">
-                <input
-                  id="date"
-                  className="input date"
-                  placeholder="Start Date"
-                  value={startDate}
-                  max={endDate}
-                  onFocus={(event) => {
-                    event.target.type = "date";
-                    event.target.value = startDate;
-                  }}
-                  onBlur={(event) => {
-                    event.target.type = "text";
-                    event.target.value = getDateValue(startDate, "Start Date");
-                  }}
-                  onChange={(event) => setStartDate(event.target.value)}
-                />
-                <input
-                  id="date"
-                  className="input date"
-                  placeholder="End Date"
-                  min={startDate}
-                  onFocus={(event) => {
-                    event.target.type = "date";
-                    event.target.value = endDate;
-                  }}
-                  onBlur={(event) => {
-                    event.target.type = "text";
-                    event.target.value = getDateValue(endDate, "End Date");
-                  }}
-                  onChange={(event) => setEndDate(event.target.value)}
-                />
-              </div>
-            </label>
+            <div>
+              <label>
+                <div className="form-data">
+                  <input
+                    id="date"
+                    className="input date"
+                    placeholder="Start Date"
+                    max={endDate}
+                    onFocus={(event) => {
+                      event.target.type = "date";
+                      event.target.value = startDate;
+                    }}
+                    onBlur={(event) => {
+                      event.target.type = "text";
+                      event.target.value = getDateValue(
+                        startDate,
+                        "Start Date"
+                      );
+                    }}
+                    onChange={(event) => setStartDate(event.target.value)}
+                  />
+                </div>
+              </label>
+              <label>
+                <div className="form-data">
+                  <input
+                    id="date"
+                    className="input date"
+                    placeholder="End Date"
+                    min={startDate}
+                    onFocus={(event) => {
+                      event.target.type = "date";
+                      event.target.value = endDate;
+                    }}
+                    onBlur={(event) => {
+                      event.target.type = "text";
+                      event.target.value = getDateValue(endDate, "End Date");
+                    }}
+                    onChange={(event) => setEndDate(event.target.value)}
+                  />
+                </div>
+              </label>
+            </div>
           </div>
           <div className="accommodation-checkHour accommodation-detail">
             <h3>Check In Hour / Check Out Hour:</h3>
-            <label>
-              <div className="form-data">
-                <input
-                  className="input date"
-                  placeholder="Check in Hour"
-                  value={checkInHour}
-                  onFocus={(event) => (event.target.type = "time")}
-                  onBlur={(event) => (event.target.type = "text")}
-                  onChange={(event) => setCheckInHour(event.target.value)}
-                />
-                <input
-                  className="input date"
-                  placeholder="Check out Hour"
-                  value={checkOutHour}
-                  onFocus={(event) => (event.target.type = "time")}
-                  onBlur={(event) => (event.target.type = "text")}
-                  onChange={(event) => setCheckOutHour(event.target.value)}
-                />
-              </div>
-            </label>
+            <div>
+              <label>
+                <div className="form-data">
+                  <input
+                    className="input date"
+                    placeholder="Check in Hour"
+                    value={checkInHour}
+                    onFocus={(event) => (event.target.type = "time")}
+                    onBlur={(event) => (event.target.type = "text")}
+                    onChange={(event) => setCheckInHour(event.target.value)}
+                  />
+                </div>
+              </label>
+              <label>
+                <div className="form-data">
+                  <input
+                    className="input date"
+                    placeholder="Check out Hour"
+                    value={checkOutHour}
+                    onFocus={(event) => (event.target.type = "time")}
+                    onBlur={(event) => (event.target.type = "text")}
+                    onChange={(event) => setCheckOutHour(event.target.value)}
+                  />
+                </div>
+              </label>
+            </div>
           </div>
           <div className="accommodation-price accommodation-detail">
             <h3>Price: </h3>
