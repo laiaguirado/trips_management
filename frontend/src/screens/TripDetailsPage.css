@@ -160,3 +160,36 @@
   background-color: #ad3d25;
   cursor: pointer;
 }
+
+.edit-card .edit-trip-name {
+  text-decoration: underline;
+  width: auto;
+  font-size: 2em;
+  font-family: Allerta;
+  font-weight: 100;
+  text-align: center;
+}
+
+.edit-card .details-title {
+  display: block;
+  margin: 2rem auto;
+}
+
+.edit-card .trip-info {
+  width: 100%;
+}
+
+.edit-card .trip-detail {
+  width: 80%;
+}
+.edit-card .trip-detail label,
+.edit-card .trip-detail div {
+  flex-grow: 1;
+}
+
+.image-editing {
+  opacity: 0.5;
+}
+.uploading-new-image {
+  padding-top: 10vw;
+}

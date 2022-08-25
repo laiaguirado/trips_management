@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./EditRestorationCard.css";
 
 function EditRestorationCard({ restoration, restorationId, onEdit }) {
-  console.log("khuagsbdkjahsbdjkhasbdjkhabsdjkhaskhjdbahjks");
   const [name, setName] = useState(restoration.name);
   const [kindOfFood, setKindOfFood] = useState(restoration.kindOfFood);
   const [location, setLocation] = useState(restoration.location);

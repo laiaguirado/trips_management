@@ -53,7 +53,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
     const year = ("0" + date.getFullYear()).slice(-4);
     return day + "/" + month + "/" + year;
   }
-
+  //todo edit dates inputs
   const update = (e) => {
     e.preventDefault();
     onEdit(accommodationId, {
@@ -75,7 +75,6 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
       notation,
     });
   };
-  //todo time margins
   return (
     <div className="accommodation-card edit-card">
       <h1 className="details-title">ACCOMMODATION</h1>

@@ -101,7 +101,7 @@ function AccommodationCard({ accommodation }) {
             </div>
           </div>
         )}
-        {accommodation.petFriendly !== undefined && (
+        {accommodation.petFriendly !== null && (
           <div className="accommodation-petFriendly accommodation-detail">
             <h3>Pet friendly: </h3>
             <div>
@@ -114,7 +114,7 @@ function AccommodationCard({ accommodation }) {
             </div>
           </div>
         )}
-        {accommodation.internet !== undefined && (
+        {accommodation.internet !== null && (
           <div className="accommodation-internet accommodation-detail">
             <h3>Internet: </h3>
             <div>
@@ -127,7 +127,7 @@ function AccommodationCard({ accommodation }) {
             </div>
           </div>
         )}
-        {accommodation.swimmingPool !== undefined && (
+        {accommodation.swimmingPool !== null && (
           <div className="accommodation-swimmingPool accommodation-detail">
             <h3>Swimming pool: </h3>
             <div>
@@ -140,7 +140,7 @@ function AccommodationCard({ accommodation }) {
             </div>
           </div>
         )}
-        {accommodation.breakfast !== undefined && (
+        {accommodation.breakfast !== null && (
           <div className="accommodation-breakfast accommodation-detail">
             <h3>Breakfast included: </h3>
             <div>
