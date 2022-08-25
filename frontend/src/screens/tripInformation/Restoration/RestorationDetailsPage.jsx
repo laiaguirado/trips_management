@@ -6,6 +6,7 @@ import Bar from "../../../components/Bar";
 import Loading from "../../../components/Loading";
 import CommentsCard from "../../../components/comment/CommentsCard";
 import RestorationCard from "../../../components/tripInformation/Restoration/RestorationCard";
+import EditRestorationCard from "../../../components/tripInformation/Restoration/EditRestorationCard.jsx";
 import DeleteCard from "../../../components/DeleteCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,6 +18,7 @@ import {
 function RestorationDetailsPage() {
   const [restoration, setRestoration] = useState(null);
   const [deleting, setDeleting] = useState(false);
+  const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId, restorationId } = useParams();
   const navigate = useNavigate();
@@ -43,6 +45,26 @@ function RestorationDetailsPage() {
     } else {
       setMessage(error);
     }
+  };
+
+  const onEdit = async (restorationId, restorationData) => {
+    const {
+      success,
+      result: added,
+      error,
+    } = await api.updateTransportation(restorationId, restorationData);
+    if (success) {
+      setTransportation(restorationData);
+      setEditing(false);
+      setMessage(null);
+    } else {
+      setMessage(error);
+    }
+  };
+
+  const returnEditing = () => {
+    setEditing(false);
+    setMessage(null);
   };
 
   function deleteButton() {
@@ -82,27 +104,45 @@ function RestorationDetailsPage() {
     );
   }
 
+  function showComponentMode() {
+    if (!editing) {
+      return (
+        <>
+          <RestorationCard restoration={restoration} />
+          <div>{deleteButton()}</div>
+          <CommentsCard
+            tripId={tripId}
+            componentId={restorationId}
+            component="restoration"
+          />
+        </>
+      );
+    } else {
+      return (
+        <EditRestorationCard
+          restoration={restoration}
+          restorationId={restorationId}
+          onEdit={onEdit}
+        />
+      );
+    }
+  }
+
   return (
     <div className="restoration-details-page">
       <Bar mode="login" />
       <div className="flex-container">
         <div
           className="return-icon page-return-icon"
-          onClick={() => window.history.go(-1)}
+          onClick={() => (!editing ? window.history.go(-1) : returnEditing())}
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <div className="edit-icon" onClick={() => window.history.go(-1)}>
+        <div className="edit-icon" onClick={() => setEditing(true)}>
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
         <div className="error">{message}</div>
-        <RestorationCard restoration={restoration} />
-        <div>{deleteButton()}</div>
-        <CommentsCard
-          tripId={tripId}
-          componentId={restorationId}
-          component="restoration"
-        />
+        {showComponentMode()}
       </div>
     </div>
   );

@@ -67,6 +67,7 @@
   min-height: 20px;
   width: 100%;
   min-width: 90%;
+  resize: vertical;
   font-family: "Open Sans";
 }
 

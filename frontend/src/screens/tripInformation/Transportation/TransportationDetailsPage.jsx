@@ -6,6 +6,7 @@ import Bar from "../../../components/Bar";
 import Loading from "../../../components/Loading";
 import CommentsCard from "../../../components/comment/CommentsCard";
 import TransportationCard from "../../../components/tripInformation/Transportation/TransportationCard";
+import EditTransportationCard from "../../../components/tripInformation/Transportation/EditTransportationCard.jsx";
 import DeleteCard from "../../../components/DeleteCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,6 +18,7 @@ import {
 function TransportationDetailsPage() {
   const [transportation, setTransportation] = useState(null);
   const [deleting, setDeleting] = useState(false);
+  const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId, transportationId } = useParams();
   const navigate = useNavigate();
@@ -43,6 +45,26 @@ function TransportationDetailsPage() {
     } else {
       setMessage(error);
     }
+  };
+
+  const onEdit = async (transportationId, transportationData) => {
+    const {
+      success,
+      result: added,
+      error,
+    } = await api.updateTransportation(transportationId, transportationData);
+    if (success) {
+      setTransportation(transportationData);
+      setEditing(false);
+      setMessage(null);
+    } else {
+      setMessage(error);
+    }
+  };
+
+  const returnEditing = () => {
+    setEditing(false);
+    setMessage(null);
   };
 
   function deleteButton() {
@@ -82,27 +104,45 @@ function TransportationDetailsPage() {
     );
   }
 
+  function showComponentMode() {
+    if (!editing) {
+      return (
+        <>
+          <TransportationCard transportation={transportation} />
+          <div>{deleteButton()}</div>
+          <CommentsCard
+            tripId={tripId}
+            componentId={transportationId}
+            component="transportation"
+          />
+        </>
+      );
+    } else {
+      return (
+        <EditTransportationCard
+          transportation={transportation}
+          transportationId={transportationId}
+          onEdit={onEdit}
+        />
+      );
+    }
+  }
+
   return (
     <div className="transportation-details-page">
       <Bar mode="login" />
       <div className="flex-container">
         <div
           className="return-icon page-return-icon"
-          onClick={() => window.history.go(-1)}
+          onClick={() => (!editing ? window.history.go(-1) : returnEditing())}
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <div className="edit-icon" onClick={() => window.history.go(-1)}>
+        <div className="edit-icon" onClick={() => setEditing(true)}>
           <FontAwesomeIcon icon={faPen} size="2x" />{" "}
         </div>
         <div className="error">{message}</div>
-        <TransportationCard transportation={transportation} />
-        <div>{deleteButton()}</div>
-        <CommentsCard
-          tripId={tripId}
-          componentId={transportationId}
-          component="transportation"
-        />
+        {showComponentMode()}
       </div>
     </div>
   );

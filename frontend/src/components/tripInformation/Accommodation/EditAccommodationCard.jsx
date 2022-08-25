@@ -21,23 +21,27 @@ import {
   faHotel,
 } from "@fortawesome/free-solid-svg-icons";
 
-function EditAccommodationCard({ accommodation }) {
+function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
   const [name, setName] = useState(accommodation.name);
   const [type, setType] = useState(accommodation.type);
   const [location, setLocation] = useState(accommodation.location);
-  const [startDate, setStartDate] = useState(getDateValue(accommodation.startDate, "Start Date"));
-  const [endDate, setEndDate] = useState(getDateValue(accommodation.endDate, "End Date"));
+  const [startDate, setStartDate] = useState(
+    getDateValue(accommodation.startDate, "Start Date")
+  );
+  const [endDate, setEndDate] = useState(
+    getDateValue(accommodation.endDate, "End Date")
+  );
   const [checkInHour, setCheckInHour] = useState(accommodation.checkInHour);
   const [checkOutHour, setCheckOutHour] = useState(accommodation.checkOutHour);
   const [price, setPrice] = useState(accommodation.price);
   const [currency, setCurrency] = useState(accommodation.currency);
   const [petFriendly, setPetFriendly] = useState(accommodation.petFriendly);
-  // const [internet, setInternet] = useState(undefined);
-  // const [swimmingPool, setSwimmingPool] = useState(undefined);
-  // const [web, setWeb] = useState("");
-  // const [phone, setPhone] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [notation, setNotation] = useState("");
+  const [internet, setInternet] = useState(accommodation.internet);
+  const [swimmingPool, setSwimmingPool] = useState(accommodation.swimmingPool);
+  const [web, setWeb] = useState(accommodation.web);
+  const [phone, setPhone] = useState(accommodation.phone);
+  const [email, setEmail] = useState(accommodation.email);
+  const [notation, setNotation] = useState(accommodation.notation);
 
   function getDateValue(value, placeholder) {
     if (value === "" || value === undefined) {
@@ -50,18 +54,45 @@ function EditAccommodationCard({ accommodation }) {
     return day + "/" + month + "/" + year;
   }
 
-  console.log(accommodation.petFriendly);
+  const update = (e) => {
+    e.preventDefault();
+    onEdit(accommodationId, {
+      name,
+      type,
+      location,
+      startDate,
+      endDate,
+      checkInHour,
+      checkOutHour,
+      price,
+      currency,
+      petFriendly,
+      internet,
+      swimmingPool,
+      web,
+      phone,
+      email,
+      notation,
+    });
+  };
+  //todo time margins
   return (
-    <div className="accommodation-card">
-      <h1 className="details-title">Accommodation</h1>
+    <div className="accommodation-card edit-card">
+      <h1 className="details-title">ACCOMMODATION</h1>
       <div className="accommodation-info">
-        <form className="add-form">
+        <form className="add-form" onSubmit={(e) => update(e)}>
           <div className="accommodation-name accommodation-detail">
             <h3>Name: </h3>
             <div>
               <label>
                 <div className="form-data">
-                  <input className="input" required type="text" value={name} onChange={(event) => setName(event.target.value)} />
+                  <input
+                    className="input"
+                    required
+                    type="text"
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                  />
                 </div>
               </label>
             </div>
@@ -71,7 +102,11 @@ function EditAccommodationCard({ accommodation }) {
             <div>
               <label>
                 <div className="form-data">
-                  <select className="input date" value={type} onChange={(event) => setType(event.target.value)}>
+                  <select
+                    className="input date"
+                    value={type}
+                    onChange={(event) => setType(event.target.value)}
+                  >
                     <option value="" disabled={true}>
                       Select an accommodation
                     </option>
@@ -93,86 +128,111 @@ function EditAccommodationCard({ accommodation }) {
             <div>
               <label>
                 <div className="form-data">
-                  <input className="input" required type="text" placeholder="Location *" value={location} onChange={(event) => setLocation(event.target.value)} />
+                  <input
+                    className="input"
+                    required
+                    type="text"
+                    placeholder="Location *"
+                    value={location}
+                    onChange={(event) => setLocation(event.target.value)}
+                  />
                 </div>
               </label>
             </div>
           </div>
           <div className="accommodation-dates accommodation-detail">
             <h3>Dates:</h3>
-            <label>
-              <div className="form-data">
-                <input
-                  id="date"
-                  className="input date"
-                  placeholder="Start Date"
-                  value={startDate}
-                  max={endDate}
-                  onFocus={(event) => {
-                    event.target.type = "date";
-                    event.target.value = startDate;
-                  }}
-                  onBlur={(event) => {
-                    event.target.type = "text";
-                    event.target.value = getDateValue(startDate, "Start Date");
-                  }}
-                  onChange={(event) => setStartDate(event.target.value)}
-                />
-              </div>
-            </label>
-            <label>
-              <div className="form-data">
-                <input
-                  id="date"
-                  className="input date"
-                  placeholder="End Date"
-                  min={startDate}
-                  onFocus={(event) => {
-                    event.target.type = "date";
-                    event.target.value = endDate;
-                  }}
-                  onBlur={(event) => {
-                    event.target.type = "text";
-                    event.target.value = getDateValue(endDate, "End Date");
-                  }}
-                  onChange={(event) => setEndDate(event.target.value)}
-                />
-              </div>
-            </label>
+            <div>
+              <label>
+                <div className="form-data">
+                  <input
+                    id="date"
+                    className="input date"
+                    placeholder="Start Date"
+                    max={endDate}
+                    onFocus={(event) => {
+                      event.target.type = "date";
+                      event.target.value = startDate;
+                    }}
+                    onBlur={(event) => {
+                      event.target.type = "text";
+                      event.target.value = getDateValue(
+                        startDate,
+                        "Start Date"
+                      );
+                    }}
+                    onChange={(event) => setStartDate(event.target.value)}
+                  />
+                </div>
+              </label>
+              <label>
+                <div className="form-data">
+                  <input
+                    id="date"
+                    className="input date"
+                    placeholder="End Date"
+                    min={startDate}
+                    onFocus={(event) => {
+                      event.target.type = "date";
+                      event.target.value = endDate;
+                    }}
+                    onBlur={(event) => {
+                      event.target.type = "text";
+                      event.target.value = getDateValue(endDate, "End Date");
+                    }}
+                    onChange={(event) => setEndDate(event.target.value)}
+                  />
+                </div>
+              </label>
+            </div>
           </div>
           <div className="accommodation-checkHour accommodation-detail">
             <h3>Check In Hour / Check Out Hour:</h3>
-            <label>
-              <div className="form-data">
-                <input
-                  className="input date"
-                  placeholder="Check in Hour"
-                  value={checkInHour}
-                  onFocus={(event) => (event.target.type = "time")}
-                  onBlur={(event) => (event.target.type = "text")}
-                  onChange={(event) => setCheckInHour(event.target.value)}
-                />
-              </div>
-            </label>
-            <label>
-              <div className="form-data">
-                <input
-                  className="input date"
-                  placeholder="Check out Hour"
-                  value={checkOutHour}
-                  onFocus={(event) => (event.target.type = "time")}
-                  onBlur={(event) => (event.target.type = "text")}
-                  onChange={(event) => setCheckOutHour(event.target.value)}
-                />
-              </div>
-            </label>
+            <div>
+              <label>
+                <div className="form-data">
+                  <input
+                    className="input date"
+                    placeholder="Check in Hour"
+                    value={checkInHour}
+                    onFocus={(event) => (event.target.type = "time")}
+                    onBlur={(event) => (event.target.type = "text")}
+                    onChange={(event) => setCheckInHour(event.target.value)}
+                  />
+                </div>
+              </label>
+              <label>
+                <div className="form-data">
+                  <input
+                    className="input date"
+                    placeholder="Check out Hour"
+                    value={checkOutHour}
+                    onFocus={(event) => (event.target.type = "time")}
+                    onBlur={(event) => (event.target.type = "text")}
+                    onChange={(event) => setCheckOutHour(event.target.value)}
+                  />
+                </div>
+              </label>
+            </div>
           </div>
           <div className="accommodation-price accommodation-detail">
             <h3>Price: </h3>
             <label>
               <div className="form-data">
-                <input className="input price" type="number" min={0} placeholder="Price" value={price} onChange={(event) => setPrice(event.target.value)} />
-                <select className="input date" required={price ? "required" : ""} value={currency} onChange={(event) => setCurrency(event.target.value)}>
+                <input
+                  className="input price"
+                  type="number"
+                  min={0}
+                  placeholder="Price"
+                  value={price}
+                  onChange={(event) => setPrice(event.target.value)}
+                />
+                <select
+                  className="input date"
+                  required={price ? "required" : ""}
+                  value={currency}
+                  onChange={(event) => setCurrency(event.target.value)}
+                >
                   <option value="" disabled={true}>
                     Select a currency
                   </option>
@@ -187,11 +247,23 @@ function EditAccommodationCard({ accommodation }) {
             <h3>Pet friendly: </h3>
             <div>
               <label>
-                <div className="form-data">
+                <div className="edit-checkbox">
                   <div>
-                    <input name="petFriendly" type="radio" value={petFriendly} checked={petFriendly} onChange={() => setPetFriendly(true)} />
+                    <input
+                      name="petFriendly"
+                      type="radio"
+                      value={true}
+                      checked={petFriendly === true}
+                      onChange={() => setPetFriendly(true)}
+                    />
                     <label className="checkbox-option">Yes</label>
-                    <input name="petFriendly" type="radio" value={petFriendly} checked={!petFriendly} onChange={() => setPetFriendly(false)} />
+                    <input
+                      name="petFriendly"
+                      type="radio"
+                      value={false}
+                      checked={petFriendly === false}
+                      onChange={() => setPetFriendly(false)}
+                    />
                     <label className="checkbox-option">No</label>
                   </div>
                 </div>
@@ -200,44 +272,118 @@ function EditAccommodationCard({ accommodation }) {
           </div>
           <div className="accommodation-internet accommodation-detail">
             <h3>Internet: </h3>
-            <div>{accommodation.internet !== null && accommodation.internet !== undefined ? (accommodation.internet === true ? "Yes" : "No") : ""}</div>
+            <label>
+              <div className="edit-checkbox">
+                <div>
+                  <input
+                    name="internet"
+                    type="radio"
+                    value={true}
+                    checked={internet === true}
+                    onChange={() => setInternet(true)}
+                  />
+                  <label className="checkbox-option">Yes</label>
+                  <input
+                    name="internet"
+                    type="radio"
+                    value={false}
+                    checked={internet === false}
+                    onChange={() => setInternet(false)}
+                  />
+                  <label className="checkbox-option">No</label>
+                </div>
+              </div>
+            </label>
           </div>
           <div className="accommodation-swimmingPool accommodation-detail">
             <h3>Swimming pool: </h3>
-            <div>{accommodation.swimmingPool !== null && accommodation.swimmingPool !== undefined ? (accommodation.swimmingPool === true ? "Yes" : "No") : ""}</div>
+            <label>
+              <div className="edit-checkbox">
+                <div>
+                  <input
+                    name="swimmingPool"
+                    type="radio"
+                    value={true}
+                    checked={swimmingPool === true}
+                    onChange={() => setSwimmingPool(true)}
+                  />
+                  <label className="checkbox-option">Yes</label>
+                  <input
+                    name="swimmingPool"
+                    type="radio"
+                    value={false}
+                    checked={swimmingPool === false}
+                    onChange={() => setSwimmingPool(false)}
+                  />
+                  <label className="checkbox-option">No</label>
+                </div>
+              </div>
+            </label>
           </div>
           <div className="accommodation-web accommodation-detail">
             <h3>Web page: </h3>
-            <div>
-              {accommodation !== "" ? (
-                !accommodation.web.startsWith("https://") && !accommodation.web.startsWith("http://") && accommodation.web !== null && accommodation.web !== "" ? (
-                  <a href={"https://" + accommodation.web} target="_blank">
-                    {"https://" + accommodation.web}
-                  </a>
-                ) : (
-                  <a href={accommodation.web} target="_blank">
-                    {accommodation.web}
-                  </a>
-                )
-              ) : (
-                <p></p>
-              )}
-            </div>
+            <label>
+              <div className="form-data">
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="Web"
+                  value={web}
+                  onChange={(event) => setWeb(event.target.value)}
+                />
+              </div>
+            </label>
           </div>
           <div className="accommodation-phone accommodation-detail">
             <h3>Phone number: </h3>
-            <div>{accommodation.phone}</div>
+            <label>
+              <div className="form-data">
+                <input
+                  className="input"
+                  pattern="[0-9]{9}"
+                  type="tel"
+                  placeholder="Phone"
+                  value={phone}
+                  onChange={(event) => setPhone(event.target.value)}
+                />
+              </div>
+            </label>
           </div>
           <div className="accommodation-email accommodation-detail">
             <h3>Email: </h3>
-            <div>
-              <a href={"mailto:" + accommodation.email}>{accommodation.email}</a>
-            </div>
+            <label>
+              <div className="form-data">
+                <input
+                  className="input"
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+              </div>
+            </label>
           </div>
           <div className="accommodation-notation accommodation-detail">
             <h3>Notation: </h3>
-            <div>{accommodation.notation}</div>
+            <label>
+              <div className="form-data">
+                <textarea
+                  className="input description"
+                  maxLength="500"
+                  rows="5"
+                  cols="30"
+                  placeholder="Notes"
+                  value={notation}
+                  onChange={(event) => setNotation(event.target.value)}
+                ></textarea>
+              </div>
+            </label>
           </div>
+          <input
+            className="submit-button form-data"
+            type="submit"
+            value="Update Accommodation"
+          />
         </form>
       </div>
     </div>

@@ -69,6 +69,7 @@ export const getAccommodationList = (tripId) => authApiCall("GET", `/travel/${tr
 export const getAccommodation = (accommodationId) => authApiCall("GET", `/accommodation/${accommodationId}`);
 export const addAccommodation = (tripId, newAccommodationData) => authApiCall("POST", `/travel/${tripId}/accommodation`, newAccommodationData);
 export const deleteAccommodation = (accommodationId) => authApiCall("DELETE", `/accommodation/${accommodationId}`);
+export const updateAccommodation = (accommodationId, accommodationData) => authApiCall("PUT", `/accommodation/${accommodationId}`, accommodationData);
 
 export const getTransportationList = (tripId) => authApiCall("GET", `/travel/${tripId}/transportation`);
 export const getTransportation = (transportationId) => authApiCall("GET", `/transportation/${transportationId}`);
