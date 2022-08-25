@@ -40,9 +40,6 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
 
   const add = (e) => {
     e.preventDefault();
-    console.log(`PEt =${petFriendly}`);
-    console.log(`SWimming ${swimmingPool}`);
-    console.log(`Breakfast ${breakfast}`);
     onAdd(tripId, {
       name,
       type,
@@ -210,7 +207,8 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <input
                 className="input price"
                 type="number"
-                min={0}
+                min="0"
+                step="0.01"
                 placeholder="Price"
                 value={price}
                 onChange={(event) => setPrice(event.target.value)}
@@ -260,14 +258,14 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                 <input
                   name="internet"
                   type="radio"
-                  value={internet}
+                  value={true}
                   onChange={() => setInternet(true)}
                 />
                 <label className="checkbox-option">Yes</label>
                 <input
                   name="internet"
                   type="radio"
-                  value={internet}
+                  value={false}
                   onChange={() => setInternet(false)}
                 />
                 <label className="checkbox-option">No</label>

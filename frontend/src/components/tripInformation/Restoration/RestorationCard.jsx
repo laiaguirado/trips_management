@@ -75,7 +75,7 @@ function RestorationCard({ restoration }) {
             <div>{restoration.speciality}</div>
           </div>
         )}
-        {restoration.takeAway !== undefined && (
+        {restoration.takeAway !== null && (
           <div className="restoration-takeAway restoration-detail">
             <h3>Take Away: </h3>
             <div>
@@ -88,7 +88,7 @@ function RestorationCard({ restoration }) {
             </div>
           </div>
         )}
-        {restoration.reserved !== undefined && (
+        {restoration.reserved !== null && (
           <div className="restoration-reserved restoration-detail">
             <h3>Reservation required: </h3>
             <div>
