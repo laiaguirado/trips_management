@@ -40,9 +40,6 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
 
   const add = (e) => {
     e.preventDefault();
-    console.log(`PEt =${petFriendly}`);
-    console.log(`SWimming ${swimmingPool}`);
-    console.log(`Breakfast ${breakfast}`);
     onAdd(tripId, {
       name,
       type,
