@@ -30,8 +30,8 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
   const [openingHour, setOpeningHour] = useState("");
   const [closingHour, setClosingHour] = useState("");
   const [speciality, setSpeciality] = useState("");
-  const [takeAway, setTakeAway] = useState(undefined);
-  const [reserved, setReserved] = useState(undefined);
+  const [takeAway, setTakeAway] = useState(null);
+  const [reserved, setReserved] = useState(null);
   const [web, setWeb] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -234,14 +234,14 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
                 <input
                   name="takeAway"
                   type="radio"
-                  value={takeAway}
+                  value={true}
                   onChange={() => setTakeAway(true)}
                 />
                 <label className="checkbox-option">Yes</label>
                 <input
                   name="takeAway"
                   type="radio"
-                  value={takeAway}
+                  value={false}
                   onChange={() => setTakeAway(false)}
                 />
                 <label className="checkbox-option">No</label>
@@ -256,14 +256,14 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
                 <input
                   name="reserved"
                   type="radio"
-                  value={reserved}
+                  value={true}
                   onChange={() => setReserved(true)}
                 />
                 <label className="checkbox-option">Yes</label>
                 <input
                   name="reserved"
                   type="radio"
-                  value={reserved}
+                  value={false}
                   onChange={() => setReserved(false)}
                 />
                 <label className="checkbox-option">No</label>

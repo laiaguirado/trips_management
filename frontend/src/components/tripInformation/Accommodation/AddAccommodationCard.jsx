@@ -261,14 +261,14 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
                 <input
                   name="internet"
                   type="radio"
-                  value={internet}
+                  value={true}
                   onChange={() => setInternet(true)}
                 />
                 <label className="checkbox-option">Yes</label>
                 <input
                   name="internet"
                   type="radio"
-                  value={internet}
+                  value={false}
                   onChange={() => setInternet(false)}
                 />
                 <label className="checkbox-option">No</label>
