@@ -25,8 +25,12 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
   const [name, setName] = useState(accommodation.name);
   const [type, setType] = useState(accommodation.type);
   const [location, setLocation] = useState(accommodation.location);
-  const [startDate, setStartDate] = useState(getDateValue(accommodation.startDate, "Start Date"));
-  const [endDate, setEndDate] = useState(getDateValue(accommodation.endDate, "End Date"));
+  const [startDate, setStartDate] = useState(
+    getDateValue(accommodation.startDate, "Start Date")
+  );
+  const [endDate, setEndDate] = useState(
+    getDateValue(accommodation.endDate, "End Date")
+  );
   const [checkInHour, setCheckInHour] = useState(accommodation.checkInHour);
   const [checkOutHour, setCheckOutHour] = useState(accommodation.checkOutHour);
   const [price, setPrice] = useState(accommodation.price);
@@ -74,7 +78,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
 
   return (
     <div className="accommodation-card">
-      <h1 className="details-title">Accommodation</h1>
+      <h1 className="details-title">ACCOMMODATION</h1>
       <div className="accommodation-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
           <div className="accommodation-name accommodation-detail">
