@@ -242,16 +242,16 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     <input
                       name="petFriendly"
                       type="radio"
-                      value={petFriendly}
-                      checked={petFriendly}
+                      value={true}
+                      checked={petFriendly === true}
                       onChange={() => setPetFriendly(true)}
                     />
                     <label className="checkbox-option">Yes</label>
                     <input
                       name="petFriendly"
                       type="radio"
-                      value={petFriendly}
-                      checked={!petFriendly}
+                      value={false}
+                      checked={petFriendly === false}
                       onChange={() => setPetFriendly(false)}
                     />
                     <label className="checkbox-option">No</label>
@@ -268,16 +268,16 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   <input
                     name="internet"
                     type="radio"
-                    value={internet}
-                    checked={internet}
+                    value={true}
+                    checked={internet === true}
                     onChange={() => setInternet(true)}
                   />
                   <label className="checkbox-option">Yes</label>
                   <input
                     name="internet"
                     type="radio"
-                    value={internet}
-                    checked={!internet}
+                    value={false}
+                    checked={internet === false}
                     onChange={() => setInternet(false)}
                   />
                   <label className="checkbox-option">No</label>
@@ -293,16 +293,16 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   <input
                     name="swimmingPool"
                     type="radio"
-                    value={swimmingPool}
-                    checked={swimmingPool}
+                    value={true}
+                    checked={swimmingPool === true}
                     onChange={() => setSwimmingPool(true)}
                   />
                   <label className="checkbox-option">Yes</label>
                   <input
                     name="swimmingPool"
                     type="radio"
-                    value={swimmingPool}
-                    checked={!swimmingPool}
+                    value={false}
+                    checked={swimmingPool === false}
                     onChange={() => setSwimmingPool(false)}
                   />
                   <label className="checkbox-option">No</label>
