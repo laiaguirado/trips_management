@@ -1,22 +1,22 @@
-.accommodation-card {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
+.edit-card .accommodation-info {
+  width: 100%;
 }
 
-.accommodation-card .accommodation-info {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
+.edit-card .accommodation-detail label,
+.edit-card .accommodation-detail div {
+  flex-grow: 1;
 }
 
-.accommodation-card .accommodation-detail {
-  display: flex;
-  align-items: center;
+.edit-card .form-data .date {
+  width: 20%;
+  margin-right: 2rem;
 }
 
-.accommodation-card h3 {
-  margin: 0.5rem 0.5rem;
+.edit-card .form-data .price {
+  width: 20%;
+}
+
+.edit-card .edit-checkbox {
+  width: 15vw;
+  margin-bottom: 1rem;
 }

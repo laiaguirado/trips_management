@@ -75,9 +75,9 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
       notation,
     });
   };
-
+  //todo time margins
   return (
-    <div className="accommodation-card">
+    <div className="accommodation-card edit-card">
       <h1 className="details-title">ACCOMMODATION</h1>
       <div className="accommodation-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
@@ -160,10 +160,6 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   }}
                   onChange={(event) => setStartDate(event.target.value)}
                 />
-              </div>
-            </label>
-            <label>
-              <div className="form-data">
                 <input
                   id="date"
                   className="input date"
@@ -194,10 +190,6 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   onBlur={(event) => (event.target.type = "text")}
                   onChange={(event) => setCheckInHour(event.target.value)}
                 />
-              </div>
-            </label>
-            <label>
-              <div className="form-data">
                 <input
                   className="input date"
                   placeholder="Check out Hour"
@@ -241,7 +233,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
             <h3>Pet friendly: </h3>
             <div>
               <label>
-                <div className="form-data">
+                <div className="edit-checkbox">
                   <div>
                     <input
                       name="petFriendly"
@@ -267,7 +259,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
           <div className="accommodation-internet accommodation-detail">
             <h3>Internet: </h3>
             <label>
-              <div className="form-data">
+              <div className="edit-checkbox">
                 <div>
                   <input
                     name="internet"
@@ -292,7 +284,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
           <div className="accommodation-swimmingPool accommodation-detail">
             <h3>Swimming pool: </h3>
             <label>
-              <div className="form-data">
+              <div className="edit-checkbox">
                 <div>
                   <input
                     name="swimmingPool"

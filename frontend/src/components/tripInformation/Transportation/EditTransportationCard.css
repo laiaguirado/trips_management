@@ -23,10 +23,6 @@
   flex-grow: 1;
 }
 
-.edit-card label {
-  width: 100%;
-  background-color: #2d5a74;
-}
 .edit-card .input {
   background-color: transparent;
   width: 80%;
