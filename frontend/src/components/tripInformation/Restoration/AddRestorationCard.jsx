@@ -127,8 +127,9 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faSackDollar} className="icon" />
               <input
                 className="input price"
+                min="0"
+                step="0.01"
                 type="number"
-                min={0}
                 placeholder="Min price"
                 value={minPrice}
                 onChange={(event) => setMinPrice(event.target.value)}
@@ -153,8 +154,9 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faSackDollar} className="icon" />
               <input
                 className="input price"
-                type="number"
                 min={minPrice}
+                step="0.01"
+                type="number"
                 placeholder="Max price"
                 value={maxPrice}
                 onChange={(event) => setMaxPrice(event.target.value)}

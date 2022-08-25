@@ -149,8 +149,9 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faSackDollar} className="icon" />
               <input
                 className="input price"
+                min="0"
+                step="0.01"
                 type="number"
-                min={0}
                 placeholder="Adult's price"
                 value={priceAdult}
                 onChange={(event) => setPriceAdult(event.target.value)}
@@ -175,8 +176,9 @@ function AddPlanCard({ onAdd, adding, tripId }) {
               <FontAwesomeIcon icon={faSackDollar} className="icon" />
               <input
                 className="input price"
+                min="0"
+                step="0.01"
                 type="number"
-                min={0}
                 placeholder="Children's price"
                 value={priceChildren}
                 onChange={(event) => setPriceChildren(event.target.value)}

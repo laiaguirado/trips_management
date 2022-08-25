@@ -207,7 +207,8 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
               <input
                 className="input price"
                 type="number"
-                min={0}
+                min="0"
+                step="0.01"
                 placeholder="Price"
                 value={price}
                 onChange={(event) => setPrice(event.target.value)}
