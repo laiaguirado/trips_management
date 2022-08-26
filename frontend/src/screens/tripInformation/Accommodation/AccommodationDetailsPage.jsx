@@ -54,7 +54,7 @@ const onEdit = async (accommodationId, accommodationData) => {
     error,
   } = await api.updateAccommodation(accommodationId, accommodationData);
   if (success) {
-    setAccommodation(accommodationData);
+    setAccommodation(added);
     setEditing(false);
     setMessage(null);
   } else {
