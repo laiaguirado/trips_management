@@ -25,12 +25,8 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
   const [name, setName] = useState(accommodation.name);
   const [type, setType] = useState(accommodation.type);
   const [location, setLocation] = useState(accommodation.location);
-  const [startDate, setStartDate] = useState(
-    getDateValue(accommodation.startDate, "Start Date")
-  );
-  const [endDate, setEndDate] = useState(
-    getDateValue(accommodation.endDate, "End Date")
-  );
+  const [startDate, setStartDate] = useState(accommodation.startDate);
+  const [endDate, setEndDate] = useState(accommodation.endDate);
   const [checkInHour, setCheckInHour] = useState(accommodation.checkInHour);
   const [checkOutHour, setCheckOutHour] = useState(accommodation.checkOutHour);
   const [price, setPrice] = useState(accommodation.price);
@@ -55,10 +51,20 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
     const year = ("0" + date.getFullYear()).slice(-4);
     return day + "/" + month + "/" + year;
   }
+
+  function setDateValue(value, placeholder) {
+    if (value === "" || value === undefined) {
+      return placeholder;
+    }
+    const date = new Date(value);
+    const day = ("0" + date.getDate()).slice(-2);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const year = ("0" + date.getFullYear()).slice(-4);
+    return year + "-" + month + "-" + day;
+  }
+
   const selectType = (value) => {
-    console.log(value);
     if ("Hotel" !== value) {
-      console.log("Reset");
       setBreakfast(null);
       setBoard(null);
     }
@@ -162,6 +168,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     className="input date"
                     placeholder="Start Date"
                     max={endDate}
+                    value={startDate}
                     onFocus={(event) => {
                       event.target.type = "date";
                       event.target.value = startDate;
@@ -184,6 +191,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     className="input date"
                     placeholder="End Date"
                     min={startDate}
+                    value={endDate}
                     onFocus={(event) => {
                       event.target.type = "date";
                       event.target.value = endDate;

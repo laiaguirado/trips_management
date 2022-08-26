@@ -67,10 +67,6 @@ function AccommodationPage() {
     }
   }
 
-  const editPage = () => {
-    console.log("editing");
-  };
-
   useEffect(() => {
     loadAccommodationList();
     window.scrollTo(0, 0);
