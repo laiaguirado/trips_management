@@ -72,11 +72,25 @@ const restorationSchema = extendSchema(componentSchema, {
   },
   openingHour: {
     type: String,
-    required: false, //TODO Validar formato HH:MM
+    required: false,
+    validate: {
+      validator: (v) => {
+        if (v === null) return true;
+        return /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(v);
+      },
+      message: (props) => "Opening hour format is wrong",
+    },
   },
   closingHour: {
     type: String,
-    required: false, //TODO Validar formato HH:MM
+    required: false,
+    validate: {
+      validator: (v) => {
+        if (v === null) return true;
+        return /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(v);
+      },
+      message: (props) => "ClosingHour format is wrong",
+    },
   },
 });
 

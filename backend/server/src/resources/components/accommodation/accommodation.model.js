@@ -62,9 +62,23 @@ const accommodationSchema = extendSchema(
     },
     checkInHour: {
       type: String,
+      validate: {
+        validator: (v) => {
+          if (v === null) return true;
+          return /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(v);
+        },
+        message: (props) => "Check in hour format is wrong",
+      },
     },
     checkOutHour: {
       type: String,
+      validate: {
+        validator: (v) => {
+          if (v === null) return true;
+          return /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(v);
+        },
+        message: (props) => "Check out hour format is wrong",
+      },
     },
     internet: {
       type: Boolean,
