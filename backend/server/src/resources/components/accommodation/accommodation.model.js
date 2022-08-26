@@ -98,7 +98,7 @@ const accommodationSchema = extendSchema(
           "Chalets",
           "Cottages",
           "Other",
-          null,
+          "",
         ],
         message: "{VALUE} for {TYPE} is not suported",
       },

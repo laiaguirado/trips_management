@@ -22,7 +22,7 @@ import {
 
 function AddAccommodationCard({ onAdd, adding, tripId }) {
   const [name, setName] = useState("");
-  const [type, setType] = useState(null);
+  const [type, setType] = useState("");
   const [location, setLocation] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
