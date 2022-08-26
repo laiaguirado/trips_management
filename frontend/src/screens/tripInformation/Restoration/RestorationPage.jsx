@@ -89,9 +89,6 @@ function RestorationPage() {
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <div className="edit-icon" onClick={() => editPage()}>
-          <FontAwesomeIcon icon={faPen} size="2x" />{" "}
-        </div>
         <div className="error">{message}</div>
         <div>
           <h1 className="details-title">RESTORATION</h1>
