@@ -14,9 +14,9 @@ const ProtectedRoute = ({ children }) => {
   //   }
   // };
 
-  // useEffect(() => {
-  //   isAuthorized();
-  // });
+  useEffect(() => {
+    isAuthorized();
+  });
 
   if (token === null) {
     return <Navigate to="/" replace="true" />;
