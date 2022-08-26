@@ -25,8 +25,10 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
   const [name, setName] = useState(accommodation.name);
   const [type, setType] = useState(accommodation.type);
   const [location, setLocation] = useState(accommodation.location);
-  const [startDate, setStartDate] = useState(accommodation.startDate);
-  const [endDate, setEndDate] = useState(accommodation.endDate);
+  const [startDate, setStartDate] = useState(
+    setDateValue(accommodation.startDate)
+  );
+  const [endDate, setEndDate] = useState(setDateValue(accommodation.endDate));
   const [checkInHour, setCheckInHour] = useState(accommodation.checkInHour);
   const [checkOutHour, setCheckOutHour] = useState(accommodation.checkOutHour);
   const [price, setPrice] = useState(accommodation.price);
@@ -168,7 +170,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     className="input date"
                     placeholder="Start Date"
                     max={endDate}
-                    value={startDate}
+                    defaultValue={getDateValue(startDate)}
                     onFocus={(event) => {
                       event.target.type = "date";
                       event.target.value = startDate;
@@ -191,7 +193,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     className="input date"
                     placeholder="End Date"
                     min={startDate}
-                    value={endDate}
+                    defaultValue={getDateValue(endDate, "End Date")}
                     onFocus={(event) => {
                       event.target.type = "date";
                       event.target.value = endDate;
