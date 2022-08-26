@@ -31,7 +31,13 @@ const deleteAccom = async (_id) => {
 };
 
 const updateAccomodation = async (_id, accommodationData) => {
-  const accomUpdated = await Accommodation.findOneAndUpdate({ _id }, accommodationData, { new: true }).lean().exec();
+  const accomUpdated = await Accommodation.findOneAndUpdate(
+    { _id },
+    accommodationData,
+    { new: true }
+  )
+    .lean({ getters: true, virtuals: true })
+    .exec();
 
   if (accomUpdated === null) {
     errMalformed(`Accomodation not found`);
