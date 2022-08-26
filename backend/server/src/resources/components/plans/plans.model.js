@@ -30,7 +30,7 @@ const plansSchema = extendSchema(componentSchema, {
     required: false,
     validate: {
       validator: (v) => {
-        if (v === null) return true;
+        if (v === null || v === "") return true;
         return /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(v);
       },
       message: (props) => "OpeningHour format is wrong",
@@ -41,7 +41,7 @@ const plansSchema = extendSchema(componentSchema, {
     required: false,
     validate: {
       validator: (v) => {
-        if (v === null) return true;
+        if (v === null || v === "") return true;
         return /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(v);
       },
       message: (props) => "ClosingHour format is wrong",
@@ -81,7 +81,7 @@ const plansSchema = extendSchema(componentSchema, {
     set: setPrice,
   },
   discount: {
-    type: String, //TODO formato
+    type: String,
   },
   notation: {
     type: String,
