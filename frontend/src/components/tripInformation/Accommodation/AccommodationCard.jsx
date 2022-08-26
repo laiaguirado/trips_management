@@ -153,6 +153,12 @@ function AccommodationCard({ accommodation }) {
             </div>
           </div>
         )}
+        {accommodation.board && (
+          <div className="accommodation-board accommodation-detail">
+            <h3>Board: </h3>
+            <div>{accommodation.board}</div>
+          </div>
+        )}
         {accommodation.web && (
           <div className="accommodation-web accommodation-detail">
             <h3>Web page: </h3>

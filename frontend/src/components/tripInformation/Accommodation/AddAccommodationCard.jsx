@@ -17,11 +17,12 @@ import {
   faWifi,
   faPersonSwimming,
   faHotel,
+  faCircleHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
 
 function AddAccommodationCard({ onAdd, adding, tripId }) {
   const [name, setName] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState(null);
   const [location, setLocation] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -33,6 +34,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
   const [internet, setInternet] = useState(null);
   const [swimmingPool, setSwimmingPool] = useState(null);
   const [breakfast, setBreakfast] = useState(null);
+  const [board, setBoard] = useState(null);
   const [web, setWeb] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -54,6 +56,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
       internet,
       swimmingPool,
       breakfast,
+      board,
       web,
       phone,
       email,
@@ -295,28 +298,52 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
             </div>
           </label>
           {type === "Hotel" ? (
-            <label>
-              <div className="form-data">
-                <FontAwesomeIcon icon={faUtensils} className="icon" />
-                <p className="checkbox-placeholder">Is breakfast included?</p>
-                <div>
-                  <input
-                    name="breakfastIncluded"
-                    type="radio"
-                    value={true}
-                    onChange={() => setBreakfast(true)}
-                  />
-                  <label className="checkbox-option">Yes</label>
-                  <input
-                    name="breakfastIncluded"
-                    type="radio"
-                    value={false}
-                    onChange={() => setBreakfast(false)}
-                  />
-                  <label className="checkbox-option">No</label>
+            <>
+              <label>
+                <div className="form-data">
+                  <FontAwesomeIcon icon={faUtensils} className="icon" />
+                  <p className="checkbox-placeholder">Is breakfast included?</p>
+                  <div>
+                    <input
+                      name="breakfastIncluded"
+                      type="radio"
+                      value={true}
+                      onChange={() => setBreakfast(true)}
+                    />
+                    <label className="checkbox-option">Yes</label>
+                    <input
+                      name="breakfastIncluded"
+                      type="radio"
+                      value={false}
+                      onChange={() => setBreakfast(false)}
+                    />
+                    <label className="checkbox-option">No</label>
+                  </div>
                 </div>
-              </div>
-            </label>
+              </label>
+              <label>
+                <div className="form-data">
+                  <FontAwesomeIcon icon={faCircleHalfStroke} className="icon" />
+                  <p className="checkbox-placeholder">Board</p>
+                  <div>
+                    <input
+                      name="board"
+                      type="radio"
+                      value={"Full"}
+                      onChange={() => setBoard("Full")}
+                    />
+                    <label className="checkbox-option">Full</label>
+                    <input
+                      name="board"
+                      type="radio"
+                      value={"Half"}
+                      onChange={() => setBoard("Half")}
+                    />
+                    <label className="checkbox-option">Half</label>
+                  </div>
+                </div>
+              </label>
+            </>
           ) : (
             ""
           )}

@@ -84,12 +84,20 @@ const accommodationSchema = extendSchema(
           "Chalets",
           "Cottages",
           "Other",
+          null,
         ],
         message: "{VALUE} for {TYPE} is not suported",
       },
     },
     breakfast: {
       type: Boolean,
+    },
+    board: {
+      type: String,
+      enum: {
+        values: ["Full", "Half", null],
+        message: "{VALUE} for {TYPE} is not suported",
+      },
     },
   },
   {

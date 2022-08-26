@@ -38,6 +38,8 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
   const [petFriendly, setPetFriendly] = useState(accommodation.petFriendly);
   const [internet, setInternet] = useState(accommodation.internet);
   const [swimmingPool, setSwimmingPool] = useState(accommodation.swimmingPool);
+  const [breakfast, setBreakfast] = useState(accommodation.breakfast);
+  const [board, setBoard] = useState(accommodation.board);
   const [web, setWeb] = useState(accommodation.web);
   const [phone, setPhone] = useState(accommodation.phone);
   const [email, setEmail] = useState(accommodation.email);
@@ -53,6 +55,15 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
     const year = ("0" + date.getFullYear()).slice(-4);
     return day + "/" + month + "/" + year;
   }
+  const selectType = (value) => {
+    console.log(value);
+    if ("Hotel" !== value) {
+      console.log("Reset");
+      setBreakfast(null);
+      setBoard(null);
+    }
+    setType(value);
+  };
   //todo edit dates inputs
   const update = (e) => {
     e.preventDefault();
@@ -69,6 +80,8 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
       petFriendly,
       internet,
       swimmingPool,
+      breakfast,
+      board,
       web,
       phone,
       email,
@@ -104,7 +117,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   <select
                     className="input date"
                     value={type}
-                    onChange={(event) => setType(event.target.value)}
+                    onChange={(event) => selectType(event.target.value)}
                   >
                     <option value="" disabled={true}>
                       Select an accommodation
@@ -221,7 +234,8 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                 <input
                   className="input price"
                   type="number"
-                  min={0}
+                  min="0"
+                  step="0.01"
                   placeholder="Price"
                   value={price}
                   onChange={(event) => setPrice(event.target.value)}
@@ -319,6 +333,62 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
               </div>
             </label>
           </div>
+          {type === "Hotel" ? (
+            <>
+              <div className="accommodation-breakfast accommodation-detail">
+                <h3>Breakfast included: </h3>
+                <label>
+                  <div className="edit-checkbox">
+                    <div>
+                      <input
+                        name="breakfastIncluded"
+                        type="radio"
+                        value={true}
+                        checked={breakfast === true}
+                        onChange={() => setBreakfast(true)}
+                      />
+                      <label className="checkbox-option">Yes</label>
+                      <input
+                        name="breakfastIncluded"
+                        type="radio"
+                        value={false}
+                        checked={breakfast === false}
+                        onChange={() => setBreakfast(false)}
+                      />
+                      <label className="checkbox-option">No</label>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div className="accommodation-board accommodation-detail">
+                <h3>Board: </h3>
+                <label>
+                  <div className="edit-checkbox">
+                    <div>
+                      <input
+                        name="board"
+                        type="radio"
+                        value={"Full"}
+                        checked={board === "Full"}
+                        onChange={() => setBoard("Full")}
+                      />
+                      <label className="checkbox-option">Full</label>
+                      <input
+                        name="board"
+                        type="radio"
+                        value={"Half"}
+                        checked={board === "Half"}
+                        onChange={() => setBoard("Half")}
+                      />
+                      <label className="checkbox-option">Half</label>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
           <div className="accommodation-web accommodation-detail">
             <h3>Web page: </h3>
             <label>
