@@ -1,25 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./EditAccommodationCard.css";
-import * as api from "../../../api";
-import * as helper from "../../../helper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import {
-  faGlobe,
-  faLocationDot,
-  faCalendar,
-  faPhone,
-  faEnvelope,
-  faAngleLeft,
-  faNoteSticky,
-  faPersonWalkingLuggage,
-  faSackDollar,
-  faClock,
-  faDog,
-  faWifi,
-  faPersonSwimming,
-  faHotel,
-} from "@fortawesome/free-solid-svg-icons";
 
 function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
   const [name, setName] = useState(accommodation.name);
@@ -43,20 +23,24 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
   const [email, setEmail] = useState(accommodation.email);
   const [notation, setNotation] = useState(accommodation.notation);
 
-  function getDateValue(value, placeholder) {
-    if (value === "" || value === undefined) {
+  function getDateValue(value, placeholder, order) {
+    if (value === "" || value === undefined || value === null) {
       return placeholder;
     }
     const date = new Date(value);
     const day = ("0" + date.getDate()).slice(-2);
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
     const year = ("0" + date.getFullYear()).slice(-4);
-    return day + "/" + month + "/" + year;
+    if (order) {
+      return day + "-" + month + "-" + year;
+    } else {
+      return year + "-" + month + "-" + day;
+    }
   }
 
-  function setDateValue(value, placeholder) {
-    if (value === "" || value === undefined) {
-      return placeholder;
+  function setDateValue(value) {
+    if (value === "" || value === undefined || value === null) {
+      return "";
     }
     const date = new Date(value);
     const day = ("0" + date.getDate()).slice(-2);
@@ -170,7 +154,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     className="input date"
                     placeholder="Start Date"
                     max={endDate}
-                    defaultValue={getDateValue(startDate)}
+                    defaultValue={getDateValue(startDate, "Start Date", false)}
                     onFocus={(event) => {
                       event.target.type = "date";
                       event.target.value = startDate;
@@ -179,7 +163,8 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                       event.target.type = "text";
                       event.target.value = getDateValue(
                         startDate,
-                        "Start Date"
+                        "Start Date",
+                        true
                       );
                     }}
                     onChange={(event) => setStartDate(event.target.value)}
@@ -193,14 +178,18 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     className="input date"
                     placeholder="End Date"
                     min={startDate}
-                    defaultValue={getDateValue(endDate, "End Date")}
+                    defaultValue={getDateValue(endDate, "End Date", false)}
                     onFocus={(event) => {
                       event.target.type = "date";
                       event.target.value = endDate;
                     }}
                     onBlur={(event) => {
                       event.target.type = "text";
-                      event.target.value = getDateValue(endDate, "End Date");
+                      event.target.value = getDateValue(
+                        endDate,
+                        "End Date",
+                        true
+                      );
                     }}
                     onChange={(event) => setEndDate(event.target.value)}
                   />
