@@ -23,129 +23,129 @@ function AccommodationDetailsPage() {
   const { tripId, accommodationId } = useParams();
   const navigate = useNavigate();
 
-const loadAccommodation = async () => {
-  const {
-    success,
-    result: accommodation,
-    error,
-  } = await api.getAccommodation(accommodationId);
-  if (success) {
-    setAccommodation(accommodation);
-    setMessage(null);
-  } else {
-    setAccommodation(null);
-    setMessage(error);
-  }
-};
+  const loadAccommodation = async () => {
+    const {
+      success,
+      result: accommodation,
+      error,
+    } = await api.getAccommodation(accommodationId);
+    if (success) {
+      setAccommodation(accommodation);
+      setMessage(null);
+    } else {
+      setAccommodation(null);
+      setMessage(error);
+    }
+  };
 
-const deleteAccommodation = async (accommodationId) => {
-  const { success, error } = await api.deleteAccommodation(accommodationId);
-  if (success) {
-    navigate(`/trip/${tripId}/accommodation`, { replace: false });
-  } else {
-    setMessage(error);
-  }
-};
+  const deleteAccommodation = async (accommodationId) => {
+    const { success, error } = await api.deleteAccommodation(accommodationId);
+    if (success) {
+      navigate(`/trip/${tripId}/accommodation`, { replace: false });
+    } else {
+      setMessage(error);
+    }
+  };
 
-const onEdit = async (accommodationId, accommodationData) => {
-  const {
-    success,
-    result: added,
-    error,
-  } = await api.updateAccommodation(accommodationId, accommodationData);
-  if (success) {
-    setAccommodation(added);
+  const onEdit = async (accommodationId, accommodationData) => {
+    const {
+      success,
+      result: edited,
+      error,
+    } = await api.updateAccommodation(accommodationId, accommodationData);
+    if (success) {
+      setAccommodation(edited);
+      setEditing(false);
+      setMessage(null);
+    } else {
+      setMessage(error);
+    }
+  };
+
+  const returnEditing = () => {
     setEditing(false);
     setMessage(null);
-  } else {
-    setMessage(error);
+  };
+
+  function deleteButton() {
+    if (deleting === false) {
+      return (
+        <div
+          className="delete-accommodation"
+          onClick={() => {
+            setDeleting(true);
+          }}
+        >
+          <FontAwesomeIcon icon={faTrashCan} /> DELETE ACCOMMODATION
+        </div>
+      );
+    } else {
+      return (
+        <DeleteCard
+          onDelete={() => deleteAccommodation(accommodationId)}
+          deleting={() => setDeleting(false)}
+          deleteType={"Accommodation"}
+        />
+      );
+    }
   }
-};
 
-const returnEditing = () => {
-  setEditing(false);
-  setMessage(null);
-};
+  function showComponentMode() {
+    if (!editing) {
+      return (
+        <>
+          <AccommodationCard accommodation={accommodation} />
+          <div>{deleteButton()}</div>
+          <CommentsCard
+            tripId={tripId}
+            componentId={accommodationId}
+            component="accommodation"
+          />
+        </>
+      );
+    } else {
+      return (
+        <EditAccommodationCard
+          accommodation={accommodation}
+          accommodationId={accommodationId}
+          onEdit={onEdit}
+        />
+      );
+    }
+  }
 
-function deleteButton() {
-  if (deleting === false) {
+  useEffect(() => {
+    loadAccommodation();
+    window.scrollTo(0, 0);
+  }, [accommodationId]);
+
+  if (accommodation === null) {
     return (
-      <div
-        className="delete-accommodation"
-        onClick={() => {
-          setDeleting(true);
-        }}
-      >
-        <FontAwesomeIcon icon={faTrashCan} /> DELETE ACCOMMODATION
+      <div>
+        <Bar mode="login" />
+        <Loading />
       </div>
     );
-  } else {
-    return (
-      <DeleteCard
-        onDelete={() => deleteAccommodation(accommodationId)}
-        deleting={() => setDeleting(false)}
-        deleteType={"Accommodation"}
-      />
-    );
   }
-}
 
-function showComponentMode() {
-  if (!editing) {
-    return (
-      <>
-        <AccommodationCard accommodation={accommodation} />
-        <div>{deleteButton()}</div>
-        <CommentsCard
-          tripId={tripId}
-          componentId={accommodationId}
-          component="accommodation"
-        />
-      </>
-    );
-  } else {
-    return (
-      <EditAccommodationCard
-        accommodation={accommodation}
-        accommodationId={accommodationId}
-        onEdit={onEdit}
-      />
-    );
-  }
-}
-
-useEffect(() => {
-  loadAccommodation();
-  window.scrollTo(0, 0);
-}, [accommodationId]);
-
-if (accommodation === null) {
   return (
-    <div>
+    <div className="accommodation-details-page">
       <Bar mode="login" />
-      <Loading />
+      <div className="flex-container">
+        <div
+          className="return-icon page-return-icon"
+          onClick={() => (!editing ? window.history.go(-1) : returnEditing())}
+        >
+          <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+        </div>
+        <div className="edit-icon" onClick={() => setEditing(true)}>
+          <FontAwesomeIcon icon={faPen} size="2x" />{" "}
+        </div>
+        <div className="error">{message}</div>
+        {showComponentMode()}
+      </div>
     </div>
   );
-}
-
-return (
-  <div className="accommodation-details-page">
-    <Bar mode="login" />
-    <div className="flex-container">
-      <div
-        className="return-icon page-return-icon"
-        onClick={() => (!editing ? window.history.go(-1) : returnEditing())}
-      >
-        <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
-      </div>
-      <div className="edit-icon" onClick={() => setEditing(true)}>
-        <FontAwesomeIcon icon={faPen} size="2x" />{" "}
-      </div>
-      <div className="error">{message}</div>
-      {showComponentMode()}
-    </div>
-  </div>
-);
 }
 
 export default AccommodationDetailsPage;

@@ -46,11 +46,11 @@ function PlansDetailsPage() {
   const onEdit = async (planId, planData) => {
     const {
       success,
-      result: added,
+      result: edited,
       error,
-    } = await api.updateTransportation(planId, planData);
+    } = await api.updatePlan(planId, planData);
     if (success) {
-      setTransportation(planData);
+      setPlan(edited);
       setEditing(false);
       setMessage(null);
     } else {

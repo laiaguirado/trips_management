@@ -50,11 +50,11 @@ function RestorationDetailsPage() {
   const onEdit = async (restorationId, restorationData) => {
     const {
       success,
-      result: added,
+      result: edited,
       error,
-    } = await api.updateTransportation(restorationId, restorationData);
+    } = await api.updateRestoration(restorationId, restorationData);
     if (success) {
-      setTransportation(restorationData);
+      setRestoration(edited);
       setEditing(false);
       setMessage(null);
     } else {

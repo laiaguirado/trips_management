@@ -9,21 +9,20 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
   const [currency, setCurrency] = useState(transportation.currency);
   const [origin, setOrigin] = useState(transportation.origin);
   const [destination, setDestination] = useState(transportation.destination);
-  const [departure, setDeparture] = useState(transportation.departure);
-  const [arrival, setArrival] = useState(transportation.arrival);
+  const [departure, setDeparture] = useState(
+    setDateValue(transportation.departure)
+  );
+  const [arrival, setArrival] = useState(setDateValue(transportation.arrival));
   const [web, setWeb] = useState(transportation.web);
   const [notation, setNotation] = useState(transportation.notation);
 
-  function getDateValue(value, placeholder) {
-    if (value === "" || value === undefined) {
-      return placeholder;
+  function setDateValue(value) {
+    if (value === "" || value === undefined || value === null) {
+      return "";
     }
-    const date = new Date(value);
-    const day = ("0" + date.getDate()).slice(-2);
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const year = ("0" + date.getFullYear()).slice(-4);
-    return day + "/" + month + "/" + year;
+    return value;
   }
+
   //todo message errors
   //todo remove edit option when not necessary
   const update = (e) => {
@@ -182,16 +181,13 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                   <input
                     className="input date"
                     placeholder="Departure time"
+                    type="datetime-local"
+                    defaultValue={departure.substring(0, 16)}
                     onFocus={(event) => {
-                      event.target.type = "datetime-local";
-                      event.target.value = departure;
+                      event.target.value = departure.substring(0, 16);
                     }}
                     onBlur={(event) => {
-                      event.target.type = "text";
-                      event.target.value = getDateValue(
-                        departure,
-                        "Departure time"
-                      );
+                      event.target.value = departure.substring(0, 16);
                     }}
                     onChange={(event) => setDeparture(event.target.value)}
                   />
@@ -202,16 +198,13 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                   <input
                     className="input date"
                     placeholder="Arrival time"
+                    type="datetime-local"
+                    defaultValue={arrival.substring(0, 16)}
                     onFocus={(event) => {
-                      event.target.type = "datetime-local";
-                      event.target.value = arrival;
+                      event.target.value = arrival.substring(0, 16);
                     }}
                     onBlur={(event) => {
-                      event.target.type = "text";
-                      event.target.value = getDateValue(
-                        arrival,
-                        "Arrival time"
-                      );
+                      event.target.value = arrival.substring(0, 16);
                     }}
                     onChange={(event) => {
                       setArrival(event.target.value);

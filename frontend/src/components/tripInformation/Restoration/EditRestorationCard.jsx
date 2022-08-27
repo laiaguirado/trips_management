@@ -173,7 +173,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                 <div className="form-data">
                   <input
                     className="input date"
-                    placeholder="Opening Hour"
+                    placeholder="Opening hour"
                     value={openingHour}
                     onFocus={(event) => (event.target.type = "time")}
                     onBlur={(event) => (event.target.type = "text")}
