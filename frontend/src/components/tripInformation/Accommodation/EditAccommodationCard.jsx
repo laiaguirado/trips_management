@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./EditAccommodationCard.css";
 
 function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
+  // console.log(accommodation);
+  // console.log(accommodationId);
+  // console.log(onEdit);
   const [name, setName] = useState(accommodation.name);
   const [type, setType] = useState(accommodation.type);
   const [location, setLocation] = useState(accommodation.location);
@@ -137,7 +140,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     required
                     type="text"
                     placeholder="Location *"
-                    value={location}
+                    defaultValue={location}
                     onChange={(event) => setLocation(event.target.value)}
                   />
                 </div>
@@ -205,7 +208,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   <input
                     className="input date"
                     placeholder="Check in Hour"
-                    value={checkInHour}
+                    defaultValue={checkInHour}
                     onFocus={(event) => (event.target.type = "time")}
                     onBlur={(event) => (event.target.type = "text")}
                     onChange={(event) => setCheckInHour(event.target.value)}
@@ -217,7 +220,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   <input
                     className="input date"
                     placeholder="Check out Hour"
-                    value={checkOutHour}
+                    defaultValue={checkOutHour}
                     onFocus={(event) => (event.target.type = "time")}
                     onBlur={(event) => (event.target.type = "text")}
                     onChange={(event) => setCheckOutHour(event.target.value)}
@@ -236,13 +239,13 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   min="0"
                   step="0.01"
                   placeholder="Price"
-                  value={price}
+                  defaultValue={price}
                   onChange={(event) => setPrice(event.target.value)}
                 />
                 <select
                   className="input date"
                   required={price ? "required" : ""}
-                  value={currency}
+                  defaultValue={currency}
                   onChange={(event) => setCurrency(event.target.value)}
                 >
                   <option value="" disabled={true}>
@@ -396,7 +399,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   className="input"
                   type="text"
                   placeholder="Web"
-                  value={web}
+                  defaultValue={web}
                   onChange={(event) => setWeb(event.target.value)}
                 />
               </div>
@@ -411,7 +414,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   pattern="[0-9]{9}"
                   type="tel"
                   placeholder="Phone"
-                  value={phone}
+                  defaultValue={phone}
                   onChange={(event) => setPhone(event.target.value)}
                 />
               </div>
@@ -425,7 +428,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   className="input"
                   type="email"
                   placeholder="Email"
-                  value={email}
+                  defaultValue={email}
                   onChange={(event) => setEmail(event.target.value)}
                 />
               </div>
@@ -441,7 +444,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   rows="5"
                   cols="30"
                   placeholder="Notes"
-                  value={notation}
+                  defaultValue={notation}
                   onChange={(event) => setNotation(event.target.value)}
                 ></textarea>
               </div>
