@@ -69,7 +69,7 @@ const updatePlan = async (_id, planInfo) => {
   const planUpdated = await Plans.findOneAndUpdate({ _id }, planInfo, {
     new: true,
   })
-    .lean()
+    .lean({ getters: true, virtuals: true })
     .exec();
 
   if (planUpdated === null) {

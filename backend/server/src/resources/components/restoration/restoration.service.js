@@ -69,7 +69,7 @@ const updateRestoration = async ({
     },
     { new: true }
   )
-    .lean()
+    .lean({ getters: true, virtuals: true })
     .exec();
 
   if (restUpdated === null) {

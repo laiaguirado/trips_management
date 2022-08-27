@@ -76,7 +76,7 @@ const updateTransportation = async (_id, transportInfo) => {
     transportInfo,
     { new: true }
   )
-    .lean()
+    .lean({ getters: true, virtuals: true })
     .exec();
 
   if (transportationUpdated === null) {
