@@ -28,7 +28,6 @@ await User.findOneAndUpdate({ scores: _id }, {
   if (deleted === null) {
     errMalformed(`Score with ${id} not found`);
   }
-  console.log(deleted)
   return deleted;
 };
 

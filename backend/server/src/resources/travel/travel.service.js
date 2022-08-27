@@ -37,18 +37,12 @@ const createTravel = async (travel) => {
   return await Travel.create(travel);
 };
 
-const updateTravel = async ({
-  _id,
-  name,
-  description,
-  startDate,
-  endDate,
-  location,
-}) => {
-  const travelUpdated = await Travel.findOneAndUpdate(
-    { _id },
-    { name, description, startDate, endDate, location }
-  )
+const updateTravel = async (_id, dataTravel) => {
+  const travelUpdated = await Travel.findOneAndUpdate({ _id }, dataTravel, {
+    new: true,
+  })
+    .populate({ path: "travellers", select: "email username" })
+    .populate({ path: "creator", select: "email -_id" })
     .lean()
     .exec();
 

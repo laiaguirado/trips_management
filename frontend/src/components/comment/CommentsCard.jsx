@@ -24,7 +24,6 @@ function CommentsCard({ tripId, componentId, component }) {
   };
 
   const addComment = async (e) => {
-    console.log(comment);
     e.preventDefault();
     const {
       success,

@@ -39,7 +39,6 @@ const create = async(req,res)=>{
 
 const getAll = async(req,res) =>{
     const docs = await Score.findAll();
-    console.log(docs)
     res.status(200).json({ results: [docs] });
 }
 

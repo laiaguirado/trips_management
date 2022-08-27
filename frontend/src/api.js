@@ -58,7 +58,8 @@ export const getTripList = () => authApiCall("GET", `/user/me/travel`);
 export const getTrip = (tripId) => authApiCall("GET", `/travel/${tripId}`);
 export const addTrip = (newTripData) => authApiCall("POST", `/travel`, newTripData, true);
 export const deleteTrip = (tripId) => authApiCall("DELETE", `/travel/${tripId}`);
-//export const updateTrip = (updatedTrip) => authApiCall("PUT", `/travel/${tripId}`, updatedTrip);
+export const updateTrip = (tripId, updatedTrip) =>
+  authApiCall("PUT", `/travel/${tripId}`, updatedTrip, true);
 
 export const addCreatorAsTraveler = (added) => authApiCall("POST", `/travel/${added._id}/traveler/me`);
 export const getTravelerByEmail = (email) => authApiCall("GET", `/user/${email}`);

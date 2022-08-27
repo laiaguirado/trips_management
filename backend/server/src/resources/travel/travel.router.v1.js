@@ -70,19 +70,18 @@ const createTravel = async (req, res) => {
 };
 
 const updateTravel = async (req, res) => {
-  const { name, description, location, startDate, endDate } = req.body;
+  const dataTravel = req.body;
   const { _id } = req.params;
 
-  res.status(200).json(
-    await Travel.updateTravel({
-      _id,
-      name,
-      description,
-      location,
-      startDate,
-      endDate,
-    })
-  );
+  if (dataTravel.image || req.file) {
+    dataTravel.image = {
+      url: dataTravel.image ? dataTravel.image : "",
+      extension: req.file ? req.file.mimetype : "",
+      name: req.file ? `/${req.file.filename}` : "",
+    };
+  }
+
+  res.status(200).json(await Travel.updateTravel(_id, dataTravel));
 };
 
 const deleteTravel = async (req, res) => {
@@ -90,14 +89,13 @@ const deleteTravel = async (req, res) => {
   const comments = await Comment.findByTravelId(_id);
   const scores = await Score.findByTravelId(_id);
 
-  for (const comment of comments){
-    await Comment.deleteComment(comment._id)
+  for (const comment of comments) {
+    await Comment.deleteComment(comment._id);
   }
-  for (const score of scores){
-    await Score.deleteScore(score._id)
+  for (const score of scores) {
+    await Score.deleteScore(score._id);
   }
   res.status(200).json(await Travel.deleteTravel(_id));
-
 };
 
 const addMeToTravel = async (req, res) => {
@@ -192,7 +190,12 @@ router.delete(
   catchErrors(deleteUserToTravel)
 );
 
-router.put("/:_id", needsAuthToken, catchErrors(updateTravel));
+router.put(
+  "/:_id",
+  needsAuthToken,
+  upload.single("fileImage"),
+  catchErrors(updateTravel)
+);
 router.delete("/:_id", needsAuthToken, catchErrors(deleteTravel));
 
 module.exports = router;

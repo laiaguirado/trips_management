@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./EditAccommodationCard.css";
 
 function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
-  // console.log(accommodation);
-  // console.log(accommodationId);
-  // console.log(onEdit);
   const [name, setName] = useState(accommodation.name);
   const [type, setType] = useState(accommodation.type);
   const [location, setLocation] = useState(accommodation.location);

@@ -18,7 +18,7 @@ const create = async (req, res) => {
   data.resourceType = RESOURCETYPE;
   data.idUser = _id;
   data.idTravel = idTravel;
-  console.log(data);
+
   const restoration = await runTransaction(async () => {
     const restorationCreated = await Restoration.createOne(data);
 
