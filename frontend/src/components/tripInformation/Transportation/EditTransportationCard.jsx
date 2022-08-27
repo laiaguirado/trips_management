@@ -58,7 +58,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     required
                     type="text"
                     placeholder="Transport's name *"
-                    value={name}
+                    defaultValue={name}
                     onChange={(event) => setName(event.target.value)}
                   />
                 </div>
@@ -73,7 +73,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                   <select
                     className="input date"
                     required
-                    value={type}
+                    defaultValue={type}
                     onChange={(event) => setType(event.target.value)}
                   >
                     <option value="" disabled={true}>
@@ -103,7 +103,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     maxLength="500"
                     type="text"
                     placeholder="Terminal, number bus, ..."
-                    value={typeDetails}
+                    defaultValue={typeDetails}
                     onChange={(event) => setTypeDetails(event.target.value)}
                   />
                 </div>
@@ -121,13 +121,13 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     type="number"
                     min={0}
                     placeholder="Price"
-                    value={price}
+                    defaultValue={price}
                     onChange={(event) => setPrice(event.target.value)}
                   />
                   <select
                     className="input date"
                     required={price ? "required" : ""}
-                    value={currency}
+                    defaultValue={currency}
                     onChange={(event) => setCurrency(event.target.value)}
                   >
                     <option value="" disabled={true}>
@@ -152,7 +152,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     maxLength="100"
                     type="text"
                     placeholder="Origin's place"
-                    value={origin}
+                    defaultValue={origin}
                     onChange={(event) => setOrigin(event.target.value)}
                   />
                 </div>
@@ -164,7 +164,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     maxLength="100"
                     type="text"
                     placeholder="Destination's place"
-                    value={destination}
+                    defaultValue={destination}
                     onChange={(event) => setDestination(event.target.value)}
                   />
                 </div>
@@ -224,7 +224,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     className="input"
                     type="text"
                     placeholder="Web"
-                    value={web}
+                    defaultValue={web}
                     onChange={(event) => setWeb(event.target.value)}
                   />
                 </div>
@@ -243,7 +243,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     rows="5"
                     cols="30"
                     placeholder="Notes"
-                    value={notation}
+                    defaultValue={notation}
                     onChange={(event) => setNotation(event.target.value)}
                   ></textarea>
                 </div>
