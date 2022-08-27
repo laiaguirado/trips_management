@@ -76,16 +76,19 @@ export const getTransportationList = (tripId) => authApiCall("GET", `/travel/${t
 export const getTransportation = (transportationId) => authApiCall("GET", `/transportation/${transportationId}`);
 export const addTransportation = (tripId, newTransportationData) => authApiCall("POST", `/travel/${tripId}/transportation`, newTransportationData);
 export const deleteTransportation = (transportationId) => authApiCall("DELETE", `/transportation/${transportationId}`);
+export const updateTransportation = (transportationId, transportationData) => authApiCall("PUT", `/transportation/${transportationId}`, transportationData);
 
 export const getPlanList = (tripId) => authApiCall("GET", `/travel/${tripId}/plans`);
 export const getPlan = (planId) => authApiCall("GET", `/plans/${planId}`);
 export const addPlan = (tripId, newPlanData) => authApiCall("POST", `/travel/${tripId}/plans`, newPlanData);
 export const deletePlan = (planId) => authApiCall("DELETE", `/plans/${planId}`);
+export const updatePlan = (planId, planData) => authApiCall("PUT", `/plans/${planId}`, planData);
 
 export const getRestorationList = (tripId) => authApiCall("GET", `/travel/${tripId}/restoration`);
 export const getRestoration = (restorationId) => authApiCall("GET", `/restoration/${restorationId}`);
 export const addRestoration = (tripId, newRestorationData) => authApiCall("POST", `/travel/${tripId}/restoration`, newRestorationData);
 export const deleteRestoration = (restorationId) => authApiCall("DELETE", `/restoration/${restorationId}`);
+export const updateRestoration = (restorationId, restorationData) => authApiCall("PUT", `/restoration/${restorationId}`, restorationData);
 
 export const getCommentList = (tripId, componentId) => authApiCall("GET", `/comment/travel/${tripId}/component/${componentId}`);
 export const addComment = (tripId, componentId, component, newCommentData) => authApiCall("POST", `/comment/travel/${tripId}/${component}/${componentId}`, newCommentData);

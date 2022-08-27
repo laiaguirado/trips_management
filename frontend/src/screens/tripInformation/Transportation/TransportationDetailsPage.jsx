@@ -50,11 +50,11 @@ function TransportationDetailsPage() {
   const onEdit = async (transportationId, transportationData) => {
     const {
       success,
-      result: added,
+      result: edited,
       error,
     } = await api.updateTransportation(transportationId, transportationData);
     if (success) {
-      setTransportation(transportationData);
+      setTransportation(edited);
       setEditing(false);
       setMessage(null);
     } else {
