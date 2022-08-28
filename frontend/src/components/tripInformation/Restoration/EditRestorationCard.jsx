@@ -15,7 +15,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
   const [takeAway, setTakeAway] = useState(restoration.takeAway);
   const [reserved, setReserved] = useState(restoration.reserved);
   const [web, setWeb] = useState(restoration.web);
-  const [phone, setPhone] = useState(restoration.setPhone);
+  const [phone, setPhone] = useState(restoration.phone);
   const [email, setEmail] = useState(restoration.email);
   const [notation, setNotation] = useState(restoration.notation);
 
@@ -57,7 +57,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     required
                     type="text"
                     placeholder="Restoration's name *"
-                    value={name}
+                    defaultValue={name}
                     onChange={(event) => setName(event.target.value)}
                   />
                 </div>
@@ -75,7 +75,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     required
                     type="text"
                     placeholder="Location *"
-                    value={location}
+                    defaultValue={location}
                     onChange={(event) => setLocation(event.target.value)}
                   />
                 </div>
@@ -93,7 +93,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     className="input"
                     type="text"
                     placeholder="Kind of Food"
-                    value={kindOfFood}
+                    defaultValue={kindOfFood}
                     onChange={(event) => setKindOfFood(event.target.value)}
                   />
                 </div>
@@ -118,7 +118,8 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                   <input
                     className="input price"
                     type="number"
-                    min={0}
+                    min="0"
+                    step="0.1"
                     placeholder="Min price"
                     value={minPrice}
                     onChange={(event) => setMinPrice(event.target.value)}
@@ -126,7 +127,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                   <select
                     className="input date"
                     required={minPrice ? "required" : ""}
-                    value={currency}
+                    defaultValue={currency}
                     onChange={(event) => setCurrency(event.target.value)}
                   >
                     <option value="" disabled={true}>
@@ -145,13 +146,13 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     type="number"
                     min={minPrice}
                     placeholder="Max price"
-                    value={maxPrice}
+                    defaultValue={maxPrice}
                     onChange={(event) => setMaxPrice(event.target.value)}
                   />
                   <select
                     className="input date"
                     required={maxPrice ? "required" : ""}
-                    value={currency}
+                    defaultValue={currency}
                     onChange={(event) => setCurrency(event.target.value)}
                   >
                     <option value="" disabled={true}>
@@ -174,7 +175,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                   <input
                     className="input date"
                     placeholder="Opening hour"
-                    value={openingHour}
+                    defaultValue={openingHour}
                     onFocus={(event) => (event.target.type = "time")}
                     onBlur={(event) => (event.target.type = "text")}
                     onChange={(event) => setOpeningHour(event.target.value)}
@@ -186,7 +187,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                   <input
                     className="input date"
                     placeholder="Closing Hour"
-                    value={closingHour}
+                    defaultValue={closingHour}
                     onFocus={(event) => (event.target.type = "time")}
                     onBlur={(event) => (event.target.type = "text")}
                     onChange={(event) => setClosingHour(event.target.value)}
@@ -205,7 +206,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     className="input"
                     type="text"
                     placeholder="Closed"
-                    value={closed}
+                    defaultValue={closed}
                     onChange={(event) => setClosed(event.target.value)}
                   />
                 </div>
@@ -222,7 +223,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     className="input"
                     type="text"
                     placeholder="Speciality"
-                    value={speciality}
+                    defaultValue={speciality}
                     onChange={(event) => setSpeciality(event.target.value)}
                   />
                 </div>
@@ -239,14 +240,16 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     <input
                       name="takeAway"
                       type="radio"
-                      value={takeAway}
+                      value={true}
+                      checked={takeAway === true}
                       onChange={() => setTakeAway(true)}
                     />
                     <label className="checkbox-option">Yes</label>
                     <input
                       name="takeAway"
                       type="radio"
-                      value={takeAway}
+                      value={false}
+                      checked={takeAway === false}
                       onChange={() => setTakeAway(false)}
                     />
                     <label className="checkbox-option">No</label>
@@ -265,14 +268,16 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     <input
                       name="reserved"
                       type="radio"
-                      value={reserved}
+                      value={true}
+                      checked={reserved === true}
                       onChange={() => setReserved(true)}
                     />
                     <label className="checkbox-option">Yes</label>
                     <input
                       name="reserved"
                       type="radio"
-                      value={reserved}
+                      value={false}
+                      checked={reserved === false}
                       onChange={() => setReserved(false)}
                     />
                     <label className="checkbox-option">No</label>
@@ -291,7 +296,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     className="input"
                     type="text"
                     placeholder="Web"
-                    value={web}
+                    defaultValue={web}
                     onChange={(event) => setWeb(event.target.value)}
                   />
                 </div>
@@ -309,7 +314,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     pattern="[0-9]{9}"
                     type="tel"
                     placeholder="Phone number"
-                    value={phone}
+                    defaultValue={phone}
                     onChange={(event) => setPhone(event.target.value)}
                   />
                 </div>
@@ -326,7 +331,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     className="input"
                     type="email"
                     placeholder="Email"
-                    value={email}
+                    defaultValue={email}
                     onChange={(event) => setEmail(event.target.value)}
                   />
                 </div>
@@ -345,7 +350,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     rows="5"
                     cols="30"
                     placeholder="Notes"
-                    value={notation}
+                    defaultValue={notation}
                     onChange={(event) => setNotation(event.target.value)}
                   ></textarea>
                 </div>
