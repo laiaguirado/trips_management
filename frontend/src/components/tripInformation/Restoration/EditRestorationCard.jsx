@@ -121,13 +121,13 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     min="0"
                     step="0.1"
                     placeholder="Min price"
-                    value={minPrice}
+                    defaultValue={minPrice}
                     onChange={(event) => setMinPrice(event.target.value)}
                   />
                   <select
                     className="input date"
                     required={minPrice ? "required" : ""}
-                    value={currency}
+                    defaultValue={currency}
                     onChange={(event) => setCurrency(event.target.value)}
                   >
                     <option value="" disabled={true}>
@@ -152,7 +152,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                   <select
                     className="input date"
                     required={maxPrice ? "required" : ""}
-                    value={currency}
+                    defaultValue={currency}
                     onChange={(event) => setCurrency(event.target.value)}
                   >
                     <option value="" disabled={true}>
