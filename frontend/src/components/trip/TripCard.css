@@ -45,8 +45,9 @@
 
 .trip-card .image {
   width: 100%;
-  height: auto;
+  height: 100%;
   opacity: 0.75;
   min-width: 67px;
   min-height: 67px;
+  object-fit: cover;
 }

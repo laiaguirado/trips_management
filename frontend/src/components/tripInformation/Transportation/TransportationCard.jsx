@@ -3,6 +3,7 @@ import "./TransportationCard.css";
 import * as helper from "../../../helper";
 
 function TransportationCard({ transportation }) {
+  document.body.style.overflow = "unset";
   function getOriginDestination() {
     const origin =
       transportation.origin === null || transportation.origin === ""

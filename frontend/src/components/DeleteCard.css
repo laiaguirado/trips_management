@@ -1,40 +1,65 @@
-.delete-trip-card{
-    border-radius: 1rem;
-    background-color: #F0CDC3;
-    width: 20rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.delete-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
 }
 
-.delete-trip-card .options{
-    display: flex;
-    flex-direction: row;
+.delete-card .background {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.delete-trip-card .option{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.delete-card .delete {
+  border-radius: 1rem;
+  background-color: #f0cdc3;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
 }
 
-.delete-trip-card .option-no{
-    border-bottom-left-radius: 1rem;
-    background-color: #D29985;
-    width: 10rem;
-    height: 2rem;
+.delete-card .options {
+  display: flex;
+  flex-direction: row;
 }
 
-.delete-trip-card .option-yes{
-    border-bottom-right-radius: 1rem;
-    background-color: #B7553E;
-    width: 10rem;
-    height: 2rem;
+.delete-card .option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.delete-trip-card .option:hover{
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: bold;
+.delete-card .option-no {
+  border-bottom-left-radius: 1rem;
+  background-color: #d29985;
+  width: 10rem;
+  height: 2rem;
+}
+
+.delete-card .option-yes {
+  border-bottom-right-radius: 1rem;
+  background-color: #b7553e;
+  width: 10rem;
+  height: 2rem;
+}
+
+.delete-card .option:hover {
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: bold;
 }

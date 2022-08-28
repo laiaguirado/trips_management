@@ -1,0 +1,49 @@
+.edit-card .trip-name {
+  margin: 2rem auto;
+}
+
+.edit-card .edit-trip-name {
+  text-decoration: underline;
+  width: auto;
+  font-size: 2em;
+  font-family: Allerta;
+  font-weight: 100;
+  text-align: center;
+}
+
+.edit-card .details-title {
+  display: block;
+  margin: 2rem auto;
+}
+
+.edit-card .trip-info {
+  width: 100%;
+}
+
+.edit-card .trip-detail {
+  width: 80%;
+}
+.edit-card .trip-detail label,
+.edit-card .trip-detail div {
+  flex-grow: 1;
+}
+
+.image-editing {
+  opacity: 0.5;
+}
+.uploading-new-image {
+  padding-top: 10vw;
+}
+
+.uploading-new-image input::file-selector-button {
+  background-color: #b7cbe7;
+  color: black;
+  padding: 0.6rem;
+  border-radius: 1.2rem;
+  cursor: pointer;
+}
+
+.uploading-new-image input::file-selector-button:hover {
+  background-color: #2d5a74;
+  color: white;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import "./RestorationCard.css";
 
 function RestorationCard({ restoration }) {
+  document.body.style.overflow = "unset";
   function getHours() {
     const openingHour =
       restoration.openingHour === null || restoration.openingHour === ""

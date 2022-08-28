@@ -48,6 +48,8 @@ function TripDetailCard({ trip, tripId, onError: setMessage }) {
     window.scrollTo(0, 0);
   }, []); */
 
+  document.body.style.overflow = "unset";
+
   function getDateValue(value, placeholder) {
     if (value === "" || value === undefined) {
       return placeholder;

@@ -15,7 +15,6 @@ function EditTripCard({ trip, tripId, onEdit }) {
   const [endDate, setEndDate] = useState("");
   const refImage = useRef(null);
   const [imageSrc, setImageSrc] = useState("");
-
   function getDateValue(value, placeholder, order) {
     if (value === "" || value === undefined || value === null) {
       return placeholder;
@@ -85,7 +84,7 @@ function EditTripCard({ trip, tripId, onEdit }) {
       <div className="edit-card">
         <div className="trip-info">
           <form className="add-form" onSubmit={(e) => update(e)}>
-            <div className="trip-name form-data">
+            <div className="trip-name">
               <label>
                 <input
                   className="input edit-trip-name"

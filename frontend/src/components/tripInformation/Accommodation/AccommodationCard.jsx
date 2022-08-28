@@ -3,6 +3,7 @@ import "./AccommodationCard.css";
 import * as helper from "../../../helper";
 
 function AccommodationCard({ accommodation }) {
+  document.body.style.overflow = "unset";
   function getDates() {
     if (accommodation.startDate === null) {
       return (

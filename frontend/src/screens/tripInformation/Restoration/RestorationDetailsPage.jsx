@@ -13,6 +13,7 @@ import {
   faTrashCan,
   faAngleLeft,
   faPen,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 function RestorationDetailsPage() {
@@ -132,15 +133,26 @@ function RestorationDetailsPage() {
     <div className="restoration-details-page">
       <Bar mode="login" />
       <div className="flex-container">
-        <div
-          className="return-icon page-return-icon"
-          onClick={() => (!editing ? window.history.go(-1) : returnEditing())}
-        >
-          <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
-        </div>
-        <div className="edit-icon" onClick={() => setEditing(true)}>
-          <FontAwesomeIcon icon={faPen} size="2x" />{" "}
-        </div>
+        {!editing ? (
+          <div
+            className="return-icon page-return-icon"
+            onClick={() => window.history.go(-1)}
+          >
+            <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+          </div>
+        ) : (
+          <div
+            className="return-icon page-return-icon"
+            onClick={() => returnEditing()}
+          >
+            <FontAwesomeIcon icon={faXmark} size="3x" />{" "}
+          </div>
+        )}
+        {!editing && (
+          <div className="edit-icon" onClick={() => setEditing(true)}>
+            <FontAwesomeIcon icon={faPen} size="2x" />{" "}
+          </div>
+        )}
         <div className="error">{message}</div>
         {showComponentMode()}
       </div>

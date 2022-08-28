@@ -24,7 +24,6 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
   }
 
   //todo message errors
-  //todo remove edit option when not necessary
   const update = (e) => {
     e.preventDefault();
     onEdit(transportationId, {

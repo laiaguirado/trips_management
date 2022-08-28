@@ -83,19 +83,35 @@ function TripDetailsPage() {
     }
   }
 
+  const returnEditing = () => {
+    setEditing(false);
+    setMessage(null);
+  };
+
   return (
     <div>
       <Bar mode="login" />
       <div className="trip-details-page">
-        <div
-          className="return-icon page-return-icon"
-          onClick={() => navigate(`/`, { replace: false })}
-        >
-          <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
-        </div>
-        <div className="edit-icon" onClick={() => setEditing(true)}>
-          <FontAwesomeIcon icon={faPen} size="2x" />{" "}
-        </div>
+        {!editing ? (
+          <div
+            className="return-icon page-return-icon"
+            onClick={() => navigate(`/`, { replace: false })}
+          >
+            <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+          </div>
+        ) : (
+          <div
+            className="return-icon page-return-icon"
+            onClick={() => returnEditing()}
+          >
+            <FontAwesomeIcon icon={faXmark} size="3x" />{" "}
+          </div>
+        )}
+        {!editing && (
+          <div className="edit-icon" onClick={() => setEditing(true)}>
+            <FontAwesomeIcon icon={faPen} size="2x" />{" "}
+          </div>
+        )}
         <div className="error">{message}</div>
         {showComponentMode()}
       </div>

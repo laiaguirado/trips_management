@@ -2,6 +2,7 @@ import React from "react";
 import "./PlanCard.css";
 
 function PlanCard({ plan, modifyPlanList }) {
+  document.body.style.overflow = "unset";
   function getHours() {
     const openingHour =
       plan.openingHour === null || plan.openingHour === ""
