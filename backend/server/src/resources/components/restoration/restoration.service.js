@@ -44,31 +44,10 @@ const getByTravelId = async (idTravel) => {
   return await Restoration.find({ idTravel }).lean({ getters: true, virtuals: true }).exec();
 };
 
-const updateRestoration = async ({
-  _id,
-  web,
-  description,
-  location,
-  phone,
-  email,
-  kindOfFood,
-  minPrice,
-  maxPrice,
-}) => {
-  const restUpdated = await Restoration.findOneAndUpdate(
-    { _id },
-    {
-      web,
-      description,
-      location,
-      phone,
-      email,
-      kindOfFood,
-      minPrice,
-      maxPrice,
-    },
-    { new: true }
-  )
+const updateRestoration = async (_id, data) => {
+  const restUpdated = await Restoration.findOneAndUpdate({ _id }, data, {
+    new: true,
+  })
     .lean({ getters: true, virtuals: true })
     .exec();
 

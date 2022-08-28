@@ -51,31 +51,12 @@ const getByTravel = async (req, res) => {
 };
 
 const updateRest = async (req, res) => {
-  const {
-    web,
-    description,
-    location,
-    phone,
-    email,
-    kindOfFood,
-    minPrice,
-    maxPrice,
-  } = req.body;
+  const dataRestoration = req.body;
   const { _id } = req.params;
 
-  res.status(200).json(
-    await Restoration.updateRestoration({
-      _id,
-      web,
-      description,
-      location,
-      phone,
-      email,
-      kindOfFood,
-      minPrice,
-      maxPrice,
-    })
-  );
+  res
+    .status(200)
+    .json(await Restoration.updateRestoration(_id, dataRestoration));
 };
 
 //const router = express.Router();
