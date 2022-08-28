@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AddTravelerCard from "./AddTravelerCard";
+import DeleteCard from "../DeleteCard";
 import * as helper from "../../helper";
 import * as api from "../../api";
 import "./TripDetailCard.css";
