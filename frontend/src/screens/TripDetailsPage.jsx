@@ -25,8 +25,6 @@ import { isTokenExpired } from "../token";
 function TripDetailsPage() {
   const [trip, setTrip] = useState(null);
   const [message, setMessage] = useState(null);
-  // const [deleting, setDeleting] = useState(false);
-  // const [adding, setAdding] = useState(false);
   const [editing, setEditing] = useState(false);
   const { tripId } = useParams();
   const navigate = useNavigate();
@@ -56,6 +54,14 @@ function TripDetailsPage() {
       </div>
     );
   }
+  const deleteTraveler = async (tripId, email) => {
+    const { success, error } = await api.deleteTraveler(tripId, email);
+    if (success) {
+      getTripData(tripId);
+    } else {
+      setMessage(error);
+    }
+  };
 
   const onEdit = async (tripId, tripData) => {
     const {
@@ -76,7 +82,13 @@ function TripDetailsPage() {
   function showComponentMode() {
     if (!editing) {
       return (
-        <TripDetailCard trip={trip} tripId={tripId} onError={setMessage} />
+        <TripDetailCard
+          trip={trip}
+          tripId={tripId}
+          onError={setMessage}
+          onDeleteTraveler={deleteTraveler}
+          onSetTrip={setTrip}
+        />
       );
     } else {
       return <EditTripCard trip={trip} tripId={tripId} onEdit={onEdit} />;

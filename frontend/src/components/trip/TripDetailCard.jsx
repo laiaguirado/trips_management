@@ -18,31 +18,16 @@ import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
 
-function TripDetailCard({ trip, tripId, onError: setMessage }) {
+function TripDetailCard({
+  trip,
+  tripId,
+  onError: setMessage,
+  onSetTrip: setTrip,
+  onDeleteTraveler: deleteTraveler,
+}) {
   const [adding, setAdding] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  //  const [message, setMessage] = useState(null);
-  /* const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
-  const [image, setImage] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState(""); */
   const navigate = useNavigate();
-
-  /* const add = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("description", description);
-    formData.append("location", location);
-    formData.append("fileImage", image);
-    formData.append("startDate", startDate);
-    formData.append("endDate", endDate);
-
-    onAdd(formData);
-  }; */
 
   /* useEffect(() => {
     window.scrollTo(0, 0);
@@ -60,6 +45,26 @@ function TripDetailCard({ trip, tripId, onError: setMessage }) {
     const year = ("0" + date.getFullYear()).slice(-4);
     return day + "/" + month + "/" + year;
   }
+  const addTraveler = async (tripId, email) => {
+    const {
+      success,
+      result: added,
+      error,
+    } = await api.addTraveler(tripId, email);
+    if (success) {
+      setTrip(added);
+      setAdding(false);
+      setMessage(null);
+    } else {
+      if (error.startsWith("Bad request")) {
+        setMessage(
+          `Couldn't add traveler ${error.substring(11, error.length)}`
+        );
+      } else {
+        setMessage(error);
+      }
+    }
+  };
 
   function addTravelerForm() {
     if (adding) {
@@ -75,37 +80,6 @@ function TripDetailCard({ trip, tripId, onError: setMessage }) {
       );
     }
   }
-
-  const addTraveler = async (tripId, email) => {
-    const {
-      success,
-      result: added,
-      error,
-    } = await api.addTraveler(tripId, email);
-    if (success) {
-      setTrip(added);
-      //setTripName(trip.name);
-      setAdding(false);
-      setMessage(null);
-    } else {
-      if (error.startsWith("Bad request")) {
-        setMessage(
-          `Couldn't add traveler ${error.substring(11, error.length)}`
-        );
-      } else {
-        setMessage(error);
-      }
-    }
-  };
-
-  const deleteTraveler = async (tripId, email) => {
-    const { success, error } = await api.deleteTraveler(tripId, email);
-    if (success) {
-      getTripData(tripId);
-    } else {
-      setMessage(error);
-    }
-  };
 
   const deleteTrip = async (tripId) => {
     const { success, error } = await api.deleteTrip(tripId);
