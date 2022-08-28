@@ -43,7 +43,6 @@ const restorationSchema = extendSchema(componentSchema, {
     trim: true,
     lowercase: true,
     match: [/\S+@\S+\.\S+/, " '{PATH}' is invalid"],
-    immutable: true,
   },
   kindOfFood: {
     type: String,
