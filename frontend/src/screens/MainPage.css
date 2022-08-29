@@ -1,12 +1,23 @@
+.main-page {
+  height: 100vh;
+}
 .main-page .trips {
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
   gap: 2vw;
-  margin: 0 6vw;
+  margin: 7vw 2rem;
+  padding: 1rem 0;
   height: auto;
   max-width: 100vw;
   min-width: 463px;
+}
+
+@media (max-width: 525px) {
+  .main-page {
+    margin-top: calc(525px * 0.07);
+    gap: calc(525px * 0.02);
+  }
 }
 
 .main-page .new-trip-button {

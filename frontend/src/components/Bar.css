@@ -35,6 +35,10 @@
   font-weight: 100;
 }
 
+.nav-bar-redirect {
+  cursor: pointer;
+}
+
 .nav-bar .nav-info {
   margin-right: 3rem;
   display: flex;

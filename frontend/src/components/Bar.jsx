@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Bar.css";
 import * as api from "../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +13,7 @@ import { useContext } from "react";
 
 const Bar = ({ mode }) => {
   const { userData, logout } = useContext(ModelContext);
+  const navigate = useNavigate();
 
   if (mode === "logout") {
     return (
@@ -25,7 +27,10 @@ const Bar = ({ mode }) => {
   } else {
     return (
       <div className="nav-bar">
-        <div className="nav-bar-title">
+        <div
+          className="nav-bar-title nav-bar-redirect"
+          onClick={() => navigate(`/`, { replace: false })}
+        >
           <FontAwesomeIcon icon={faSignsPost} size="5x" className="nav-logo" />
           <h1 className="nav-title">MY TRIPS</h1>
         </div>

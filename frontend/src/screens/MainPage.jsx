@@ -76,7 +76,7 @@ function MainPage() {
       </div>
     );
   }
-  //todo gallery responsive
+
   return (
     <div className="main-page">
       <Bar mode="login" />
