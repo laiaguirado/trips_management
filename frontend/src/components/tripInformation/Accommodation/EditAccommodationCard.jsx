@@ -137,12 +137,6 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     type="date"
                     max={endDate}
                     defaultValue={startDate}
-                    onFocus={(event) => {
-                      event.target.value = startDate;
-                    }}
-                    onBlur={(event) => {
-                      event.target.value = startDate;
-                    }}
                     onChange={(event) => setStartDate(event.target.value)}
                   />
                 </div>
@@ -156,12 +150,6 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     type="date"
                     min={startDate}
                     defaultValue={endDate}
-                    onFocus={(event) => {
-                      event.target.value = endDate;
-                    }}
-                    onBlur={(event) => {
-                      event.target.value = endDate;
-                    }}
                     onChange={(event) => setEndDate(event.target.value)}
                   />
                 </div>

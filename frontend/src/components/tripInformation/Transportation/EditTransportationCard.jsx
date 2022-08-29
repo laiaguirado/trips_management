@@ -182,12 +182,6 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     type="datetime-local"
                     max={arrival}
                     defaultValue={departure}
-                    onFocus={(event) => {
-                      event.target.value = departure;
-                    }}
-                    onBlur={(event) => {
-                      event.target.value = departure;
-                    }}
                     onChange={(event) => setDeparture(event.target.value)}
                   />
                 </div>
@@ -200,12 +194,6 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     type="datetime-local"
                     min={departure}
                     defaultValue={arrival}
-                    onFocus={(event) => {
-                      event.target.value = arrival;
-                    }}
-                    onBlur={(event) => {
-                      event.target.value = arrival;
-                    }}
                     onChange={(event) => {
                       setArrival(event.target.value);
                     }}
