@@ -20,7 +20,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
     if (value === "" || value === undefined || value === null) {
       return "";
     }
-    return value;
+    return value.substring(0, 16);
   }
 
   //todo message errors
@@ -181,12 +181,13 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     className="input date"
                     placeholder="Departure time"
                     type="datetime-local"
-                    defaultValue={departure.substring(0, 16)}
+                    max={arrival}
+                    defaultValue={departure}
                     onFocus={(event) => {
-                      event.target.value = departure.substring(0, 16);
+                      event.target.value = departure;
                     }}
                     onBlur={(event) => {
-                      event.target.value = departure.substring(0, 16);
+                      event.target.value = departure;
                     }}
                     onChange={(event) => setDeparture(event.target.value)}
                   />
@@ -198,12 +199,13 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     className="input date"
                     placeholder="Arrival time"
                     type="datetime-local"
-                    defaultValue={arrival.substring(0, 16)}
+                    min={departure}
+                    defaultValue={arrival}
                     onFocus={(event) => {
-                      event.target.value = arrival.substring(0, 16);
+                      event.target.value = arrival;
                     }}
                     onBlur={(event) => {
-                      event.target.value = arrival.substring(0, 16);
+                      event.target.value = arrival;
                     }}
                     onChange={(event) => {
                       setArrival(event.target.value);
