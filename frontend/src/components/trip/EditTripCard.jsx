@@ -15,7 +15,7 @@ function EditTripCard({ trip, tripId, onEdit }) {
   const [endDate, setEndDate] = useState("");
   const refImage = useRef(null);
   const [imageSrc, setImageSrc] = useState("");
-  function getDateValue(value, placeholder, order) {
+  /*function getDateValue(value, placeholder, order) {
     if (value === "" || value === undefined || value === null) {
       return placeholder;
     }
@@ -39,6 +39,13 @@ function EditTripCard({ trip, tripId, onEdit }) {
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
     const year = ("0" + date.getFullYear()).slice(-4);
     return year + "-" + month + "-" + day;
+  }*/
+
+  function setDateValue(value) {
+    if (value === "" || value === undefined || value === null) {
+      return "";
+    }
+    return value.substring(0, 10);
   }
 
   const update = (e) => {
@@ -120,25 +127,15 @@ function EditTripCard({ trip, tripId, onEdit }) {
                       id="date"
                       className="input date"
                       required
-                      type="text"
+                      type="date"
                       placeholder="Start Date *"
                       max={tripEndDate}
-                      defaultValue={getDateValue(
-                        tripStartDate,
-                        "Start Date",
-                        false
-                      )}
+                      defaultValue={tripStartDate}
                       onFocus={(event) => {
-                        event.target.type = "date";
                         event.target.value = tripStartDate;
                       }}
                       onBlur={(event) => {
-                        event.target.type = "text";
-                        event.target.value = getDateValue(
-                          tripStartDate,
-                          "Start Date *",
-                          true
-                        );
+                        event.target.value = tripStartDate;
                       }}
                       onChange={(event) => setTripStartDate(event.target.value)}
                     />
@@ -150,25 +147,15 @@ function EditTripCard({ trip, tripId, onEdit }) {
                       id="date"
                       className="input date"
                       required
-                      type="text"
+                      type="date"
                       placeholder="End Date *"
                       min={tripStartDate}
-                      defaultValue={getDateValue(
-                        tripEndDate,
-                        "End Date",
-                        false
-                      )}
+                      defaultValue={tripEndDate}
                       onFocus={(event) => {
-                        event.target.type = "date";
                         event.target.value = tripEndDate;
                       }}
                       onBlur={(event) => {
-                        event.target.type = "text";
-                        event.target.value = getDateValue(
-                          tripEndDate,
-                          "End Date *",
-                          true
-                        );
+                        event.target.value = tripEndDate;
                       }}
                       onChange={(event) => setTripEndDate(event.target.value)}
                     />
