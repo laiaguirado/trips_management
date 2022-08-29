@@ -86,6 +86,7 @@ function TripDetailsPage() {
           trip={trip}
           tripId={tripId}
           onError={setMessage}
+          message={message}
           onDeleteTraveler={deleteTraveler}
           onSetTrip={setTrip}
         />
@@ -124,7 +125,7 @@ function TripDetailsPage() {
             <FontAwesomeIcon icon={faPen} size="2x" />{" "}
           </div>
         )}
-        <div className="error">{message}</div>
+        <div className="details-error error">{message}</div>
         {showComponentMode()}
       </div>
     </div>

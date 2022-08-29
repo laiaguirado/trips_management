@@ -22,6 +22,7 @@ function TripDetailCard({
   trip,
   tripId,
   onError: setMessage,
+  message,
   onSetTrip: setTrip,
   onDeleteTraveler: deleteTraveler,
 }) {
@@ -71,6 +72,7 @@ function TripDetailCard({
       return (
         <AddTravelerCard
           onAdd={addTraveler}
+          message={message}
           adding={() => {
             setAdding(false);
             setMessage(null);
@@ -90,18 +92,7 @@ function TripDetailCard({
     }
   };
   function deleteButton() {
-    if (deleting === false) {
-      return (
-        <div
-          className="delete-trip"
-          onClick={() => {
-            setDeleting(true);
-          }}
-        >
-          <FontAwesomeIcon icon={faTrashCan} /> DELETE TRIP
-        </div>
-      );
-    } else {
+    if (deleting) {
       return (
         <DeleteCard
           onDelete={() => deleteTrip(tripId)}
@@ -213,7 +204,17 @@ function TripDetailCard({
           Restoration
         </div>
       </div>
-      <div>{deleteButton()}</div>
+      <div>
+        <div
+          className="delete-trip"
+          onClick={() => {
+            setDeleting(true);
+          }}
+        >
+          <FontAwesomeIcon icon={faTrashCan} /> DELETE TRIP
+        </div>
+        {deleteButton()}
+      </div>
       <div className="trip-comments">
         {/*<div>
             {Array.isArray(trip) !== true ? (

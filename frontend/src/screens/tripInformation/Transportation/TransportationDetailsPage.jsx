@@ -69,18 +69,7 @@ function TransportationDetailsPage() {
   };
 
   function deleteButton() {
-    if (deleting === false) {
-      return (
-        <div
-          className="delete-transportation"
-          onClick={() => {
-            setDeleting(true);
-          }}
-        >
-          <FontAwesomeIcon icon={faTrashCan} /> DELETE TRANSPORTATION
-        </div>
-      );
-    } else {
+    if (deleting) {
       return (
         <DeleteCard
           onDelete={() => deleteTransportation(transportationId)}
@@ -110,7 +99,18 @@ function TransportationDetailsPage() {
       return (
         <>
           <TransportationCard transportation={transportation} />
-          <div>{deleteButton()}</div>
+          <div>
+            {" "}
+            <div
+              className="delete-transportation"
+              onClick={() => {
+                setDeleting(true);
+              }}
+            >
+              <FontAwesomeIcon icon={faTrashCan} /> DELETE TRANSPORTATION
+            </div>
+            {deleteButton()}
+          </div>
           <CommentsCard
             tripId={tripId}
             componentId={transportationId}
@@ -153,7 +153,7 @@ function TransportationDetailsPage() {
             <FontAwesomeIcon icon={faPen} size="2x" />{" "}
           </div>
         )}
-        <div className="error">{message}</div>
+        <div className="error details-error">{message}</div>
         {showComponentMode()}
       </div>
     </div>

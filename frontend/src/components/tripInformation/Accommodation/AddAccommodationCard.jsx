@@ -20,7 +20,7 @@ import {
   faCircleHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AddAccommodationCard({ onAdd, adding, tripId }) {
+function AddAccommodationCard({ onAdd, message, adding, tripId }) {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [location, setLocation] = useState("");
@@ -88,6 +88,7 @@ function AddAccommodationCard({ onAdd, adding, tripId }) {
         </div>
         <form className="add-form" onSubmit={(e) => add(e)}>
           <h1 className="title">New Accommodation</h1>
+          <div className="error">{message}</div>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />

@@ -42,6 +42,7 @@ function PlansPage() {
       setAdding(false);
       setMessage(null);
     } else {
+      window.scrollTo(0, 0);
       setMessage(error);
     }
   };
@@ -51,6 +52,7 @@ function PlansPage() {
       return (
         <AddPlanCard
           onAdd={addPlan}
+          message={message}
           adding={() => {
             setAdding(false);
             setMessage(null);
@@ -85,7 +87,7 @@ function PlansPage() {
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <div className="error">{message}</div>
+        <div className="error details-error">{message}</div>
         <div>
           <h1 className="details-title">PLANS</h1>
           <div>

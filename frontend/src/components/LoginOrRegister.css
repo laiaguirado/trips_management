@@ -15,12 +15,14 @@
 
 .error {
   color: #ad3d25;
-  z-index: 100;
-  position: absolute;
-  top: 8vw;
   width: 100%;
   left: 0;
   text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-or-register {
+  margin-top: 9vw;
 }
 
 .form-container .title {
@@ -28,6 +30,11 @@
   font-family: Allerta;
   font-weight: 100;
   color: black;
+  margin-bottom: 0.75rem;
+}
+
+.login-or-register .form-container .title {
+  margin: 0.5rem auto;
 }
 
 .form-container label {

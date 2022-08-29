@@ -75,9 +75,9 @@ const LoginOrRegister = () => {
 
   return (
     <div className="login-or-register form-container">
-      <p className="error">{message}</p>
       <form className="login" onSubmit={submit}>
         <h1 className="title">{title}</h1>
+        <p className="error">{message}</p>
         <label className="label">
           {inputUsername((event) => setUserName(event.target.value))}
         </label>

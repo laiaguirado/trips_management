@@ -11,7 +11,7 @@ import {
   faNoteSticky,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AddTripCard({ onAdd, adding }) {
+function AddTripCard({ onAdd, message, adding }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
@@ -57,6 +57,7 @@ function AddTripCard({ onAdd, adding }) {
         </div>
         <form className="add-form" onSubmit={(e) => add(e)}>
           <h1 className="title">New Trip</h1>
+          <div className="error">{message}</div>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faCartFlatbedSuitcase} className="icon" />

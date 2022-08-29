@@ -19,7 +19,7 @@ import {
   faBookOpen,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AddRestorationCard({ onAdd, adding, tripId }) {
+function AddRestorationCard({ onAdd, message, adding, tripId }) {
   const [name, setName] = useState("");
   const [kindOfFood, setKindOfFood] = useState("");
   const [location, setLocation] = useState("");
@@ -72,12 +72,13 @@ function AddRestorationCard({ onAdd, adding, tripId }) {
         </div>
         <form className="add-form" onSubmit={(e) => add(e)}>
           <h1 className="title">New Restoration</h1>
+          <div className="error">{message}</div>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
               <input
                 className="input"
-                maxLength="50"
+                /*maxLength="50"*/
                 required
                 type="text"
                 placeholder="Restoration's name *"

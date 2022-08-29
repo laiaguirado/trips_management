@@ -44,6 +44,7 @@ function MainPage() {
         setMessage(error);
       }
     } else {
+      window.scrollTo(0, 0);
       setMessage(error);
     }
   };
@@ -53,6 +54,7 @@ function MainPage() {
       return (
         <AddTripCard
           onAdd={addTrip}
+          message={message}
           adding={() => {
             setAdding(false);
             setMessage(null);
@@ -78,7 +80,7 @@ function MainPage() {
   return (
     <div className="main-page">
       <Bar mode="login" />
-      <div className="error">{message}</div>
+      <div className="error details-error">{message}</div>
       <div className="trips">
         <div className="new-trip">
           {addTripForm()}

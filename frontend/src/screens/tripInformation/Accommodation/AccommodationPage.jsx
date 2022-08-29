@@ -48,6 +48,7 @@ function AccommodationPage() {
       setAdding(false);
       setMessage(null);
     } else {
+      window.scrollTo(0, 0);
       setMessage(error);
     }
   };
@@ -57,6 +58,7 @@ function AccommodationPage() {
       return (
         <AddAccommodationCard
           onAdd={addAccommodation}
+          message={message}
           adding={() => {
             setAdding(false);
             setMessage(null);
@@ -91,7 +93,7 @@ function AccommodationPage() {
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <div className="error">{message}</div>
+        <div className="error details-error">{message}</div>
         <div>
           <h1 className="details-title">ACCOMMODATION</h1>
           <div>

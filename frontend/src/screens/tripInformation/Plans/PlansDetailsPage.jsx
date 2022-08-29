@@ -65,18 +65,7 @@ function PlansDetailsPage() {
   };
 
   function deleteButton() {
-    if (deleting === false) {
-      return (
-        <div
-          className="delete-plan"
-          onClick={() => {
-            setDeleting(true);
-          }}
-        >
-          <FontAwesomeIcon icon={faTrashCan} /> DELETE PLAN
-        </div>
-      );
-    } else {
+    if (deleting) {
       return (
         <DeleteCard
           onDelete={() => deletePlan(planId)}
@@ -106,7 +95,18 @@ function PlansDetailsPage() {
       return (
         <>
           <PlanCard plan={plan} />
-          <div>{deleteButton()}</div>
+          <div>
+            {" "}
+            <div
+              className="delete-plan"
+              onClick={() => {
+                setDeleting(true);
+              }}
+            >
+              <FontAwesomeIcon icon={faTrashCan} /> DELETE PLAN
+            </div>
+            {deleteButton()}
+          </div>
           <CommentsCard tripId={tripId} componentId={planId} component="plan" />
         </>
       );
@@ -139,7 +139,7 @@ function PlansDetailsPage() {
             <FontAwesomeIcon icon={faPen} size="2x" />{" "}
           </div>
         )}
-        <div className="error">{message}</div>
+        <div className="error details-error">{message}</div>
         {showComponentMode()}
       </div>
     </div>

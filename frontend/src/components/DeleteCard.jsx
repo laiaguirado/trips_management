@@ -1,7 +1,6 @@
 import React from "react";
 import "./DeleteCard.css";
 
-//todo display delete button when delete
 function DeleteCard({ onDelete, deleting, deleteType }) {
   document.body.style.overflow = "hidden";
   return (

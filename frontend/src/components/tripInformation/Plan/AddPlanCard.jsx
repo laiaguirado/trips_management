@@ -16,7 +16,7 @@ import {
   faPercent,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AddPlanCard({ onAdd, adding, tripId }) {
+function AddPlanCard({ onAdd, message, adding, tripId }) {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [openingHour, setOpeningHour] = useState("");
@@ -65,6 +65,7 @@ function AddPlanCard({ onAdd, adding, tripId }) {
         </div>
         <form className="add-form" onSubmit={(e) => add(e)}>
           <h1 className="title">New Plan</h1>
+          <div className="error">{message}</div>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />

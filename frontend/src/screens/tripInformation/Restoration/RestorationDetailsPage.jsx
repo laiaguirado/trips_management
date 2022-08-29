@@ -69,18 +69,7 @@ function RestorationDetailsPage() {
   };
 
   function deleteButton() {
-    if (deleting === false) {
-      return (
-        <div
-          className="delete-restoration"
-          onClick={() => {
-            setDeleting(true);
-          }}
-        >
-          <FontAwesomeIcon icon={faTrashCan} /> DELETE RESTORATION
-        </div>
-      );
-    } else {
+    if (deleting) {
       return (
         <DeleteCard
           onDelete={() => deleteRestoration(restorationId)}
@@ -110,7 +99,17 @@ function RestorationDetailsPage() {
       return (
         <>
           <RestorationCard restoration={restoration} />
-          <div>{deleteButton()}</div>
+          <div>
+            <div
+              className="delete-restoration"
+              onClick={() => {
+                setDeleting(true);
+              }}
+            >
+              <FontAwesomeIcon icon={faTrashCan} /> DELETE RESTORATION
+            </div>
+            {deleteButton()}
+          </div>
           <CommentsCard
             tripId={tripId}
             componentId={restorationId}
@@ -153,7 +152,7 @@ function RestorationDetailsPage() {
             <FontAwesomeIcon icon={faPen} size="2x" />{" "}
           </div>
         )}
-        <div className="error">{message}</div>
+        <div className="error details-error">{message}</div>
         {showComponentMode()}
       </div>
     </div>

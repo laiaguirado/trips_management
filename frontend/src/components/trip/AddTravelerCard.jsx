@@ -6,7 +6,7 @@ import {
   faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AddTravelerCard({ onAdd, adding, tripId }) {
+function AddTravelerCard({ onAdd, message, adding, tripId }) {
   const [email, setEmail] = useState("");
   const add = (e) => {
     e.preventDefault();
@@ -23,6 +23,7 @@ function AddTravelerCard({ onAdd, adding, tripId }) {
         </div>
         <form className="add-form" onSubmit={(e) => add(e)}>
           <h1 className="title">New Traveler</h1>
+          <div className="details-error error">{message}</div>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />

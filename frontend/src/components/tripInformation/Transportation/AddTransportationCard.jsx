@@ -14,7 +14,7 @@ import {
   faNoteSticky,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AddTransportationCard({ onAdd, adding, tripId }) {
+function AddTransportationCard({ onAdd, message, adding, tripId }) {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [typeDetails, setTypeDetails] = useState("");
@@ -70,12 +70,13 @@ function AddTransportationCard({ onAdd, adding, tripId }) {
         </div>
         <form className="add-form" onSubmit={(e) => add(e)}>
           <h1 className="title">New Transportation</h1>
+          <div className="error">{message}</div>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
               <input
                 className="input"
-                maxLength="50"
+                /*maxLength="50"*/
                 required
                 type="text"
                 placeholder="Transport's name *"

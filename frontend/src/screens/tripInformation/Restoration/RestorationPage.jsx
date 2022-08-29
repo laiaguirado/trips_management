@@ -46,6 +46,7 @@ function RestorationPage() {
       setAdding(false);
       setMessage(null);
     } else {
+      window.scrollTo(0, 0);
       setMessage(error);
     }
   };
@@ -55,6 +56,7 @@ function RestorationPage() {
       return (
         <AddRestorationCard
           onAdd={addRestoration}
+          message={message}
           adding={() => {
             setAdding(false);
             setMessage(null);
@@ -89,7 +91,7 @@ function RestorationPage() {
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <div className="error">{message}</div>
+        <div className="error details-error">{message}</div>
         <div>
           <h1 className="details-title">RESTORATION</h1>
           <div>

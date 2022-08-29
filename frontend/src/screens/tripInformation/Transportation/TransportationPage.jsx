@@ -48,6 +48,7 @@ function TransportationPage() {
       setAdding(false);
       setMessage(null);
     } else {
+      window.scrollTo(0, 0);
       setMessage(error);
     }
   };
@@ -57,6 +58,7 @@ function TransportationPage() {
       return (
         <AddTransportationCard
           onAdd={addTransportation}
+          message={message}
           adding={() => {
             setAdding(false);
             setMessage(null);
@@ -91,7 +93,7 @@ function TransportationPage() {
         >
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
-        <div className="error">{message}</div>
+        <div className="error details-error">{message}</div>
         <div>
           <h1 className="details-title">TRANSPORTATION</h1>
           <div>

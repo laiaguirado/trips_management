@@ -23,7 +23,6 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
     return value;
   }
 
-  //todo message errors
   const update = (e) => {
     e.preventDefault();
     onEdit(transportationId, {
