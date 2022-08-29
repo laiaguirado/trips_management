@@ -5,7 +5,7 @@
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
-  gap: 2vw;
+  gap: 1rem;
   margin: 7vw 2rem;
   padding: 1rem 0;
   height: auto;
