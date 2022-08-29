@@ -10,36 +10,8 @@ function EditTripCard({ trip, tripId, onEdit }) {
   const [tripEndDate, setTripEndDate] = useState(setDateValue(trip.endDate));
   const [tripDescription, setTripDescription] = useState(trip.description);
   const [tripImage, setTripImage] = useState(null);
-  const [image, setImage] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
   const refImage = useRef(null);
   const [imageSrc, setImageSrc] = useState("");
-  /*function getDateValue(value, placeholder, order) {
-    if (value === "" || value === undefined || value === null) {
-      return placeholder;
-    }
-    const date = new Date(value);
-    const day = ("0" + date.getDate()).slice(-2);
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const year = ("0" + date.getFullYear()).slice(-4);
-    if (order) {
-      return day + "-" + month + "-" + year;
-    } else {
-      return year + "-" + month + "-" + day;
-    }
-  }
-
-  function setDateValue(value) {
-    if (value === "" || value === undefined || value === null) {
-      return "";
-    }
-    const date = new Date(value);
-    const day = ("0" + date.getDate()).slice(-2);
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const year = ("0" + date.getFullYear()).slice(-4);
-    return year + "-" + month + "-" + day;
-  }*/
 
   function setDateValue(value) {
     if (value === "" || value === undefined || value === null) {
