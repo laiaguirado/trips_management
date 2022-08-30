@@ -40,6 +40,18 @@ const getOne = async (_id) => {
   }
   return rest;
 };
+const findOneById = async (id) => {
+  return await Restoration.findOne({ _id: id });
+};
+const findOne = async (_id) => {
+  const rest = await Restoration.findOne({ _id }).lean().exec();
+
+  if (rest === null) {
+    errMalformed(`Restoration not found`);
+  }
+  return rest;
+};
+
 const getByTravelId = async (idTravel) => {
   return await Restoration.find({ idTravel }).lean({ getters: true, virtuals: true }).exec();
 };
@@ -64,4 +76,6 @@ module.exports = {
   getOne,
   getByTravelId,
   updateRestoration,
+  findOne,
+  findOneById
 };

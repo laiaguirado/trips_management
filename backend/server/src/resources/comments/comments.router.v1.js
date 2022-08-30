@@ -46,15 +46,18 @@ const createRest = async (req, res) => {
   const { travelId } = req.params;
 
   const comment = await Comment.createOne(comment_text, idComp, _id, travelId);
-  const restoration = await Restoration.getOne(idComp);
+  const restoration = await Restoration.findOneById(idComp);
+  console.log(restoration);
 
   const user = await User.findById(_id);
   const travel = await Travel.findTravel(travelId);
 
   restoration.comments.push(comment);
+  console.log(typeof(restoration))
   await restoration.save()
 
   user.comments.push(comment);
+  console.log(typeof(user))
   await user.save()
 
   travel.comments.push(comment);
@@ -71,7 +74,7 @@ const createTransp = async (req, res) => {
   const { travelId } = req.params;
 
   const comment = await Comment.createOne(comment_text, idComp, _id, travelId);
-  const transportation = await Transportation.getOne(idComp);
+  const transportation = await Transportation.findOneById(idComp);
 
   const user = await User.findById(_id);
   const travel = await Travel.findTravel(travelId);
@@ -96,7 +99,7 @@ const createPlan = async (req, res) => {
   const { travelId } = req.params;
 
   const comment = await Comment.createOne(comment_text, idComp, _id, travelId);
-  const plan = await Plan.getOne(idComp);
+  const plan = await Plan.findOneById(idComp);
 
   const user = await User.findById(_id);
   const travel = await Travel.findTravel(travelId);
