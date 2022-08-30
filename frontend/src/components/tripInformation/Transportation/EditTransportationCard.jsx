@@ -117,7 +117,8 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                   <input
                     className="input price"
                     type="number"
-                    min={0}
+                    min="0"
+                    step="0.01"
                     placeholder="Price"
                     defaultValue={price}
                     onChange={(event) => setPrice(event.target.value)}

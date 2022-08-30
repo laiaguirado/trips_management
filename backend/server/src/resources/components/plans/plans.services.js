@@ -36,7 +36,7 @@ const getPlanById = async (idPlan) => {
     .lean({ getters: true, virtuals: true })
     .exec();
   if (plan === null) {
-    errMalformed(`Plan with not found`);
+    errMalformed(`Plan not found`);
   }
   return plan;
 };
@@ -45,7 +45,7 @@ const getOne = async (_id) => {
   const plan = await Plans.findOne({ _id });
 
   if (plan === null) {
-    errMalformed(`Plan with id '${_id}' not found`);
+    errMalformed(`Plan not found`);
   }
   return plan;
 };

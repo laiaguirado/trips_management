@@ -8,7 +8,7 @@ function EditPlanCard({ plan, planId, onEdit }) {
   const [closingHour, setClosingHour] = useState(plan.closingHour);
   const [closed, setClosed] = useState(plan.closed);
   const [duration, setDuration] = useState(plan.duration);
-  const [priceAdult, setPriceAdult] = useState(plan.setPriceAdult);
+  const [priceAdult, setPriceAdult] = useState(plan.priceAdult);
   const [priceChildren, setPriceChildren] = useState(plan.priceChildren);
   const [currency, setCurrency] = useState(plan.currency);
   const [discount, setDiscount] = useState(plan.discount);
@@ -152,7 +152,8 @@ function EditPlanCard({ plan, planId, onEdit }) {
                   <input
                     className="input price"
                     type="number"
-                    min={0}
+                    min="0"
+                    step="0.01"
                     placeholder="Adult's price"
                     defaultValue={priceAdult}
                     onChange={(event) => setPriceAdult(event.target.value)}
@@ -160,7 +161,7 @@ function EditPlanCard({ plan, planId, onEdit }) {
                   <select
                     className="input date"
                     required={priceAdult ? "required" : ""}
-                    defaultValue={currency}
+                    value={currency}
                     onChange={(event) => setCurrency(event.target.value)}
                   >
                     <option value="" disabled={true}>
@@ -177,7 +178,8 @@ function EditPlanCard({ plan, planId, onEdit }) {
                   <input
                     className="input price"
                     type="number"
-                    min={0}
+                    min="0"
+                    step="0.01"
                     placeholder="Children's price"
                     defaultValue={priceChildren}
                     onChange={(event) => setPriceChildren(event.target.value)}
@@ -185,7 +187,7 @@ function EditPlanCard({ plan, planId, onEdit }) {
                   <select
                     className="input date"
                     required={priceChildren ? "required" : ""}
-                    defaultValue={currency}
+                    value={currency}
                     onChange={(event) => setCurrency(event.target.value)}
                   >
                     <option value="" disabled={true}>
