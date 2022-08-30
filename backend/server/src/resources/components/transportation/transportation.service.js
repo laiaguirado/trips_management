@@ -35,7 +35,7 @@ const getTransportationById = async (idTransportation) => {
     .exec();
 
   if (transport === null) {
-    errMalformed(`Transport not found`);
+    errMalformed(`Transportation not found`);
   }
   return transport;
 };
@@ -48,7 +48,7 @@ const getOne = async (_id) => {
   const transp = await Transportation.findOne({ _id });
 
   if (transp === null) {
-    errMalformed(`Transport with id '${_id}' not found`);
+    errMalformed(`Transportation not found`);
   }
   return transp;
 };
@@ -60,7 +60,7 @@ const deleteTransportation = async (_id) => {
       .exec();
 
     if (deleted === null) {
-      errMalformed(`Transport not found`);
+      errMalformed(`Transportation not found`);
     }
 
     const travel = await Travel.findOneAndUpdate(

@@ -47,7 +47,7 @@ const updateTravel = async (_id, dataTravel) => {
     .exec();
 
   if (travelUpdated === null) {
-    errMalformed(`Travel with id '${_id}' not found`);
+    errMalformed(`Travel not found`);
   }
   return travelUpdated;
 };
@@ -60,7 +60,7 @@ const deleteTravel = async (_id) => {
     .lean()
     .exec();
   if (deleted === null) {
-    errMalformed(`Travel with '${_id}' not found`);
+    errMalformed(`Travel not found`);
   }
   return deleted;
 };
