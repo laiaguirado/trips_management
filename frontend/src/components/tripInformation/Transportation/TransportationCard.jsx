@@ -20,57 +20,30 @@ function TransportationCard({ transportation }) {
 
   function getDepartureArrival() {
     if (transportation.arrival === null || transportation.arrival === "") {
-      return (
-        transportation.departure.substring(
-          11,
-          transportation.departure.length - 8
-        ) +
-        "h " +
-        helper.changeDateOrder(
-          transportation.departure.substring(
-            0,
-            transportation.departure.length - 14
-          )
-        ) +
-        " / -"
-      );
+      let { date, hour } = helper.localDateTime(transportation.departure);
+      return date + " " + hour + "h - /";
     }
 
     if (transportation.departure === null || transportation.departure === "") {
-      return (
-        "- / " +
-        transportation.arrival.substring(
-          11,
-          transportation.arrival.length - 8
-        ) +
-        "h " +
-        helper.changeDateOrder(
-          transportation.arrival.substring(
-            0,
-            transportation.arrival.length - 14
-          )
-        )
-      );
+      let { date, hour } = helper.localDateTime(transportation.arrival);
+      return "/ - " + date + " " + hour + "h";
     }
 
+    let { date: dateDeparture, hour: hourDeparture } = helper.localDateTime(
+      transportation.departure
+    );
+    let { date: dateArrival, hour: hourArrival } = helper.localDateTime(
+      transportation.arrival
+    );
     return (
-      transportation.departure.substring(
-        11,
-        transportation.departure.length - 8
-      ) +
-      "h " +
-      helper.changeDateOrder(
-        transportation.departure.substring(
-          0,
-          transportation.departure.length - 14
-        )
-      ) +
-      " / " +
-      transportation.arrival.substring(11, transportation.arrival.length - 8) +
-      "h " +
-      helper.changeDateOrder(
-        transportation.arrival.substring(0, transportation.arrival.length - 14)
-      )
+      dateDeparture +
+      " " +
+      hourDeparture +
+      "h - " +
+      dateArrival +
+      " " +
+      hourArrival +
+      "h"
     );
   }
 

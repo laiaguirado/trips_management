@@ -25,3 +25,32 @@ export function changeDateOrder(initialDate) {
     return moment(initialDate).format("DD-MM-YYYY");
 }
 
+export function localDateTime(initialDate) {
+    let fullDate = new Date(initialDate);
+    let date = fullDate.toLocaleDateString();
+    if (fullDate.getDate() < 10) {
+        date = "0" + date;
+    }
+    if (fullDate.getMonth() < 10) {
+        date = date.substring(0, 3) + "0" + date.substring(3, date.length)
+    }
+    let hour = fullDate.toLocaleTimeString();
+    if (hour.length < 8) {
+        hour = "0" + hour;
+    }
+    hour = hour.substring(0, hour.length - 3)
+    return { date, hour }
+}
+
+export function localDate(initialDate) {
+    let fullDate = new Date(initialDate);
+    let date = fullDate.toLocaleDateString();
+    if (fullDate.getDate() < 10) {
+        date = "0" + date;
+    }
+    if (fullDate.getMonth() < 10) {
+        date = date.substring(0, 3) + "0" + date.substring(3, date.length)
+    }
+    return date;
+}
+

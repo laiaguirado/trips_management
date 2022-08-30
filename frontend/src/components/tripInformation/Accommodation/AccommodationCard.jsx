@@ -6,33 +6,17 @@ function AccommodationCard({ accommodation }) {
   document.body.style.overflow = "unset";
   function getDates() {
     if (accommodation.startDate === null) {
-      return (
-        "- / " + helper.changeDateOrder(accommodation.endDate.substring(0))
-      );
+      return "/ - " + helper.localDate(accommodation.endDate);
     }
 
     if (accommodation.endDate === null) {
-      return (
-        helper.changeDateOrder(
-          accommodation.startDate.substring(
-            0,
-            accommodation.startDate.length - 14
-          )
-        ) + " / -"
-      );
+      return helper.localDate(accommodation.startDate) + " - /";
     }
 
     return (
-      helper.changeDateOrder(
-        accommodation.startDate.substring(
-          0,
-          accommodation.startDate.length - 14
-        )
-      ) +
-      " / " +
-      helper.changeDateOrder(
-        accommodation.endDate.substring(0, accommodation.startDate.length - 14)
-      )
+      helper.localDate(accommodation.startDate) +
+      " - " +
+      helper.localDate(accommodation.endDate)
     );
   }
 

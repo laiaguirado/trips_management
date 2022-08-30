@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./EditTransportationCard.css";
+import * as helper from "../../../helper";
 
 function EditTransportationCard({ transportation, transportationId, onEdit }) {
   const [name, setName] = useState(transportation.name);
@@ -20,7 +21,13 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
     if (value === "" || value === undefined || value === null) {
       return "";
     }
-    return value.substring(0, 16);
+    let fullDate = new Date(value);
+    let date = value.substring(0, 11);
+    let hour = fullDate.toLocaleTimeString();
+    if (hour.length < 8) {
+      hour = "0" + hour;
+    }
+    return date + hour;
   }
 
   const update = (e) => {
