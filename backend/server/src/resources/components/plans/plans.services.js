@@ -17,6 +17,10 @@ const createPlan = async (plan) => {
   return planToDo;
 };
 
+const findOneById = async (id) => {
+  return await Plans.findOne({ _id: id });
+};
+
 const getAllPlansByTravel = async (idTravel) => {
   return await Plans.find({ idTravel })
     .select({ resourceType: 0 })
@@ -84,5 +88,6 @@ module.exports = {
   getPlanById,
   deletePlan,
   updatePlan,
-  getOne
+  getOne,
+  findOneById
 };

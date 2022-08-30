@@ -40,6 +40,10 @@ const getTransportationById = async (idTransportation) => {
   return transport;
 };
 
+const findOneById = async (id) => {
+  return await Transportation.findOne({ _id: id });
+};
+
 const getOne = async (_id) => {
   const transp = await Transportation.findOne({ _id });
 
@@ -91,5 +95,6 @@ module.exports = {
   getTransportationById,
   deleteTransportation,
   updateTransportation,
-  getOne
+  getOne,
+  findOneById
 };
