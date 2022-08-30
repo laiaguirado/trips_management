@@ -4,7 +4,7 @@
 .main-page .trips {
   display: flex;
   flex-flow: row wrap;
-  align-items: flex-start;
+  justify-content: space-between;
   gap: 1rem;
   margin: 7vw 2rem;
   padding: 1rem 0;
