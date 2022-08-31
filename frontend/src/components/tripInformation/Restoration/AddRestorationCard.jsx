@@ -36,6 +36,8 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [notation, setNotation] = useState("");
+  const [takeAwayChecked, setTakeAwayChecked] = useState([false, false]);
+  const [reservedChecked, setReservedChecked] = useState([false, false]);
 
   const add = (e) => {
     e.preventDefault();
@@ -62,6 +64,58 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  function changeTakeAway(e, option) {
+    if (option) {
+      const otherValue = takeAwayChecked[1];
+      if (takeAwayChecked[0]) {
+        setTakeAway(null);
+        setTakeAwayChecked([false, otherValue]);
+        e.target.checked = false;
+      } else {
+        setTakeAway(true);
+        setTakeAwayChecked([true, false]);
+        e.target.checked = true;
+      }
+    } else {
+      const otherValue = takeAwayChecked[0];
+      if (takeAwayChecked[1]) {
+        setTakeAway(null);
+        setTakeAwayChecked([otherValue, false]);
+        e.target.checked = false;
+      } else {
+        setTakeAway(false);
+        setTakeAwayChecked([false, true]);
+        e.target.checked = true;
+      }
+    }
+  }
+
+  function changeReserved(e, option) {
+    if (option) {
+      const otherValue = reservedChecked[1];
+      if (reservedChecked[0]) {
+        setReserved(null);
+        setReservedChecked([false, otherValue]);
+        e.target.checked = false;
+      } else {
+        setReserved(true);
+        setReservedChecked([true, false]);
+        e.target.checked = true;
+      }
+    } else {
+      const otherValue = reservedChecked[0];
+      if (reservedChecked[1]) {
+        setReserved(null);
+        setReservedChecked([otherValue, false]);
+        e.target.checked = false;
+      } else {
+        setReserved(false);
+        setReservedChecked([false, true]);
+        e.target.checked = true;
+      }
+    }
+  }
 
   return (
     <div className="add-card add-restoration-card">
@@ -236,14 +290,18 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
                   name="takeAway"
                   type="radio"
                   value={true}
-                  onChange={() => setTakeAway(true)}
+                  onClick={(e) => {
+                    changeTakeAway(e, true);
+                  }}
                 />
                 <label className="checkbox-option">Yes</label>
                 <input
                   name="takeAway"
                   type="radio"
                   value={false}
-                  onChange={() => setTakeAway(false)}
+                  onClick={(e) => {
+                    changeTakeAway(e, false);
+                  }}
                 />
                 <label className="checkbox-option">No</label>
               </div>
@@ -258,14 +316,18 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
                   name="reserved"
                   type="radio"
                   value={true}
-                  onChange={() => setReserved(true)}
+                  onClick={(e) => {
+                    changeReserved(e, true);
+                  }}
                 />
                 <label className="checkbox-option">Yes</label>
                 <input
                   name="reserved"
                   type="radio"
                   value={false}
-                  onChange={() => setReserved(false)}
+                  onClick={(e) => {
+                    changeReserved(e, false);
+                  }}
                 />
                 <label className="checkbox-option">No</label>
               </div>

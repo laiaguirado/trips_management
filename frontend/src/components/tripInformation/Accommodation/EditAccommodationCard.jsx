@@ -22,6 +22,12 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
   const [phone, setPhone] = useState(accommodation.phone);
   const [email, setEmail] = useState(accommodation.email);
   const [notation, setNotation] = useState(accommodation.notation);
+  const [petFriendlyChecked, setPetFriendlyChecked] = useState([false, false]);
+  const [internetChecked, setInternetChecked] = useState([false, false]);
+  const [swimmingPoolChecked, setSwimmingPoolChecked] = useState([
+    false,
+    false,
+  ]);
 
   function setDateValue(value) {
     if (value === "" || value === undefined || value === null) {
@@ -61,6 +67,85 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
       notation,
     });
   };
+
+  function changePetFriendly(e, option) {
+    if (option) {
+      const otherValue = petFriendlyChecked[1];
+      if (petFriendlyChecked[0]) {
+        setPetFriendly(null);
+        setPetFriendlyChecked([false, otherValue]);
+        e.target.checked = false;
+      } else {
+        setPetFriendly(true);
+        setPetFriendlyChecked([true, false]);
+        e.target.checked = true;
+      }
+    } else {
+      const otherValue = petFriendlyChecked[0];
+      if (petFriendlyChecked[1]) {
+        setPetFriendly(null);
+        setPetFriendlyChecked([otherValue, false]);
+        e.target.checked = false;
+      } else {
+        setPetFriendly(false);
+        setPetFriendlyChecked([false, true]);
+        e.target.checked = true;
+      }
+    }
+  }
+
+  function changeInternet(e, option) {
+    if (option) {
+      const otherValue = internetChecked[1];
+      if (internetChecked[0]) {
+        setInternet(null);
+        setInternetChecked([false, otherValue]);
+        e.target.checked = false;
+      } else {
+        setInternet(true);
+        setInternetChecked([true, false]);
+        e.target.checked = true;
+      }
+    } else {
+      const otherValue = internetChecked[0];
+      if (internetChecked[1]) {
+        setInternet(null);
+        setInternetChecked([otherValue, false]);
+        e.target.checked = false;
+      } else {
+        setInternet(false);
+        setInternetChecked([false, true]);
+        e.target.checked = true;
+      }
+    }
+  }
+
+  function changeSwimmingPool(e, option) {
+    if (option) {
+      const otherValue = swimmingPoolChecked[1];
+      if (swimmingPoolChecked[0]) {
+        setSwimmingPool(null);
+        setSwimmingPoolChecked([false, otherValue]);
+        e.target.checked = false;
+      } else {
+        setSwimmingPool(true);
+        setSwimmingPoolChecked([true, false]);
+        e.target.checked = true;
+      }
+    } else {
+      const otherValue = swimmingPoolChecked[0];
+      if (swimmingPoolChecked[1]) {
+        setSwimmingPool(null);
+        setSwimmingPoolChecked([otherValue, false]);
+        e.target.checked = false;
+      } else {
+        setSwimmingPool(false);
+        setSwimmingPoolChecked([false, true]);
+        e.target.checked = true;
+      }
+    }
+  }
+
   return (
     <div className="accommodation-card edit-card">
       <h1 className="details-title">ACCOMMODATION</h1>
@@ -225,7 +310,9 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                       type="radio"
                       value={true}
                       checked={petFriendly === true}
-                      onChange={() => setPetFriendly(true)}
+                      onClick={(e) => {
+                        changePetFriendly(e, true);
+                      }}
                     />
                     <label className="checkbox-option">Yes</label>
                     <input
@@ -233,7 +320,9 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                       type="radio"
                       value={false}
                       checked={petFriendly === false}
-                      onChange={() => setPetFriendly(false)}
+                      onClick={(e) => {
+                        changePetFriendly(e, false);
+                      }}
                     />
                     <label className="checkbox-option">No</label>
                   </div>
@@ -251,7 +340,9 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     type="radio"
                     value={true}
                     checked={internet === true}
-                    onChange={() => setInternet(true)}
+                    onClick={(e) => {
+                      changeInternet(e, true);
+                    }}
                   />
                   <label className="checkbox-option">Yes</label>
                   <input
@@ -259,7 +350,9 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     type="radio"
                     value={false}
                     checked={internet === false}
-                    onChange={() => setInternet(false)}
+                    onClick={(e) => {
+                      changeInternet(e, false);
+                    }}
                   />
                   <label className="checkbox-option">No</label>
                 </div>
@@ -276,7 +369,9 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     type="radio"
                     value={true}
                     checked={swimmingPool === true}
-                    onChange={() => setSwimmingPool(true)}
+                    onClick={(e) => {
+                      changeSwimmingPool(e, true);
+                    }}
                   />
                   <label className="checkbox-option">Yes</label>
                   <input
@@ -284,7 +379,9 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     type="radio"
                     value={false}
                     checked={swimmingPool === false}
-                    onChange={() => setSwimmingPool(false)}
+                    onClick={(e) => {
+                      changeSwimmingPool(e, false);
+                    }}
                   />
                   <label className="checkbox-option">No</label>
                 </div>

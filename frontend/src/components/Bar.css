@@ -39,6 +39,11 @@
   cursor: pointer;
 }
 
+.nav-bar-redirect .nav-logo:hover,
+.nav-bar-redirect .nav-title:hover {
+  transform: scale(1.1);
+}
+
 .nav-bar .nav-info {
   margin-right: 3rem;
   display: flex;

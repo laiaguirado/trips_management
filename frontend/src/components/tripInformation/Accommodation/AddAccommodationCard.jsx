@@ -39,6 +39,12 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [notation, setNotation] = useState("");
+  const [petFriendlyChecked, setPetFriendlyChecked] = useState([false, false]);
+  const [internetChecked, setInternetChecked] = useState([false, false]);
+  const [swimmingPoolChecked, setSwimmingPoolChecked] = useState([
+    false,
+    false,
+  ]);
 
   const add = (e) => {
     e.preventDefault();
@@ -77,6 +83,84 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
     const year = ("0" + date.getFullYear()).slice(-4);
     return day + "/" + month + "/" + year;
+  }
+
+  function changePetFriendly(e, option) {
+    if (option) {
+      const otherValue = petFriendlyChecked[1];
+      if (petFriendlyChecked[0]) {
+        setPetFriendly(null);
+        setPetFriendlyChecked([false, otherValue]);
+        e.target.checked = false;
+      } else {
+        setPetFriendly(true);
+        setPetFriendlyChecked([true, false]);
+        e.target.checked = true;
+      }
+    } else {
+      const otherValue = petFriendlyChecked[0];
+      if (petFriendlyChecked[1]) {
+        setPetFriendly(null);
+        setPetFriendlyChecked([otherValue, false]);
+        e.target.checked = false;
+      } else {
+        setPetFriendly(false);
+        setPetFriendlyChecked([false, true]);
+        e.target.checked = true;
+      }
+    }
+  }
+
+  function changeInternet(e, option) {
+    if (option) {
+      const otherValue = internetChecked[1];
+      if (internetChecked[0]) {
+        setInternet(null);
+        setInternetChecked([false, otherValue]);
+        e.target.checked = false;
+      } else {
+        setInternet(true);
+        setInternetChecked([true, false]);
+        e.target.checked = true;
+      }
+    } else {
+      const otherValue = internetChecked[0];
+      if (internetChecked[1]) {
+        setInternet(null);
+        setInternetChecked([otherValue, false]);
+        e.target.checked = false;
+      } else {
+        setInternet(false);
+        setInternetChecked([false, true]);
+        e.target.checked = true;
+      }
+    }
+  }
+
+  function changeSwimmingPool(e, option) {
+    if (option) {
+      const otherValue = swimmingPoolChecked[1];
+      if (swimmingPoolChecked[0]) {
+        setSwimmingPool(null);
+        setSwimmingPoolChecked([false, otherValue]);
+        e.target.checked = false;
+      } else {
+        setSwimmingPool(true);
+        setSwimmingPoolChecked([true, false]);
+        e.target.checked = true;
+      }
+    } else {
+      const otherValue = swimmingPoolChecked[0];
+      if (swimmingPoolChecked[1]) {
+        setSwimmingPool(null);
+        setSwimmingPoolChecked([otherValue, false]);
+        e.target.checked = false;
+      } else {
+        setSwimmingPool(false);
+        setSwimmingPoolChecked([false, true]);
+        e.target.checked = true;
+      }
+    }
   }
 
   return (
@@ -241,14 +325,18 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                   name="petFriendly"
                   type="radio"
                   value={true}
-                  onChange={() => setPetFriendly(true)}
+                  onClick={(e) => {
+                    changePetFriendly(e, true);
+                  }}
                 />
                 <label className="checkbox-option">Yes</label>
                 <input
                   name="petFriendly"
                   type="radio"
                   value={false}
-                  onChange={() => setPetFriendly(false)}
+                  onClick={(e) => {
+                    changePetFriendly(e, false);
+                  }}
                 />
                 <label className="checkbox-option">No</label>
               </div>
@@ -263,14 +351,18 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                   name="internet"
                   type="radio"
                   value={true}
-                  onChange={() => setInternet(true)}
+                  onClick={(e) => {
+                    changeInternet(e, true);
+                  }}
                 />
                 <label className="checkbox-option">Yes</label>
                 <input
                   name="internet"
                   type="radio"
                   value={false}
-                  onChange={() => setInternet(false)}
+                  onClick={(e) => {
+                    changeInternet(e, false);
+                  }}
                 />
                 <label className="checkbox-option">No</label>
               </div>
@@ -285,14 +377,18 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                   name="swimmingPool"
                   type="radio"
                   value={true}
-                  onChange={() => setSwimmingPool(true)}
+                  onClick={(e) => {
+                    changeSwimmingPool(e, true);
+                  }}
                 />
                 <label className="checkbox-option">Yes</label>
                 <input
                   name="swimmingPool"
                   type="radio"
                   value={false}
-                  onChange={() => setSwimmingPool(false)}
+                  onClick={(e) => {
+                    changeSwimmingPool(e, false);
+                  }}
                 />
                 <label className="checkbox-option">No</label>
               </div>
