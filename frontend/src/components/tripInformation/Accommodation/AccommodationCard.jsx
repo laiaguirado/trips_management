@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./AccommodationCard.css";
 import * as helper from "../../../helper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
-function AccommodationCard({ accommodation }) {
+function AccommodationCard({ accommodation, rating }) {
   document.body.style.overflow = "unset";
   function getDates() {
     if (accommodation.startDate === null) {
@@ -37,6 +40,33 @@ function AccommodationCard({ accommodation }) {
   return (
     <div className="accommodation-card">
       <h1 className="details-title">ACCOMMODATION</h1>
+      <div className="rating">
+        {rating === null ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 2 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 3 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 4 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 5 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+      </div>
       <div className="accommodation-info">
         <div className="accommodation-name accommodation-detail">
           <h3>Name: </h3>
@@ -185,7 +215,7 @@ function AccommodationCard({ accommodation }) {
         )}
         {accommodation.notation && (
           <div className="accommodation-notation accommodation-detail">
-            <h3>Notation: </h3>
+            <h3>Notes: </h3>
             <div className="notation-text">{accommodation.notation}</div>
           </div>
         )}

@@ -18,6 +18,7 @@ import {
 
 function AccommodationDetailsPage() {
   const [accommodation, setAccommodation] = useState(null);
+  const [rating, setRating] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState(null);
@@ -33,9 +34,12 @@ function AccommodationDetailsPage() {
     if (success) {
       setAccommodation(accommodation);
       setMessage(null);
+      setRating(3); //doing
+      //todo empty rating
     } else {
       setAccommodation(null);
       setMessage(error);
+      setRating(null);
     }
   };
 
@@ -48,7 +52,11 @@ function AccommodationDetailsPage() {
     }
   };
 
-  const onEdit = async (accommodationId, accommodationData) => {
+  const onEdit = async (
+    accommodationId,
+    accommodationData,
+    accommodationRating
+  ) => {
     const {
       success,
       result: edited,
@@ -58,6 +66,7 @@ function AccommodationDetailsPage() {
       setAccommodation(edited);
       setEditing(false);
       setMessage(null);
+      setRating(accommodationRating);
     } else {
       setMessage(error);
     }
@@ -84,7 +93,7 @@ function AccommodationDetailsPage() {
     if (!editing) {
       return (
         <>
-          <AccommodationCard accommodation={accommodation} />
+          <AccommodationCard accommodation={accommodation} rating={rating} />
           <div>
             <div
               className="delete-accommodation"
@@ -108,6 +117,7 @@ function AccommodationDetailsPage() {
         <EditAccommodationCard
           accommodation={accommodation}
           accommodationId={accommodationId}
+          rating={rating}
           onEdit={onEdit}
         />
       );

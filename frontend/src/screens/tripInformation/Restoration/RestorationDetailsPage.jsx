@@ -18,6 +18,7 @@ import {
 
 function RestorationDetailsPage() {
   const [restoration, setRestoration] = useState(null);
+  const [rating, setRating] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState(null);
@@ -33,9 +34,11 @@ function RestorationDetailsPage() {
     if (success) {
       setRestoration(restoration);
       setMessage(null);
+      setRating(3); //doing
     } else {
       setRestoration(null);
       setMessage(error);
+      setRating(null);
     }
   };
 
@@ -48,7 +51,7 @@ function RestorationDetailsPage() {
     }
   };
 
-  const onEdit = async (restorationId, restorationData) => {
+  const onEdit = async (restorationId, restorationData, restorationRating) => {
     const {
       success,
       result: edited,
@@ -58,6 +61,7 @@ function RestorationDetailsPage() {
       setRestoration(edited);
       setEditing(false);
       setMessage(null);
+      setRating(restorationRating);
     } else {
       setMessage(error);
     }
@@ -98,7 +102,7 @@ function RestorationDetailsPage() {
     if (!editing) {
       return (
         <>
-          <RestorationCard restoration={restoration} />
+          <RestorationCard restoration={restoration} rating={rating} />
           <div>
             <div
               className="delete-restoration"
@@ -122,6 +126,7 @@ function RestorationDetailsPage() {
         <EditRestorationCard
           restoration={restoration}
           restorationId={restorationId}
+          rating={rating}
           onEdit={onEdit}
         />
       );

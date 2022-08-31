@@ -1,7 +1,10 @@
 import React from "react";
 import "./RestorationCard.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
-function RestorationCard({ restoration }) {
+function RestorationCard({ restoration, rating }) {
   document.body.style.overflow = "unset";
   function getHours() {
     const openingHour =
@@ -36,6 +39,33 @@ function RestorationCard({ restoration }) {
   return (
     <div className="restoration-card">
       <h1 className="details-title">RESTORATION</h1>
+      <div className="rating">
+        {rating === null ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 2 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 3 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 4 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 5 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+      </div>
       <div className="restoration-info">
         <div className="restoration-name restoration-detail">
           <h3>Name: </h3>
@@ -141,7 +171,7 @@ function RestorationCard({ restoration }) {
         )}
         {restoration.notation && (
           <div className="restoration-notation restoration-detail">
-            <h3>Notation: </h3>
+            <h3>Notes: </h3>
             <div className="notation-text">{restoration.notation}</div>
           </div>
         )}

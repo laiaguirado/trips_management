@@ -18,6 +18,7 @@ import {
 
 function PlansDetailsPage() {
   const [plan, setPlan] = useState(null);
+  const [rating, setRating] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [message, setMessage] = useState(null);
   const [editing, setEditing] = useState(false);
@@ -29,9 +30,11 @@ function PlansDetailsPage() {
     if (success) {
       setPlan(plan);
       setMessage(null);
+      setRating(3); //doing
     } else {
       setPlan(null);
       setMessage(error);
+      setRating(null);
     }
   };
 
@@ -44,7 +47,8 @@ function PlansDetailsPage() {
     }
   };
 
-  const onEdit = async (planId, planData) => {
+  const onEdit = async (planId, planData, planRating) => {
+    console.log(rating);
     const {
       success,
       result: edited,
@@ -54,6 +58,8 @@ function PlansDetailsPage() {
       setPlan(edited);
       setEditing(false);
       setMessage(null);
+      setRating(planRating);
+      console.log(rating);
     } else {
       setMessage(error);
     }
@@ -94,7 +100,7 @@ function PlansDetailsPage() {
     if (!editing) {
       return (
         <>
-          <PlanCard plan={plan} />
+          <PlanCard plan={plan} rating={rating} />
           <div>
             {" "}
             <div
@@ -111,7 +117,14 @@ function PlansDetailsPage() {
         </>
       );
     } else {
-      return <EditPlanCard plan={plan} planId={planId} onEdit={onEdit} />;
+      return (
+        <EditPlanCard
+          plan={plan}
+          planId={planId}
+          rating={rating}
+          onEdit={onEdit}
+        />
+      );
     }
   }
 

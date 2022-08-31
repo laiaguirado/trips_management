@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import "./EditRestorationCard.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
-function EditRestorationCard({ restoration, restorationId, onEdit }) {
+function EditRestorationCard({
+  restoration,
+  restorationId,
+  restorationRating,
+  onEdit,
+}) {
   const [name, setName] = useState(restoration.name);
   const [kindOfFood, setKindOfFood] = useState(restoration.kindOfFood);
   const [location, setLocation] = useState(restoration.location);
@@ -17,6 +24,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
   const [web, setWeb] = useState(restoration.web);
   const [phone, setPhone] = useState(restoration.phone);
   const [email, setEmail] = useState(restoration.email);
+  const [rating, setRating] = useState(restorationRating);
   const [notation, setNotation] = useState(restoration.notation);
 
   const [takeAwayChecked, setTakeAwayChecked] = useState([false, false]);
@@ -24,24 +32,28 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
 
   const update = (e) => {
     e.preventDefault();
-    onEdit(restorationId, {
-      name,
-      kindOfFood,
-      location,
-      minPrice,
-      maxPrice,
-      currency,
-      openingHour,
-      closingHour,
-      closed,
-      speciality,
-      takeAway,
-      reserved,
-      web,
-      phone,
-      email,
-      notation,
-    });
+    onEdit(
+      restorationId,
+      {
+        name,
+        kindOfFood,
+        location,
+        minPrice,
+        maxPrice,
+        currency,
+        openingHour,
+        closingHour,
+        closed,
+        speciality,
+        takeAway,
+        reserved,
+        web,
+        phone,
+        email,
+        notation,
+      },
+      rating
+    );
   };
 
   function changeTakeAway(e, option) {
@@ -101,6 +113,30 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
       <h1 className="details-title">RESTORATION</h1>
       <div className="restoration-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
+          <div className="restoration-rating restoration-detail">
+            <h3>Rating: </h3>
+            <label>
+              <div className="form-data">
+                <FontAwesomeIcon icon={faRankingStar} className="icon" />
+                <select
+                  className="input date rating"
+                  value={rating}
+                  onChange={(event) => setRating(event.target.value)}
+                >
+                  <option value="" disabled={true}>
+                    Rating
+                  </option>
+                  <option value="5">
+                    &#xf005;&#xf005;&#xf005;&#xf005;&#xf005;
+                  </option>
+                  <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                  <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                  <option value="2">&#xf005;&#xf005;</option>
+                  <option value="1">&#xf005;</option>
+                </select>
+              </div>
+            </label>
+          </div>
           <div className="restoration-name restoration-detail">
             <h3>Name: </h3>
             <div>
@@ -404,7 +440,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
           </div>
 
           <div className="restoration-notation restoration-detail">
-            <h3>Notation: </h3>
+            <h3>Notes: </h3>
             <div className="notation-text">
               <label>
                 <div className="form-data">

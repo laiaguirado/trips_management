@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./EditPlanCard.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
-function EditPlanCard({ plan, planId, onEdit }) {
+function EditPlanCard({ plan, planId, onEdit, planRating }) {
   const [name, setName] = useState(plan.name);
   const [location, setLocation] = useState(plan.location);
   const [openingHour, setOpeningHour] = useState(plan.openingHour);
@@ -15,26 +17,31 @@ function EditPlanCard({ plan, planId, onEdit }) {
   const [phone, setPhone] = useState(plan.phone);
   const [email, setEmail] = useState(plan.email);
   const [web, setWeb] = useState(plan.web);
+  const [rating, setRating] = useState(planRating);
   const [notation, setNotation] = useState(plan.notation);
 
   const update = (e) => {
     e.preventDefault();
-    onEdit(planId, {
-      name,
-      location,
-      openingHour,
-      closingHour,
-      closed,
-      duration,
-      priceAdult,
-      priceChildren,
-      currency,
-      discount,
-      phone,
-      email,
-      web,
-      notation,
-    });
+    onEdit(
+      planId,
+      {
+        name,
+        location,
+        openingHour,
+        closingHour,
+        closed,
+        duration,
+        priceAdult,
+        priceChildren,
+        currency,
+        discount,
+        phone,
+        email,
+        web,
+        notation,
+      },
+      rating
+    );
   };
 
   return (
@@ -42,6 +49,32 @@ function EditPlanCard({ plan, planId, onEdit }) {
       <h1 className="details-title">PLAN</h1>
       <div className="plan-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
+          <div className="plan-rating plan-detail">
+            <h3>Rating: </h3>
+            <div>
+              <label>
+                <div className="form-data">
+                  <FontAwesomeIcon icon={faRankingStar} className="icon" />
+                  <select
+                    className="input date rating"
+                    value={rating}
+                    onChange={(event) => setRating(event.target.value)}
+                  >
+                    <option value="" disabled={true}>
+                      Rating
+                    </option>
+                    <option value="5">
+                      &#xf005;&#xf005;&#xf005;&#xf005;&#xf005;
+                    </option>
+                    <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                    <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                    <option value="2">&#xf005;&#xf005;</option>
+                    <option value="1">&#xf005;</option>
+                  </select>
+                </div>
+              </label>
+            </div>
+          </div>
           <div className="plan-name plan-detail">
             <h3>Name: </h3>
             <div>
@@ -272,7 +305,7 @@ function EditPlanCard({ plan, planId, onEdit }) {
           </div>
 
           <div className="plan-notation plan-detail">
-            <h3>Notation: </h3>
+            <h3>Notes: </h3>
             <div className="notation-text">
               <label>
                 <div className="form-data">

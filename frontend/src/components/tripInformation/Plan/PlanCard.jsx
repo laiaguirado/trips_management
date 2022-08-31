@@ -1,7 +1,10 @@
 import React from "react";
 import "./PlanCard.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
-function PlanCard({ plan, modifyPlanList }) {
+function PlanCard({ plan, modifyPlanList, rating }) {
   document.body.style.overflow = "unset";
   function getHours() {
     const openingHour =
@@ -47,9 +50,37 @@ function PlanCard({ plan, modifyPlanList }) {
       </div>
     );
   }
+
   return (
     <div className="plan-card">
       <h1 className="details-title">PLAN</h1>
+      <div className="rating">
+        {rating === null ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 2 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 3 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 4 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 5 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+      </div>
       <div className="plan-info">
         <div className="plan-name plan-detail">
           <h3>Name: </h3>
@@ -128,7 +159,7 @@ function PlanCard({ plan, modifyPlanList }) {
         )}
         {plan.notation && (
           <div className="plan-notation plan-detail">
-            <h3>Notation: </h3>
+            <h3>Notes: </h3>
             <div className="notation-text">{plan.notation}</div>
           </div>
         )}

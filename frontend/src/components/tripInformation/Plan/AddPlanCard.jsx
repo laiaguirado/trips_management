@@ -14,6 +14,7 @@ import {
   faNoteSticky,
   faEnvelope,
   faPercent,
+  faRankingStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 function AddPlanCard({ onAdd, message, adding, tripId }) {
@@ -30,6 +31,7 @@ function AddPlanCard({ onAdd, message, adding, tripId }) {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [web, setWeb] = useState("");
+  const [rating, setRating] = useState("");
   const [notation, setNotation] = useState("");
 
   const add = (e) => {
@@ -246,6 +248,27 @@ function AddPlanCard({ onAdd, message, adding, tripId }) {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faRankingStar} className="icon" />
+              <select
+                className="input date rating"
+                value={rating}
+                onChange={(event) => setRating(event.target.value)}
+              >
+                <option value="" disabled={true}>
+                  Rating
+                </option>
+                <option value="5">
+                  &#xf005;&#xf005;&#xf005;&#xf005;&#xf005;
+                </option>
+                <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                <option value="2">&#xf005;&#xf005;</option>
+                <option value="1">&#xf005;</option>
+              </select>
             </div>
           </label>
           <label>

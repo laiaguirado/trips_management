@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./EditAccommodationCard.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
-function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
+function EditAccommodationCard({
+  accommodation,
+  accommodationId,
+  onEdit,
+  accommodationRating,
+}) {
   const [name, setName] = useState(accommodation.name);
   const [type, setType] = useState(accommodation.type);
   const [location, setLocation] = useState(accommodation.location);
@@ -21,6 +28,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
   const [web, setWeb] = useState(accommodation.web);
   const [phone, setPhone] = useState(accommodation.phone);
   const [email, setEmail] = useState(accommodation.email);
+  const [rating, setRating] = useState(accommodationRating);
   const [notation, setNotation] = useState(accommodation.notation);
   const [petFriendlyChecked, setPetFriendlyChecked] = useState([false, false]);
   const [internetChecked, setInternetChecked] = useState([false, false]);
@@ -46,26 +54,30 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
   //todo edit dates inputs
   const update = (e) => {
     e.preventDefault();
-    onEdit(accommodationId, {
-      name,
-      type,
-      location,
-      startDate,
-      endDate,
-      checkInHour,
-      checkOutHour,
-      price,
-      currency,
-      petFriendly,
-      internet,
-      swimmingPool,
-      breakfast,
-      board,
-      web,
-      phone,
-      email,
-      notation,
-    });
+    onEdit(
+      accommodationId,
+      {
+        name,
+        type,
+        location,
+        startDate,
+        endDate,
+        checkInHour,
+        checkOutHour,
+        price,
+        currency,
+        petFriendly,
+        internet,
+        swimmingPool,
+        breakfast,
+        board,
+        web,
+        phone,
+        email,
+        notation,
+      },
+      rating
+    );
   };
 
   function changePetFriendly(e, option) {
@@ -151,6 +163,30 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
       <h1 className="details-title">ACCOMMODATION</h1>
       <div className="accommodation-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
+          <div className="accommodation-rating accommodation-detail">
+            <h3>Rating: </h3>
+            <label>
+              <div className="form-data">
+                <FontAwesomeIcon icon={faRankingStar} className="icon" />
+                <select
+                  className="input date rating"
+                  value={rating}
+                  onChange={(event) => setRating(event.target.value)}
+                >
+                  <option value="" disabled={true}>
+                    Rating
+                  </option>
+                  <option value="5">
+                    &#xf005;&#xf005;&#xf005;&#xf005;&#xf005;
+                  </option>
+                  <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                  <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                  <option value="2">&#xf005;&#xf005;</option>
+                  <option value="1">&#xf005;</option>
+                </select>
+              </div>
+            </label>
+          </div>
           <div className="accommodation-name accommodation-detail">
             <h3>Name: </h3>
             <div>
@@ -488,7 +524,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
             </label>
           </div>
           <div className="accommodation-notation accommodation-detail">
-            <h3>Notation: </h3>
+            <h3>Notes: </h3>
             <label>
               <div className="form-data">
                 <textarea
