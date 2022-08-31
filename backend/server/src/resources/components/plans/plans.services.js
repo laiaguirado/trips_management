@@ -1,5 +1,8 @@
 const Plans = require("./plans.model");
 const Travel = require("../../travel/travel.model");
+const Score = require("../../score/score.model");
+
+const Comment = require("../../comments/comments.model");
 const { runTransaction } = require("../../../helper");
 const { errMalformed } = require("../../../errors");
 
@@ -52,6 +55,18 @@ const getOne = async (_id) => {
 
 const deletePlan = async (_id) => {
   const plan = await runTransaction(async () => {
+    const comments = await Plans.findOne({_id}).select('comments');
+    const comments1 = comments['comments'];
+    for (comment of comments1){
+      console.log(comment);
+      await Comment.findByIdAndDelete({_id:comment})
+}
+const scores = await Plans.findOne({_id}).select('scores');
+const scores1 = scores['comments'];
+for (comment of scores1){
+  console.log(comment);
+  await Score.findByIdAndDelete({_id:comment})
+}
     const deleted = await Plans.findByIdAndDelete({ _id }).lean().exec();
 
     if (deleted === null) {
