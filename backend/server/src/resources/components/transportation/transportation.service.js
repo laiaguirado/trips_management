@@ -1,5 +1,6 @@
 const Transportation = require("./transportation.model");
 const Travel = require("../../travel/travel.model");
+const Comment = require("../../comments/comments.model")
 const { runTransaction } = require("../../../helper");
 const { errMalformed } = require("../../../errors");
 
@@ -54,6 +55,12 @@ const getOne = async (_id) => {
 };
 
 const deleteTransportation = async (_id) => {
+  const comments = await Transportation.findOne({_id}).select('comments');
+  const comments1 = comments['comments'];
+  for (comment of comments1){
+    console.log(comment);
+    await Comment.findByIdAndDelete({_id:comment})
+}
   const transport = await runTransaction(async () => {
     const deleted = await Transportation.findByIdAndDelete({ _id })
       .lean()
