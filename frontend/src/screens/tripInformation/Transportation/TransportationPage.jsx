@@ -6,10 +6,12 @@ import Bar from "../../../components/Bar";
 import Loading from "../../../components/Loading";
 import AddTransportationCard from "../../../components/tripInformation/Transportation/AddTransportationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 import {
   faCirclePlus,
   faAngleLeft,
   faPen,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 function TransportationPage() {
@@ -82,7 +84,7 @@ function TransportationPage() {
       </div>
     );
   }
-
+  const rating = 3;
   return (
     <div className="transportation-page">
       <Bar mode="login" />
@@ -118,6 +120,33 @@ function TransportationPage() {
               >
                 <h3 className="info-name">{transportation.name}</h3>
                 <div className="info-main">{transportation.type}</div>
+                <div className="rating">
+                  {rating === null ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                  {rating < 2 ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                  {rating < 3 ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                  {rating < 4 ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                  {rating < 5 ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                </div>
               </div>
             ))}
           </div>

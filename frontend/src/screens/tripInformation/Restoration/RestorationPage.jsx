@@ -6,6 +6,7 @@ import Bar from "../../../components/Bar";
 import * as api from "../../../api";
 import AddRestorationCard from "../../../components/tripInformation/Restoration/AddRestorationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 import {
   faStar,
   faCirclePlus,
@@ -80,7 +81,7 @@ function RestorationPage() {
       </div>
     );
   }
-
+  const rating = 3;
   return (
     <div className="restoration-page">
       <Bar mode="login" />
@@ -113,7 +114,33 @@ function RestorationPage() {
               >
                 <h3 className="info-name">{restoration.name}</h3>
                 <div className="info-main">{restoration.location}</div>
-                <div className="info-other">{restoration.kindOfFood}</div>
+                <div className="rating">
+                  {rating === null ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                  {rating < 2 ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                  {rating < 3 ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                  {rating < 4 ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                  {rating < 5 ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                </div>
               </div>
             ))}
           </div>

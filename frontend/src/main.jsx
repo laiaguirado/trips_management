@@ -28,6 +28,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         type="text/css"
         href="//fonts.googleapis.com/css?family=Open+Sans"
       ></link>
+      <link
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
+        rel="stylesheet"
+        type="text/css"
+      />
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<App />}></Route>

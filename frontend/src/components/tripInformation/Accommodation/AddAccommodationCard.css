@@ -20,3 +20,7 @@ input[type="time"]::-webkit-calendar-picker-indicator:hover {
 .add-form .price {
   width: 50%;
 }
+
+.form-data select.rating {
+  font-family: "FontAwesome", "Open Sans";
+}

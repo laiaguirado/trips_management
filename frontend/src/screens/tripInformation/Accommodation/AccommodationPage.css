@@ -61,3 +61,7 @@
   width: 10%;
   text-align: left;
 }
+
+.info-list .rating {
+  margin: 0;
+}

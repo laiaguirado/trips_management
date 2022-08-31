@@ -1,5 +1,8 @@
 const Accommodation = require("./accommodation.model");
 const Travel = require("../../travel/travel.model")
+const Comment = require("../../comments/comments.model")
+const Score = require("../../score/score.model");
+
 const { errMalformed } = require("../../../errors");
 
 const createAccommodation = async (acomodation) => {
@@ -22,6 +25,20 @@ const deleteAccom = async (_id) => {
   await Travel.findOneAndUpdate({ accommodations: _id }, {
     $pull: { accommodations: { $in: _id }},
 }, {new:true});
+
+const comments = await Accommodation.findOne({_id}).select('comments');
+const comments1 = comments['comments'];
+for (comment of comments1){
+  console.log(comment);
+  await Comment.findByIdAndDelete({_id:comment})
+}
+
+const scores = await Accommodation.findOne({_id}).select('scores');
+const scores1 = scores['comments'];
+for (comment of scores1){
+  console.log(comment);
+  await Score.findByIdAndDelete({_id:comment})
+}
 
   const deleted = await Accommodation.findByIdAndDelete({ _id }).lean().exec();
   if (deleted === null) {

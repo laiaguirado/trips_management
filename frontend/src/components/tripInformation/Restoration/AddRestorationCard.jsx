@@ -17,6 +17,7 @@ import {
   faBagShopping,
   faStar,
   faBookOpen,
+  faRankingStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 function AddRestorationCard({ onAdd, message, adding, tripId }) {
@@ -35,6 +36,7 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
   const [web, setWeb] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [rating, setRating] = useState("");
   const [notation, setNotation] = useState("");
   const [takeAwayChecked, setTakeAwayChecked] = useState([false, false]);
   const [reservedChecked, setReservedChecked] = useState([false, false]);
@@ -132,7 +134,7 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
               <input
                 className="input"
-                /*maxLength="50"*/
+                maxLength="50"
                 required
                 type="text"
                 placeholder="Restoration's name *"
@@ -368,6 +370,27 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faRankingStar} className="icon" />
+              <select
+                className="input date rating"
+                value={rating}
+                onChange={(event) => setRating(event.target.value)}
+              >
+                <option value="" disabled={true}>
+                  Rating
+                </option>
+                <option value="5">
+                  &#xf005;&#xf005;&#xf005;&#xf005;&#xf005;
+                </option>
+                <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                <option value="2">&#xf005;&#xf005;</option>
+                <option value="1">&#xf005;</option>
+              </select>
             </div>
           </label>
           <label>

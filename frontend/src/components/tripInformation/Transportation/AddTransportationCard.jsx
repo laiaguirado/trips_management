@@ -12,6 +12,7 @@ import {
   faCalendar,
   faAngleLeft,
   faNoteSticky,
+  faRankingStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 function AddTransportationCard({ onAdd, message, adding, tripId }) {
@@ -25,6 +26,7 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
   const [web, setWeb] = useState("");
+  const [rating, setRating] = useState("");
   const [notation, setNotation] = useState("");
 
   const add = (e) => {
@@ -76,7 +78,7 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
               <input
                 className="input"
-                /*maxLength="50"*/
+                maxLength="50"
                 required
                 type="text"
                 placeholder="Transport's name *"
@@ -225,6 +227,27 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
                 value={web}
                 onChange={(event) => setWeb(event.target.value)}
               />
+            </div>
+          </label>
+          <label>
+            <div className="form-data">
+              <FontAwesomeIcon icon={faRankingStar} className="icon" />
+              <select
+                className="input date rating"
+                value={rating}
+                onChange={(event) => setRating(event.target.value)}
+              >
+                <option value="" disabled={true}>
+                  Rating
+                </option>
+                <option value="5">
+                  &#xf005;&#xf005;&#xf005;&#xf005;&#xf005;
+                </option>
+                <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                <option value="2">&#xf005;&#xf005;</option>
+                <option value="1">&#xf005;</option>
+              </select>
             </div>
           </label>
           <label>

@@ -2,7 +2,11 @@ import React from "react";
 import "./TransportationCard.css";
 import * as helper from "../../../helper";
 
-function TransportationCard({ transportation }) {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
+
+function TransportationCard({ transportation, rating }) {
   document.body.style.overflow = "unset";
   function getOriginDestination() {
     const origin =
@@ -50,6 +54,33 @@ function TransportationCard({ transportation }) {
   return (
     <div className="transportation-card">
       <h1 className="details-title">TRANSPORTATION</h1>
+      <div className="rating">
+        {rating === null ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 2 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 3 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 4 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {rating < 5 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+      </div>
       <div className="transportation-info">
         <div className="transportation-name transportation-detail">
           <h3>Name: </h3>
@@ -112,7 +143,7 @@ function TransportationCard({ transportation }) {
         )}
         {transportation.notation && (
           <div className="transportation-notation transportation-detail">
-            <h3>Notation: </h3>
+            <h3>Notes: </h3>
             <div className="notation-text">{transportation.notation}</div>
           </div>
         )}

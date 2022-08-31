@@ -6,6 +6,7 @@ import * as api from "../../../api";
 import "./PlansPage.css";
 import AddPlanCard from "../../../components/tripInformation/Plan/AddPlanCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 import {
   faStar,
   faCirclePlus,
@@ -76,7 +77,7 @@ function PlansPage() {
       </div>
     );
   }
-
+  const rating = 3;
   return (
     <div className="plan-page">
       <Bar mode="login" />
@@ -109,6 +110,33 @@ function PlansPage() {
               >
                 <h3 className="info-name">{plan.name}</h3>
                 <div className="info-main">{plan.location}</div>
+                <div className="rating">
+                  {rating === null ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                  {rating < 2 ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                  {rating < 3 ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                  {rating < 4 ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                  {rating < 5 ? (
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  ) : (
+                    <FontAwesomeIcon icon={faStar} className="icon" />
+                  )}
+                </div>
               </div>
             ))}
           </div>

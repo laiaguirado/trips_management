@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./EditTransportationCard.css";
 import * as helper from "../../../helper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
-function EditTransportationCard({ transportation, transportationId, onEdit }) {
+function EditTransportationCard({
+  transportation,
+  transportationId,
+  transportationRating,
+  onEdit,
+}) {
   const [name, setName] = useState(transportation.name);
   const [type, setType] = useState(transportation.type);
   const [typeDetails, setTypeDetails] = useState(transportation.typeDetails);
@@ -15,6 +22,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
   );
   const [arrival, setArrival] = useState(setDateValue(transportation.arrival));
   const [web, setWeb] = useState(transportation.web);
+  const [rating, setRating] = useState(transportationRating);
   const [notation, setNotation] = useState(transportation.notation);
 
   function setDateValue(value) {
@@ -32,19 +40,23 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
 
   const update = (e) => {
     e.preventDefault();
-    onEdit(transportationId, {
-      name,
-      type,
-      typeDetails,
-      price,
-      currency,
-      origin,
-      destination,
-      departure,
-      arrival,
-      web,
-      notation,
-    });
+    onEdit(
+      transportationId,
+      {
+        name,
+        type,
+        typeDetails,
+        price,
+        currency,
+        origin,
+        destination,
+        departure,
+        arrival,
+        web,
+        notation,
+      },
+      rating
+    );
   };
 
   return (
@@ -52,6 +64,32 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
       <h1 className="details-title">TRANSPORTATION</h1>
       <div className="transportation-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
+          <div className="transportation-rating transportation-detail">
+            <h3>Rating: </h3>
+            <div>
+              <label>
+                <div className="form-data">
+                  <FontAwesomeIcon icon={faRankingStar} className="icon" />
+                  <select
+                    className="input date rating"
+                    value={rating}
+                    onChange={(event) => setRating(event.target.value)}
+                  >
+                    <option value="" disabled={true}>
+                      Rating
+                    </option>
+                    <option value="5">
+                      &#xf005;&#xf005;&#xf005;&#xf005;&#xf005;
+                    </option>
+                    <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                    <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                    <option value="2">&#xf005;&#xf005;</option>
+                    <option value="1">&#xf005;</option>
+                  </select>
+                </div>
+              </label>
+            </div>
+          </div>
           <div className="transportation-name transportation-detail">
             <h3>Name: </h3>
             <div>
@@ -229,7 +267,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
           </div>
 
           <div className="transportation-notation transportation-detail">
-            <h3>Notation: </h3>
+            <h3>Notes: </h3>
             <div className="notation-text">
               <label>
                 <div className="form-data">

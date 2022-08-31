@@ -24,3 +24,9 @@
 a {
   text-decoration: underline;
 }
+
+div.rating {
+  color: #ebc452;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}

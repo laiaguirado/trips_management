@@ -18,6 +18,7 @@ import {
 
 function TransportationDetailsPage() {
   const [transportation, setTransportation] = useState(null);
+  const [rating, setRating] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState(null);
@@ -33,9 +34,11 @@ function TransportationDetailsPage() {
     if (success) {
       setTransportation(transportation);
       setMessage(null);
+      setRating(3); //doing
     } else {
       setTransportation(null);
       setMessage(error);
+      setRating(null);
     }
   };
 
@@ -48,7 +51,11 @@ function TransportationDetailsPage() {
     }
   };
 
-  const onEdit = async (transportationId, transportationData) => {
+  const onEdit = async (
+    transportationId,
+    transportationData,
+    transportationRating
+  ) => {
     const {
       success,
       result: edited,
@@ -58,9 +65,11 @@ function TransportationDetailsPage() {
       setTransportation(edited);
       setEditing(false);
       setMessage(null);
+      setRating(transportationRating);
     } else {
       setMessage(error);
     }
+    window.scrollTo(0, 0);
   };
 
   const returnEditing = () => {
@@ -98,7 +107,7 @@ function TransportationDetailsPage() {
     if (!editing) {
       return (
         <>
-          <TransportationCard transportation={transportation} />
+          <TransportationCard transportation={transportation} rating={rating} />
           <div>
             {" "}
             <div
@@ -123,6 +132,7 @@ function TransportationDetailsPage() {
         <EditTransportationCard
           transportation={transportation}
           transportationId={transportationId}
+          transportationRating={rating}
           onEdit={onEdit}
         />
       );
