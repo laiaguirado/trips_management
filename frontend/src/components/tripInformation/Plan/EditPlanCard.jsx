@@ -3,7 +3,7 @@ import "./EditPlanCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
-function EditPlanCard({ plan, planId, onEdit, planRating }) {
+function EditPlanCard({ plan, planId, planRating, onEdit }) {
   const [name, setName] = useState(plan.name);
   const [location, setLocation] = useState(plan.location);
   const [openingHour, setOpeningHour] = useState(plan.openingHour);

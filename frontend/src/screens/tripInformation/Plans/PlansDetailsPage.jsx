@@ -121,7 +121,7 @@ function PlansDetailsPage() {
         <EditPlanCard
           plan={plan}
           planId={planId}
-          rating={rating}
+          planRating={rating}
           onEdit={onEdit}
         />
       );

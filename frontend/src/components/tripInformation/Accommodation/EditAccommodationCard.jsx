@@ -6,8 +6,8 @@ import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 function EditAccommodationCard({
   accommodation,
   accommodationId,
-  onEdit,
   accommodationRating,
+  onEdit,
 }) {
   const [name, setName] = useState(accommodation.name);
   const [type, setType] = useState(accommodation.type);
@@ -349,6 +349,7 @@ function EditAccommodationCard({
                       onClick={(e) => {
                         changePetFriendly(e, true);
                       }}
+                      onChange={(e) => {}}
                     />
                     <label className="checkbox-option">Yes</label>
                     <input
@@ -359,6 +360,7 @@ function EditAccommodationCard({
                       onClick={(e) => {
                         changePetFriendly(e, false);
                       }}
+                      onChange={(e) => {}}
                     />
                     <label className="checkbox-option">No</label>
                   </div>
@@ -379,6 +381,7 @@ function EditAccommodationCard({
                     onClick={(e) => {
                       changeInternet(e, true);
                     }}
+                    onChange={(e) => {}}
                   />
                   <label className="checkbox-option">Yes</label>
                   <input
@@ -389,6 +392,7 @@ function EditAccommodationCard({
                     onClick={(e) => {
                       changeInternet(e, false);
                     }}
+                    onChange={(e) => {}}
                   />
                   <label className="checkbox-option">No</label>
                 </div>
@@ -408,6 +412,7 @@ function EditAccommodationCard({
                     onClick={(e) => {
                       changeSwimmingPool(e, true);
                     }}
+                    onChange={(e) => {}}
                   />
                   <label className="checkbox-option">Yes</label>
                   <input
@@ -418,6 +423,7 @@ function EditAccommodationCard({
                     onClick={(e) => {
                       changeSwimmingPool(e, false);
                     }}
+                    onChange={(e) => {}}
                   />
                   <label className="checkbox-option">No</label>
                 </div>

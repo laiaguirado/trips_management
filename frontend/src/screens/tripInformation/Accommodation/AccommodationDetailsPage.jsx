@@ -51,7 +51,7 @@ function AccommodationDetailsPage() {
       setMessage(error);
     }
   };
-
+  //todo scroll after edit
   const onEdit = async (
     accommodationId,
     accommodationData,
@@ -117,7 +117,7 @@ function AccommodationDetailsPage() {
         <EditAccommodationCard
           accommodation={accommodation}
           accommodationId={accommodationId}
-          rating={rating}
+          accommodationRating={rating}
           onEdit={onEdit}
         />
       );

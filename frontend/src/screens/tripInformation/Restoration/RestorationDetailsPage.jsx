@@ -126,7 +126,7 @@ function RestorationDetailsPage() {
         <EditRestorationCard
           restoration={restoration}
           restorationId={restorationId}
-          rating={rating}
+          restorationRating={rating}
           onEdit={onEdit}
         />
       );

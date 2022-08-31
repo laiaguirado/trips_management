@@ -131,7 +131,7 @@ function TransportationDetailsPage() {
         <EditTransportationCard
           transportation={transportation}
           transportationId={transportationId}
-          rating={rating}
+          transportationRating={rating}
           onEdit={onEdit}
         />
       );

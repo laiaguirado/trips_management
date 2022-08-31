@@ -337,6 +337,7 @@ function EditRestorationCard({
                       onClick={(e) => {
                         changeTakeAway(e, true);
                       }}
+                      onChange={(e) => {}}
                     />
                     <label className="checkbox-option">Yes</label>
                     <input
@@ -347,6 +348,7 @@ function EditRestorationCard({
                       onClick={(e) => {
                         changeTakeAway(e, false);
                       }}
+                      onChange={(e) => {}}
                     />
                     <label className="checkbox-option">No</label>
                   </div>
@@ -369,6 +371,7 @@ function EditRestorationCard({
                       onClick={(e) => {
                         changeReserved(e, true);
                       }}
+                      onChange={(e) => {}}
                     />
                     <label className="checkbox-option">Yes</label>
                     <input
@@ -379,6 +382,7 @@ function EditRestorationCard({
                       onClick={(e) => {
                         changeReserved(e, false);
                       }}
+                      onChange={(e) => {}}
                     />
                     <label className="checkbox-option">No</label>
                   </div>
