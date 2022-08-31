@@ -4,6 +4,8 @@ const Restoration = require("./restoration.model");
 const Travel = require("../../travel/travel.model");
 const Comment = require("../../comments/comments.model");
 const User = require("../../users/user.model");
+const Score = require("../../score/score.model");
+
 
 const createOne = async (data) => {
   return await Restoration.create(data);
@@ -26,7 +28,12 @@ const deleteRest = async (_id) => {
     console.log(comment);
     await Comment.findByIdAndDelete({_id:comment})
 }
-
+const scores = await Restoration.findOne({_id}).select('scores');
+const scores1 = scores['comments'];
+for (comment of scores1){
+  console.log(comment);
+  await Score.findByIdAndDelete({_id:comment})
+}
 
   const restoration = await runTransaction(async () => {
     const deleted = await Restoration.findByIdAndDelete({ _id }).lean().exec().then();
