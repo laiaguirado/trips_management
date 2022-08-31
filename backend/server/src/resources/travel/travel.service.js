@@ -5,7 +5,8 @@ const { runTransaction } = require("../../helper");
 
 const getTravelById = async (_id) => {
   const travel = await Travel.findOne({ _id })
-    .populate({ path: "travellers", select: "email username" })
+    .populate({ path: "travellers", select: "-_id" })
+    .populate({ path: "travellers.user", select: "email username" })
     .populate({ path: "creator", select: "email -_id" })
     .lean()
     .exec();
@@ -27,7 +28,8 @@ const findTravel = async (_idTravel) => {
 
 const getAllTravel = async () => {
   return Travel.find()
-    .populate({ path: "travellers", select: "email username" })
+    .populate({ path: "travellers", select: "-_id" })
+    .populate({ path: "travellers.user", select: "email username" })
     .populate({ path: "creator", select: "email -_id" })
     .lean()
     .exec();
@@ -41,7 +43,8 @@ const updateTravel = async (_id, dataTravel) => {
   const travelUpdated = await Travel.findOneAndUpdate({ _id }, dataTravel, {
     new: true,
   })
-    .populate({ path: "travellers", select: "email username" })
+    .populate({ path: "travellers", select: "-_id" })
+    .populate({ path: "travellers.user", select: "email username" })
     .populate({ path: "creator", select: "email -_id" })
     .lean()
     .exec();
@@ -65,22 +68,25 @@ const deleteTravel = async (_id) => {
   return deleted;
 };
 
-const addUserToTravel = async (idTravel, idUser) => {
+const addUserToTravel = async (idTravel, idUser, type) => {
   const travel = await runTransaction(async () => {
+    const infoTravel = { user: idUser, type };
+    console.log(infoTravel);
     const travel = await Travel.findOneAndUpdate(
       { _id: idTravel },
-      { $push: { travellers: idUser } },
+      { $push: { travellers: infoTravel } },
       { new: true, useFindAndModify: false, runValidators: true }
     )
       .populate({ path: "travellers", select: "email username" })
       .lean()
       .exec();
-
+    console.log(travel);
     const user = await User.findOneAndUpdate(
       { _id: idUser },
       { $push: { travels: idTravel } },
       { new: true, useFindAndModify: false, runValidators: true }
     );
+    console.log(user);
     return travel;
   });
   return travel;
@@ -90,7 +96,7 @@ const deleteUserToTravel = async (idTravel, idUser) => {
   const travel = await runTransaction(async () => {
     const travel = await Travel.findOneAndUpdate(
       { _id: idTravel },
-      { $pull: { travellers: idUser } },
+      { $pull: { travellers: { user: idUser } } },
       { new: true, useFindAndModify: false }
     )
       .populate({ path: "travellers", select: "email username" })

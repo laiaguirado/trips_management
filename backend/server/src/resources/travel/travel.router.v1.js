@@ -101,7 +101,7 @@ const deleteTravel = async (req, res) => {
 const addMeToTravel = async (req, res) => {
   const { idTravel } = req.params;
   const { _id } = req.userInfo;
-  const travel = await addIdUserToTravel(_id, idTravel);
+  const travel = await addIdUserToTravel(_id, idTravel, "admin");
   res.status(200).json(travel);
 };
 
@@ -109,21 +109,22 @@ const addUserToTravel = async (req, res) => {
   const { idTravel, email } = req.params;
   const user = await UserService.findByEmail(email);
   if (user) {
-    const travel = await addIdUserToTravel(user._id, idTravel);
+    const travel = await addIdUserToTravel(user._id, idTravel, "traveler");
     res.status(200).json(travel);
   } else {
     errMalformed("User doesn't exists");
   }
 };
 
-const addIdUserToTravel = async (idUser, idTravel) => {
-  const travel = await Travel.addUserToTravel(idTravel, idUser);
+const addIdUserToTravel = async (idUser, idTravel, type) => {
+  const travel = await Travel.addUserToTravel(idTravel, idUser, type);
   return travel;
 };
 
 const deleteMeToTravel = async (req, res) => {
   const { idTravel } = req.params;
   const { _id } = req.userInfo;
+
   const travel = await deleteUserToTravelById(idTravel, _id);
   if (travel) {
     res.status(200).json(travel);

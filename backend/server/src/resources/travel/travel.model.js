@@ -50,19 +50,30 @@ const travelSchema = new mongoose.Schema(
       required: [true, "{PATH} is required"],
     },
     travellers: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
-        validate: {
-          isAsync: true,
-          validator: async function (v) {
-            return await FKIntegrity(mongoose.model("user"), v).catch(
-              (err) => false
-            );
+      new mongoose.Schema({
+        type: {
+          type: String,
+          enum: {
+            values: ["admin", "traveler"],
+            message: "{VALUE} for {TYPE} is not suported",
           },
-          message: `User doesn't exist`,
+          default: "traveler",
+          required: [true, "{PATH} is required"],
         },
-      },
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "user",
+          validate: {
+            isAsync: true,
+            validator: async function (v) {
+              return await FKIntegrity(mongoose.model("user"), v).catch(
+                (err) => false
+              );
+            },
+            message: `User doesn't exist`,
+          },
+        },
+      }),
     ],
     scores: [
       {
