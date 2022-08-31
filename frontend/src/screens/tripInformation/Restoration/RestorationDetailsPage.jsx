@@ -65,6 +65,7 @@ function RestorationDetailsPage() {
     } else {
       setMessage(error);
     }
+    window.scrollTo(0, 0);
   };
 
   const returnEditing = () => {
