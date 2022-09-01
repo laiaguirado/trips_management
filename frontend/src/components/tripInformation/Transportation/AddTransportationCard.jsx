@@ -141,9 +141,7 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
                 value={currency}
                 onChange={(event) => setCurrency(event.target.value)}
               >
-                <option value="" disabled={true}>
-                  Select a currency
-                </option>
+                <option value="">Select a currency</option>
                 <option value="€">Euro €</option>
                 <option value="$">Dollar $</option>
                 <option value="£">Libra £</option>
@@ -237,9 +235,7 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
                 value={rating}
                 onChange={(event) => setRating(event.target.value)}
               >
-                <option value="" disabled={true}>
-                  Rating
-                </option>
+                <option value="">Rating</option>
                 <option value="5">
                   &#xf005;&#xf005;&#xf005;&#xf005;&#xf005;
                 </option>
