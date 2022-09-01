@@ -146,13 +146,20 @@ const deleteOne = async (req, res) => {
     res.status(200).json({ results: doc });
   }
 
+  const updateScore= async (req, res) => {
+    const data = req.body;
+    const { _id } = req.params;
+  
+    res.status(200).json(await Score.updateScore(_id, data));
+  };
+
 const router = express.Router();
 
 router.post("/travel/:_idTravel/accomodation/:compId",needsAuthToken, catchErrors(createAcom));
 router.post("/travel/:_idTravel/restoration/:compId", needsAuthToken, catchErrors(createRest));
 router.post("/travel/:_idTravel/transportation/:compId", needsAuthToken, catchErrors(createTransp));
 router.post("/travel/:_idTravel/plan/:compId", needsAuthToken, catchErrors(createPlan));
-
+router.put("/:_id", needsAuthToken, catchErrors(updateScore));
 router.get("/", catchErrors(getAll));
 router.delete("/:_id",needsAuthToken,catchErrors(deleteOne));
 router.get("/travel/:idTravel",needsAuthToken,catchErrors(findByTravel))

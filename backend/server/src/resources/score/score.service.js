@@ -31,6 +31,15 @@ await User.findOneAndUpdate({ scores: _id }, {
   return deleted;
 };
 
+const updateScore = async (_id, data) => {
+  const scoreUpdated = await Score.findOneAndUpdate({ _id }, data, { new: true }).lean().exec();
+
+  if (scoreUpdated === null) {
+    errMalformed(`Comment not found`);
+  }
+  return scoreUpdated;
+};
+
 const findByTravelId = async (idTravel) => {
   return await Score.find({idTravel: idTravel })
   .populate({ path: "idUser", select: "email username" })
@@ -42,4 +51,4 @@ const findByCompId = async (idComponent) => {
   return await Score.find({ idComponent }).exec();
 };
 
-module.exports = { createOne, findAll, deleteScore, findByTravelId, findByCompId };
+module.exports = { createOne, findAll, deleteScore, findByTravelId, findByCompId, updateScore };
