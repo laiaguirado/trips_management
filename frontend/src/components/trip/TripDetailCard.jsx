@@ -15,6 +15,9 @@ import {
   faTrashCan,
   faPlus,
   faXmark,
+  faUserCheck,
+  faUserLarge,
+  faUserCrown,
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -26,6 +29,7 @@ function TripDetailCard({
   onSetTrip: setTrip,
   onDeleteTraveler: deleteTraveler,
 }) {
+  const [userData, setUserData] = useState("");
   const [adding, setAdding] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const navigate = useNavigate();
@@ -78,6 +82,16 @@ function TripDetailCard({
       setMessage(error);
     }
   };
+
+  const getUserData = async () => {
+    const { success, result: userData, error } = await api.getUserData();
+    if (success) {
+      setUserData(userData);
+    } else {
+      setMessage(error);
+    }
+  };
+
   function deleteButton() {
     if (deleting) {
       return (
@@ -89,6 +103,21 @@ function TripDetailCard({
       );
     }
   }
+
+  function obtainAdminUser() {
+    let userAdmin;
+    let userTraveler;
+    trip.travellers.map((member) =>
+      member.type === "admin"
+        ? (userAdmin = member.user)
+        : (userTraveler = member.user)
+    );
+    return userAdmin;
+  }
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
     <>
@@ -127,22 +156,36 @@ function TripDetailCard({
               {Array.isArray(trip) !== true ? (
                 trip.travellers.map((member) => (
                   <div className="member trip-detail" key={member._id}>
-                    <p>
-                      {member.user.username} ( {member.user.email} ){" "}
-                      {member.type}
+                    <p className="username">
+                      {member.user.username + " (" + member.user.email + ")"}
                     </p>
                     {member.type === "admin" ? (
-                      <div> </div>
-                    ) : (
-                      <div
-                        onClick={() =>
-                          deleteTraveler(tripId, member.user.email)
-                        }
-                      >
+                      <div className="member-info">
                         <FontAwesomeIcon
-                          className="delete-icon"
-                          icon={faXmark}
+                          className="traveler-icon"
+                          icon={faUserCheck}
                         />
+                        <p className="member-type">{member.type}</p>
+                      </div>
+                    ) : (
+                      <div className="member-info">
+                        <FontAwesomeIcon
+                          className="traveler-icon"
+                          icon={faUserLarge}
+                        />
+                        <p className="member-type">{member.type}</p>
+                        <div
+                          className="delete-member"
+                          onClick={() =>
+                            deleteTraveler(tripId, member.user.email)
+                          }
+                        >
+                          {" "}
+                          <FontAwesomeIcon
+                            className="delete-icon"
+                            icon={faXmark}
+                          />{" "}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -203,17 +246,21 @@ function TripDetailCard({
           Restoration
         </div>
       </div>
-      <div>
-        <div
-          className="delete-trip"
-          onClick={() => {
-            setDeleting(true);
-          }}
-        >
-          <FontAwesomeIcon icon={faTrashCan} /> DELETE TRIP
+      {userData._id === obtainAdminUser()._id ? (
+        <div>
+          <div
+            className="delete-trip"
+            onClick={() => {
+              setDeleting(true);
+            }}
+          >
+            <FontAwesomeIcon icon={faTrashCan} /> DELETE TRIP
+          </div>
+          {deleteButton()}
         </div>
-        {deleteButton()}
-      </div>
+      ) : (
+        <div></div>
+      )}
       <div className="trip-comments">
         {/*<div>
             {Array.isArray(trip) !== true ? (

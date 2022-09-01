@@ -72,6 +72,40 @@
   text-align: left;
 }
 
+.trip-members {
+  display: flex;
+  flex-direction: column;
+}
+
+.travelers-list {
+  padding-left: 1.5rem;
+}
+
+.travelers-list .member {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem 0rem;
+}
+
+.travelers-list .member .username {
+  width: 15rem;
+  padding-right: 0.5rem;
+  display: flex;
+  justify-content: left;
+}
+.travelers-list .member .member-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.travelers-list .traveler-icon {
+  padding-right: 0.75rem;
+}
+
+.trip-details-page .delete-member {
+  padding: 0rem 0.5rem;
+}
+
 .trip-details-page .add-traveler {
   margin: 1rem auto;
   transition: all 0.2s ease-in-out;
