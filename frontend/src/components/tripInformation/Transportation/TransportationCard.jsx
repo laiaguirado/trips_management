@@ -3,52 +3,15 @@ import "./TransportationCard.css";
 import * as helper from "../../../helper";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faTruckPlane } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 function TransportationCard({ transportation, rating }) {
   document.body.style.overflow = "unset";
-  function getOriginDestination() {
-    const origin =
-      transportation.origin === null || transportation.origin === ""
-        ? "-"
-        : transportation.origin;
 
-    const destination =
-      transportation.destination === null || transportation.destination === ""
-        ? "-"
-        : transportation.destination;
-
-    return origin + " / " + destination;
-  }
-
-  function getDepartureArrival() {
-    if (transportation.arrival === null || transportation.arrival === "") {
-      let { date, hour } = helper.localDateTime(transportation.departure);
-      return date + " " + hour + "h - /";
-    }
-
-    if (transportation.departure === null || transportation.departure === "") {
-      let { date, hour } = helper.localDateTime(transportation.arrival);
-      return "/ - " + date + " " + hour + "h";
-    }
-
-    let { date: dateDeparture, hour: hourDeparture } = helper.localDateTime(
-      transportation.departure
-    );
-    let { date: dateArrival, hour: hourArrival } = helper.localDateTime(
-      transportation.arrival
-    );
-    return (
-      dateDeparture +
-      " " +
-      hourDeparture +
-      "h - " +
-      dateArrival +
-      " " +
-      hourArrival +
-      "h"
-    );
+  function getDepartureArrival(time) {
+    let { date, hour } = helper.localDateTime(time);
+    return date + " " + hour + "h";
   }
 
   return (
@@ -81,6 +44,33 @@ function TransportationCard({ transportation, rating }) {
           <FontAwesomeIcon icon={faStar} className="icon" />
         )}
       </div>
+
+      <div className="details-dates">
+        <div className="details-date-info">
+          <h3>Departure: </h3>
+          {transportation.origin && <div>{transportation.origin}</div>}
+          {transportation.departure && (
+            <div>{getDepartureArrival(transportation.departure)}</div>
+          )}
+        </div>
+        <div className="details-date-info">
+          <h3>Arrival: </h3>
+          {transportation.destination && (
+            <div>{transportation.destination}</div>
+          )}
+          {transportation.arrival && (
+            <div>{getDepartureArrival(transportation.arrival)}</div>
+          )}
+        </div>
+      </div>
+      <div className="details-icon">
+        <div className="dot"></div>
+        <div className="dotted-line"></div>
+        <FontAwesomeIcon className="icon" icon={faTruckPlane} size="2x" />
+        <div className="dotted-line"></div>
+        <div className="dot"></div>
+      </div>
+
       <div className="transportation-info">
         <div className="transportation-name transportation-detail">
           <h3>Name: </h3>
@@ -104,18 +94,6 @@ function TransportationCard({ transportation, rating }) {
                 ? transportation.priceWithCurrency
                 : ""}
             </div>
-          </div>
-        )}
-        {(transportation.origin || transportation.destination) && (
-          <div className="transportation-location transportation-detail">
-            <h3>Origin - Destination:</h3>
-            <div>{getOriginDestination()}</div>
-          </div>
-        )}
-        {(transportation.departure || transportation.arrival) && (
-          <div className="transportation-dates transportation-detail">
-            <h3>Departure - Arrival:</h3>
-            {getDepartureArrival()}
           </div>
         )}
         {transportation.web && (
