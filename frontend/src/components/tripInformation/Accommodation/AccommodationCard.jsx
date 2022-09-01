@@ -2,40 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./AccommodationCard.css";
 import * as helper from "../../../helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faBed,
+  faDog,
+  faWifi,
+  faPersonSwimming,
+} from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 function AccommodationCard({ accommodation, rating }) {
   document.body.style.overflow = "unset";
-  function getDates() {
-    if (accommodation.startDate === null) {
-      return "/ - " + helper.localDate(accommodation.endDate);
-    }
-
-    if (accommodation.endDate === null) {
-      return helper.localDate(accommodation.startDate) + " - /";
-    }
-
-    return (
-      helper.localDate(accommodation.startDate) +
-      " - " +
-      helper.localDate(accommodation.endDate)
-    );
-  }
-
-  function getHours() {
-    const checkIn =
-      accommodation.checkInHour === null || accommodation.checkInHour === ""
-        ? "-"
-        : accommodation.checkInHour + "h";
-
-    const checkOut =
-      accommodation.checkOutHour === null || accommodation.checkOut === ""
-        ? "-"
-        : accommodation.checkOutHour + "h";
-
-    return checkIn + " / " + checkOut;
-  }
 
   return (
     <div className="accommodation-card">
@@ -67,6 +44,37 @@ function AccommodationCard({ accommodation, rating }) {
           <FontAwesomeIcon icon={faStar} className="icon" />
         )}
       </div>
+      <div className="details-dates">
+        <div className="details-date-info">
+          {accommodation.startDate && (
+            <div>{helper.localDate(accommodation.startDate)}</div>
+          )}
+          {accommodation.checkInHour && (
+            <div>
+              <span>Check In: </span>
+              {accommodation.checkInHour + "h"}
+            </div>
+          )}
+        </div>
+        <div className="details-date-info">
+          {accommodation.endDate && (
+            <div>{helper.localDate(accommodation.endDate)}</div>
+          )}
+          {accommodation.checkOutHour && (
+            <div>
+              <span>Check Out: </span>
+              {accommodation.checkOutHour + "h"}
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="details-icon">
+        <div className="dot"></div>
+        <div className="dotted-line"></div>
+        <FontAwesomeIcon className="icon" icon={faBed} size="2x" />
+        <div className="dotted-line"></div>
+        <div className="dot"></div>
+      </div>
       <div className="accommodation-info">
         <div className="accommodation-name accommodation-detail">
           <h3>Name: </h3>
@@ -82,30 +90,6 @@ function AccommodationCard({ accommodation, rating }) {
           <h3>Location: </h3>
           <div>{accommodation.location}</div>
         </div>
-        {(accommodation.startDate || accommodation.endDate) && (
-          <div className="accommodation-dates accommodation-detail">
-            <h3>Dates:</h3>
-            {accommodation !== "" &&
-            (accommodation.startDate !== null ||
-              accommodation.endDate !== null) ? (
-              <div>{getDates()}</div>
-            ) : (
-              <p></p>
-            )}
-          </div>
-        )}
-        {(accommodation.checkInHour || accommodation.checkOutHour) && (
-          <div className="accommodation-checkHour accommodation-detail">
-            <h3>Check In Hour / Check Out Hour:</h3>
-            {accommodation !== "" &&
-            (accommodation.checkInHour !== "" ||
-              accommodation.checkOutHour !== "") ? (
-              <div>{getHours()}</div>
-            ) : (
-              <p></p>
-            )}
-          </div>
-        )}
         {accommodation.price && (
           <div className="accommodation-price accommodation-detail">
             <h3>Price: </h3>
@@ -116,43 +100,21 @@ function AccommodationCard({ accommodation, rating }) {
             </div>
           </div>
         )}
-        {accommodation.petFriendly !== null && (
-          <div className="accommodation-petFriendly accommodation-detail">
-            <h3>Pet friendly: </h3>
-            <div>
-              {accommodation.petFriendly !== null &&
-              accommodation.petFriendly !== undefined
-                ? accommodation.petFriendly === true
-                  ? "Yes"
-                  : "No"
-                : ""}
-            </div>
-          </div>
-        )}
-        {accommodation.internet !== null && (
-          <div className="accommodation-internet accommodation-detail">
-            <h3>Internet: </h3>
-            <div>
-              {accommodation.internet !== null &&
-              accommodation.internet !== undefined
-                ? accommodation.internet === true
-                  ? "Yes"
-                  : "No"
-                : ""}
-            </div>
-          </div>
-        )}
-        {accommodation.swimmingPool !== null && (
-          <div className="accommodation-swimmingPool accommodation-detail">
-            <h3>Swimming pool: </h3>
-            <div>
-              {accommodation.swimmingPool !== null &&
-              accommodation.swimmingPool !== undefined
-                ? accommodation.swimmingPool === true
-                  ? "Yes"
-                  : "No"
-                : ""}
-            </div>
+
+        {(accommodation.petFriendly ||
+          accommodation.internet ||
+          accommodation.swimmingPool) && (
+          <div className="accommodation-booleans accommodation-detail">
+            <h3>Details: </h3>
+            {accommodation.petFriendly && (
+              <FontAwesomeIcon icon={faDog} className="icon" />
+            )}
+            {accommodation.internet && (
+              <FontAwesomeIcon icon={faWifi} className="icon" />
+            )}
+            {accommodation.swimmingPool && (
+              <FontAwesomeIcon icon={faPersonSwimming} className="icon" />
+            )}
           </div>
         )}
         {accommodation.breakfast !== null && (
