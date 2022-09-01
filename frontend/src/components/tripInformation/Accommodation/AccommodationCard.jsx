@@ -8,11 +8,17 @@ import {
   faDog,
   faWifi,
   faPersonSwimming,
+  faGlobe,
+  faPhone,
+  faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 function AccommodationCard({ accommodation, rating }) {
   document.body.style.overflow = "unset";
+
+  //todo tags contact
+  //todo false booleans
 
   return (
     <div className="accommodation-card">
@@ -75,110 +81,108 @@ function AccommodationCard({ accommodation, rating }) {
         <div className="dotted-line"></div>
         <div className="dot"></div>
       </div>
-      <div className="accommodation-info">
-        <div className="accommodation-name accommodation-detail">
-          <h3>Name: </h3>
-          <div>{accommodation.name}</div>
-        </div>
-        {accommodation.type && (
-          <div className="accommodation-type accommodation-detail">
-            <h3>Accommodation type: </h3>
-            <div>{accommodation.type}</div>
-          </div>
-        )}
-        <div className="accommodation-location accommodation-detail">
-          <h3>Location: </h3>
-          <div>{accommodation.location}</div>
-        </div>
-        {accommodation.price && (
-          <div className="accommodation-price accommodation-detail">
-            <h3>Price: </h3>
-            <div>
-              {accommodation.priceWithCurrency !== ""
-                ? accommodation.priceWithCurrency
-                : ""}
-            </div>
-          </div>
-        )}
 
-        {(accommodation.petFriendly ||
-          accommodation.internet ||
-          accommodation.swimmingPool) && (
-          <div className="accommodation-booleans accommodation-detail">
-            <h3>Details: </h3>
-            {accommodation.petFriendly && (
-              <FontAwesomeIcon icon={faDog} className="icon" />
-            )}
-            {accommodation.internet && (
-              <FontAwesomeIcon icon={faWifi} className="icon" />
-            )}
-            {accommodation.swimmingPool && (
-              <FontAwesomeIcon icon={faPersonSwimming} className="icon" />
-            )}
+      <div className="details-flex">
+        <div className="accommodation-info">
+          <div className="accommodation-name accommodation-detail">
+            <h3>Name: </h3>
+            <div>{accommodation.name}</div>
           </div>
-        )}
-        {accommodation.breakfast !== null && (
-          <div className="accommodation-breakfast accommodation-detail">
-            <h3>Breakfast included: </h3>
-            <div>
-              {accommodation.breakfast !== null &&
-              accommodation.breakfast !== undefined
-                ? accommodation.breakfast === true
-                  ? "Yes"
-                  : "No"
-                : ""}
+          {accommodation.type && (
+            <div className="accommodation-type accommodation-detail">
+              <h3>Accommodation type: </h3>
+              <div>{accommodation.type}</div>
             </div>
+          )}
+          <div className="accommodation-location accommodation-detail">
+            <h3>Location: </h3>
+            <div>{accommodation.location}</div>
           </div>
-        )}
-        {accommodation.board && (
-          <div className="accommodation-board accommodation-detail">
-            <h3>Board: </h3>
-            <div>{accommodation.board}</div>
-          </div>
-        )}
-        {accommodation.web && (
-          <div className="accommodation-web accommodation-detail">
-            <h3>Web page: </h3>
-            <div>
-              {accommodation !== "" ? (
-                !accommodation.web.startsWith("https://") &&
-                !accommodation.web.startsWith("http://") &&
-                accommodation.web !== null &&
-                accommodation.web !== "" ? (
-                  <a href={"https://" + accommodation.web} target="_blank">
-                    {"https://" + accommodation.web}
-                  </a>
-                ) : (
-                  <a href={accommodation.web} target="_blank">
-                    {accommodation.web}
-                  </a>
-                )
-              ) : (
-                <p></p>
+          {accommodation.price && (
+            <div className="accommodation-price accommodation-detail">
+              <h3>Price: </h3>
+              <div>
+                {accommodation.priceWithCurrency !== ""
+                  ? accommodation.priceWithCurrency
+                  : ""}
+              </div>
+            </div>
+          )}
+
+          {(accommodation.petFriendly ||
+            accommodation.internet ||
+            accommodation.swimmingPool) && (
+            <div className="accommodation-booleans accommodation-detail">
+              <h3>Details: </h3>
+              {accommodation.petFriendly && (
+                <FontAwesomeIcon icon={faDog} className="icon" />
+              )}
+              {accommodation.internet && (
+                <FontAwesomeIcon icon={faWifi} className="icon" />
+              )}
+              {accommodation.swimmingPool && (
+                <FontAwesomeIcon icon={faPersonSwimming} className="icon" />
               )}
             </div>
-          </div>
-        )}
-        {accommodation.phone && (
-          <div className="accommodation-phone accommodation-detail">
-            <h3>Phone number: </h3>
-            <div>{accommodation.phone}</div>
-          </div>
-        )}
-        {accommodation.email && (
-          <div className="accommodation-email accommodation-detail">
-            <h3>Email: </h3>
-            <div>
-              <a href={"mailto:" + accommodation.email}>
-                {accommodation.email}
-              </a>
+          )}
+          {accommodation.breakfast !== null && (
+            <div className="accommodation-breakfast accommodation-detail">
+              <h3>Breakfast included: </h3>
+              <div>
+                {accommodation.breakfast !== null &&
+                accommodation.breakfast !== undefined
+                  ? accommodation.breakfast === true
+                    ? "Yes"
+                    : "No"
+                  : ""}
+              </div>
             </div>
-          </div>
-        )}
-        {accommodation.notation && (
-          <div className="accommodation-notation accommodation-detail">
-            <h3>Notes: </h3>
-            <div className="notation-text">{accommodation.notation}</div>
+          )}
+          {accommodation.board && (
+            <div className="accommodation-board accommodation-detail">
+              <h3>Board: </h3>
+              <div>{accommodation.board}</div>
+            </div>
+          )}
+          {accommodation.notation && (
+            <div className="accommodation-notation accommodation-detail">
+              <h3>Notes: </h3>
+              <div className="notation-text">{accommodation.notation}</div>
+            </div>
+          )}
+        </div>
+        {(accommodation.web || accommodation.phone || accommodation.email) && (
+          <div className="accommodation-contact">
+            {accommodation.web && (
+              <div>
+                {accommodation !== "" ? (
+                  !accommodation.web.startsWith("https://") &&
+                  !accommodation.web.startsWith("http://") &&
+                  accommodation.web !== null &&
+                  accommodation.web !== "" ? (
+                    <a href={"https://" + accommodation.web} target="_blank">
+                      <FontAwesomeIcon icon={faGlobe} className="icon" />
+                    </a>
+                  ) : (
+                    <a href={accommodation.web} target="_blank">
+                      <FontAwesomeIcon icon={faGlobe} className="icon" />
+                    </a>
+                  )
+                ) : (
+                  <p></p>
+                )}
+              </div>
+            )}
+            {accommodation.phone && (
+              <FontAwesomeIcon icon={faPhone} className="icon" />
+            )}
+            {accommodation.email && (
+              <div>
+                <a href={"mailto:" + accommodation.email}>
+                  <FontAwesomeIcon icon={faEnvelope} className="icon" />
+                </a>
+              </div>
+            )}
           </div>
         )}
       </div>
