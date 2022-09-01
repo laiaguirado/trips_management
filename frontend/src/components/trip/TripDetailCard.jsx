@@ -29,6 +29,7 @@ function TripDetailCard({
   const [adding, setAdding] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const navigate = useNavigate();
+  console.log(trip);
 
   /* useEffect(() => {
     window.scrollTo(0, 0);
@@ -141,11 +142,19 @@ function TripDetailCard({
                 trip.travellers.map((member) => (
                   <div className="member trip-detail" key={member._id}>
                     <p>
-                      {member.username} ( {member.email} )
+                      {member.user.username} ( {member.user.email} ){" "}
+                      {member.type}
                     </p>
-                    <div onClick={() => deleteTraveler(tripId, member.email)}>
-                      <FontAwesomeIcon className="delete-icon" icon={faXmark} />
-                    </div>
+                    {member.type === "admin" ? (
+                      <div> </div>
+                    ) : (
+                      <div onClick={() => deleteTraveler(tripId, member.email)}>
+                        <FontAwesomeIcon
+                          className="delete-icon"
+                          icon={faXmark}
+                        />
+                      </div>
+                    )}
                   </div>
                 ))
               ) : (
