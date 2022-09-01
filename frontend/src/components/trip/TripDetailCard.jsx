@@ -29,24 +29,9 @@ function TripDetailCard({
   const [adding, setAdding] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const navigate = useNavigate();
-  console.log(trip);
-
-  /* useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []); */
 
   document.body.style.overflow = "unset";
 
-  function getDateValue(value, placeholder) {
-    if (value === "" || value === undefined) {
-      return placeholder;
-    }
-    const date = new Date(value);
-    const day = ("0" + date.getDate()).slice(-2);
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const year = ("0" + date.getFullYear()).slice(-4);
-    return day + "/" + month + "/" + year;
-  }
   const addTraveler = async (tripId, email) => {
     const {
       success,
@@ -54,6 +39,7 @@ function TripDetailCard({
       error,
     } = await api.addTraveler(tripId, email);
     if (success) {
+      console.log(added);
       setTrip(added);
       setAdding(false);
       setMessage(null);
@@ -148,7 +134,11 @@ function TripDetailCard({
                     {member.type === "admin" ? (
                       <div> </div>
                     ) : (
-                      <div onClick={() => deleteTraveler(tripId, member.email)}>
+                      <div
+                        onClick={() =>
+                          deleteTraveler(tripId, member.user.email)
+                        }
+                      >
                         <FontAwesomeIcon
                           className="delete-icon"
                           icon={faXmark}

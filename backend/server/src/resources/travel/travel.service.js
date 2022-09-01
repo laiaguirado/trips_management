@@ -77,7 +77,9 @@ const addUserToTravel = async (idTravel, idUser, type) => {
       { $push: { travellers: infoTravel } },
       { new: true, useFindAndModify: false, runValidators: true }
     )
-      .populate({ path: "travellers", select: "email username" })
+      .populate({ path: "travellers", select: "-_id" })
+      .populate({ path: "travellers.user", select: "email username" })
+      .populate({ path: "creator", select: "email -_id" })
       .lean()
       .exec();
     console.log(travel);
@@ -99,7 +101,9 @@ const deleteUserToTravel = async (idTravel, idUser) => {
       { $pull: { travellers: { user: idUser } } },
       { new: true, useFindAndModify: false }
     )
-      .populate({ path: "travellers", select: "email username" })
+      .populate({ path: "travellers", select: "-_id" })
+      .populate({ path: "travellers.user", select: "email username" })
+      .populate({ path: "creator", select: "email -_id" })
       .lean()
       .exec();
 
