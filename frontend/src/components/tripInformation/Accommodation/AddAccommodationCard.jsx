@@ -20,7 +20,9 @@ import {
   faCircleHalfStroke,
   faRankingStar,
 } from "@fortawesome/free-solid-svg-icons";
-
+//todo breakfast
+//todo board
+//todo favicon color
 function AddAccommodationCard({ onAdd, message, adding, tripId }) {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
