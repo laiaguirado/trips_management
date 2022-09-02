@@ -26,19 +26,8 @@ const deleteAccom = async (_id) => {
     $pull: { accommodations: { $in: _id }},
 }, {new:true});
 
-const comments = await Accommodation.findOne({_id}).select('comments');
-const comments1 = comments['comments'];
-for (comment of comments1){
-  console.log(comment);
-  await Comment.findByIdAndDelete({_id:comment})
-}
-
-const scores = await Accommodation.findOne({_id}).select('scores');
-const scores1 = scores['comments'];
-for (comment of scores1){
-  console.log(comment);
-  await Score.findByIdAndDelete({_id:comment})
-}
+await Comment.deleteMany({idComponent:_id}).exec();
+await Score.deleteMany({idComponent:_id}).exec();
 
   const deleted = await Accommodation.findByIdAndDelete({ _id }).lean().exec();
   if (deleted === null) {
