@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Transportation = require("./transportation.model");
 const Travel = require("../../travel/travel.model");
 const Comment = require("../../comments/comments.model");
@@ -28,17 +29,53 @@ const getAllTransportationByTravel = async (idTravel) => {
     .exec();
 };
 
-const getTransportationById = async (idTransportation) => {
+const getTransportationById = async (idTransportation, idUser) => {
   const transport = await Transportation.findOne({ _id: idTransportation })
     .select({ resourceType: 0 })
     .populate({ path: "idUser", select: "email id" })
     .populate({ path: "idTravel", select: "name" })
+    .populate({
+      path: "scores",
+      match: { idUser: { $eq: mongoose.Types.ObjectId(idUser) } },
+      select: "score -_id",
+    })
     .lean({ getters: true, virtuals: true })
     .exec();
 
   if (transport === null) {
     errMalformed(`Transportation not found`);
   }
+
+  const total = await Transportation.aggregate(
+    [
+      {
+        $lookup: {
+          from: "scores",
+          localField: "scores",
+          foreignField: "_id",
+          as: "resultingArray",
+        },
+      },
+      { $unwind: "$resultingArray" },
+      {
+        $group: {
+          _id: "$_id",
+          average: { $avg: "$resultingArray.score" },
+          points: { $sum: "$resultingArray.score" },
+          votes: { $sum: 1 },
+        },
+      },
+      {
+        $match: { _id: { $eq: mongoose.Types.ObjectId(idTransportation) } },
+      },
+    ],
+    function (err, result) {
+      //console.log(result);
+      // console.log(err);
+    }
+  );
+  transport.totalScore = total;
+
   return transport;
 };
 
@@ -56,18 +93,18 @@ const getOne = async (_id) => {
 };
 
 const deleteTransportation = async (_id) => {
-  const comments = await Transportation.findOne({_id}).select('comments');
-  const comments1 = comments['comments'];
-  for (comment of comments1){
+  const comments = await Transportation.findOne({ _id }).select("comments");
+  const comments1 = comments["comments"];
+  for (comment of comments1) {
     console.log(comment);
-    await Comment.findByIdAndDelete({_id:comment})
-}
-const scores = await Transportation.findOne({_id}).select('scores');
-const scores1 = scores['comments'];
-for (comment of scores1){
-  console.log(comment);
-  await Score.findByIdAndDelete({_id:comment})
-}
+    await Comment.findByIdAndDelete({ _id: comment });
+  }
+  const scores = await Transportation.findOne({ _id }).select("scores");
+  const scores1 = scores["comments"];
+  for (comment of scores1) {
+    console.log(comment);
+    await Score.findByIdAndDelete({ _id: comment });
+  }
   const transport = await runTransaction(async () => {
     const deleted = await Transportation.findByIdAndDelete({ _id })
       .lean()
@@ -110,5 +147,5 @@ module.exports = {
   deleteTransportation,
   updateTransportation,
   getOne,
-  findOneById
+  findOneById,
 };

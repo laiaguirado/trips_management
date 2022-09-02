@@ -1,6 +1,7 @@
 const Plans = require("./plans.model");
 const Travel = require("../../travel/travel.model");
 const Score = require("../../score/score.model");
+const mongoose = require("mongoose");
 
 const Comment = require("../../comments/comments.model");
 const { runTransaction } = require("../../../helper");
@@ -32,17 +33,54 @@ const getAllPlansByTravel = async (idTravel) => {
     .exec();
 };
 
-const getPlanById = async (idPlan) => {
+const getPlanById = async (idPlan, idUser) => {
   const plan = await Plans.findOne({ _id: idPlan })
     .select({ resourceType: 0 })
     .populate({ path: "idUser", select: "email -_id" })
+    .populate({
+      path: "scores",
+      match: { idUser: { $eq:  mongoose.Types.ObjectId(idUser) } },
+      select: "score -_id"
+    })
     .lean({ getters: true, virtuals: true })
     .exec();
+
   if (plan === null) {
     errMalformed(`Plan not found`);
   }
+
+  const total = await Plans.aggregate(
+    [ 
+      {
+        $lookup: {
+          from: "scores",
+          localField: "scores",
+          foreignField: "_id",
+          as: "resultingArray",
+        },
+      },
+      { $unwind: "$resultingArray" },
+      {
+        $group: {
+          _id: "$_id",
+          average: { $avg: "$resultingArray.score" },
+          points: { $sum: "$resultingArray.score" },
+          votes: { $sum: 1 },
+        },
+      },
+      {
+        $match: { _id: { $eq: mongoose.Types.ObjectId(idPlan)  }}
+      }      
+    ],
+    function (err, result) {
+      //console.log(result);
+      // console.log(err);
+    }
+  );
+  plan.totalScore = total;
+
   return plan;
-};
+};;
 
 const getOne = async (_id) => {
   const plan = await Plans.findOne({ _id });

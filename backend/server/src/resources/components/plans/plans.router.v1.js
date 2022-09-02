@@ -34,8 +34,8 @@ const getAllPlansByTravel = async (req, res) => {
 
 const getPlanById = async (req, res) => {
   const { idPlan } = req.params;
-
-  res.status(200).json(await Plans.getPlanById(idPlan));
+  const { _id: idUser } = req.userInfo;
+  res.status(200).json(await Plans.getPlanById(idPlan, idUser));
 };
 
 const deletePlan = async (req, res) => {
