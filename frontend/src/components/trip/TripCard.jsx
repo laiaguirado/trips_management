@@ -5,14 +5,13 @@ function TripCard({ trip, onClick }) {
   return (
     <div className="trip-card" onClick={onClick}>
       <div className="gradient">
-        {trip.image !== undefined ? (
+        {trip.image.name ? (
           <img
             className="image"
             src={"http://localhost:8080/upload" + trip.image.name}
-            alt="trip-image"
-          />
+          ></img>
         ) : (
-          <p></p>
+          <img className="image" src={trip.image.url}></img>
         )}
       </div>
       <h3 className="title">{trip.name}</h3>

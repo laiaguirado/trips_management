@@ -204,10 +204,14 @@ function TripDetailCard({
             </div>
           </div>
         </div>
-        <img
-          className="trip-image"
-          src={"http://localhost:8080/upload" + trip.image.name}
-        ></img>
+        {trip.image.name ? (
+          <img
+            className="trip-image"
+            src={"http://localhost:8080/upload" + trip.image.name}
+          ></img>
+        ) : (
+          <img className="trip-image" src={trip.image.url}></img>
+        )}
       </div>
       <div className="trip-details-info">
         <div

@@ -66,6 +66,7 @@ function MainPage() {
 
   useEffect(() => {
     loadTripList();
+    window.scrollTo(0, 0);
   }, []);
 
   if (tripList === null) {
