@@ -51,7 +51,6 @@ const authApiCall = (method, path, body, isMultipartForm) => {
 };
 
 export const authenticated = () => authApiCall("GET", `/user/authenticated`);
-
 export const getUserData = () => authApiCall("GET", `/user/me`);
 
 export const getTripList = () => authApiCall("GET", `/user/me/travel`);
