@@ -17,7 +17,6 @@ import {
   faXmark,
   faUserCheck,
   faUserLarge,
-  faUserCrown,
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
 
