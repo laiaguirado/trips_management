@@ -9,6 +9,7 @@ const { needsAuthToken } = require("../../users/auth/auth.middleware");
 const Plans = require("./plans.services");
 const RESOURCETYPE = "Plans";
 
+
 const test = async (req, res) => {
   const { email, _id, username } = req.userInfo;
   res.status(200).json({ api: "plans", ok: true, email, id: _id, username });
@@ -28,14 +29,16 @@ const createPlan = async (req, res) => {
 
 const getAllPlansByTravel = async (req, res) => {
   const { idTravel } = req.paramsParentRouter;
+  const include = req.query._include;
 
-  res.status(200).json(await Plans.getAllPlansByTravel(idTravel));
+  res.status(200).json(await Plans.getAllPlansByTravel(idTravel, include));
 };
 
 const getPlanById = async (req, res) => {
   const { idPlan } = req.params;
   const { _id: idUser } = req.userInfo;
-  res.status(200).json(await Plans.getPlanById(idPlan, idUser));
+  const include = req.query._include;
+  res.status(200).json(await Plans.getPlanById(idPlan, idUser, include));
 };
 
 const deletePlan = async (req, res) => {
