@@ -16,6 +16,7 @@ function AddTripCard({ onAdd, message, adding }) {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [image, setImage] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -27,6 +28,7 @@ function AddTripCard({ onAdd, message, adding }) {
     formData.append("description", description);
     formData.append("location", location);
     formData.append("fileImage", image);
+    formData.append("image", imageUrl);
     formData.append("startDate", startDate);
     formData.append("endDate", endDate);
 
@@ -128,19 +130,37 @@ function AddTripCard({ onAdd, message, adding }) {
               />
             </div>
           </label>
-          <label>
-            <div className="form-data">
-              <FontAwesomeIcon icon={faImage} className="icon" />
-              <input
-                className="input upload"
-                required
-                type="file"
-                onInput={(event) => {
-                  setImage(event.target.files[0]);
-                }}
-              />
-            </div>
-          </label>
+          <div className="add-image">
+            <label>
+              <div className="form-data">
+                <FontAwesomeIcon icon={faImage} className="icon" />
+                <input
+                  className="input imageUrl"
+                  required={image ? false : true}
+                  disabled={image ? true : false}
+                  placeholder="Copy an image url"
+                  type="url"
+                  onInput={(event) => {
+                    setImageUrl(event.target.value);
+                  }}
+                />
+              </div>
+            </label>
+            <label>
+              <div className="form-data">
+                <input
+                  className="input upload"
+                  required={imageUrl ? false : true}
+                  disabled={imageUrl ? true : false}
+                  placeholder="Select a file"
+                  type="file"
+                  onInput={(event) => {
+                    setImage(event.target.files[0]);
+                  }}
+                />
+              </div>
+            </label>
+          </div>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faNoteSticky} className="icon" />

@@ -4,13 +4,18 @@
 .main-page .trips {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: left;
   gap: 1rem;
   margin: 7vw 2rem;
   padding: 1rem 0;
   height: auto;
   max-width: 100vw;
   min-width: 463px;
+}
+
+.main-page .trips .new-trip,
+.main-page .trips .trip-card {
+  margin: 1rem;
 }
 
 @media (max-width: 525px) {
@@ -27,6 +32,8 @@
   height: 12vw;
   min-width: 67px;
   min-height: 67px;
+  border-radius: 0.5rem;
+  border: 2px solid black;
   display: flex;
   transition: all 0.2s ease-in-out;
 }
