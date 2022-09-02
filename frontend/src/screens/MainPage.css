@@ -4,10 +4,9 @@
 .main-page .trips {
   display: flex;
   flex-flow: row wrap;
-  justify-content: left;
   gap: 1rem;
-  margin: 7vw 2rem;
-  padding: 1rem 0;
+  margin: 7vw 5rem;
+  padding: 3vw 1rem;
   height: auto;
   max-width: 100vw;
   min-width: 463px;
