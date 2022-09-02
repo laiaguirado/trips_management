@@ -26,11 +26,56 @@ const findOneById = async (id) => {
 };
 
 const getAllPlansByTravel = async (idTravel) => {
-  return await Plans.find({ idTravel })
+  const plans = await Plans.find({ idTravel })
     .select({ resourceType: 0 })
     .populate({ path: "idUser", select: "email -_id" })
     .lean({ getters: true, virtuals: true })
     .exec();
+
+  if (plans) {
+    const totales = await Plans.aggregate(
+      [
+        {
+          $lookup: {
+            from: "scores",
+            localField: "scores",
+            foreignField: "_id",
+            as: "resultingArray",
+          },
+        },
+        { $unwind: "$resultingArray" },
+        {
+          $group: {
+            _id: "$_id",
+            average: { $avg: "$resultingArray.score" },
+            points: { $sum: "$resultingArray.score" },
+            votes: { $sum: 1 },
+          },
+        },
+      ],
+      function (err, result) {
+        // console.log(result);
+        // console.log(err);
+      }
+    );
+
+    const completPlans = plans.map((plan) => {
+      return {
+        ...plan,
+        totalScore: {
+          ...totales.find((total) =>
+            mongoose.Types.ObjectId(total._id).equals(
+              mongoose.Types.ObjectId(plan._id)
+            )
+          ),
+        },
+      };
+    });
+    return completPlans;
+  } else {
+    return plans;
+  }
+  
 };
 
 const getPlanById = async (idPlan, idUser) => {
