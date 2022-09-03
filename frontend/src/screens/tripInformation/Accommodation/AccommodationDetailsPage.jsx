@@ -51,7 +51,7 @@ function AccommodationDetailsPage() {
       setMessage(error);
     }
   };
-  //todo scroll after edit
+
   const onEdit = async (
     accommodationId,
     accommodationData,

@@ -51,7 +51,7 @@ function EditAccommodationCard({
     }
     setType(value);
   };
-  //todo edit dates inputs
+
   const update = (e) => {
     e.preventDefault();
     onEdit(

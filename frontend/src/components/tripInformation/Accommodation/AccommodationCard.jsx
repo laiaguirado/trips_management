@@ -11,6 +11,7 @@ import {
   faGlobe,
   faPhone,
   faEnvelope,
+  faMugSaucer,
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
@@ -50,6 +51,7 @@ function AccommodationCard({ accommodation, rating }) {
           <FontAwesomeIcon icon={faStar} className="icon" />
         )}
       </div>
+
       <div className="details-dates">
         <div className="details-date-info">
           {accommodation.startDate && (
@@ -111,7 +113,8 @@ function AccommodationCard({ accommodation, rating }) {
 
           {(accommodation.petFriendly ||
             accommodation.internet ||
-            accommodation.swimmingPool) && (
+            accommodation.swimmingPool ||
+            accommodation.breakfast) && (
             <div className="accommodation-booleans accommodation-detail">
               <h3>Details: </h3>
               {accommodation.petFriendly && (
@@ -123,19 +126,9 @@ function AccommodationCard({ accommodation, rating }) {
               {accommodation.swimmingPool && (
                 <FontAwesomeIcon icon={faPersonSwimming} className="icon" />
               )}
-            </div>
-          )}
-          {accommodation.breakfast !== null && (
-            <div className="accommodation-breakfast accommodation-detail">
-              <h3>Breakfast included: </h3>
-              <div>
-                {accommodation.breakfast !== null &&
-                accommodation.breakfast !== undefined
-                  ? accommodation.breakfast === true
-                    ? "Yes"
-                    : "No"
-                  : ""}
-              </div>
+              {accommodation.breakfast && (
+                <FontAwesomeIcon icon={faMugSaucer} className="icon" />
+              )}
             </div>
           )}
           {accommodation.board && (

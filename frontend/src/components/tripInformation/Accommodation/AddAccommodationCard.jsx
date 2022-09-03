@@ -19,9 +19,9 @@ import {
   faHotel,
   faCircleHalfStroke,
   faRankingStar,
+  faMugSaucer,
 } from "@fortawesome/free-solid-svg-icons";
-//todo breakfast
-//todo board
+
 //todo favicon color
 function AddAccommodationCard({ onAdd, message, adding, tripId }) {
   const [name, setName] = useState("");
@@ -49,6 +49,8 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
     false,
     false,
   ]);
+  const [breakfastChecked, setBreakfastChecked] = useState([false, false]);
+  const [boardChecked, setBoardChecked] = useState([false, false]);
 
   const add = (e) => {
     e.preventDefault();
@@ -162,6 +164,58 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
       } else {
         setSwimmingPool(false);
         setSwimmingPoolChecked([false, true]);
+        e.target.checked = true;
+      }
+    }
+  }
+
+  function changeBreakfast(e, option) {
+    if (option) {
+      const otherValue = breakfastChecked[1];
+      if (breakfastChecked[0]) {
+        setBreakfast(null);
+        setBreakfastChecked([false, otherValue]);
+        e.target.checked = false;
+      } else {
+        setBreakfast(true);
+        setBreakfastChecked([true, false]);
+        e.target.checked = true;
+      }
+    } else {
+      const otherValue = breakfastChecked[0];
+      if (breakfastChecked[1]) {
+        setBreakfast(null);
+        setBreakfastChecked([otherValue, false]);
+        e.target.checked = false;
+      } else {
+        setBreakfast(false);
+        setBreakfastChecked([false, true]);
+        e.target.checked = true;
+      }
+    }
+  }
+
+  function changeBoard(e, option) {
+    if (option) {
+      const otherValue = boardChecked[1];
+      if (boardChecked[0]) {
+        setBoard(null);
+        setBoardChecked([false, otherValue]);
+        e.target.checked = false;
+      } else {
+        setBoard("Full");
+        setBoardChecked([true, false]);
+        e.target.checked = true;
+      }
+    } else {
+      const otherValue = boardChecked[0];
+      if (boardChecked[1]) {
+        setBoard(null);
+        setBoardChecked([otherValue, false]);
+        e.target.checked = false;
+      } else {
+        setBoard("Half");
+        setBoardChecked([false, true]);
         e.target.checked = true;
       }
     }
@@ -398,21 +452,25 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
             <>
               <label>
                 <div className="form-data">
-                  <FontAwesomeIcon icon={faUtensils} className="icon" />
+                  <FontAwesomeIcon icon={faMugSaucer} className="icon" />
                   <p className="checkbox-placeholder">Is breakfast included?</p>
                   <div>
                     <input
                       name="breakfastIncluded"
                       type="radio"
                       value={true}
-                      onChange={() => setBreakfast(true)}
+                      onClick={(e) => {
+                        changeBreakfast(e, true);
+                      }}
                     />
                     <label className="checkbox-option">Yes</label>
                     <input
                       name="breakfastIncluded"
                       type="radio"
                       value={false}
-                      onChange={() => setBreakfast(false)}
+                      onClick={(e) => {
+                        changeBreakfast(e, false);
+                      }}
                     />
                     <label className="checkbox-option">No</label>
                   </div>
@@ -420,21 +478,25 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
               </label>
               <label>
                 <div className="form-data">
-                  <FontAwesomeIcon icon={faCircleHalfStroke} className="icon" />
+                  <FontAwesomeIcon icon={faUtensils} className="icon" />
                   <p className="checkbox-placeholder">Board</p>
                   <div>
                     <input
                       name="board"
                       type="radio"
                       value={"Full"}
-                      onChange={() => setBoard("Full")}
+                      onClick={(e) => {
+                        changeBoard(e, true);
+                      }}
                     />
                     <label className="checkbox-option">Full</label>
                     <input
                       name="board"
                       type="radio"
                       value={"Half"}
-                      onChange={() => setBoard("Half")}
+                      onClick={(e) => {
+                        changeBoard(e, false);
+                      }}
                     />
                     <label className="checkbox-option">Half</label>
                   </div>
