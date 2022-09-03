@@ -7,8 +7,13 @@ import {
   faStar,
   faTruckPlane,
   faGlobe,
-  faPhone,
-  faEnvelope,
+  faPlane,
+  faShip,
+  faCar,
+  faTrainSubway,
+  faTram,
+  faBus,
+  faTrain,
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
@@ -20,6 +25,30 @@ function TransportationCard({ transportation, rating }) {
     return date + " " + hour + "h";
   }
 
+  function getTransportationTypeIcon() {
+    switch (transportation.type) {
+      case "airplane":
+        return <FontAwesomeIcon className="icon" icon={faPlane} size="2x" />;
+      case "ship":
+        return <FontAwesomeIcon className="icon" icon={faShip} size="2x" />;
+      case "car":
+        return <FontAwesomeIcon className="icon" icon={faCar} size="2x" />;
+      case "subway":
+        return (
+          <FontAwesomeIcon className="icon" icon={faTrainSubway} size="2x" />
+        );
+      case "tram":
+        return <FontAwesomeIcon className="icon" icon={faTram} size="2x" />;
+      case "bus":
+        return <FontAwesomeIcon className="icon" icon={faBus} size="2x" />;
+      case "train":
+        return <FontAwesomeIcon className="icon" icon={faTrain} size="2x" />;
+      default:
+        return (
+          <FontAwesomeIcon className="icon" icon={faTruckPlane} size="2x" />
+        );
+    }
+  }
   return (
     <div className="transportation-card">
       <h1 className="details-title">TRANSPORTATION</h1>
@@ -72,7 +101,7 @@ function TransportationCard({ transportation, rating }) {
       <div className="details-icon">
         <div className="dot"></div>
         <div className="dotted-line"></div>
-        <FontAwesomeIcon className="icon" icon={faTruckPlane} size="2x" />
+        {getTransportationTypeIcon()}
         <div className="dotted-line"></div>
         <div className="dot"></div>
       </div>
