@@ -41,3 +41,7 @@
   color: white;
   cursor: pointer;
 }
+
+.plan-card span {
+  font-weight: 100;
+}

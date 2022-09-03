@@ -32,7 +32,9 @@ function PlanCard({ plan, modifyPlanList, rating }) {
     ) {
       return (
         <div>
-          <h4>Adults: {plan.priceAdultWithCurrency}</h4>
+          <h4>
+            Adults: <span>{plan.priceAdultWithCurrency}</span>
+          </h4>
         </div>
       );
     }
@@ -43,15 +45,21 @@ function PlanCard({ plan, modifyPlanList, rating }) {
     ) {
       return (
         <div>
-          <h4>Children: {plan.priceChildrenWithCurrency}</h4>
+          <h4>
+            Children: <span>{plan.priceChildrenWithCurrency}</span>
+          </h4>
         </div>
       );
     }
 
     return (
       <div>
-        <h4>Adults: {plan.priceAdultWithCurrency}</h4>
-        <h4>Children: {plan.priceChildrenWithCurrency}</h4>
+        <h4>
+          Adults: <span>{plan.priceAdultWithCurrency}</span>
+        </h4>
+        <h4>
+          Children: <span>{plan.priceChildrenWithCurrency}</span>
+        </h4>
       </div>
     );
   }
