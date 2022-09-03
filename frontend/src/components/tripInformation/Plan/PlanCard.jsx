@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
-function PlanCard({ plan, modifyPlanList, rating }) {
+function PlanCard({ plan }) {
   document.body.style.overflow = "unset";
   function getHours() {
     const openingHour =
@@ -64,11 +64,11 @@ function PlanCard({ plan, modifyPlanList, rating }) {
     );
   }
 
-  return (
-    <div className="plan-card">
-      <h1 className="details-title">PLAN</h1>
+  function getScore(rating) {
+    return (
       <div className="rating">
-        {rating === null ? (
+        <h5>{rating}</h5>
+        {rating < 1 ? (
           <FontAwesomeIcon icon={faStarRegular} className="icon" />
         ) : (
           <FontAwesomeIcon icon={faStar} className="icon" />
@@ -93,7 +93,16 @@ function PlanCard({ plan, modifyPlanList, rating }) {
         ) : (
           <FontAwesomeIcon icon={faStar} className="icon" />
         )}
+        <span> {plan.totalScore[0].votes} votes</span>
       </div>
+    );
+  }
+  return (
+    <div className="plan-card">
+      <h1 className="details-title">PLAN</h1>
+      {plan.totalScore &&
+        plan.totalScore[0] &&
+        getScore(plan.totalScore[0].average)}
       <div className="plan-info">
         <div className="plan-name plan-detail">
           <h3>Name: </h3>

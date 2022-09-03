@@ -3,7 +3,7 @@ import "./EditPlanCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
-function EditPlanCard({ plan, planId, planRating, onEdit }) {
+function EditPlanCard({ plan, planId, onEdit }) {
   const [name, setName] = useState(plan.name);
   const [location, setLocation] = useState(plan.location);
   const [openingHour, setOpeningHour] = useState(plan.openingHour);
@@ -17,31 +17,29 @@ function EditPlanCard({ plan, planId, planRating, onEdit }) {
   const [phone, setPhone] = useState(plan.phone);
   const [email, setEmail] = useState(plan.email);
   const [web, setWeb] = useState(plan.web);
-  const [rating, setRating] = useState(planRating);
+  const [rating, setRating] = useState(
+    plan.scores[0] ? plan.scores[0].score : ""
+  );
   const [notation, setNotation] = useState(plan.notation);
 
   const update = (e) => {
     e.preventDefault();
-    onEdit(
-      planId,
-      {
-        name,
-        location,
-        openingHour,
-        closingHour,
-        closed,
-        duration,
-        priceAdult,
-        priceChildren,
-        currency,
-        discount,
-        phone,
-        email,
-        web,
-        notation,
-      },
-      rating
-    );
+    onEdit(planId, {
+      name,
+      location,
+      openingHour,
+      closingHour,
+      closed,
+      duration,
+      priceAdult,
+      priceChildren,
+      currency,
+      discount,
+      phone,
+      email,
+      web,
+      notation,
+    });
   };
 
   return (

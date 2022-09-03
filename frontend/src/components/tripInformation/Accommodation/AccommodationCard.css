@@ -41,8 +41,24 @@ a {
 
 div.rating {
   color: #ebc452;
+  display: flex;
   margin-top: -1rem;
   margin-bottom: 1rem;
+  margin-left: 1rem;
+  align-items: center;
+}
+
+div.rating h5 {
+  margin: 0;
+  margin-right: 0.5rem;
+  color: black;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+div.rating span {
+  margin-left: 0.5rem;
+  color: black;
 }
 
 .details-icon {

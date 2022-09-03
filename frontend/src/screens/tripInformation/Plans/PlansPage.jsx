@@ -26,6 +26,7 @@ function PlansPage() {
     if (success) {
       setPlanList(planList);
       setMessage(null);
+      console.log(planList);
     } else {
       setPlanList(null);
       setMessage(error);
@@ -77,7 +78,7 @@ function PlansPage() {
       </div>
     );
   }
-  const rating = 3;
+
   return (
     <div className="plan-page">
       <Bar mode="login" />
@@ -110,33 +111,35 @@ function PlansPage() {
               >
                 <h3 className="info-name">{plan.name}</h3>
                 <div className="info-main">{plan.location}</div>
-                <div className="rating">
-                  {rating === null ? (
-                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
-                  ) : (
-                    <FontAwesomeIcon icon={faStar} className="icon" />
-                  )}
-                  {rating < 2 ? (
-                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
-                  ) : (
-                    <FontAwesomeIcon icon={faStar} className="icon" />
-                  )}
-                  {rating < 3 ? (
-                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
-                  ) : (
-                    <FontAwesomeIcon icon={faStar} className="icon" />
-                  )}
-                  {rating < 4 ? (
-                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
-                  ) : (
-                    <FontAwesomeIcon icon={faStar} className="icon" />
-                  )}
-                  {rating < 5 ? (
-                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
-                  ) : (
-                    <FontAwesomeIcon icon={faStar} className="icon" />
-                  )}
-                </div>
+                {plan.totalScore.average && (
+                  <div className="rating">
+                    {plan.totalScore.average < 1 ? (
+                      <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                    ) : (
+                      <FontAwesomeIcon icon={faStar} className="icon" />
+                    )}
+                    {plan.totalScore.average < 2 ? (
+                      <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                    ) : (
+                      <FontAwesomeIcon icon={faStar} className="icon" />
+                    )}
+                    {plan.totalScore.average < 3 ? (
+                      <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                    ) : (
+                      <FontAwesomeIcon icon={faStar} className="icon" />
+                    )}
+                    {plan.totalScore.average < 4 ? (
+                      <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                    ) : (
+                      <FontAwesomeIcon icon={faStar} className="icon" />
+                    )}
+                    {plan.totalScore.average < 5 ? (
+                      <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                    ) : (
+                      <FontAwesomeIcon icon={faStar} className="icon" />
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>
