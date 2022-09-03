@@ -15,6 +15,8 @@ import {
   faTrashCan,
   faPlus,
   faXmark,
+  faUserCheck,
+  faUserLarge,
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -26,26 +28,13 @@ function TripDetailCard({
   onSetTrip: setTrip,
   onDeleteTraveler: deleteTraveler,
 }) {
+  const [userData, setUserData] = useState("");
   const [adding, setAdding] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const navigate = useNavigate();
 
-  /* useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []); */
-
   document.body.style.overflow = "unset";
 
-  function getDateValue(value, placeholder) {
-    if (value === "" || value === undefined) {
-      return placeholder;
-    }
-    const date = new Date(value);
-    const day = ("0" + date.getDate()).slice(-2);
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const year = ("0" + date.getFullYear()).slice(-4);
-    return day + "/" + month + "/" + year;
-  }
   const addTraveler = async (tripId, email) => {
     const {
       success,
@@ -53,6 +42,7 @@ function TripDetailCard({
       error,
     } = await api.addTraveler(tripId, email);
     if (success) {
+      console.log(added);
       setTrip(added);
       setAdding(false);
       setMessage(null);
@@ -91,6 +81,16 @@ function TripDetailCard({
       setMessage(error);
     }
   };
+
+  const getUserData = async () => {
+    const { success, result: userData, error } = await api.getUserData();
+    if (success) {
+      setUserData(userData);
+    } else {
+      setMessage(error);
+    }
+  };
+
   function deleteButton() {
     if (deleting) {
       return (
@@ -102,6 +102,21 @@ function TripDetailCard({
       );
     }
   }
+
+  function obtainAdminUser() {
+    let userAdmin;
+    let userTraveler;
+    trip.travellers.map((member) =>
+      member.type === "admin"
+        ? (userAdmin = member.user)
+        : (userTraveler = member.user)
+    );
+    return userAdmin;
+  }
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
     <>
@@ -140,12 +155,38 @@ function TripDetailCard({
               {Array.isArray(trip) !== true ? (
                 trip.travellers.map((member) => (
                   <div className="member trip-detail" key={member._id}>
-                    <p>
-                      {member.username} ( {member.email} )
+                    <p className="username">
+                      {member.user.username + " (" + member.user.email + ")"}
                     </p>
-                    <div onClick={() => deleteTraveler(tripId, member.email)}>
-                      <FontAwesomeIcon className="delete-icon" icon={faXmark} />
-                    </div>
+                    {member.type === "admin" ? (
+                      <div className="member-info">
+                        <FontAwesomeIcon
+                          className="traveler-icon"
+                          icon={faUserCheck}
+                        />
+                        <p className="member-type">{member.type}</p>
+                      </div>
+                    ) : (
+                      <div className="member-info">
+                        <FontAwesomeIcon
+                          className="traveler-icon"
+                          icon={faUserLarge}
+                        />
+                        <p className="member-type">{member.type}</p>
+                        <div
+                          className="delete-member"
+                          onClick={() =>
+                            deleteTraveler(tripId, member.user.email)
+                          }
+                        >
+                          {" "}
+                          <FontAwesomeIcon
+                            className="delete-icon"
+                            icon={faXmark}
+                          />{" "}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))
               ) : (
@@ -163,10 +204,14 @@ function TripDetailCard({
             </div>
           </div>
         </div>
-        <img
-          className="trip-image"
-          src={"http://localhost:8080/upload" + trip.image.name}
-        ></img>
+        {trip.image.name ? (
+          <img
+            className="trip-image"
+            src={"http://localhost:8080/upload" + trip.image.name}
+          ></img>
+        ) : (
+          <img className="trip-image" src={trip.image.url}></img>
+        )}
       </div>
       <div className="trip-details-info">
         <div
@@ -204,17 +249,21 @@ function TripDetailCard({
           Restoration
         </div>
       </div>
-      <div>
-        <div
-          className="delete-trip"
-          onClick={() => {
-            setDeleting(true);
-          }}
-        >
-          <FontAwesomeIcon icon={faTrashCan} /> DELETE TRIP
+      {userData._id === obtainAdminUser()._id ? (
+        <div>
+          <div
+            className="delete-trip"
+            onClick={() => {
+              setDeleting(true);
+            }}
+          >
+            <FontAwesomeIcon icon={faTrashCan} /> DELETE TRIP
+          </div>
+          {deleteButton()}
         </div>
-        {deleteButton()}
-      </div>
+      ) : (
+        <div></div>
+      )}
       <div className="trip-comments">
         {/*<div>
             {Array.isArray(trip) !== true ? (

@@ -180,6 +180,7 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
               <input
                 className="input date"
                 placeholder="Departure time"
+                max={arrival}
                 onFocus={(event) => {
                   event.target.type = "datetime-local";
                   event.target.value = departure;
@@ -201,6 +202,7 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
               <input
                 className="input date"
                 placeholder="Arrival time"
+                min={departure}
                 onFocus={(event) => {
                   event.target.type = "datetime-local";
                   event.target.value = arrival;

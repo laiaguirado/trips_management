@@ -39,9 +39,10 @@ const getAllTransportationByTravel = async (req, res) => {
 
 const getTransportationById = async (req, res) => {
   const { idTransportation } = req.params;
+  const { _id: idUser } = req.userInfo;
   res
     .status(200)
-    .json(await Transportation.getTransportationById(idTransportation));
+    .json(await Transportation.getTransportationById(idTransportation, idUser));
 };
 
 const deleteTransportation = async (req, res) => {

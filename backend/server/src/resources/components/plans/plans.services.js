@@ -1,10 +1,14 @@
 const Plans = require("./plans.model");
 const Travel = require("../../travel/travel.model");
 const Score = require("../../score/score.model");
-
+const mongoose = require("mongoose");
 const Comment = require("../../comments/comments.model");
 const { runTransaction } = require("../../../helper");
 const { errMalformed } = require("../../../errors");
+
+const paramValueInclude = ["totalScore"];
+const isValidParameter = (parameter, value) =>
+  parameter.find((param) => param === value);
 
 const createPlan = async (plan) => {
   const planToDo = await runTransaction(async () => {
@@ -24,25 +28,102 @@ const findOneById = async (id) => {
   return await Plans.findOne({ _id: id });
 };
 
-const getAllPlansByTravel = async (idTravel) => {
-  return await Plans.find({ idTravel })
+const getScores = async (idPlan) => {
+  const filterBy = idPlan
+    ? {
+        $match: { _id: { $eq: mongoose.Types.ObjectId(idPlan) } },
+      }
+    : { $match: {} };
+
+  const totales = await Plans.aggregate(
+    [
+      {
+        $lookup: {
+          from: "scores",
+          localField: "scores",
+          foreignField: "_id",
+          as: "resultingArray",
+        },
+      },
+      { $unwind: "$resultingArray" },
+      {
+        $group: {
+          _id: "$_id",
+          average: { $avg: "$resultingArray.score" },
+          points: { $sum: "$resultingArray.score" },
+          votes: { $sum: 1 },
+        },
+      },
+      filterBy,
+    ],
+    function (err, result) {
+      //console.log(result);
+      // console.log(err);
+    }
+  );
+  return totales;
+};
+
+const getAllPlansByTravel = async (idTravel, additionalInfo) => {
+  console.log("GET");
+  if (additionalInfo && !isValidParameter(paramValueInclude, additionalInfo)) {
+    console.log("ERROR");
+    errMalformed("Wrong query parameter");
+  }
+  console.log("CALCULO");
+  const plans = await Plans.find({ idTravel })
     .select({ resourceType: 0 })
     .populate({ path: "idUser", select: "email -_id" })
     .lean({ getters: true, virtuals: true })
     .exec();
+  console.log("INFO ADD?");
+  if (plans && additionalInfo === "totalScore") {
+    console.log("SI");
+    const totales = await getScores();
+    const completPlans = plans.map((plan) => {
+      return {
+        ...plan,
+        totalScore: {
+          ...totales.find((total) =>
+            mongoose.Types.ObjectId(total._id).equals(
+              mongoose.Types.ObjectId(plan._id)
+            )
+          ),
+        },
+      };
+    });
+    console.log("MERGED?");
+    return completPlans;
+  } else {
+    return plans;
+  }
 };
 
-const getPlanById = async (idPlan) => {
+const getPlanById = async (idPlan, idUser, additionalInfo) => {
+  if (additionalInfo && !isValidParameter(paramValueInclude, additionalInfo))
+    errMalformed("Wrong query parameter");
+
   const plan = await Plans.findOne({ _id: idPlan })
     .select({ resourceType: 0 })
     .populate({ path: "idUser", select: "email -_id" })
+    .populate({
+      path: "scores",
+      match: { idUser: { $eq: mongoose.Types.ObjectId(idUser) } },
+      select: "score -_id",
+    })
     .lean({ getters: true, virtuals: true })
     .exec();
+
   if (plan === null) {
     errMalformed(`Plan not found`);
   }
+
+  if (additionalInfo === "totalScore") {
+    const total = await getScores(idPlan);
+    plan.totalScore = total;
+  }
   return plan;
-};
+};;
 
 const getOne = async (_id) => {
   const plan = await Plans.findOne({ _id });
@@ -55,20 +136,9 @@ const getOne = async (_id) => {
 
 const deletePlan = async (_id) => {
   const plan = await runTransaction(async () => {
-    const comments = await Plans.findOne({_id}).select('comments');
-    const comments1 = comments['comments'];
-    for (comment of comments1){
-      console.log(comment);
-      await Comment.findByIdAndDelete({_id:comment})
-}
-const scores = await Plans.findOne({_id}).select('scores');
-const scores1 = scores['comments'];
-for (comment of scores1){
-  console.log(comment);
-  await Score.findByIdAndDelete({_id:comment})
-}
     const deleted = await Plans.findByIdAndDelete({ _id }).lean().exec();
-
+    await Comment.deleteMany({idComponent:_id}).exec();
+    await Score.deleteMany({idComponent:_id}).exec();
     if (deleted === null) {
       errMalformed(`Plan not found`);
     }

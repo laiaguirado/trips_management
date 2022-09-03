@@ -42,22 +42,14 @@ function TripDetailsPage() {
     }
   };
 
-  useEffect(() => {
-    getTripData(tripId);
-  }, [tripId]);
-
-  if (trip === null) {
-    return (
-      <div>
-        <Bar mode="login" />
-        <Loading />
-      </div>
-    );
-  }
   const deleteTraveler = async (tripId, email) => {
-    const { success, error } = await api.deleteTraveler(tripId, email);
+    const {
+      success,
+      result: deleted,
+      error,
+    } = await api.deleteTraveler(tripId, email);
     if (success) {
-      getTripData(tripId);
+      setTrip(deleted);
     } else {
       setMessage(error);
     }
@@ -100,6 +92,19 @@ function TripDetailsPage() {
     setEditing(false);
     setMessage(null);
   };
+
+  useEffect(() => {
+    getTripData(tripId);
+  }, [tripId]);
+
+  if (trip === null) {
+    return (
+      <div>
+        <Bar mode="login" />
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div>

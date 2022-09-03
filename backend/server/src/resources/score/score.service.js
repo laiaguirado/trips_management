@@ -18,11 +18,11 @@ const findAll = async () => {
 
 const deleteScore = async (_id) => {
   await Travel.findOneAndUpdate({ scores: _id }, {
-    $pull: { scores: { $in: _id }},
-}, {new:true});
-await User.findOneAndUpdate({ scores: _id }, {
-  $pull: { scores: { $in: _id }},
-}, {new:true});
+    $pull: { scores: { $in: _id } },
+  }, { new: true });
+  await User.findOneAndUpdate({ scores: _id }, {
+    $pull: { scores: { $in: _id } },
+  }, { new: true });
 
   const deleted = await Score.findByIdAndDelete({ _id }).lean().exec();
   if (deleted === null) {
@@ -41,14 +41,16 @@ const updateScore = async (_id, data) => {
 };
 
 const findByTravelId = async (idTravel) => {
-  return await Score.find({idTravel: idTravel })
-  .populate({ path: "idUser", select: "email username" })
-  .lean()
-  .exec();;
+  return await Score.find({ idTravel: idTravel })
+    .populate({ path: "idUser", select: "email username" })
+    .lean()
+    .exec();;
 };
 
 const findByCompId = async (idComponent) => {
-  return await Score.find({ idComponent }).exec();
+  return await Score.find({ idComponent }).populate({ path: "idUser", select: "email username" })
+    .lean()
+    .exec();
 };
 
 module.exports = { createOne, findAll, deleteScore, findByTravelId, findByCompId, updateScore };
