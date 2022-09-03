@@ -3,7 +3,13 @@ import "./TransportationCard.css";
 import * as helper from "../../../helper";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faTruckPlane } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faTruckPlane,
+  faGlobe,
+  faPhone,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 function TransportationCard({ transportation, rating }) {
@@ -96,33 +102,40 @@ function TransportationCard({ transportation, rating }) {
             </div>
           </div>
         )}
-        {transportation.web && (
-          <div className="transportation-web transportation-detail">
-            <h3>Web page: </h3>
-            <div>
-              {transportation !== "" ? (
-                !transportation.web.startsWith("https://") &&
-                !transportation.web.startsWith("http://") &&
-                transportation.web !== null &&
-                transportation.web !== "" ? (
-                  <a href={"https://" + transportation.web} target="_blank">
-                    {"https://" + transportation.web}
-                  </a>
-                ) : (
-                  <a href={transportation.web} target="_blank">
-                    {transportation.web}
-                  </a>
-                )
-              ) : (
-                <p></p>
-              )}
-            </div>
-          </div>
-        )}
         {transportation.notation && (
           <div className="transportation-notation transportation-detail">
             <h3>Notes: </h3>
             <div className="notation-text">{transportation.notation}</div>
+          </div>
+        )}
+        {(transportation.web ||
+          transportation.phone ||
+          transportation.email) && (
+          <div className="transportation-contact">
+            {transportation.web && (
+              <div>
+                {transportation !== "" ? (
+                  !transportation.web.startsWith("https://") &&
+                  !transportation.web.startsWith("http://") &&
+                  transportation.web !== null &&
+                  transportation.web !== "" ? (
+                    <a href={"https://" + transportation.web} target="_blank">
+                      <FontAwesomeIcon icon={faGlobe} className="icon" />
+                      <div>Web:</div>
+                      <div className="link">{transportation.web}</div>
+                    </a>
+                  ) : (
+                    <a href={transportation.web} target="_blank">
+                      <FontAwesomeIcon icon={faGlobe} className="icon" />
+                      <div>Web:</div>
+                      <div className="link">{transportation.web}</div>
+                    </a>
+                  )
+                ) : (
+                  <p></p>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>

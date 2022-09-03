@@ -1,7 +1,12 @@
 import React from "react";
 import "./PlanCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faGlobe,
+  faPhone,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 function PlanCard({ plan, modifyPlanList, rating }) {
@@ -120,47 +125,57 @@ function PlanCard({ plan, modifyPlanList, rating }) {
             <div>{plan.discount}</div>
           </div>
         )}
-        {plan.web && (
-          <div className="plan-web plan-detail">
-            <h3>Web page: </h3>
-            <div>
-              {plan !== "" ? (
-                !plan.web.startsWith("https://") &&
-                !plan.web.startsWith("http://") &&
-                plan.web !== null &&
-                plan.web !== "" ? (
-                  <a href={"https://" + plan.web} target="_blank">
-                    {"https://" + plan.web}
-                  </a>
-                ) : (
-                  <a href={plan.web} target="_blank">
-                    {plan.web}
-                  </a>
-                )
-              ) : (
-                <p></p>
-              )}
-            </div>
-          </div>
-        )}
-        {plan.phone && (
-          <div className="plan-phone plan-detail">
-            <h3>Phone number: </h3>
-            <div>{plan.phone}</div>
-          </div>
-        )}
-        {plan.email && (
-          <div className="plan-email plan-detail">
-            <h3>Email: </h3>
-            <div>
-              <a href={"mailto:" + plan.email}>{plan.email}</a>
-            </div>
-          </div>
-        )}
         {plan.notation && (
           <div className="plan-notation plan-detail">
             <h3>Notes: </h3>
             <div className="notation-text">{plan.notation}</div>
+          </div>
+        )}
+
+        {(plan.web || plan.phone || plan.email) && (
+          <div className="plan-contact">
+            {plan.web && (
+              <div>
+                {plan !== "" ? (
+                  !plan.web.startsWith("https://") &&
+                  !plan.web.startsWith("http://") &&
+                  plan.web !== null &&
+                  plan.web !== "" ? (
+                    <a href={"https://" + plan.web} target="_blank">
+                      <FontAwesomeIcon icon={faGlobe} className="icon" />
+                      <div>Web:</div>
+                      <div className="link">{plan.web}</div>
+                    </a>
+                  ) : (
+                    <a href={plan.web} target="_blank">
+                      <FontAwesomeIcon icon={faGlobe} className="icon" />
+                      <div>Web:</div>
+                      <div className="link">{plan.web}</div>
+                    </a>
+                  )
+                ) : (
+                  <p></p>
+                )}
+              </div>
+            )}
+            {plan.phone && (
+              <div>
+                <a href={"tel:" + plan.phone}>
+                  <FontAwesomeIcon icon={faPhone} className="icon" />
+                  <div>Phone:</div>
+                  <div className="link">{plan.phone}</div>
+                </a>
+              </div>
+            )}
+            {plan.email && (
+              <div>
+                <a href={"mailto:" + plan.email}>
+                  <FontAwesomeIcon icon={faEnvelope} className="icon" />
+                  <div>Email:</div>
+                  <div className="link">{plan.email}</div>
+                </a>
+              </div>
+            )}
           </div>
         )}
       </div>

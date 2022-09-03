@@ -81,14 +81,12 @@ div.rating {
   margin-top: -0.5rem;
   padding: 0 0.5rem;
   color: #2d5a74;
-  /*color: #213547;*/
 }
 
 .dot {
   width: 1rem;
   height: 1rem;
   background-color: #2d5a74;
-  /*background-color: #213547;*/
   border-radius: 0.5rem;
 }
 
@@ -108,7 +106,6 @@ div.rating {
   padding: 0.75rem;
   border-radius: 2rem;
   background-color: #2d5a74;
-  /*background-color: #213547;*/
   color: white;
   cursor: pointer;
 }

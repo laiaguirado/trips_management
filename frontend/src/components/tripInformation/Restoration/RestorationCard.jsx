@@ -1,7 +1,12 @@
 import React from "react";
 import "./RestorationCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faGlobe,
+  faPhone,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 function RestorationCard({ restoration, rating }) {
@@ -132,47 +137,56 @@ function RestorationCard({ restoration, rating }) {
             </div>
           </div>
         )}
-        {restoration.web && (
-          <div className="restoration-web restoration-detail">
-            <h3>Web page: </h3>
-            <div>
-              {restoration !== "" ? (
-                !restoration.web.startsWith("https://") &&
-                !restoration.web.startsWith("http://") &&
-                restoration.web !== null &&
-                restoration.web !== "" ? (
-                  <a href={"https://" + restoration.web} target="_blank">
-                    {"https://" + restoration.web}
-                  </a>
-                ) : (
-                  <a href={restoration.web} target="_blank">
-                    {restoration.web}
-                  </a>
-                )
-              ) : (
-                <p></p>
-              )}
-            </div>
-          </div>
-        )}
-        {restoration.phone && (
-          <div className="restoration-phone restoration-detail">
-            <h3>Phone number: </h3>
-            <div>{restoration.phone}</div>
-          </div>
-        )}
-        {restoration.email && (
-          <div className="restoration-email restoration-detail">
-            <h3>Email: </h3>
-            <div>
-              <a href={"mailto:" + restoration.email}>{restoration.email}</a>
-            </div>
-          </div>
-        )}
         {restoration.notation && (
           <div className="restoration-notation restoration-detail">
             <h3>Notes: </h3>
             <div className="notation-text">{restoration.notation}</div>
+          </div>
+        )}
+        {(restoration.web || restoration.phone || restoration.email) && (
+          <div className="restoration-contact">
+            {restoration.web && (
+              <div>
+                {restoration !== "" ? (
+                  !restoration.web.startsWith("https://") &&
+                  !restoration.web.startsWith("http://") &&
+                  restoration.web !== null &&
+                  restoration.web !== "" ? (
+                    <a href={"https://" + restoration.web} target="_blank">
+                      <FontAwesomeIcon icon={faGlobe} className="icon" />
+                      <div>Web:</div>
+                      <div className="link">{restoration.web}</div>
+                    </a>
+                  ) : (
+                    <a href={restoration.web} target="_blank">
+                      <FontAwesomeIcon icon={faGlobe} className="icon" />
+                      <div>Web:</div>
+                      <div className="link">{restoration.web}</div>
+                    </a>
+                  )
+                ) : (
+                  <p></p>
+                )}
+              </div>
+            )}
+            {restoration.phone && (
+              <div>
+                <a href={"tel:" + restoration.phone}>
+                  <FontAwesomeIcon icon={faPhone} className="icon" />
+                  <div>Phone:</div>
+                  <div className="link">{restoration.phone}</div>
+                </a>
+              </div>
+            )}
+            {restoration.email && (
+              <div>
+                <a href={"mailto:" + restoration.email}>
+                  <FontAwesomeIcon icon={faEnvelope} className="icon" />
+                  <div>Email:</div>
+                  <div className="link">{restoration.email}</div>
+                </a>
+              </div>
+            )}
           </div>
         )}
       </div>
