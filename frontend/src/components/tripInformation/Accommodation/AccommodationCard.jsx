@@ -18,7 +18,6 @@ import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 function AccommodationCard({ accommodation, rating }) {
   document.body.style.overflow = "unset";
 
-  //todo tags contact
   //todo false booleans
 
   return (
@@ -143,41 +142,56 @@ function AccommodationCard({ accommodation, rating }) {
               <div className="notation-text">{accommodation.notation}</div>
             </div>
           )}
-        </div>
-        {(accommodation.web || accommodation.phone || accommodation.email) && (
-          <div className="accommodation-contact">
-            {accommodation.web && (
-              <div>
-                {accommodation !== "" ? (
-                  !accommodation.web.startsWith("https://") &&
-                  !accommodation.web.startsWith("http://") &&
-                  accommodation.web !== null &&
-                  accommodation.web !== "" ? (
-                    <a href={"https://" + accommodation.web} target="_blank">
-                      <FontAwesomeIcon icon={faGlobe} className="icon" />
-                    </a>
+
+          {(accommodation.web ||
+            accommodation.phone ||
+            accommodation.email) && (
+            <div className="accommodation-contact">
+              {accommodation.web && (
+                <div>
+                  {accommodation !== "" ? (
+                    !accommodation.web.startsWith("https://") &&
+                    !accommodation.web.startsWith("http://") &&
+                    accommodation.web !== null &&
+                    accommodation.web !== "" ? (
+                      <a href={"https://" + accommodation.web} target="_blank">
+                        <FontAwesomeIcon icon={faGlobe} className="icon" />
+                        <div>Web:</div>
+                        <div className="link">{accommodation.web}</div>
+                      </a>
+                    ) : (
+                      <a href={accommodation.web} target="_blank">
+                        <FontAwesomeIcon icon={faGlobe} className="icon" />
+                        <div>Web:</div>
+                        <div className="link">{accommodation.web}</div>
+                      </a>
+                    )
                   ) : (
-                    <a href={accommodation.web} target="_blank">
-                      <FontAwesomeIcon icon={faGlobe} className="icon" />
-                    </a>
-                  )
-                ) : (
-                  <p></p>
-                )}
-              </div>
-            )}
-            {accommodation.phone && (
-              <FontAwesomeIcon icon={faPhone} className="icon" />
-            )}
-            {accommodation.email && (
-              <div>
-                <a href={"mailto:" + accommodation.email}>
-                  <FontAwesomeIcon icon={faEnvelope} className="icon" />
-                </a>
-              </div>
-            )}
-          </div>
-        )}
+                    <p></p>
+                  )}
+                </div>
+              )}
+              {accommodation.phone && (
+                <div>
+                  <a href={"tel:" + accommodation.phone}>
+                    <FontAwesomeIcon icon={faPhone} className="icon" />
+                    <div>Phone:</div>
+                    <div className="link">{accommodation.phone}</div>
+                  </a>
+                </div>
+              )}
+              {accommodation.email && (
+                <div>
+                  <a href={"mailto:" + accommodation.email}>
+                    <FontAwesomeIcon icon={faEnvelope} className="icon" />
+                    <div>Email:</div>
+                    <div className="link">{accommodation.email}</div>
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

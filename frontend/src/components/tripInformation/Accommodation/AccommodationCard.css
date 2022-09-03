@@ -94,10 +94,11 @@ div.rating {
 
 .accommodation-contact {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 100%;
   gap: 1rem;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-around;
+  align-items: flex-end;
   margin: 1rem 0;
 }
 
@@ -110,9 +111,20 @@ div.rating {
   /*background-color: #213547;*/
   color: white;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
 }
 
-.accommodation-contact .icon:hover {
-  transform: scale(1.2);
+a {
+  font-weight: 700;
+  color: black;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: black;
+}
+
+a .link {
+  color: #2a97d5;
+  text-decoration: underline;
+  font-weight: 100;
 }
