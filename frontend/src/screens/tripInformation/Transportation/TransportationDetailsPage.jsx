@@ -34,7 +34,7 @@ function TransportationDetailsPage() {
     if (success) {
       setTransportation(transportation);
       setMessage(null);
-      setRating(3); //doing
+      setRating(3);
     } else {
       setTransportation(null);
       setMessage(error);
