@@ -65,38 +65,35 @@ const getScores = async (idPlan) => {
 };
 
 const getAllPlansByTravel = async (idTravel, additionalInfo) => {
-  console.log("GET");
   if (additionalInfo && !isValidParameter(paramValueInclude, additionalInfo)) {
-    console.log("ERROR");
     errMalformed("Wrong query parameter");
   }
-  console.log("CALCULO");
+
   const plans = await Plans.find({ idTravel })
     .select({ resourceType: 0 })
     .populate({ path: "idUser", select: "email -_id" })
     .lean({ getters: true, virtuals: true })
     .exec();
-  console.log("INFO ADD?");
   if (plans && additionalInfo === "totalScore") {
-    console.log("SI");
     const totales = await getScores();
-    const completPlans = plans.map((plan) => {
-      return {
-        ...plan,
-        totalScore: {
-          ...totales.find((total) =>
-            mongoose.Types.ObjectId(total._id).equals(
-              mongoose.Types.ObjectId(plan._id)
-            )
-          ),
-        },
-      };
-    });
-    console.log("MERGED?");
-    return completPlans;
-  } else {
-    return plans;
+
+    if (totales) {
+      const completPlans = plans.map((plan) => {
+        return {
+          ...plan,
+          totalScore: {
+            ...totales.find((total) =>
+              mongoose.Types.ObjectId(total._id).equals(
+                mongoose.Types.ObjectId(plan._id)
+              )
+            ),
+          },
+        };
+      });
+      return completPlans;
+    }
   }
+  return plans;
 };
 
 const getPlanById = async (idPlan, idUser, additionalInfo) => {
