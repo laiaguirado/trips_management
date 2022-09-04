@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AddTravelerCard from "./AddTravelerCard";
 import DeleteCard from "../DeleteCard";
 import * as helper from "../../helper";
@@ -7,7 +7,6 @@ import * as api from "../../api";
 import "./TripDetailCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faAngleLeft,
   faBed,
   faPlane,
   faCamera,
@@ -17,7 +16,6 @@ import {
   faXmark,
   faUserCheck,
   faUserLarge,
-  faPen,
 } from "@fortawesome/free-solid-svg-icons";
 
 function TripDetailCard({

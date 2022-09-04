@@ -26,7 +26,6 @@ function PlansPage() {
     if (success) {
       setPlanList(planList);
       setMessage(null);
-      console.log(planList);
     } else {
       setPlanList(null);
       setMessage(error);

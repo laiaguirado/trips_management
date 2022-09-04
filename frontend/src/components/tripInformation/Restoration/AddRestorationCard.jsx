@@ -5,7 +5,6 @@ import {
   faLocationDot,
   faClock,
   faBan,
-  faBurger,
   faPersonWalkingLuggage,
   faPhone,
   faGlobe,

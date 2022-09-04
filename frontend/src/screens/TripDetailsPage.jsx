@@ -2,25 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./TripDetailsPage.css";
 import * as api from "../api";
-import * as helper from "../helper";
 import Bar from "../components/Bar";
 import Loading from "../components/Loading";
-import DeleteCard from "../components/DeleteCard";
 import EditTripCard from "../components/trip/EditTripCard";
 import TripDetailCard from "../components/trip/TripDetailCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faBed,
-  faPlane,
-  faCamera,
-  faUtensils,
-  faTrashCan,
-  faPlus,
-  faXmark,
-  faPen,
-} from "@fortawesome/free-solid-svg-icons";
-import { isTokenExpired } from "../token";
+import { faAngleLeft, faXmark, faPen } from "@fortawesome/free-solid-svg-icons";
 
 function TripDetailsPage() {
   const [trip, setTrip] = useState(null);
