@@ -92,7 +92,9 @@ const updatePlan = async (req, res) => {
   if (scoreUser) {
     res.status(201).json(await updateScoreToPlan(scoreUser, idPlan, idUser));
   } else {
-    res.status(201).json(planUpdated);
+    res
+      .status(201)
+      .json(await await Plans.getPlanById(idPlan, idUser, "totalScore"));
   }
 };
 
