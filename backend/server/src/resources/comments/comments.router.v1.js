@@ -23,17 +23,8 @@ const createAcom = async (req, res) => {
   const comment = await Comment.createOne(comment_text, idComp, _id, travelId);
   const accommodation = await Accomodation.findOneById(idComp);
 
-  const user = await User.findById(_id);
-  const travel = await Travel.findTravel(travelId);
-
   accommodation.comments.push(comment);
   await accommodation.save()
-
-  user.comments.push(comment);
-  await user.save()
-
-  travel.comments.push(comment);
-  await travel.save()
 
   res.status(200).json(comment);
 
@@ -47,21 +38,9 @@ const createRest = async (req, res) => {
 
   const comment = await Comment.createOne(comment_text, idComp, _id, travelId);
   const restoration = await Restoration.findOneById(idComp);
-  console.log(restoration);
-
-  const user = await User.findById(_id);
-  const travel = await Travel.findTravel(travelId);
 
   restoration.comments.push(comment);
-  console.log(typeof(restoration))
   await restoration.save()
-
-  user.comments.push(comment);
-  console.log(typeof(user))
-  await user.save()
-
-  travel.comments.push(comment);
-  await travel.save()
 
   res.status(200).json(comment);
 
@@ -76,17 +55,8 @@ const createTransp = async (req, res) => {
   const comment = await Comment.createOne(comment_text, idComp, _id, travelId);
   const transportation = await Transportation.findOneById(idComp);
 
-  const user = await User.findById(_id);
-  const travel = await Travel.findTravel(travelId);
-
   transportation.comments.push(comment);
   await transportation.save()
-
-  user.comments.push(comment);
-  await user.save()
-
-  travel.comments.push(comment);
-  await travel.save()
 
   res.status(200).json(comment);
 
@@ -101,17 +71,8 @@ const createPlan = async (req, res) => {
   const comment = await Comment.createOne(comment_text, idComp, _id, travelId);
   const plan = await Plan.findOneById(idComp);
 
-  const user = await User.findById(_id);
-  const travel = await Travel.findTravel(travelId);
-
   plan.comments.push(comment);
   await plan.save()
-
-  user.comments.push(comment);
-  await user.save()
-
-  travel.comments.push(comment);
-  await travel.save()
 
   res.status(200).json(comment);
 

@@ -2,13 +2,15 @@ const Score = require("./score.model");
 const Travel = require("../travel/travel.model");
 const User = require("../users/user.model")
 const { errMalformed } = require("../../errors");
+const { default: mongoose } = require("mongoose");
 
 const createOne = async (value, compId, user_id, idTravel) => {
+
   return await Score.create({
     score: value,
     idComponent: compId,
     idUser: user_id,
-    idTravel: idTravel,
+    idTravel: mongoose.Types.ObjectId(idTravel),
   });
 };
 

@@ -1,13 +1,14 @@
 const Comment = require("./comments.model");
 const Travel = require("../travel/travel.model");
-const User = require("../users/user.model")
+const User = require("../users/user.model");
+const { default: mongoose } = require("mongoose");
 
 const createOne = async (text, compId, _id,idTravel) => {
    return await Comment.create({
     comment: text,
     idComponent: compId,
     idUser: _id,
-    idTravel
+    idTravel:mongoose.Types.ObjectId(idTravel)
 
   }).then(
     comment => {
