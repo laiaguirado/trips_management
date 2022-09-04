@@ -27,9 +27,6 @@ const addNewScoreToPlan = async (score, idPlan, idUser, idTravel) => {
 };
 
 const updateScoreToPlan = async (score, idPlan, idUser) => {
-  console.log("UPDATE SCORE");
-  console.log(score._id);
-  console.log(score.score);
   const scoreUpdated = await Scores.updateScore(score._id, {
     score: score.score,
   });

@@ -7,64 +7,79 @@ const {
 const config = require("../../../config");
 const { needsAuthToken } = require("../../users/auth/auth.middleware");
 const Transportation = require("./transportation.service");
+const Scores = require("../../score/score.service");
 const RESOURCETYPE = "Transportation";
 
 const test = async (req, res) => {
   const { email, _id, username } = req.userInfo;
-  res
-    .status(200)
-    .json({ api: "transportation", ok: true, email, id: _id, username });
+  res.status(200).json({ api: "transportation", ok: true, email, id: _id, username });
+};
+
+const addNewScoreToTransporation = async (score, idPlan, idUser, idTravel) => {
+  const scoreCreated = await Scores.createOne(score, idPlan, idUser, idTravel);
+  const transportationUpdated = await Transportation.addFirstScore(idPlan, scoreCreated._id, score);
+  return transportationUpdated;
+};
+
+const updateScoreToTransportation = async (score, idTransportation, idUser) => {
+  const scoreUpdated = await Scores.updateScore(score._id, {
+    score: score.score,
+  });
+  return scoreUpdated;
 };
 
 const createTransport = async (req, res) => {
-  const { _id } = req.userInfo;
+  const { _id: idUser } = req.userInfo;
   const { idTravel } = req.paramsParentRouter;
-
   const transportationInfo = req.body;
-  transportationInfo.idUser = _id;
+  const scoreUser = transportationInfo.score ? transportationInfo.score : null;
+
+  delete transportationInfo.score;
+  transportationInfo.idUser = idUser;
   transportationInfo.idTravel = idTravel;
   transportationInfo.resourceType = RESOURCETYPE;
 
-  res
-    .status(201)
-    .json(await Transportation.createTransport(transportationInfo));
+  const transportationCreated = await Transportation.createTransport(transportationInfo);
+
+  if (scoreUser) {
+    res.status(201).json(await addNewScoreToTransporation(scoreUser, transportationCreated._id, idUser, idTravel));
+  }
+
+  res.status(201).json(transportationCreated);
 };
 
 const getAllTransportationByTravel = async (req, res) => {
   const { idTravel } = req.paramsParentRouter;
-  res
-    .status(200)
-    .json(await Transportation.getAllTransportationByTravel(idTravel));
+  const include = req.query._include;
+  res.status(200).json(await Transportation.getAllTransportationByTravel(idTravel, include));
 };
 
 const getTransportationById = async (req, res) => {
   const { idTransportation } = req.params;
   const { _id: idUser } = req.userInfo;
-  res
-    .status(200)
-    .json(await Transportation.getTransportationById(idTransportation, idUser));
+  const include = req.query._include;
+  res.status(200).json(await Transportation.getTransportationById(idTransportation, idUser, include));
 };
 
 const deleteTransportation = async (req, res) => {
   const { idTransportation } = req.params;
 
-  res
-    .status(200)
-    .json(await Transportation.deleteTransportation(idTransportation));
+  res.status(200).json(await Transportation.deleteTransportation(idTransportation));
 };
 
 const updateTransportation = async (req, res) => {
   const transportationInfo = req.body;
   const { idTransportation } = req.params;
+  const { _id: idUser } = req.userInfo;
+  const scoreUser = transportationInfo.score ? transportationInfo.score : null;
 
-  res
-    .status(200)
-    .json(
-      await Transportation.updateTransportation(
-        idTransportation,
-        transportationInfo
-      )
-    );
+  delete transportationInfo.score;
+  const transportUpdated = await Transportation.updateTransportation(idTransportation, transportationInfo);
+
+  if (scoreUser) {
+    await updateScoreToTransportation(scoreUser, idTransportation, idUser);
+  }
+  res.status(201).json(await await Transportation.getTransportationById(idTransportation, idUser, "totalScore"));
 };
 
 const routerByTravel = express.Router();

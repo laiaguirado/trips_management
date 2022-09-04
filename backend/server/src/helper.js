@@ -49,6 +49,10 @@ function getPriceWithCurrency(price, currency) {
   }
   return "";
 }
+
+const isValidParameter = (parameterList, value) =>
+  parameterList.find((param) => param === value);
+
 module.exports = {
   capitalize,
   FKIntegrity,
@@ -56,4 +60,7 @@ module.exports = {
   getPrice,
   setPrice,
   getPriceWithCurrency,
+  isValidParameter,
 };
+
+

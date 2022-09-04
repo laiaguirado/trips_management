@@ -37,7 +37,7 @@ const updateScore = async (_id, data) => {
   const scoreUpdated = await Score.findOneAndUpdate({ _id }, data, { new: true }).lean().exec();
 
   if (scoreUpdated === null) {
-    errMalformed(`Comment not found`);
+    errMalformed(`Score not found`);
   }
   return scoreUpdated;
 };
