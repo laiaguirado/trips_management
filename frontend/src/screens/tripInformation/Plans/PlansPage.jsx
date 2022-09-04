@@ -33,7 +33,6 @@ function PlansPage() {
   };
 
   //todo edit plan score
-  //todo clean imports
 
   const addPlan = async (tripId, newPlanData) => {
     const {

@@ -17,29 +17,33 @@ function EditPlanCard({ plan, planId, onEdit }) {
   const [phone, setPhone] = useState(plan.phone);
   const [email, setEmail] = useState(plan.email);
   const [web, setWeb] = useState(plan.web);
-  const [rating, setRating] = useState(
+  const [score, setScore] = useState(
     plan.scores[0] ? plan.scores[0].score : ""
   );
   const [notation, setNotation] = useState(plan.notation);
 
   const update = (e) => {
     e.preventDefault();
-    onEdit(planId, {
-      name,
-      location,
-      openingHour,
-      closingHour,
-      closed,
-      duration,
-      priceAdult,
-      priceChildren,
-      currency,
-      discount,
-      phone,
-      email,
-      web,
-      notation,
-    });
+    onEdit(
+      planId,
+      {
+        name,
+        location,
+        openingHour,
+        closingHour,
+        closed,
+        duration,
+        priceAdult,
+        priceChildren,
+        currency,
+        discount,
+        phone,
+        email,
+        web,
+        notation,
+      },
+      score
+    );
   };
 
   return (
@@ -55,8 +59,8 @@ function EditPlanCard({ plan, planId, onEdit }) {
                   <FontAwesomeIcon icon={faRankingStar} className="icon" />
                   <select
                     className="input date rating"
-                    value={rating}
-                    onChange={(event) => setRating(event.target.value)}
+                    value={score}
+                    onChange={(event) => setScore(event.target.value)}
                   >
                     <option value="">Rating</option>
                     <option value="5">

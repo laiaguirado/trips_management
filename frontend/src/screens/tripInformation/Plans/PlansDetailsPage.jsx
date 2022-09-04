@@ -44,7 +44,25 @@ function PlansDetailsPage() {
     }
   };
 
-  const onEdit = async (planId, planData) => {
+  const onEdit = async (planId, planData, score) => {
+    if (plan.scores[0]) {
+      planData.score = {
+        _id: plan.scores[0]._id,
+        score: score,
+      };
+    } else {
+      const {
+        success: scoreSuccess,
+        result: newScore,
+        error: scoreError,
+      } = await api.addScore(tripId, planId, "plan", { value: score });
+      if (scoreSuccess) {
+        setMessage(null);
+      } else {
+        setMessage(scoreError);
+      }
+    }
+
     const {
       success,
       result: edited,
@@ -54,6 +72,7 @@ function PlansDetailsPage() {
       setPlan(edited);
       setEditing(false);
       setMessage(null);
+      console.log(edited);
     } else {
       setMessage(error);
     }
