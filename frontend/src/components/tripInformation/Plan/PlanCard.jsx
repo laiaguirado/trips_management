@@ -3,6 +3,7 @@ import "./PlanCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faStar,
+  faStarHalfStroke,
   faGlobe,
   faPhone,
   faEnvelope,
@@ -64,31 +65,41 @@ function PlanCard({ plan }) {
     );
   }
 
-  function getScore(rating) {
+  function getScore(score) {
     return (
       <div className="rating">
-        <h5>{rating}</h5>
-        {rating < 1 ? (
+        <h5>{Math.round(score * 10) / 10}</h5>
+        {0.5 <= score && score < 1 ? (
+          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
+        ) : score < 1 ? (
           <FontAwesomeIcon icon={faStarRegular} className="icon" />
         ) : (
           <FontAwesomeIcon icon={faStar} className="icon" />
         )}
-        {rating < 2 ? (
+        {1.5 <= score && score < 2 ? (
+          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
+        ) : score < 2 ? (
           <FontAwesomeIcon icon={faStarRegular} className="icon" />
         ) : (
           <FontAwesomeIcon icon={faStar} className="icon" />
         )}
-        {rating < 3 ? (
+        {2.5 <= score && score < 3 ? (
+          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
+        ) : score < 3 ? (
           <FontAwesomeIcon icon={faStarRegular} className="icon" />
         ) : (
           <FontAwesomeIcon icon={faStar} className="icon" />
         )}
-        {rating < 4 ? (
+        {3.5 <= score && score < 4 ? (
+          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
+        ) : score < 4 ? (
           <FontAwesomeIcon icon={faStarRegular} className="icon" />
         ) : (
           <FontAwesomeIcon icon={faStar} className="icon" />
         )}
-        {rating < 5 ? (
+        {4.5 <= score && score < 5 ? (
+          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
+        ) : score < 5 ? (
           <FontAwesomeIcon icon={faStarRegular} className="icon" />
         ) : (
           <FontAwesomeIcon icon={faStar} className="icon" />
@@ -97,6 +108,7 @@ function PlanCard({ plan }) {
       </div>
     );
   }
+
   return (
     <div className="plan-card">
       <h1 className="details-title">PLAN</h1>
