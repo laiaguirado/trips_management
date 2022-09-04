@@ -19,7 +19,7 @@ const createPlan = async (plan) => {
       { $push: { plans: planCreated._id } },
       { new: true, useFindAndModify: false, runValidators: true }
     );
-  console.log(planCreated);
+
     return planCreated;
   });
   return planToDo;
