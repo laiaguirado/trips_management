@@ -7,24 +7,44 @@ const {
 const config = require("../../../config");
 const { needsAuthToken } = require("../../users/auth/auth.middleware");
 const Plans = require("./plans.services");
+const Scores = require("../../score/score.service");
 const RESOURCETYPE = "Plans";
-
 
 const test = async (req, res) => {
   const { email, _id, username } = req.userInfo;
   res.status(200).json({ api: "plans", ok: true, email, id: _id, username });
 };
 
-const createPlan = async (req, res) => {
-  const { _id } = req.userInfo;
-  const { idTravel } = req.paramsParentRouter;
+const addScoreToPlan = async (score, idPlan, idUser, idTravel) => {
+  //Si el plan te un score, cal guardar la info i retornar-la
+  const scoreCreated = await Scores.createOne(score, idPlan, idUser, idTravel);
+  const planCreated = await Plans.addFirstScore(
+    idPlan,
+    scoreCreated._id,
+    score
+  );
+  return planCreated;
+};
 
+const createPlan = async (req, res) => {
+  const { _id: idUser } = req.userInfo;
+  const { idTravel } = req.paramsParentRouter;
   const planInfo = req.body;
-  planInfo.idUser = _id;
+  const scoreUser = planInfo.score ? planInfo.score : null;
+
+  delete planInfo.score;
+  planInfo.idUser = idUser;
   planInfo.idTravel = idTravel;
   planInfo.resourceType = RESOURCETYPE;
 
-  res.status(201).json(await Plans.createPlan(planInfo));
+  const planCreated = await Plans.createPlan(planInfo);
+
+  if (scoreUser) {
+    res
+      .status(201)
+      .json(await addScoreToPlan(scoreUser, planCreated._id, idUser, idTravel));
+  }
+  res.status(201).json(planCreated);
 };
 
 const getAllPlansByTravel = async (req, res) => {

@@ -3,7 +3,6 @@ const Travel = require("../../travel/travel.model");
 const Score = require("../../score/score.model");
 const mongoose = require("mongoose");
 const Comment = require("../../comments/comments.model");
-const Scores = require("../../score/score.service");
 const { runTransaction } = require("../../../helper");
 const { errMalformed } = require("../../../errors");
 
@@ -13,9 +12,6 @@ const isValidParameter = (parameter, value) =>
 
 const createPlan = async (plan) => {
   const planToDo = await runTransaction(async () => {
-    const scoreUser = plan.score ? plan.score : null;
-    delete plan.score;
-
     const planCreated = await Plans.create(plan);
 
     const travel = await Travel.findOneAndUpdate(
@@ -24,30 +20,24 @@ const createPlan = async (plan) => {
       { new: true, useFindAndModify: false, runValidators: true }
     );
 
-    if (scoreUser) {
-      //Si el plan te un score, cal guardar la info i retornar-la
-      const scoreCreated = await Scores.createOne(
-        scoreUser,
-        planCreated._id,
-        planCreated._idUser,
-        plan.idTravel
-      );
-      const planCreatedWithScore = await Plans.findOneAndUpdate(
-        { _id: planCreated._id },
-        { $push: { scores: scoreCreated._id } },
-        { new: true, useFindAndModify: false, runValidators: true }
-      );
-      //Modify the total score. Since there is only one vote, we will not calculate it with the aggregate function
-      planCreatedWithScore.totalScore = {
-        average: scoreUser,
-        votes: 1,
-        points: scoreUser,
-      };
-      return planCreatedWithScore;
-    }
     return planCreated;
   });
   return planToDo;
+};
+
+const addFirstScore = async (idPlan, idScore, score) => {
+  const planUpdated = await Plans.findOneAndUpdate(
+    { _id: idPlan },
+    { $push: { scores: idScore } },
+    { new: true, useFindAndModify: false, runValidators: true }
+  );
+  //Modify the total score. Since there is only one vote, we will not calculate it with the aggregate function
+  planUpdated.totalScore = {
+    average: score,
+    votes: 1,
+    points: score,
+  };
+  return planUpdated;
 };
 
 const findOneById = async (id) => {
@@ -146,7 +136,7 @@ const getPlanById = async (idPlan, idUser, additionalInfo) => {
     plan.totalScore = total;
   }
   return plan;
-};;
+};
 
 const getOne = async (_id) => {
   const plan = await Plans.findOne({ _id });
@@ -160,8 +150,8 @@ const getOne = async (_id) => {
 const deletePlan = async (_id) => {
   const plan = await runTransaction(async () => {
     const deleted = await Plans.findByIdAndDelete({ _id }).lean().exec();
-    await Comment.deleteMany({idComponent:_id}).exec();
-    await Score.deleteMany({idComponent:_id}).exec();
+    await Comment.deleteMany({ idComponent: _id }).exec();
+    await Score.deleteMany({ idComponent: _id }).exec();
     if (deleted === null) {
       errMalformed(`Plan not found`);
     }
@@ -197,5 +187,6 @@ module.exports = {
   deletePlan,
   updatePlan,
   getOne,
-  findOneById
+  findOneById,
+  addFirstScore,
 };
