@@ -10,16 +10,18 @@
 }
 
 .restoration-details-page .delete-restoration {
-  background-color: #ad3d25;
-  color: #ffffff;
-  border: 0px;
+  color: #ad3d25;
+  border: 2px solid #ad3d25;
   border-radius: 1.5rem;
-  margin: 1rem;
+  margin: 1rem auto;
   padding: 1rem;
+  width: 60%;
   transition: all 0.1s ease-in-out;
 }
 
 .restoration-details-page .delete-restoration:hover {
   cursor: pointer;
   transform: scale(1.2);
+  background-color: #ad3e25;
+  color: white;
 }
