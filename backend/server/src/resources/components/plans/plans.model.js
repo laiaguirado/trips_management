@@ -89,6 +89,20 @@ const plansSchema = extendSchema(componentSchema, {
   duration: {
     type: String,
   },
+  totalScore: {
+    average: {
+      type: Number,
+      default: 0,
+    },
+    points: {
+      type: Number,
+      default: 0,
+    },
+    votes: {
+      type: Number,
+      default: 0,
+    },
+  },
 });
 
 plansSchema.index({ type: 1 });
