@@ -40,6 +40,7 @@ const addFirstScore = async (idPlan, idScore, score) => {
   return planUpdated;
 };
 
+
 const findOneById = async (id) => {
   return await Plans.findOne({ _id: id });
 };
@@ -73,7 +74,7 @@ const getScores = async (idPlan) => {
       filterBy,
     ],
     function (err, result) {
-      console.log(result);
+      // console.log(result);
       // console.log(err);
     }
   );

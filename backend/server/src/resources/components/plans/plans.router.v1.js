@@ -15,7 +15,7 @@ const test = async (req, res) => {
   res.status(200).json({ api: "plans", ok: true, email, id: _id, username });
 };
 
-const addScoreToPlan = async (score, idPlan, idUser, idTravel) => {
+const addNewScoreToPlan = async (score, idPlan, idUser, idTravel) => {
   //Si el plan te un score, cal guardar la info i retornar-la
   const scoreCreated = await Scores.createOne(score, idPlan, idUser, idTravel);
   const planCreated = await Plans.addFirstScore(
@@ -24,6 +24,17 @@ const addScoreToPlan = async (score, idPlan, idUser, idTravel) => {
     score
   );
   return planCreated;
+};
+
+const updateScoreToPlan = async (score, idPlan, idUser) => {
+  console.log("UPDATE SCORE");
+  console.log(score._id);
+  console.log(score.score);
+  const scoreUpdated = await Scores.updateScore(score._id, {
+    score: score.score,
+  });
+  const planUpdated = await Plans.getPlanById(idPlan, idUser, "totalScore");
+  return planUpdated;
 };
 
 const createPlan = async (req, res) => {
@@ -42,7 +53,9 @@ const createPlan = async (req, res) => {
   if (scoreUser) {
     res
       .status(201)
-      .json(await addScoreToPlan(scoreUser, planCreated._id, idUser, idTravel));
+      .json(
+        await addNewScoreToPlan(scoreUser, planCreated._id, idUser, idTravel)
+      );
   }
   res.status(201).json(planCreated);
 };
@@ -69,10 +82,20 @@ const deletePlan = async (req, res) => {
 
 const updatePlan = async (req, res) => {
   const planInfo = req.body;
+  const { _id: idUser } = req.userInfo;
   const { idPlan } = req.params;
+  const scoreUser = planInfo.score ? planInfo.score : null;
 
-  res.status(200).json(await Plans.updatePlan(idPlan, planInfo));
+  delete planInfo.score;
+  const planUpdated = await Plans.updatePlan(idPlan, planInfo);
+
+  if (scoreUser) {
+    res.status(201).json(await updateScoreToPlan(scoreUser, idPlan, idUser));
+  } else {
+    res.status(201).json(planUpdated);
+  }
 };
+
 
 const routerPlansByTravel = express.Router();
 const routerPlansByPlan = express.Router();
