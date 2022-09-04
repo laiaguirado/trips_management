@@ -26,14 +26,14 @@ function PlansPage() {
     if (success) {
       setPlanList(planList);
       setMessage(null);
+      console.log(planList);
     } else {
       setPlanList(null);
       setMessage(error);
     }
   };
-  //todo space-between cards in plans
+
   //todo edit plan score
-  //todo score half stars
   //todo clean imports
 
   const addPlan = async (tripId, newPlanData) => {
@@ -156,7 +156,11 @@ function PlansPage() {
               >
                 <h3 className="info-name">{plan.name}</h3>
                 <div className="info-main">{plan.location}</div>
-                {plan.totalScore.average && getScore(plan.totalScore.average)}
+                {plan.totalScore.average ? (
+                  getScore(plan.totalScore.average)
+                ) : (
+                  <div className="info-other-empty"></div>
+                )}
               </div>
             ))}
           </div>

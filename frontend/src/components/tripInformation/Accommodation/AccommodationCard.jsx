@@ -18,8 +18,6 @@ import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 function AccommodationCard({ accommodation, rating }) {
   document.body.style.overflow = "unset";
 
-  //todo false booleans
-
   return (
     <div className="accommodation-card">
       <h1 className="details-title">ACCOMMODATION</h1>

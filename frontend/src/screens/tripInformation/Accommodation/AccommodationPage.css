@@ -39,6 +39,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
   background-color: white;
 }
 
@@ -60,6 +61,10 @@
 .info-other {
   width: 10%;
   text-align: left;
+}
+
+.info-other-empty {
+  width: 90px;
 }
 
 .info-list .rating {

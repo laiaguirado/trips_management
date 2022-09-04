@@ -34,7 +34,7 @@ function RestorationDetailsPage() {
     if (success) {
       setRestoration(restoration);
       setMessage(null);
-      setRating(3); //doing
+      setRating(3);
     } else {
       setRestoration(null);
       setMessage(error);

@@ -34,8 +34,7 @@ function AccommodationDetailsPage() {
     if (success) {
       setAccommodation(accommodation);
       setMessage(null);
-      setRating(3); //doing
-      //todo empty rating
+      setRating(3);
     } else {
       setAccommodation(null);
       setMessage(error);
