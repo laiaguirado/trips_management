@@ -122,7 +122,7 @@ const getPlanById = async (idPlan, idUser, additionalInfo) => {
     .populate({
       path: "scores",
       match: { idUser: { $eq: mongoose.Types.ObjectId(idUser) } },
-      select: "score -_id",
+      select: "score",
     })
     .lean({ getters: true, virtuals: true })
     .exec();
