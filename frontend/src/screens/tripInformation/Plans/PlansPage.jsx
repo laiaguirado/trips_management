@@ -91,7 +91,7 @@ function PlansPage() {
         </div>
         <div className="error details-error">{message}</div>
         <div>
-          <h1 className="details-title">PLANS</h1>
+          <h1 className="details-title list-page">PLANS</h1>
           <div>
             {addPlanForm()}
             <div className="add-info-button" onClick={() => setAdding(true)}>

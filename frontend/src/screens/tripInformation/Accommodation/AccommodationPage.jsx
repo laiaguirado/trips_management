@@ -98,7 +98,7 @@ function AccommodationPage() {
         </div>
         <div className="error details-error">{message}</div>
         <div>
-          <h1 className="details-title">ACCOMMODATION</h1>
+          <h1 className="details-title list-page">ACCOMMODATION</h1>
           <div>
             {addAccommodationForm()}{" "}
             <div className="add-info-button" onClick={() => setAdding(true)}>
