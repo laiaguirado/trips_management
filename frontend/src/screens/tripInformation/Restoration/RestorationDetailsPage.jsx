@@ -137,27 +137,27 @@ function RestorationDetailsPage() {
   return (
     <div className="restoration-details-page">
       <Bar mode="login" />
+      {!editing ? (
+        <div
+          className="return-icon page-return-icon"
+          onClick={() => window.history.go(-1)}
+        >
+          <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
+        </div>
+      ) : (
+        <div
+          className="return-icon page-return-icon"
+          onClick={() => returnEditing()}
+        >
+          <FontAwesomeIcon icon={faXmark} size="3x" />{" "}
+        </div>
+      )}
+      {!editing && (
+        <div className="edit-icon" onClick={() => setEditing(true)}>
+          <FontAwesomeIcon icon={faPen} size="2x" />{" "}
+        </div>
+      )}
       <div className="flex-container">
-        {!editing ? (
-          <div
-            className="return-icon page-return-icon"
-            onClick={() => window.history.go(-1)}
-          >
-            <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
-          </div>
-        ) : (
-          <div
-            className="return-icon page-return-icon"
-            onClick={() => returnEditing()}
-          >
-            <FontAwesomeIcon icon={faXmark} size="3x" />{" "}
-          </div>
-        )}
-        {!editing && (
-          <div className="edit-icon" onClick={() => setEditing(true)}>
-            <FontAwesomeIcon icon={faPen} size="2x" />{" "}
-          </div>
-        )}
         <div className="error details-error">{message}</div>
         {showComponentMode()}
       </div>

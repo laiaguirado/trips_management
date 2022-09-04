@@ -97,7 +97,7 @@ function TransportationPage() {
         </div>
         <div className="error details-error">{message}</div>
         <div>
-          <h1 className="details-title">TRANSPORTATION</h1>
+          <h1 className="details-title list-page">TRANSPORTATION</h1>
           <div>
             {addTransportationForm()}
             <div className="add-info-button" onClick={() => setAdding(true)}>
