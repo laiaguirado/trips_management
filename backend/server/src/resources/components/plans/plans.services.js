@@ -3,6 +3,7 @@ const Travel = require("../../travel/travel.model");
 const Score = require("../../score/score.model");
 const mongoose = require("mongoose");
 const Comment = require("../../comments/comments.model");
+const Scores = require("../../score/score.service");
 const { runTransaction } = require("../../../helper");
 const { errMalformed } = require("../../../errors");
 
@@ -12,6 +13,9 @@ const isValidParameter = (parameter, value) =>
 
 const createPlan = async (plan) => {
   const planToDo = await runTransaction(async () => {
+    const scoreUser = plan.score ? plan.score : null;
+    delete plan.score;
+
     const planCreated = await Plans.create(plan);
 
     const travel = await Travel.findOneAndUpdate(
@@ -20,6 +24,27 @@ const createPlan = async (plan) => {
       { new: true, useFindAndModify: false, runValidators: true }
     );
 
+    if (scoreUser) {
+      //Si el plan te un score, cal guardar la info i retornar-la
+      const scoreCreated = await Scores.createOne(
+        scoreUser,
+        planCreated._id,
+        planCreated._idUser,
+        plan.idTravel
+      );
+      const planCreatedWithScore = await Plans.findOneAndUpdate(
+        { _id: planCreated._id },
+        { $push: { scores: scoreCreated._id } },
+        { new: true, useFindAndModify: false, runValidators: true }
+      );
+      //Modify the total score. Since there is only one vote, we will not calculate it with the aggregate function
+      planCreatedWithScore.totalScore = {
+        average: scoreUser,
+        votes: 1,
+        points: scoreUser,
+      };
+      return planCreatedWithScore;
+    }
     return planCreated;
   });
   return planToDo;
@@ -58,7 +83,7 @@ const getScores = async (idPlan) => {
       filterBy,
     ],
     function (err, result) {
-      //console.log(result);
+      console.log(result);
       // console.log(err);
     }
   );
