@@ -153,18 +153,20 @@
   height: auto;
 }
 .trip-details-page .delete-trip {
-  background-color: #ad3d25;
-  color: #ffffff;
-  border: 0px;
+  color: #ad3d25;
+  border: 2px solid #ad3d25;
   border-radius: 1.5rem;
-  margin: 2rem;
+  margin: 1rem auto;
   padding: 1rem;
+  width: 40%;
   transition: all 0.1s ease-in-out;
 }
 
 .trip-details-page .delete-trip:hover {
   cursor: pointer;
   transform: scale(1.2);
+  background-color: #ad3e25;
+  color: white;
 }
 
 .trip-details-page .details-info {
