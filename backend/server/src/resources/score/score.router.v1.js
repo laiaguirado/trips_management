@@ -21,24 +21,11 @@ const createAcom = async (req, res) => {
   const score = await Score.createOne(value, compId, _id, _idTravel);
 
   const accommodation = await Accomodation.findOneById(compId);
-
-  const travel = await Travel.findTravel(_idTravel);
-
-  const user = await User.findById(_id);
-
-  travel.scores.push(score);
-  await travel.save();
-
-
   accommodation.scores.push(score);
   await accommodation.save();
 
-  user.scores.push(score);
-  await user.save();
-
   res.status(200).json(score);
-
-}
+};
 
 const createRest = async (req, res) => {
   const { compId } = req.params;
@@ -49,24 +36,11 @@ const createRest = async (req, res) => {
   const score = await Score.createOne(value, compId, _id, _idTravel);
 
   const restoration = await Restoration.findOneById(compId);
-
-  const travel = await Travel.findTravel(_idTravel);
-
-  const user = await User.findById(_id);
-
-  travel.scores.push(score);
-  await travel.save();
-
-
   restoration.scores.push(score);
   await restoration.save();
 
-  user.scores.push(score);
-  await user.save();
-
   res.status(200).json(score);
-
-}
+};
 
 const createTransp = async (req, res) => {
   const { compId } = req.params;
@@ -77,23 +51,10 @@ const createTransp = async (req, res) => {
   const score = await Score.createOne(value, compId, _id, _idTravel);
 
   const transportation = await Transportation.findOneById(compId);
-
-  const travel = await Travel.findTravel(_idTravel);
-
-  const user = await User.findById(_id);
-
-  travel.scores.push(score);
-  await travel.save();
-
-
   transportation.scores.push(score);
   await transportation.save();
 
-  user.scores.push(score);
-  await user.save();
-
   res.status(200).json(score);
-
 }
 
 const createPlan = async (req, res) => {
