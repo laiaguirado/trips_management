@@ -17,7 +17,6 @@ import {
   faWifi,
   faPersonSwimming,
   faHotel,
-  faCircleHalfStroke,
   faRankingStar,
   faMugSaucer,
 } from "@fortawesome/free-solid-svg-icons";

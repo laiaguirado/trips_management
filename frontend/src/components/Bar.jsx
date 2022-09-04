@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Bar.css";
-import * as api from "../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSignsPost,

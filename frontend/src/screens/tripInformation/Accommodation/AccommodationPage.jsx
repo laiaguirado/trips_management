@@ -10,7 +10,6 @@ import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 import {
   faCirclePlus,
   faAngleLeft,
-  faPen,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 

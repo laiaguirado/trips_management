@@ -11,7 +11,6 @@ import {
   faStar,
   faCirclePlus,
   faAngleLeft,
-  faPen,
 } from "@fortawesome/free-solid-svg-icons";
 
 function RestorationPage() {
