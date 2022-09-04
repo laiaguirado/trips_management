@@ -105,23 +105,10 @@ const createPlan = async (req, res) => {
   const score = await Score.createOne(value, compId, _id, _idTravel);
 
   const plan = await Plan.findOneById(compId);
-
-  const travel = await Travel.findTravel(_idTravel);
-
-  const user = await User.findById(_id);
-
-  travel.scores.push(score);
-  await travel.save();
-
-
   plan.scores.push(score);
   await plan.save();
 
-  user.scores.push(score);
-  await user.save();
-
   res.status(200).json(score);
-
 }
 
 const getAll = async (req, res) => {
