@@ -72,6 +72,20 @@ const transportationSchema = extendSchema(
     arrival: {
       type: Date,
     },
+    totalScore: {
+      average: {
+        type: Number,
+        default: 0,
+      },
+      points: {
+        type: Number,
+        default: 0,
+      },
+      votes: {
+        type: Number,
+        default: 0,
+      },
+    },
   },
   {
     toJSON: { getters: true, setters: true, virtuals: true },

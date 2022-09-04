@@ -104,7 +104,7 @@ function PlanCard({ plan }) {
         ) : (
           <FontAwesomeIcon icon={faStar} className="icon" />
         )}
-        <span> {plan.totalScore[0].votes} votes</span>
+        <span> {plan.totalScore.votes} votes</span>
       </div>
     );
   }
@@ -112,9 +112,7 @@ function PlanCard({ plan }) {
   return (
     <div className="plan-card">
       <h1 className="details-title">PLAN</h1>
-      {plan.totalScore &&
-        plan.totalScore[0] &&
-        getScore(plan.totalScore[0].average)}
+      {plan.totalScore && getScore(plan.totalScore.average)}
       <div className="plan-info">
         <div className="plan-name plan-detail">
           <h3>Name: </h3>

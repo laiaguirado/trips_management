@@ -134,7 +134,10 @@ const getPlanById = async (idPlan, idUser, additionalInfo) => {
 
   if (additionalInfo === "totalScore") {
     const total = await getScores(idPlan);
-    plan.totalScore = total;
+    console.log(total);
+    if (total.length === 1) {
+      plan.totalScore = total[0];
+    }
   }
   return plan;
 };
