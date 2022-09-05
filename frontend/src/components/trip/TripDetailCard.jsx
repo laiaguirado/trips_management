@@ -40,7 +40,6 @@ function TripDetailCard({
       error,
     } = await api.addTraveler(tripId, email);
     if (success) {
-      console.log(added);
       setTrip(added);
       setAdding(false);
       setMessage(null);
@@ -60,11 +59,12 @@ function TripDetailCard({
       return (
         <AddTravelerCard
           onAdd={addTraveler}
-          message={message}
+          tripMessage={message}
           adding={() => {
             setAdding(false);
             setMessage(null);
           }}
+          trip={trip}
           tripId={tripId}
         />
       );

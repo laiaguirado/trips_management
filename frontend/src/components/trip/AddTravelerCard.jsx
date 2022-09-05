@@ -6,11 +6,21 @@ import {
   faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AddTravelerCard({ onAdd, message, adding, tripId }) {
+function AddTravelerCard({ onAdd, tripMessage, adding, trip, tripId }) {
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState(tripMessage);
   const add = (e) => {
     e.preventDefault();
-    onAdd(tripId, email);
+    let addTraveler = true;
+    for (let j = 0; j < trip.travellers.length; j++) {
+      if (trip.travellers[j].user.email === email) {
+        setMessage(`Traveler already added to the trip`);
+        addTraveler = false;
+      }
+    }
+    if (addTraveler === true) {
+      onAdd(tripId, email);
+    }
   };
 
   document.body.style.overflow = "hidden";
