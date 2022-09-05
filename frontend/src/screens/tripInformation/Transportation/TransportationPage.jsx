@@ -83,7 +83,49 @@ function TransportationPage() {
       </div>
     );
   }
-  const rating = 3;
+
+  function getScore(score) {
+    return (
+      <div className="rating">
+        {0.5 <= score && score < 1 ? (
+          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
+        ) : score < 1 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {1.5 <= score && score < 2 ? (
+          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
+        ) : score < 2 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {2.5 <= score && score < 3 ? (
+          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
+        ) : score < 3 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {3.5 <= score && score < 4 ? (
+          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
+        ) : score < 4 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+        {4.5 <= score && score < 5 ? (
+          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
+        ) : score < 5 ? (
+          <FontAwesomeIcon icon={faStarRegular} className="icon" />
+        ) : (
+          <FontAwesomeIcon icon={faStar} className="icon" />
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="transportation-page">
       <Bar mode="login" />
@@ -119,33 +161,18 @@ function TransportationPage() {
               >
                 <h3 className="info-name">{transportation.name}</h3>
                 <div className="info-main">{transportation.type}</div>
-                <div className="rating">
-                  {rating === null ? (
+                {transportation.totalScore &&
+                transportation.totalScore.average ? (
+                  getScore(transportation.totalScore.average)
+                ) : (
+                  <div className="info-other-empty">
                     <FontAwesomeIcon icon={faStarRegular} className="icon" />
-                  ) : (
-                    <FontAwesomeIcon icon={faStar} className="icon" />
-                  )}
-                  {rating < 2 ? (
                     <FontAwesomeIcon icon={faStarRegular} className="icon" />
-                  ) : (
-                    <FontAwesomeIcon icon={faStar} className="icon" />
-                  )}
-                  {rating < 3 ? (
                     <FontAwesomeIcon icon={faStarRegular} className="icon" />
-                  ) : (
-                    <FontAwesomeIcon icon={faStar} className="icon" />
-                  )}
-                  {rating < 4 ? (
                     <FontAwesomeIcon icon={faStarRegular} className="icon" />
-                  ) : (
-                    <FontAwesomeIcon icon={faStar} className="icon" />
-                  )}
-                  {rating < 5 ? (
                     <FontAwesomeIcon icon={faStarRegular} className="icon" />
-                  ) : (
-                    <FontAwesomeIcon icon={faStar} className="icon" />
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>

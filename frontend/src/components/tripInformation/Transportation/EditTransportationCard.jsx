@@ -3,12 +3,7 @@ import "./EditTransportationCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
-function EditTransportationCard({
-  transportation,
-  transportationId,
-  transportationRating,
-  onEdit,
-}) {
+function EditTransportationCard({ transportation, transportationId, onEdit }) {
   const [name, setName] = useState(transportation.name);
   const [type, setType] = useState(transportation.type);
   const [typeDetails, setTypeDetails] = useState(transportation.typeDetails);
@@ -21,7 +16,9 @@ function EditTransportationCard({
   );
   const [arrival, setArrival] = useState(setDateValue(transportation.arrival));
   const [web, setWeb] = useState(transportation.web);
-  const [rating, setRating] = useState(transportationRating);
+  const [score, setScore] = useState(
+    transportation.scores[0] ? transportation.scores[0].score : ""
+  );
   const [notation, setNotation] = useState(transportation.notation);
 
   function setDateValue(value) {
@@ -54,7 +51,7 @@ function EditTransportationCard({
         web,
         notation,
       },
-      rating
+      score
     );
   };
 
@@ -71,8 +68,8 @@ function EditTransportationCard({
                   <FontAwesomeIcon icon={faRankingStar} className="icon" />
                   <select
                     className="input date rating"
-                    value={rating}
-                    onChange={(event) => setRating(event.target.value)}
+                    value={score}
+                    onChange={(event) => setScore(event.target.value)}
                   >
                     <option value="">Rating</option>
                     <option value="5">

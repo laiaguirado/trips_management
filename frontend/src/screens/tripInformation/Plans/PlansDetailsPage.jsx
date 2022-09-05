@@ -72,6 +72,7 @@ function PlansDetailsPage() {
       setPlan(edited);
       setEditing(false);
       setMessage(null);
+      console.log(edited);
     } else {
       setMessage(error);
     }

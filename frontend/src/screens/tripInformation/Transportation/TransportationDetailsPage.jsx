@@ -18,7 +18,6 @@ import {
 
 function TransportationDetailsPage() {
   const [transportation, setTransportation] = useState(null);
-  const [rating, setRating] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState(null);
@@ -34,11 +33,9 @@ function TransportationDetailsPage() {
     if (success) {
       setTransportation(transportation);
       setMessage(null);
-      setRating(3);
     } else {
       setTransportation(null);
       setMessage(error);
-      setRating(null);
     }
   };
 
@@ -51,21 +48,42 @@ function TransportationDetailsPage() {
     }
   };
 
-  const onEdit = async (
-    transportationId,
-    transportationData,
-    transportationRating
-  ) => {
+  const onEdit = async (transportationId, transportationData, score) => {
+    console.log(score);
+    console.log(transportation);
+    if (transportation.scores[0]) {
+      console.log("inside if");
+      transportationData.score = {
+        _id: transportation.scores[0]._id,
+        score: score,
+      };
+      console.log(transportationData);
+    } else {
+      const {
+        success: scoreSuccess,
+        result: newScore,
+        error: scoreError,
+      } = await api.addScore(tripId, transportationId, "transportation", {
+        value: score,
+      });
+      if (scoreSuccess) {
+        setMessage(null);
+      } else {
+        setMessage(scoreError);
+      }
+    }
+    console.log("----");
     const {
       success,
       result: edited,
       error,
     } = await api.updateTransportation(transportationId, transportationData);
+    console.log("----");
     if (success) {
       setTransportation(edited);
       setEditing(false);
       setMessage(null);
-      setRating(transportationRating);
+      console.log(edited);
     } else {
       setMessage(error);
     }
@@ -107,7 +125,7 @@ function TransportationDetailsPage() {
     if (!editing) {
       return (
         <>
-          <TransportationCard transportation={transportation} rating={rating} />
+          <TransportationCard transportation={transportation} />
           <div>
             {" "}
             <div
@@ -132,7 +150,6 @@ function TransportationDetailsPage() {
         <EditTransportationCard
           transportation={transportation}
           transportationId={transportationId}
-          transportationRating={rating}
           onEdit={onEdit}
         />
       );

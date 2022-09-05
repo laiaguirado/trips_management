@@ -32,6 +32,8 @@ function PlansPage() {
     }
   };
 
+  //todo edit plan score
+
   const addPlan = async (tripId, newPlanData) => {
     const {
       success,

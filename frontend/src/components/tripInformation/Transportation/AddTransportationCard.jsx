@@ -26,7 +26,7 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
   const [web, setWeb] = useState("");
-  const [rating, setRating] = useState("");
+  const [score, setScore] = useState("");
   const [notation, setNotation] = useState("");
 
   const add = (e) => {
@@ -43,6 +43,7 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
       arrival,
       web,
       notation,
+      score,
     });
   };
 
@@ -234,8 +235,8 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
               <FontAwesomeIcon icon={faRankingStar} className="icon" />
               <select
                 className="input date rating"
-                value={rating}
-                onChange={(event) => setRating(event.target.value)}
+                value={score}
+                onChange={(event) => setScore(event.target.value)}
               >
                 <option value="">Rating</option>
                 <option value="5">

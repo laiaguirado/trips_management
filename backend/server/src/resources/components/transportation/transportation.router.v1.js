@@ -12,12 +12,18 @@ const RESOURCETYPE = "Transportation";
 
 const test = async (req, res) => {
   const { email, _id, username } = req.userInfo;
-  res.status(200).json({ api: "transportation", ok: true, email, id: _id, username });
+  res
+    .status(200)
+    .json({ api: "transportation", ok: true, email, id: _id, username });
 };
 
 const addNewScoreToTransporation = async (score, idPlan, idUser, idTravel) => {
   const scoreCreated = await Scores.createOne(score, idPlan, idUser, idTravel);
-  const transportationUpdated = await Transportation.addFirstScore(idPlan, scoreCreated._id, score);
+  const transportationUpdated = await Transportation.addFirstScore(
+    idPlan,
+    scoreCreated._id,
+    score
+  );
   return transportationUpdated;
 };
 
@@ -25,7 +31,12 @@ const updateScoreToTransportation = async (score, idTransportation, idUser) => {
   const scoreUpdated = await Scores.updateScore(score._id, {
     score: score.score,
   });
-  return scoreUpdated;
+  const transportationUpdated = await Transportation.getOne(
+    idTransportation,
+    idUser,
+    "totalScore"
+  );
+  return transportationUpdated;
 };
 
 const createTransport = async (req, res) => {
@@ -103,7 +114,12 @@ const updateTransportation = async (req, res) => {
   );
 
   if (scoreUser) {
-    await updateScoreToTransportation(scoreUser, idTransportation, idUser);
+    res
+      .status(201)
+      .json(
+        await updateScoreToTransportation(scoreUser, idTransportation, idUser)
+      );
+    // await updateScoreToTransportation(scoreUser, idTransportation, idUser);
   } else {
     res
       .status(201)
