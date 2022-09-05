@@ -45,3 +45,34 @@
 .plan-card span {
   font-weight: 100;
 }
+
+.plan-card .price-icon {
+  margin-right: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.plan-card .category-price-info span {
+  padding-left: 0.5rem;
+}
+
+.price-list .price-info {
+  display: flex;
+  align-items: center;
+}
+
+.price-list .price-info .price-icon {
+  width: 2rem;
+  display: flex;
+  justify-content: left;
+}
+
+.price-list .price-info .category {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0rem;
+}
+
+.price-list .price {
+  padding: 0rem 0.5rem;
+}

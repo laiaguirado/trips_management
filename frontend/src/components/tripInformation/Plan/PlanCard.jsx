@@ -7,6 +7,9 @@ import {
   faGlobe,
   faPhone,
   faEnvelope,
+  faChildren,
+  faBaby,
+  faPerson,
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
@@ -32,8 +35,13 @@ function PlanCard({ plan }) {
       plan.priceChildrenWithCurrency === null
     ) {
       return (
-        <div>
+        <div className="category-price-info">
           <h4>
+            <FontAwesomeIcon
+              icon={faPerson}
+              className="price-icon"
+              size="2xl"
+            />
             Adults: <span>{plan.priceAdultWithCurrency}</span>
           </h4>
         </div>
@@ -45,8 +53,9 @@ function PlanCard({ plan }) {
       plan.priceAdultWithCurrency === null
     ) {
       return (
-        <div>
+        <div className="category-price-info">
           <h4>
+            <FontAwesomeIcon icon={faBaby} className="price-icon" size="xl" />
             Children: <span>{plan.priceChildrenWithCurrency}</span>
           </h4>
         </div>
@@ -54,13 +63,25 @@ function PlanCard({ plan }) {
     }
 
     return (
-      <div>
-        <h4>
-          Adults: <span>{plan.priceAdultWithCurrency}</span>
-        </h4>
-        <h4>
-          Children: <span>{plan.priceChildrenWithCurrency}</span>
-        </h4>
+      <div className="price-list">
+        <div className="price-info">
+          <FontAwesomeIcon icon={faPerson} className="price-icon" size="2xl" />
+          <h4 className="category">
+            <p> Adults: </p>
+            <div className="price">
+              <span>{plan.priceAdultWithCurrency}</span>
+            </div>
+          </h4>
+        </div>
+        <div className="price-info">
+          <FontAwesomeIcon icon={faBaby} className="price-icon" size="xl" />
+          <h4 className="category">
+            <p> Children:</p>
+            <div className="price">
+              <span>{plan.priceChildrenWithCurrency}</span>
+            </div>
+          </h4>
+        </div>
       </div>
     );
   }
