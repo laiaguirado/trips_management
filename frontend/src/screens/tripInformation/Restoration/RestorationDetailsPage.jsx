@@ -18,7 +18,6 @@ import {
 
 function RestorationDetailsPage() {
   const [restoration, setRestoration] = useState(null);
-  const [rating, setRating] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState(null);
@@ -34,11 +33,9 @@ function RestorationDetailsPage() {
     if (success) {
       setRestoration(restoration);
       setMessage(null);
-      setRating(3);
     } else {
       setRestoration(null);
       setMessage(error);
-      setRating(null);
     }
   };
 
@@ -51,7 +48,28 @@ function RestorationDetailsPage() {
     }
   };
 
-  const onEdit = async (restorationId, restorationData, restorationRating) => {
+  const onEdit = async (restorationId, restorationData, score) => {
+    if (restoration.scores[0]) {
+      console.log(restoration.scores);
+      restorationData.score = {
+        _id: restoration.scores[0]._id,
+        score: score,
+      };
+    } else {
+      const {
+        success: scoreSuccess,
+        result: newScore,
+        error: scoreError,
+      } = await api.addScore(tripId, restorationId, "restoration", {
+        value: score,
+      });
+      if (scoreSuccess) {
+        setMessage(null);
+      } else {
+        setMessage(scoreError);
+      }
+    }
+
     const {
       success,
       result: edited,
@@ -61,7 +79,6 @@ function RestorationDetailsPage() {
       setRestoration(edited);
       setEditing(false);
       setMessage(null);
-      setRating(restorationRating);
     } else {
       setMessage(error);
     }
@@ -103,7 +120,7 @@ function RestorationDetailsPage() {
     if (!editing) {
       return (
         <>
-          <RestorationCard restoration={restoration} rating={rating} />
+          <RestorationCard restoration={restoration} />
           <div>
             <div
               className="delete-restoration"
@@ -127,7 +144,6 @@ function RestorationDetailsPage() {
         <EditRestorationCard
           restoration={restoration}
           restorationId={restorationId}
-          restorationRating={rating}
           onEdit={onEdit}
         />
       );

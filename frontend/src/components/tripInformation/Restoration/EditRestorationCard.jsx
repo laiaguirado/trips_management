@@ -3,12 +3,7 @@ import "./EditRestorationCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
-function EditRestorationCard({
-  restoration,
-  restorationId,
-  restorationRating,
-  onEdit,
-}) {
+function EditRestorationCard({ restoration, restorationId, onEdit }) {
   const [name, setName] = useState(restoration.name);
   const [kindOfFood, setKindOfFood] = useState(restoration.kindOfFood);
   const [location, setLocation] = useState(restoration.location);
@@ -24,7 +19,9 @@ function EditRestorationCard({
   const [web, setWeb] = useState(restoration.web);
   const [phone, setPhone] = useState(restoration.phone);
   const [email, setEmail] = useState(restoration.email);
-  const [rating, setRating] = useState(restorationRating);
+  const [score, setScore] = useState(
+    restoration.scores[0] ? restoration.scores[0].score : ""
+  );
   const [notation, setNotation] = useState(restoration.notation);
 
   const [takeAwayChecked, setTakeAwayChecked] = useState([false, false]);
@@ -52,7 +49,7 @@ function EditRestorationCard({
         email,
         notation,
       },
-      rating
+      score
     );
   };
 
@@ -120,8 +117,8 @@ function EditRestorationCard({
                 <FontAwesomeIcon icon={faRankingStar} className="icon" />
                 <select
                   className="input date rating"
-                  value={rating}
-                  onChange={(event) => setRating(event.target.value)}
+                  value={score}
+                  onChange={(event) => setScore(event.target.value)}
                 >
                   <option value="">Rating</option>
                   <option value="5">
