@@ -3,12 +3,12 @@ const Travel = require("../../travel/travel.model");
 const Score = require("../../score/score.model");
 const mongoose = require("mongoose");
 const Comment = require("../../comments/comments.model");
-const { runTransaction } = require("../../../helper");
+const { runTransaction,isValidParameter } = require("../../../helper");
 const { errMalformed } = require("../../../errors");
 
 const paramValueInclude = ["totalScore"];
-const isValidParameter = (parameter, value) =>
-  parameter.find((param) => param === value);
+// const isValidParameter = (parameter, value) =>
+//   parameter.find((param) => param === value);
 
 const createPlan = async (plan) => {
   const planToDo = await runTransaction(async () => {

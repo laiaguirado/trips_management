@@ -88,17 +88,7 @@ const accommodationSchema = extendSchema(
     type: {
       type: String,
       enum: {
-        values: [
-          "Hotel",
-          "Apartment",
-          "Camping",
-          "Bungalow",
-          "Hostal",
-          "Chalets",
-          "Cottages",
-          "Other",
-          "",
-        ],
+        values: ["Hotel", "Apartment", "Camping", "Bungalow", "Hostal", "Chalets", "Cottages", "Other", ""],
         message: "{VALUE} for {TYPE} is not suported",
       },
     },
@@ -110,6 +100,20 @@ const accommodationSchema = extendSchema(
       enum: {
         values: ["Full", "Half", null],
         message: "{VALUE} for {TYPE} is not suported",
+      },
+    },
+    totalScore: {
+      average: {
+        type: Number,
+        default: 0,
+      },
+      points: {
+        type: Number,
+        default: 0,
+      },
+      votes: {
+        type: Number,
+        default: 0,
       },
     },
   },
