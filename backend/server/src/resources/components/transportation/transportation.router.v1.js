@@ -31,11 +31,12 @@ const updateScoreToTransportation = async (score, idTransportation, idUser) => {
   const scoreUpdated = await Scores.updateScore(score._id, {
     score: score.score,
   });
-  const transportationUpdated = await Transportation.getOne(
+  const transportationUpdated = await Transportation.getTransportationById(
     idTransportation,
     idUser,
     "totalScore"
   );
+
   return transportationUpdated;
 };
 
@@ -112,7 +113,8 @@ const updateTransportation = async (req, res) => {
     idTransportation,
     transportationInfo
   );
-
+  console.log(`Modifico score tambieb ${scoreUser}`);
+  console.log(scoreUser);
   if (scoreUser) {
     res
       .status(201)
