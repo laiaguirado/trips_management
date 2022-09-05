@@ -4,6 +4,7 @@ const express = require("express");
 const { catchErrors, TripManagementApiError } = require("../../../errors");
 const { needsAuthToken } = require("../../users/auth/auth.middleware");
 const { runTransaction } = require("../../../helper");
+const Scores = require("../../score/score.service");
 
 const RESOURCETYPE = "Restoration";
 
@@ -11,10 +12,46 @@ const Restoration = require("./restoration.service");
 const Travel = require("../../travel/travel.service");
 const User = require("../../users/user.service");
 
+const addNewScoreToRestoration = async (
+  score,
+  idRestoration,
+  idUser,
+  idTravel
+) => {
+  //Si el plan te un score, cal guardar la info i retornar-la
+  const scoreCreated = await Scores.createOne(
+    score,
+    idRestoration,
+    idUser,
+    idTravel
+  );
+  const planCreated = await Restoration.addFirstScore(
+    idRestoration,
+    scoreCreated._id,
+    score
+  );
+  return planCreated;
+};
+
+const updateScoreToRestoration = async (score, idRestoration, idUser) => {
+  const scoreUpdated = await Scores.updateScore(score._id, {
+    score: score.score,
+  });
+  const restorationUpdated = await Restoration.getOne(
+    idRestoration,
+    idUser,
+    "totalScore"
+  );
+  return restorationUpdated;
+};
+
 const create = async (req, res) => {
   const data = req.body;
   const { email, _id, username } = req.userInfo;
   const { idTravel } = req.paramsParentRouter;
+  const scoreUser = data.score ? data.score : null;
+
+  delete data.score;
   data.resourceType = RESOURCETYPE;
   data.idUser = _id;
   data.idTravel = idTravel;
@@ -27,7 +64,21 @@ const create = async (req, res) => {
     await travel.save();
     return restorationCreated;
   });
-  res.status(201).json(restoration);
+
+  if (scoreUser) {
+    res
+      .status(201)
+      .json(
+        await addNewScoreToRestoration(
+          scoreUser,
+          restoration._id,
+          _id,
+          idTravel
+        )
+      );
+  } else {
+    res.status(201).json(restoration);
+  }
 };
 
 const deleteRestoration = async (req, res) => {
@@ -42,21 +93,42 @@ const getAll = async (req, res) => {
 
 const getById = async (req, res) => {
   const { _id } = req.params;
-  res.status(200).json(await Restoration.getOne(_id));
+  const { _id: idUser } = req.userInfo;
+  const include = req.query._include;
+
+  res.status(200).json(await Restoration.getOne(_id, idUser, include));
 };
 
 const getByTravel = async (req, res) => {
   const { idTravel } = req.paramsParentRouter;
-  res.status(200).json(await Restoration.getByTravelId(idTravel));
+  const include = req.query._include;
+
+  res.status(200).json(await Restoration.getByTravelId(idTravel, include));
 };
 
 const updateRest = async (req, res) => {
   const dataRestoration = req.body;
-  const { _id } = req.params;
+  const { _id: idRestoration } = req.params;
+  const { _id: idUser } = req.userInfo;
+  const scoreUser = dataRestoration.score ? dataRestoration.score : null;
 
-  res
-    .status(200)
-    .json(await Restoration.updateRestoration(_id, dataRestoration));
+  delete dataRestoration.score;
+  const restorationUpdated = await Restoration.updateRestoration(
+    idRestoration,
+    dataRestoration
+  );
+
+  if (scoreUser) {
+    res
+      .status(201)
+      .json(await updateScoreToRestoration(scoreUser, idRestoration, idUser));
+  } else {
+    res
+      .status(201)
+      .json(
+        await await Restoration.getOne(idRestoration, idUser, "totalScore")
+      );
+  }
 };
 
 //const router = express.Router();

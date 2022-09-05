@@ -39,32 +39,55 @@ const createTransport = async (req, res) => {
   transportationInfo.idTravel = idTravel;
   transportationInfo.resourceType = RESOURCETYPE;
 
-  const transportationCreated = await Transportation.createTransport(transportationInfo);
+  const transportationCreated = await Transportation.createTransport(
+    transportationInfo
+  );
 
   if (scoreUser) {
-    res.status(201).json(await addNewScoreToTransporation(scoreUser, transportationCreated._id, idUser, idTravel));
+    res
+      .status(201)
+      .json(
+        await addNewScoreToTransporation(
+          scoreUser,
+          transportationCreated._id,
+          idUser,
+          idTravel
+        )
+      );
+  } else {
+    res.status(201).json(transportationCreated);
   }
-
-  res.status(201).json(transportationCreated);
 };
 
 const getAllTransportationByTravel = async (req, res) => {
   const { idTravel } = req.paramsParentRouter;
   const include = req.query._include;
-  res.status(200).json(await Transportation.getAllTransportationByTravel(idTravel, include));
+  res
+    .status(200)
+    .json(await Transportation.getAllTransportationByTravel(idTravel, include));
 };
 
 const getTransportationById = async (req, res) => {
   const { idTransportation } = req.params;
   const { _id: idUser } = req.userInfo;
   const include = req.query._include;
-  res.status(200).json(await Transportation.getTransportationById(idTransportation, idUser, include));
+  res
+    .status(200)
+    .json(
+      await Transportation.getTransportationById(
+        idTransportation,
+        idUser,
+        include
+      )
+    );
 };
 
 const deleteTransportation = async (req, res) => {
   const { idTransportation } = req.params;
 
-  res.status(200).json(await Transportation.deleteTransportation(idTransportation));
+  res
+    .status(200)
+    .json(await Transportation.deleteTransportation(idTransportation));
 };
 
 const updateTransportation = async (req, res) => {
@@ -74,12 +97,24 @@ const updateTransportation = async (req, res) => {
   const scoreUser = transportationInfo.score ? transportationInfo.score : null;
 
   delete transportationInfo.score;
-  const transportUpdated = await Transportation.updateTransportation(idTransportation, transportationInfo);
+  const transportUpdated = await Transportation.updateTransportation(
+    idTransportation,
+    transportationInfo
+  );
 
   if (scoreUser) {
     await updateScoreToTransportation(scoreUser, idTransportation, idUser);
+  } else {
+    res
+      .status(201)
+      .json(
+        await await Transportation.getTransportationById(
+          idTransportation,
+          idUser,
+          "totalScore"
+        )
+      );
   }
-  res.status(201).json(await await Transportation.getTransportationById(idTransportation, idUser, "totalScore"));
 };
 
 const routerByTravel = express.Router();

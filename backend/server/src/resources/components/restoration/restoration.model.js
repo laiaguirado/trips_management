@@ -91,6 +91,20 @@ const restorationSchema = extendSchema(componentSchema, {
       message: (props) => "ClosingHour format is wrong",
     },
   },
+  totalScore: {
+    average: {
+      type: Number,
+      default: 0,
+    },
+    points: {
+      type: Number,
+      default: 0,
+    },
+    votes: {
+      type: Number,
+      default: 0,
+    },
+  },
 });
 
 restorationSchema.index({ phone: 1 });

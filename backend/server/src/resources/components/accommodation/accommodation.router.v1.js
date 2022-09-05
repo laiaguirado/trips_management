@@ -76,9 +76,9 @@ const create = async (req, res) => {
           idTravel
         )
       );
+  } else {
+    res.status(201).json(accommodation);
   }
-
-  res.status(201).json(accommodation);
 };
 
 const geAllAccommodations = async (req, res) => {

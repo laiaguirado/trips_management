@@ -53,8 +53,9 @@ const createPlan = async (req, res) => {
       .json(
         await addNewScoreToPlan(scoreUser, planCreated._id, idUser, idTravel)
       );
+  } else {
+    res.status(201).json(planCreated);
   }
-  res.status(201).json(planCreated);
 };
 
 const getAllPlansByTravel = async (req, res) => {
