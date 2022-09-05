@@ -12,6 +12,8 @@ const allowedAction = async (req, res, next) => {
       } else {
         errUnauthorized(`Action not allowed`);
       }
+    } else {
+      next();
     }
   } catch (e) {
     next(e);
