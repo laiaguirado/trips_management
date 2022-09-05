@@ -157,7 +157,13 @@ function PlansPage() {
                 {plan.totalScore.average ? (
                   getScore(plan.totalScore.average)
                 ) : (
-                  <div className="info-other-empty"></div>
+                  <div className="info-other-empty">
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                    <FontAwesomeIcon icon={faStarRegular} className="icon" />
+                  </div>
                 )}
               </div>
             ))}
