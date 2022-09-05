@@ -3,12 +3,7 @@ import "./EditAccommodationCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
-function EditAccommodationCard({
-  accommodation,
-  accommodationId,
-  accommodationRating,
-  onEdit,
-}) {
+function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
   const [name, setName] = useState(accommodation.name);
   const [type, setType] = useState(accommodation.type);
   const [location, setLocation] = useState(accommodation.location);
@@ -28,7 +23,9 @@ function EditAccommodationCard({
   const [web, setWeb] = useState(accommodation.web);
   const [phone, setPhone] = useState(accommodation.phone);
   const [email, setEmail] = useState(accommodation.email);
-  const [rating, setRating] = useState(accommodationRating);
+  const [score, setScore] = useState(
+    accommodation.scores[0] ? accommodation.scores[0].score : ""
+  );
   const [notation, setNotation] = useState(accommodation.notation);
   const [petFriendlyChecked, setPetFriendlyChecked] = useState([false, false]);
   const [internetChecked, setInternetChecked] = useState([false, false]);
@@ -76,7 +73,7 @@ function EditAccommodationCard({
         email,
         notation,
       },
-      rating
+      score
     );
   };
 
@@ -170,8 +167,8 @@ function EditAccommodationCard({
                 <FontAwesomeIcon icon={faRankingStar} className="icon" />
                 <select
                   className="input date rating"
-                  value={rating}
-                  onChange={(event) => setRating(event.target.value)}
+                  value={score}
+                  onChange={(event) => setScore(event.target.value)}
                 >
                   <option value="">Rating</option>
                   <option value="5">

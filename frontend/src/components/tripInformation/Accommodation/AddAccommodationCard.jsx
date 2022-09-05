@@ -39,7 +39,7 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
   const [web, setWeb] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [rating, setRating] = useState("");
+  const [score, setScore] = useState("");
   const [notation, setNotation] = useState("");
   const [petFriendlyChecked, setPetFriendlyChecked] = useState([false, false]);
   const [internetChecked, setInternetChecked] = useState([false, false]);
@@ -71,6 +71,7 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
       phone,
       email,
       notation,
+      score,
     });
   };
 
@@ -546,8 +547,8 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
               <FontAwesomeIcon icon={faRankingStar} className="icon" />
               <select
                 className="input date rating"
-                value={rating}
-                onChange={(event) => setRating(event.target.value)}
+                value={score}
+                onChange={(event) => setScore(event.target.value)}
               >
                 <option value="">Rating</option>
                 <option value="5">

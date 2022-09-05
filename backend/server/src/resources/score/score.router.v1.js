@@ -6,11 +6,11 @@ const { needsAuthToken } = require("../users/auth/auth.middleware");
 
 const Score = require("./score.service");
 const Accomodation = require("../components/accommodation/accommodation.service");
-const Restoration = require("../components/restoration/restoration.service")
-const Transportation = require("../components/transportation/transportation.service")
-const Plan = require("../components/plans/plans.services")
-const User = require("../users/user.service")
-const Travel = require("../travel/travel.service")
+const Restoration = require("../components/restoration/restoration.service");
+const Transportation = require("../components/transportation/transportation.service");
+const Plan = require("../components/plans/plans.services");
+const User = require("../users/user.service");
+const Travel = require("../travel/travel.service");
 
 const createAcom = async (req, res) => {
   const { compId } = req.params;
@@ -55,7 +55,7 @@ const createTransp = async (req, res) => {
   await transportation.save();
 
   res.status(200).json(score);
-}
+};
 
 const createPlan = async (req, res) => {
   const { compId } = req.params;
@@ -70,11 +70,11 @@ const createPlan = async (req, res) => {
   await plan.save();
 
   res.status(200).json(score);
-}
+};
 
 const getAll = async (req, res) => {
   res.status(200).json(await Score.findAll());
-}
+};
 
 const deleteOne = async (req, res) => {
   const { _id } = req.params;
@@ -83,14 +83,13 @@ const deleteOne = async (req, res) => {
 
 const findByTravel = async (req, res) => {
   const { idTravel } = req.params;
-  res.status(200).json(await Score.findByTravelId(idTravel))
-
-}
+  res.status(200).json(await Score.findByTravelId(idTravel));
+};
 
 const getScoreByComponent = async (req, res) => {
   const { idComp } = req.params;
   res.status(200).json(await Score.findByCompId(idComp));
-}
+};
 
 const updateScore = async (req, res) => {
   const data = req.body;
@@ -101,15 +100,34 @@ const updateScore = async (req, res) => {
 
 const router = express.Router();
 
-router.post("/travel/:_idTravel/accomodation/:compId", needsAuthToken, catchErrors(createAcom));
-router.post("/travel/:_idTravel/restoration/:compId", needsAuthToken, catchErrors(createRest));
-router.post("/travel/:_idTravel/transportation/:compId", needsAuthToken, catchErrors(createTransp));
-router.post("/travel/:_idTravel/plan/:compId", needsAuthToken, catchErrors(createPlan));
+router.post(
+  "/travel/:_idTravel/accommodation/:compId",
+  needsAuthToken,
+  catchErrors(createAcom)
+);
+router.post(
+  "/travel/:_idTravel/restoration/:compId",
+  needsAuthToken,
+  catchErrors(createRest)
+);
+router.post(
+  "/travel/:_idTravel/transportation/:compId",
+  needsAuthToken,
+  catchErrors(createTransp)
+);
+router.post(
+  "/travel/:_idTravel/plan/:compId",
+  needsAuthToken,
+  catchErrors(createPlan)
+);
 router.put("/:_id", needsAuthToken, catchErrors(updateScore));
 router.get("/", catchErrors(getAll));
 router.delete("/:_id", needsAuthToken, catchErrors(deleteOne));
-router.get("/travel/:idTravel", needsAuthToken, catchErrors(findByTravel))
-router.get("/component/:idComp", needsAuthToken, catchErrors(getScoreByComponent))
-
+router.get("/travel/:idTravel", needsAuthToken, catchErrors(findByTravel));
+router.get(
+  "/component/:idComp",
+  needsAuthToken,
+  catchErrors(getScoreByComponent)
+);
 
 module.exports = router;

@@ -18,7 +18,6 @@ import {
 
 function AccommodationDetailsPage() {
   const [accommodation, setAccommodation] = useState(null);
-  const [rating, setRating] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState(null);
@@ -34,11 +33,9 @@ function AccommodationDetailsPage() {
     if (success) {
       setAccommodation(accommodation);
       setMessage(null);
-      setRating(3);
     } else {
       setAccommodation(null);
       setMessage(error);
-      setRating(null);
     }
   };
 
@@ -51,11 +48,27 @@ function AccommodationDetailsPage() {
     }
   };
 
-  const onEdit = async (
-    accommodationId,
-    accommodationData,
-    accommodationRating
-  ) => {
+  const onEdit = async (accommodationId, accommodationData, score) => {
+    if (accommodation.scores[0]) {
+      accommodationData.score = {
+        _id: accommodation.scores[0]._id,
+        score: score,
+      };
+    } else {
+      const {
+        success: scoreSuccess,
+        result: newScore,
+        error: scoreError,
+      } = await api.addScore(tripId, accommodationId, "accommodation", {
+        value: score,
+      });
+      if (scoreSuccess) {
+        setMessage(null);
+      } else {
+        setMessage(scoreError);
+      }
+    }
+
     const {
       success,
       result: edited,
@@ -65,7 +78,6 @@ function AccommodationDetailsPage() {
       setAccommodation(edited);
       setEditing(false);
       setMessage(null);
-      setRating(accommodationRating);
     } else {
       setMessage(error);
     }
@@ -93,7 +105,7 @@ function AccommodationDetailsPage() {
     if (!editing) {
       return (
         <>
-          <AccommodationCard accommodation={accommodation} rating={rating} />
+          <AccommodationCard accommodation={accommodation} />
           <div>
             <div
               className="delete-accommodation"
@@ -117,7 +129,6 @@ function AccommodationDetailsPage() {
         <EditAccommodationCard
           accommodation={accommodation}
           accommodationId={accommodationId}
-          accommodationRating={rating}
           onEdit={onEdit}
         />
       );

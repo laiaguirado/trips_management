@@ -72,9 +72,9 @@ export const deleteTraveler = (tripId, email) =>
   authApiCall("DELETE", `/travel/${tripId}/traveler/${email}`);
 
 export const getAccommodationList = (tripId) =>
-  authApiCall("GET", `/travel/${tripId}/accommodation`);
+  authApiCall("GET", `/travel/${tripId}/accommodation?_include=totalScore`);
 export const getAccommodation = (accommodationId) =>
-  authApiCall("GET", `/accommodation/${accommodationId}`);
+  authApiCall("GET", `/accommodation/${accommodationId}?_include=totalScore`);
 export const addAccommodation = (tripId, newAccommodationData) =>
   authApiCall("POST", `/travel/${tripId}/accommodation`, newAccommodationData);
 export const deleteAccommodation = (accommodationId) =>
@@ -83,9 +83,9 @@ export const updateAccommodation = (accommodationId, accommodationData) =>
   authApiCall("PUT", `/accommodation/${accommodationId}`, accommodationData);
 
 export const getTransportationList = (tripId) =>
-  authApiCall("GET", `/travel/${tripId}/transportation`);
+  authApiCall("GET", `/travel/${tripId}/transportation?_include=totalScore`);
 export const getTransportation = (transportationId) =>
-  authApiCall("GET", `/transportation/${transportationId}`);
+  authApiCall("GET", `/transportation/${transportationId}?_include=totalScore`);
 export const addTransportation = (tripId, newTransportationData) =>
   authApiCall(
     "POST",
@@ -108,9 +108,9 @@ export const updatePlan = (planId, planData) =>
   authApiCall("PUT", `/plans/${planId}`, planData);
 
 export const getRestorationList = (tripId) =>
-  authApiCall("GET", `/travel/${tripId}/restoration`);
+  authApiCall("GET", `/travel/${tripId}/restoration?_include=totalScore`);
 export const getRestoration = (restorationId) =>
-  authApiCall("GET", `/restoration/${restorationId}`);
+  authApiCall("GET", `/restoration/${restorationId}?_include=totalScore`);
 export const addRestoration = (tripId, newRestorationData) =>
   authApiCall("POST", `/travel/${tripId}/restoration`, newRestorationData);
 export const deleteRestoration = (restorationId) =>
