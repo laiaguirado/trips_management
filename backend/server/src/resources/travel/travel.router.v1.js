@@ -2,10 +2,12 @@ const express = require("express");
 const {
   catchErrors,
   TripManagementApiError,
+  errUnauthorized,
   errMalformed,
 } = require("../../errors");
 const config = require("../../config");
 const { needsAuthToken } = require("../users/auth/auth.middleware");
+const { allowedAction } = require("./travel.middleware");
 const Travel = require("./travel.service");
 const UserService = require("../users/user.service");
 const Comment = require("../comments/comments.service");
@@ -197,6 +199,11 @@ router.put(
   upload.single("fileImage"),
   catchErrors(updateTravel)
 );
-router.delete("/:_id", needsAuthToken, catchErrors(deleteTravel));
+router.delete(
+  "/:_id",
+  needsAuthToken,
+  allowedAction,
+  catchErrors(deleteTravel)
+);
 
 module.exports = router;
