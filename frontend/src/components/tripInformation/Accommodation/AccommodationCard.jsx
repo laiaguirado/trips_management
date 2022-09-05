@@ -132,18 +132,46 @@ function AccommodationCard({ accommodation }) {
             accommodation.breakfast) && (
             <div className="accommodation-booleans accommodation-detail">
               <h3>Details: </h3>
-              {accommodation.petFriendly && (
-                <FontAwesomeIcon icon={faDog} className="icon" />
-              )}
-              {accommodation.internet && (
-                <FontAwesomeIcon icon={faWifi} className="icon" />
-              )}
-              {accommodation.swimmingPool && (
-                <FontAwesomeIcon icon={faPersonSwimming} className="icon" />
-              )}
-              {accommodation.breakfast && (
-                <FontAwesomeIcon icon={faMugSaucer} className="icon" />
-              )}
+              {accommodation.petFriendly !== null &&
+                (accommodation.petFriendly === true ? (
+                  <FontAwesomeIcon icon={faDog} className="icon" />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faDog}
+                    className="icon"
+                    style={{ color: "#AD3D25" }}
+                  />
+                ))}
+              {accommodation.internet !== null &&
+                (accommodation.internet === true ? (
+                  <FontAwesomeIcon icon={faWifi} className="icon" />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faWifi}
+                    className="icon"
+                    style={{ color: "#AD3D25" }}
+                  />
+                ))}
+              {accommodation.swimmingPool !== null &&
+                (accommodation.swimmingPool === true ? (
+                  <FontAwesomeIcon icon={faPersonSwimming} className="icon" />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faPersonSwimming}
+                    className="icon"
+                    style={{ color: "#AD3D25" }}
+                  />
+                ))}
+              {accommodation.breakfast !== null &&
+                (accommodation.breakfast == true ? (
+                  <FontAwesomeIcon icon={faMugSaucer} className="icon" />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faMugSaucer}
+                    className="icon"
+                    style={{ color: "#AD3D25" }}
+                  />
+                ))}
             </div>
           )}
           {accommodation.board && (
