@@ -10,6 +10,7 @@ import {
   faChildren,
   faBaby,
   faPerson,
+  faCamera,
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
@@ -134,6 +135,15 @@ function PlanCard({ plan }) {
     <div className="plan-card">
       <h1 className="details-title">PLAN</h1>
       {plan.totalScore && getScore(plan.totalScore.average)}
+
+      <div className="details-icon">
+        <div className="dot"></div>
+        <div className="dotted-line"></div>
+        <FontAwesomeIcon className="icon" icon={faCamera} size="2x" />
+        <div className="dotted-line"></div>
+        <div className="dot"></div>
+      </div>
+
       <div className="plan-info">
         <div className="plan-name plan-detail">
           <h3>Name: </h3>

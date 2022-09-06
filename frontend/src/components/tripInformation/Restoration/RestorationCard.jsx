@@ -7,6 +7,7 @@ import {
   faPhone,
   faEnvelope,
   faStarHalfStroke,
+  faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
@@ -90,6 +91,15 @@ function RestorationCard({ restoration }) {
     <div className="restoration-card">
       <h1 className="details-title">RESTORATION</h1>
       {restoration.totalScore && getScore(restoration.totalScore.average)}
+
+      <div className="details-icon">
+        <div className="dot"></div>
+        <div className="dotted-line"></div>
+        <FontAwesomeIcon className="icon" icon={faUtensils} size="2x" />
+        <div className="dotted-line"></div>
+        <div className="dot"></div>
+      </div>
+
       <div className="restoration-info">
         <div className="restoration-name restoration-detail">
           <h3>Name: </h3>

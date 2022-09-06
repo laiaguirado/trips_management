@@ -16,7 +16,6 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
-//todo initial values of boolean checked in edit
 function TransportationDetailsPage() {
   const [transportation, setTransportation] = useState(null);
   const [deleting, setDeleting] = useState(false);
