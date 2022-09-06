@@ -50,10 +50,23 @@ function AccommodationDetailsPage() {
 
   const onEdit = async (accommodationId, accommodationData, score) => {
     if (accommodation.scores[0]) {
-      accommodationData.score = {
-        _id: accommodation.scores[0]._id,
-        score: score,
-      };
+      if (score === "") {
+        const {
+          success: scoreSuccess,
+          result: newScore,
+          error: scoreError,
+        } = await api.deleteScore(accommodation.scores[0]._id);
+        if (scoreSuccess) {
+          setMessage(null);
+        } else {
+          setMessage(scoreError);
+        }
+      } else {
+        accommodationData.score = {
+          _id: accommodation.scores[0]._id,
+          score: score,
+        };
+      }
     } else if (score !== "") {
       const {
         success: scoreSuccess,

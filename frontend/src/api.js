@@ -133,3 +133,5 @@ export const addScore = (tripId, componentId, component, newScore) =>
     `/score/travel/${tripId}/${component}/${componentId}`,
     newScore
   );
+export const deleteScore = (scoreId) =>
+  authApiCall("DELETE", `/score/${scoreId}`);

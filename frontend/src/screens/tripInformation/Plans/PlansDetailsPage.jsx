@@ -46,10 +46,23 @@ function PlansDetailsPage() {
 
   const onEdit = async (planId, planData, score) => {
     if (plan.scores[0]) {
-      planData.score = {
-        _id: plan.scores[0]._id,
-        score: score,
-      };
+      if (score === "") {
+        const {
+          success: scoreSuccess,
+          result: newScore,
+          error: scoreError,
+        } = await api.deleteScore(plan.scores[0]._id);
+        if (scoreSuccess) {
+          setMessage(null);
+        } else {
+          setMessage(scoreError);
+        }
+      } else {
+        planData.score = {
+          _id: plan.scores[0]._id,
+          score: score,
+        };
+      }
     } else if (score !== "") {
       const {
         success: scoreSuccess,

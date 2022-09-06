@@ -50,10 +50,23 @@ function RestorationDetailsPage() {
 
   const onEdit = async (restorationId, restorationData, score) => {
     if (restoration.scores[0]) {
-      restorationData.score = {
-        _id: restoration.scores[0]._id,
-        score: score,
-      };
+      if (score === "") {
+        const {
+          success: scoreSuccess,
+          result: newScore,
+          error: scoreError,
+        } = await api.deleteScore(restoration.scores[0]._id);
+        if (scoreSuccess) {
+          setMessage(null);
+        } else {
+          setMessage(scoreError);
+        }
+      } else {
+        restorationData.score = {
+          _id: restoration.scores[0]._id,
+          score: score,
+        };
+      }
     } else if (score !== "") {
       const {
         success: scoreSuccess,

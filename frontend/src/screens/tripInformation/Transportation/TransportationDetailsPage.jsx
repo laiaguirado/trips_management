@@ -52,10 +52,23 @@ function TransportationDetailsPage() {
 
   const onEdit = async (transportationId, transportationData, score) => {
     if (transportation.scores[0]) {
-      transportationData.score = {
-        _id: transportation.scores[0]._id,
-        score: score,
-      };
+      if (score === "") {
+        const {
+          success: scoreSuccess,
+          result: newScore,
+          error: scoreError,
+        } = await api.deleteScore(transportation.scores[0]._id);
+        if (scoreSuccess) {
+          setMessage(null);
+        } else {
+          setMessage(scoreError);
+        }
+      } else {
+        transportationData.score = {
+          _id: transportation.scores[0]._id,
+          score: score,
+        };
+      }
     } else if (score !== "") {
       const {
         success: scoreSuccess,
