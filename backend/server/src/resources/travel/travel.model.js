@@ -5,6 +5,8 @@ const Plans = require("../components/plans/plans.model");
 const Accommodation = require("../components/accommodation/accommodation.model");
 const Restoration = require("../components/restoration/restoration.model");
 const Transportation = require("../components/transportation/transportation.model");
+const Comment = require("../comments/comments.model");
+const Score = require("../score/score.model");
 const Users = require("../users/user.model");
 
 mongoose.Schema.Types.Image = image;
@@ -154,6 +156,8 @@ const travelSchema = new mongoose.Schema(
 travelSchema.pre("findOneAndDelete", async function (next) {
   const idTravel = this.getQuery()["_id"];
 
+  await Comment.deleteMany({ idTravel: idTravel }).exec();
+  await Score.deleteMany({ idTravel: idTravel }).exec();
   await Plans.deleteMany({ idTravel: idTravel }).exec();
   await Transportation.deleteMany({ idTravel: idTravel }).exec();
   await Accommodation.deleteMany({ idTravel: idTravel }).exec();
