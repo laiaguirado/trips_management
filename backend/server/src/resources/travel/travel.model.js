@@ -77,18 +77,6 @@ const travelSchema = new mongoose.Schema(
         },
       }),
     ],
-    scores: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "score",
-      },
-    ],
-    comments: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "comment",
-      },
-    ],
     restaurants: [
       {
         type: mongoose.Schema.Types.ObjectId,

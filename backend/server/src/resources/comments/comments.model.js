@@ -7,7 +7,8 @@ const commentsSchema = mongoose.Schema(
       ref: "user",
     },
     idTravel: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "travel",
     },
     idComponent: {
       type: mongoose.Schema.Types.ObjectId,

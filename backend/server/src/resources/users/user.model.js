@@ -25,18 +25,6 @@ const userSchema = mongoose.Schema(
       trim: true,
       maxlength: [50, "'{PATH}' is too long. Max. 50 characters"],
     },
-    scores: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "score",
-      },
-    ],
-    comments: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "comment",
-      },
-    ],
     travels: [
       {
         type: mongoose.Schema.Types.ObjectId,

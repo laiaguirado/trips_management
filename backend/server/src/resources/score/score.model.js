@@ -5,23 +5,20 @@ const scoreSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
-  idTravel:{
-    type: String
+  idTravel: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "travel",
   },
   idComponent: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "component",
   },
-  idTravel: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "travel",
+  score: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5,
   },
-  score:{
-    type:Number,
-    required:true,
-    min:0,
-    max:5
-  }
 });
 
 const Score = mongoose.model("score", scoreSchema);
