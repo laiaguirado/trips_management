@@ -50,12 +50,11 @@ function RestorationDetailsPage() {
 
   const onEdit = async (restorationId, restorationData, score) => {
     if (restoration.scores[0]) {
-      console.log(restoration.scores);
       restorationData.score = {
         _id: restoration.scores[0]._id,
         score: score,
       };
-    } else {
+    } else if (score !== "") {
       const {
         success: scoreSuccess,
         result: newScore,

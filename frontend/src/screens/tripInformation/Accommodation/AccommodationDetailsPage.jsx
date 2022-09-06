@@ -54,7 +54,7 @@ function AccommodationDetailsPage() {
         _id: accommodation.scores[0]._id,
         score: score,
       };
-    } else {
+    } else if (score !== "") {
       const {
         success: scoreSuccess,
         result: newScore,

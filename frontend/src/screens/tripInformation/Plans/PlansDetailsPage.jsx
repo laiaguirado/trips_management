@@ -50,7 +50,7 @@ function PlansDetailsPage() {
         _id: plan.scores[0]._id,
         score: score,
       };
-    } else {
+    } else if (score !== "") {
       const {
         success: scoreSuccess,
         result: newScore,
@@ -72,7 +72,6 @@ function PlansDetailsPage() {
       setPlan(edited);
       setEditing(false);
       setMessage(null);
-      console.log(edited);
     } else {
       setMessage(error);
     }

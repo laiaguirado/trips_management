@@ -15,7 +15,9 @@ import {
   faPen,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-
+//todo half board edit
+//todo initial values of boolean checked in edit
+//todo display G in rating field when edit
 function TransportationDetailsPage() {
   const [transportation, setTransportation] = useState(null);
   const [deleting, setDeleting] = useState(false);
@@ -54,8 +56,7 @@ function TransportationDetailsPage() {
         _id: transportation.scores[0]._id,
         score: score,
       };
-      console.log(transportationData);
-    } else {
+    } else if (score !== "") {
       const {
         success: scoreSuccess,
         result: newScore,
@@ -80,7 +81,6 @@ function TransportationDetailsPage() {
       setTransportation(edited);
       setEditing(false);
       setMessage(null);
-      console.log(edited);
     } else {
       setMessage(error);
     }
