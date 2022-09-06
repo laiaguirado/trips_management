@@ -11,6 +11,7 @@ import {
   faCirclePlus,
   faAngleLeft,
   faStar,
+  faStarHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
 
 function TransportationPage() {

@@ -11,8 +11,9 @@ import {
   faCirclePlus,
   faAngleLeft,
   faStar,
+  faStarHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
-//todo rating g display in add
+
 function AccommodationPage() {
   const [accommodationList, setAccommodationList] = useState(null);
   const [adding, setAdding] = useState(false);

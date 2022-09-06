@@ -12,6 +12,7 @@ import {
   faPhone,
   faEnvelope,
   faMugSaucer,
+  faStarHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 

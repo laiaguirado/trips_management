@@ -49,10 +49,7 @@ function TransportationDetailsPage() {
   };
 
   const onEdit = async (transportationId, transportationData, score) => {
-    console.log(score);
-    console.log(transportation);
     if (transportation.scores[0]) {
-      console.log("inside if");
       transportationData.score = {
         _id: transportation.scores[0]._id,
         score: score,
@@ -72,13 +69,13 @@ function TransportationDetailsPage() {
         setMessage(scoreError);
       }
     }
-    console.log("----");
+
     const {
       success,
       result: edited,
       error,
     } = await api.updateTransportation(transportationId, transportationData);
-    console.log("----");
+
     if (success) {
       setTransportation(edited);
       setEditing(false);
