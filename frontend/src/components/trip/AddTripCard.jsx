@@ -129,10 +129,24 @@ function AddTripCard({ onAdd, message, adding }) {
               />
             </div>
           </label>
-          <div className="add-image">
-            <label>
-              <div className="form-data">
-                <FontAwesomeIcon icon={faImage} className="icon" />
+          <label>
+            <div className="form-data ">
+              <div className="add-image">
+                <div>
+                  <FontAwesomeIcon icon={faImage} className="icon" />
+                  <input
+                    className="input upload"
+                    required={imageUrl ? false : true}
+                    disabled={imageUrl ? true : false}
+                    placeholder="Select a file"
+                    type="file"
+                    onInput={(event) => {
+                      setImage(event.target.files[0]);
+                    }}
+                  />
+                </div>
+
+                <div> Or</div>
                 <input
                   className="input imageUrl"
                   required={image ? false : true}
@@ -144,22 +158,8 @@ function AddTripCard({ onAdd, message, adding }) {
                   }}
                 />
               </div>
-            </label>
-            <label>
-              <div className="form-data">
-                <input
-                  className="input upload"
-                  required={imageUrl ? false : true}
-                  disabled={imageUrl ? true : false}
-                  placeholder="Select a file"
-                  type="file"
-                  onInput={(event) => {
-                    setImage(event.target.files[0]);
-                  }}
-                />
-              </div>
-            </label>
-          </div>
+            </div>
+          </label>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faNoteSticky} className="icon" />

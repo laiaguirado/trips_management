@@ -15,7 +15,7 @@
 
 .add-trip-card .form-container {
   margin: 7vw;
-  width: 50rem;
+  width: 25rem;
 }
 
 .add-trip-card {
@@ -30,12 +30,25 @@
 
 .add-trip-card .add-image {
   display: flex;
-  flex-direction: row;
-  margin: 0rem 2.75rem;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
 }
 
 .add-trip-card .add-image .upload {
-  width: 100%;
+  width: auto;
+  align-items: center;
+}
+
+.add-trip-card .add-image .imageUrl {
+  background-color: white;
+  border: solid #efeee1;
+  padding: 0.6rem;
+  margin: auto;
+  border-radius: 1.2rem;
 }
 
 .return-icon {
@@ -90,4 +103,9 @@ input[type="file"]::file-selector-button {
   border: 0;
   color: #937b5f;
   font-family: "Open Sans";
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+  text-decoration: underline;
 }
