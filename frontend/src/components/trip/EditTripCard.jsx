@@ -10,8 +10,7 @@ function EditTripCard({ trip, tripId, onEdit }) {
   const [tripEndDate, setTripEndDate] = useState(setDateValue(trip.endDate));
   const [tripDescription, setTripDescription] = useState(trip.description);
   const [tripImage, setTripImage] = useState(null);
-  const refImage = useRef(null);
-  const [imageSrc, setImageSrc] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   function setDateValue(value) {
     if (value === "" || value === undefined || value === null) {
@@ -29,6 +28,9 @@ function EditTripCard({ trip, tripId, onEdit }) {
     if (tripImage != null) {
       formData.append("fileImage", tripImage);
     }
+    if (imageUrl != null) {
+      formData.append("image", imageUrl);
+    }
     formData.append("startDate", tripStartDate);
     formData.append("endDate", tripEndDate);
 
@@ -43,18 +45,6 @@ function EditTripCard({ trip, tripId, onEdit }) {
         setImageSrc(e.target.result);
       };
       reader.readAsDataURL(input.files[0]);
-    }
-  }
-
-  function setImageUpload() {
-    if (imageSrc === "" || imageSrc === null) {
-      if (trip.image.name.startsWith("/")) {
-        return "http://localhost:8080/upload" + trip.image.name;
-      } else {
-        return "";
-      }
-    } else {
-      return imageSrc;
     }
   }
 
@@ -163,20 +153,36 @@ function EditTripCard({ trip, tripId, onEdit }) {
         </div>
       </div>
       <div className="uploading-new-image">
-        <img className="trip-image image-editing" src={setImageUpload()}></img>
+        {trip.image.name ? (
+          <img
+            className="trip-image image-editing"
+            src={"http://localhost:8080/upload" + trip.image.name}
+          ></img>
+        ) : (
+          <img className="trip-image image-editing" src={trip.image.url}></img>
+        )}
         <label>
-          <div className="form-data">
-            <input
-              className="input upload"
-              required
-              type="file"
-              ref={refImage}
-              onInput={(event) => {
-                setTripImage(event.target.files[0]);
-              }}
-              onChange={(e) => readURL(e)}
-            />
-          </div>
+          <input
+            className="input upload"
+            required={imageUrl ? false : true}
+            disabled={imageUrl ? true : false}
+            placeholder="Select a file"
+            type="file"
+            onInput={(event) => {
+              setTripImage(event.target.files[0]);
+            }}
+          />
+          <div> Or</div>
+          <input
+            className="input imageUrl"
+            required={tripImage ? false : true}
+            disabled={tripImage ? true : false}
+            placeholder="Copy an image url"
+            type="url"
+            onInput={(event) => {
+              setImageUrl(event.target.value);
+            }}
+          />
         </label>
       </div>
     </div>

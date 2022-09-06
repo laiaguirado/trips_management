@@ -47,3 +47,12 @@
   background-color: #2d5a74;
   color: white;
 }
+
+.uploading-new-image .imageUrl {
+  background-color: white;
+  border: solid #efeee1;
+  padding: 0.6rem;
+  margin: auto;
+  border-radius: 1.2rem;
+  margin-top: 5px;
+}

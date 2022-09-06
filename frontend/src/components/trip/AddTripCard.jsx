@@ -147,6 +147,7 @@ function AddTripCard({ onAdd, message, adding }) {
                 </div>
 
                 <div> Or</div>
+
                 <input
                   className="input imageUrl"
                   required={image ? false : true}
