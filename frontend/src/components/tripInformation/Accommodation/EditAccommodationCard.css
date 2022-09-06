@@ -13,6 +13,15 @@
 }
 
 .edit-card .edit-checkbox {
-  width: 15vw;
+  width: auto;
+  text-align: left;
   margin-bottom: 1rem;
+}
+
+.accommodation-checkHour {
+  text-align: left;
+}
+
+.edit-card h3 {
+  text-align: left;
 }
