@@ -182,7 +182,7 @@ const updateTransportation = async (_id, transportInfo) => {
   const transportationUpdated = await Transportation.findOneAndUpdate(
     { _id },
     transportInfo,
-    { new: true }
+    { new: true, runValidators: true }
   )
     .lean({ getters: true, virtuals: true })
     .exec();

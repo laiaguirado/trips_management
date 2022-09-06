@@ -174,6 +174,7 @@ const deletePlan = async (_id) => {
 const updatePlan = async (_id, planInfo) => {
   const planUpdated = await Plans.findOneAndUpdate({ _id }, planInfo, {
     new: true,
+    runValidators: true,
   })
     .lean({ getters: true, virtuals: true })
     .exec();

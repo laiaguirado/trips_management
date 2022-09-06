@@ -155,7 +155,7 @@ const updateAccomodation = async (_id, accommodationData) => {
     accommodationData,
     { new: true }
   )
-    .lean({ getters: true, virtuals: true })
+    .lean({ getters: true, virtuals: true, runValidators: true })
     .exec();
 
   if (accomUpdated === null) {

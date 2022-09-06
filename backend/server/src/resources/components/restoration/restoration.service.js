@@ -177,6 +177,7 @@ const getByTravelId = async (idTravel, additionalInfo) => {
 const updateRestoration = async (_id, data) => {
   const restUpdated = await Restoration.findOneAndUpdate({ _id }, data, {
     new: true,
+    runValidators: true,
   })
     .lean({ getters: true, virtuals: true })
     .exec();
