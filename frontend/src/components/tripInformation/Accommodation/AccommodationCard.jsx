@@ -126,7 +126,6 @@ function AccommodationCard({ accommodation }) {
               </div>
             </div>
           )}
-
           {(accommodation.petFriendly ||
             accommodation.internet ||
             accommodation.swimmingPool ||

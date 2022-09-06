@@ -23,8 +23,14 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
     restoration.scores[0] ? restoration.scores[0].score : ""
   );
   const [notation, setNotation] = useState(restoration.notation);
-  const [takeAwayChecked, setTakeAwayChecked] = useState([false, false]);
-  const [reservedChecked, setReservedChecked] = useState([false, false]);
+  const [takeAwayChecked, setTakeAwayChecked] = useState([
+    takeAway ? true : false,
+    takeAway ? false : takeAway !== null ? true : false,
+  ]);
+  const [reservedChecked, setReservedChecked] = useState([
+    reserved ? true : false,
+    reserved ? false : reserved !== null ? true : false,
+  ]);
 
   const update = (e) => {
     e.preventDefault();

@@ -27,11 +27,17 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
     accommodation.scores[0] ? accommodation.scores[0].score : ""
   );
   const [notation, setNotation] = useState(accommodation.notation);
-  const [petFriendlyChecked, setPetFriendlyChecked] = useState([false, false]);
-  const [internetChecked, setInternetChecked] = useState([false, false]);
+  const [petFriendlyChecked, setPetFriendlyChecked] = useState([
+    petFriendly ? true : false,
+    petFriendly ? false : petFriendly !== null ? true : false,
+  ]);
+  const [internetChecked, setInternetChecked] = useState([
+    internet ? true : false,
+    internet ? false : internet !== null ? true : false,
+  ]);
   const [swimmingPoolChecked, setSwimmingPoolChecked] = useState([
-    false,
-    false,
+    swimmingPool ? true : false,
+    swimmingPool ? false : swimmingPool !== null ? true : false,
   ]);
 
   function setDateValue(value) {
