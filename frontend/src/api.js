@@ -126,6 +126,8 @@ export const addComment = (tripId, componentId, component, newCommentData) =>
     `/comment/travel/${tripId}/${component}/${componentId}`,
     newCommentData
   );
+export const deleteComment = (commentId) =>
+  authApiCall("DELETE", `/comment/${commentId}`);
 
 export const addScore = (tripId, componentId, component, newScore) =>
   authApiCall(

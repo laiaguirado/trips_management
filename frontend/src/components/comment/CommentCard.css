@@ -19,11 +19,41 @@
   margin-left: 2rem;
 }
 
-.comment-text {
+.comment-card .id {
+  display: flex;
   background-color: #b7cbe795;
-  padding: 1rem;
   border-radius: 1.2rem;
+}
+
+.comment-text {
+  padding: 1rem;
   margin-bottom: 1rem;
   text-align: left;
   white-space: pre-wrap;
+  width: 90%;
+}
+
+.comment-card .id .delete-comment {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin: 1rem;
+  margin-bottom: 0.5rem;
+  width: 1.75em;
+  height: 1.75em;
+  opacity: 0;
+}
+
+.comment-card .id:hover .delete-comment {
+  opacity: 1;
+  justify-content: center;
+  align-items: center;
+  color: #b7553e;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.comment-card .id:hover .delete-comment:hover {
+  background-color: #b7553e;
+  color: white;
+  font-weight: bold;
 }
