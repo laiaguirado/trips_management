@@ -96,12 +96,6 @@ function EditTripCard({ trip, tripId, onEdit }) {
                       placeholder="Start Date *"
                       max={tripEndDate}
                       defaultValue={tripStartDate}
-                      onFocus={(event) => {
-                        event.target.value = tripStartDate;
-                      }}
-                      onBlur={(event) => {
-                        event.target.value = tripStartDate;
-                      }}
                       onChange={(event) => setTripStartDate(event.target.value)}
                     />
                   </div>
@@ -116,12 +110,6 @@ function EditTripCard({ trip, tripId, onEdit }) {
                       placeholder="End Date *"
                       min={tripStartDate}
                       defaultValue={tripEndDate}
-                      onFocus={(event) => {
-                        event.target.value = tripEndDate;
-                      }}
-                      onBlur={(event) => {
-                        event.target.value = tripEndDate;
-                      }}
                       onChange={(event) => setTripEndDate(event.target.value)}
                     />
                   </div>

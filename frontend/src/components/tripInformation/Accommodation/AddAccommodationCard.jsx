@@ -79,17 +79,6 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
     window.scrollTo(0, 0);
   }, []);
 
-  function getDateValue(value, placeholder) {
-    if (value === "" || value === undefined) {
-      return placeholder;
-    }
-    const date = new Date(value);
-    const day = ("0" + date.getDate()).slice(-2);
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const year = ("0" + date.getFullYear()).slice(-4);
-    return day + "/" + month + "/" + year;
-  }
-
   function changePetFriendly(e, option) {
     if (option) {
       const otherValue = petFriendlyChecked[1];
@@ -285,15 +274,9 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                 id="date"
                 className="input date"
                 placeholder="Start Date"
+                type="date"
                 max={endDate}
-                onFocus={(event) => {
-                  event.target.type = "date";
-                  event.target.value = startDate;
-                }}
-                onBlur={(event) => {
-                  event.target.type = "text";
-                  event.target.value = getDateValue(startDate, "Start Date");
-                }}
+                defaultValue={startDate}
                 onChange={(event) => setStartDate(event.target.value)}
               />
             </div>
@@ -301,21 +284,17 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faCalendar} className="icon" />
-              <input
-                id="date"
-                className="input date"
-                placeholder="End Date"
-                min={startDate}
-                onFocus={(event) => {
-                  event.target.type = "date";
-                  event.target.value = endDate;
-                }}
-                onBlur={(event) => {
-                  event.target.type = "text";
-                  event.target.value = getDateValue(endDate, "End Date");
-                }}
-                onChange={(event) => setEndDate(event.target.value)}
-              />
+              <div className="form-data">
+                <input
+                  id="date"
+                  className="input date"
+                  placeholder="End Date"
+                  type="date"
+                  min={startDate}
+                  defaultValue={endDate}
+                  onChange={(event) => setEndDate(event.target.value)}
+                />
+              </div>
             </div>
           </label>
           <label>

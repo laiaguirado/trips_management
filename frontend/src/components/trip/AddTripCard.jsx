@@ -92,17 +92,10 @@ function AddTripCard({ onAdd, message, adding }) {
                 id="date"
                 className="input date"
                 required
-                type="text"
+                type="date"
                 placeholder="Start Date *"
                 max={endDate}
-                onFocus={(event) => {
-                  event.target.type = "date";
-                  event.target.value = startDate;
-                }}
-                onBlur={(event) => {
-                  event.target.type = "text";
-                  event.target.value = getDateValue(startDate, "Start Date *");
-                }}
+                defaultValue={startDate}
                 onChange={(event) => setStartDate(event.target.value)}
               />
             </div>
@@ -114,17 +107,10 @@ function AddTripCard({ onAdd, message, adding }) {
                 id="date"
                 className="input date"
                 required
-                type="text"
+                type="date"
                 placeholder="End Date *"
                 min={startDate}
-                onFocus={(event) => {
-                  event.target.type = "date";
-                  event.target.value = endDate;
-                }}
-                onBlur={(event) => {
-                  event.target.type = "text";
-                  event.target.value = getDateValue(endDate, "End Date *");
-                }}
+                defaultValue={endDate}
                 onChange={(event) => setEndDate(event.target.value)}
               />
             </div>
