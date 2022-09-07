@@ -42,7 +42,7 @@ function AddTripCard({ onAdd, message, adding }) {
     if (value === "" || value === undefined) {
       return placeholder;
     }
-    const date = new Date(value);
+    const date = new Date(value.replace(/-/g, "/"));
     const day = ("0" + date.getDate()).slice(-2);
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
     const year = ("0" + date.getFullYear()).slice(-4);
@@ -92,10 +92,17 @@ function AddTripCard({ onAdd, message, adding }) {
                 id="date"
                 className="input date"
                 required
-                type="date"
+                type="text"
                 placeholder="Start Date *"
                 max={endDate}
-                defaultValue={startDate}
+                onFocus={(event) => {
+                  event.target.type = "date";
+                  event.target.value = startDate;
+                }}
+                onBlur={(event) => {
+                  event.target.type = "text";
+                  event.target.value = getDateValue(startDate, "Start Date *");
+                }}
                 onChange={(event) => setStartDate(event.target.value)}
               />
             </div>
@@ -107,10 +114,17 @@ function AddTripCard({ onAdd, message, adding }) {
                 id="date"
                 className="input date"
                 required
-                type="date"
+                type="text"
                 placeholder="End Date *"
                 min={startDate}
-                defaultValue={endDate}
+                onFocus={(event) => {
+                  event.target.type = "date";
+                  event.target.value = endDate;
+                }}
+                onBlur={(event) => {
+                  event.target.type = "text";
+                  event.target.value = getDateValue(endDate, "End Date *");
+                }}
                 onChange={(event) => setEndDate(event.target.value)}
               />
             </div>

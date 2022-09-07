@@ -274,9 +274,15 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                 id="date"
                 className="input date"
                 placeholder="Start Date"
-                type="date"
                 max={endDate}
-                defaultValue={startDate}
+                onFocus={(event) => {
+                  event.target.type = "date";
+                  event.target.value = startDate;
+                }}
+                onBlur={(event) => {
+                  event.target.type = "text";
+                  event.target.value = getDateValue(startDate, "Start Date");
+                }}
                 onChange={(event) => setStartDate(event.target.value)}
               />
             </div>
@@ -284,17 +290,21 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faCalendar} className="icon" />
-              <div className="form-data">
-                <input
-                  id="date"
-                  className="input date"
-                  placeholder="End Date"
-                  type="date"
-                  min={startDate}
-                  defaultValue={endDate}
-                  onChange={(event) => setEndDate(event.target.value)}
-                />
-              </div>
+              <input
+                id="date"
+                className="input date"
+                placeholder="End Date"
+                min={startDate}
+                onFocus={(event) => {
+                  event.target.type = "date";
+                  event.target.value = endDate;
+                }}
+                onBlur={(event) => {
+                  event.target.type = "text";
+                  event.target.value = getDateValue(endDate, "End Date");
+                }}
+                onChange={(event) => setEndDate(event.target.value)}
+              />
             </div>
           </label>
           <label>
