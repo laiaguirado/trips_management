@@ -1,18 +1,21 @@
 import React from "react";
 import "./CommentCard.css";
 import * as helper from "../../helper";
+import * as api from "../../api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-function CommentCard({ comment }) {
-  /*const deleteComment = async (commentId) => {
-      const { success, error } = await api.deleteComment(commentId);
-      if (success) {
-        modifyCommentList((prevList) =>
-          prevList.filter((t) => t._id !== commentId)
-        );
-      } else {
-        setMessage(error);
-      }
-    };*/
+function CommentCard({ comment, modifyCommentList }) {
+  const deleteComment = async (commentId) => {
+    const { success, error } = await api.deleteComment(commentId);
+    if (success) {
+      modifyCommentList((prevList) =>
+        prevList.filter((t) => t._id !== commentId)
+      );
+    } else {
+      setMessage(error);
+    }
+  };
 
   let differenceObject = helper.published(comment.createdAt);
   let difference = differenceObject.seconds;
@@ -47,17 +50,21 @@ function CommentCard({ comment }) {
             Published {difference + time} ago
           </span>
         </div>
-
-        <div className="comment-text">{comment.comment}</div>
+        <div className="id">
+          <div className="comment-text">{comment.comment}</div>
+          <div
+            className="delete-comment"
+            onClick={() => {
+              deleteComment(comment._id);
+            }}
+          >
+            <FontAwesomeIcon
+              className="icon-delete-comment"
+              icon={faTrashCan}
+            />
+          </div>
+        </div>
       </div>
-      {/*<div
-          className="delete-comment"
-          onClick={() => {
-            deleteComment(comment._id);
-          }}
-        >
-          <FontAwesomeIcon icon={faTrashCan} /> DELETE COMMENT
-        </div>*/}
     </div>
   );
 }

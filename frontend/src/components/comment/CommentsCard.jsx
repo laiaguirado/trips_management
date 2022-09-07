@@ -25,18 +25,23 @@ function CommentsCard({ tripId, componentId, component }) {
 
   const addComment = async (e) => {
     e.preventDefault();
-    const {
-      success,
-      result: newComment,
-      error,
-    } = await api.addComment(tripId, componentId, component, {
-      comment_text: comment,
-    });
-    if (success) {
-      setCommentList((commentList) => [...commentList, newComment]);
-      setComment("");
+    if (comment === "") {
+      //setMessage("Can't post an empty comment");
     } else {
-      setMessage(error);
+      setMessage(null);
+      const {
+        success,
+        result: newComment,
+        error,
+      } = await api.addComment(tripId, componentId, component, {
+        comment_text: comment,
+      });
+      if (success) {
+        setCommentList((commentList) => [...commentList, newComment]);
+        setComment("");
+      } else {
+        setMessage(error);
+      }
     }
   };
 
@@ -45,13 +50,17 @@ function CommentsCard({ tripId, componentId, component }) {
   }, [componentId]);
   return (
     <div className="comments">
-      <div className="error">{message}</div>
       <h4>Comments: </h4>
       <div className="comments-list">
         {commentList.map((comment) => (
-          <CommentCard key={comment._id} comment={comment} />
+          <CommentCard
+            key={comment._id}
+            comment={comment}
+            modifyCommentList={setCommentList}
+          />
         ))}
       </div>
+      <div className="error">{message}</div>
       <form className="add-comment" onSubmit={addComment}>
         <div className="comment-user">New comment:</div>
         <textarea
