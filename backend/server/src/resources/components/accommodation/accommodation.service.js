@@ -5,6 +5,7 @@ const Comment = require("../../comments/comments.model");
 const Score = require("../../score/score.model");
 const { isValidParameter } = require("../../../helper");
 const { errMalformed } = require("../../../errors");
+const { getScores } = require("../component.service");
 
 const paramValueInclude = ["totalScore"];
 
@@ -30,42 +31,6 @@ const findAll = async () => {
   return await Accommodation.find().lean().exec();
 };
 
-const getScores = async (idAccommodation) => {
-  const filterBy = idAccommodation
-    ? {
-        $match: { _id: { $eq: mongoose.Types.ObjectId(idAccommodation) } },
-      }
-    : { $match: {} };
-
-  const totales = await Accommodation.aggregate(
-    [
-      {
-        $lookup: {
-          from: "scores",
-          localField: "scores",
-          foreignField: "_id",
-          as: "resultingArray",
-        },
-      },
-      { $unwind: "$resultingArray" },
-      {
-        $group: {
-          _id: "$_id",
-          average: { $avg: "$resultingArray.score" },
-          points: { $sum: "$resultingArray.score" },
-          votes: { $sum: 1 },
-        },
-      },
-      filterBy,
-    ],
-    function (err, result) {
-      // console.log(result);
-      // console.log(err);
-    }
-  );
-  return totales;
-};
-
 const findByTravelId = async (_idTravel, additionalInfo) => {
   if (additionalInfo && !isValidParameter(paramValueInclude, additionalInfo)) {
     errMalformed("Wrong query parameter");
@@ -77,7 +42,7 @@ const findByTravelId = async (_idTravel, additionalInfo) => {
     .lean({ getters: true, virtuals: true })
     .exec();
   if (accommodation && additionalInfo === "totalScore") {
-    const totales = await getScores();
+    const totales = await getScores(Accommodation);
 
     if (totales) {
       const completAccommodation = accommodation.map((accommodationAct) => {
@@ -121,7 +86,7 @@ const findAccommodationById = async (id, idUser, additionalInfo) => {
   }
 
   if (additionalInfo === "totalScore") {
-    const total = await getScores(id);
+    const total = await getScores(Accommodation, id);
 
     if (total.length === 1) {
       accommodation.totalScore = total[0];

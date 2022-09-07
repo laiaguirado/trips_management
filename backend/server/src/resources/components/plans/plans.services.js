@@ -5,10 +5,8 @@ const mongoose = require("mongoose");
 const Comment = require("../../comments/comments.model");
 const { runTransaction,isValidParameter } = require("../../../helper");
 const { errMalformed } = require("../../../errors");
-
+const { getScores } = require("../component.service");
 const paramValueInclude = ["totalScore"];
-// const isValidParameter = (parameter, value) =>
-//   parameter.find((param) => param === value);
 
 const createPlan = async (plan) => {
   const planToDo = await runTransaction(async () => {
@@ -40,45 +38,8 @@ const addFirstScore = async (idPlan, idScore, score) => {
   return planUpdated;
 };
 
-
 const findOneById = async (id) => {
   return await Plans.findOne({ _id: id });
-};
-
-const getScores = async (idPlan) => {
-  const filterBy = idPlan
-    ? {
-        $match: { _id: { $eq: mongoose.Types.ObjectId(idPlan) } },
-      }
-    : { $match: {} };
-
-  const totales = await Plans.aggregate(
-    [
-      {
-        $lookup: {
-          from: "scores",
-          localField: "scores",
-          foreignField: "_id",
-          as: "resultingArray",
-        },
-      },
-      { $unwind: "$resultingArray" },
-      {
-        $group: {
-          _id: "$_id",
-          average: { $avg: "$resultingArray.score" },
-          points: { $sum: "$resultingArray.score" },
-          votes: { $sum: 1 },
-        },
-      },
-      filterBy,
-    ],
-    function (err, result) {
-      // console.log(result);
-      // console.log(err);
-    }
-  );
-  return totales;
 };
 
 const getAllPlansByTravel = async (idTravel, additionalInfo) => {
@@ -92,7 +53,7 @@ const getAllPlansByTravel = async (idTravel, additionalInfo) => {
     .lean({ getters: true, virtuals: true })
     .exec();
   if (plans && additionalInfo === "totalScore") {
-    const totales = await getScores();
+    const totales = await getScores(Plans);
 
     if (totales) {
       const completPlans = plans.map((plan) => {
@@ -133,8 +94,7 @@ const getPlanById = async (idPlan, idUser, additionalInfo) => {
   }
 
   if (additionalInfo === "totalScore") {
-    const total = await getScores(idPlan);
-    console.log(total);
+    const total = await getScores(Plans, idPlan);
     if (total.length === 1) {
       plan.totalScore = total[0];
     }

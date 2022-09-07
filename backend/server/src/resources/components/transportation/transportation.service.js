@@ -5,11 +5,12 @@ const Comment = require("../../comments/comments.model");
 const { runTransaction, isValidParameter } = require("../../../helper");
 const { errMalformed } = require("../../../errors");
 const Score = require("../../score/score.model");
+const { getScores } = require("../component.service");
 
 const paramValueInclude = ["totalScore"];
 
 const createTransport = async (transport) => {
-  const transportation = await runTransaction(async () => {
+  const transportOut = await runTransaction(async () => {
     const transportCreated = await Transportation.create(transport);
 
     const travel = await Travel.findOneAndUpdate(
@@ -19,43 +20,7 @@ const createTransport = async (transport) => {
     );
     return transportCreated;
   });
-  return transportation;
-};
-
-const getScores = async (idTransportation) => {
-  const filterBy = idTransportation
-    ? {
-        $match: { _id: { $eq: mongoose.Types.ObjectId(idTransportation) } },
-      }
-    : { $match: {} };
-
-  const totales = await Transportation.aggregate(
-    [
-      {
-        $lookup: {
-          from: "scores",
-          localField: "scores",
-          foreignField: "_id",
-          as: "resultingArray",
-        },
-      },
-      { $unwind: "$resultingArray" },
-      {
-        $group: {
-          _id: "$_id",
-          average: { $avg: "$resultingArray.score" },
-          points: { $sum: "$resultingArray.score" },
-          votes: { $sum: 1 },
-        },
-      },
-      filterBy,
-    ],
-    function (err, result) {
-      // console.log(result);
-      // console.log(err);
-    }
-  );
-  return totales;
+  return transportOut;
 };
 
 const getAllTransportationByTravel = async (idTravel, additionalInfo) => {
@@ -71,7 +36,7 @@ const getAllTransportationByTravel = async (idTravel, additionalInfo) => {
     .exec();
 
   if (transports && additionalInfo === "totalScore") {
-    const totales = await getScores();
+    const totales = await getScores(Transportation);
 
     if (totales) {
       const completTransports = transports.map((actualTransport) => {
@@ -93,30 +58,26 @@ const getAllTransportationByTravel = async (idTravel, additionalInfo) => {
   return transports;
 };
 
-const addFirstScore = async (idTransportation, idScore, score) => {
-  const transportationUpdated = await Transportation.findOneAndUpdate(
-    { _id: idTransportation },
+const addFirstScore = async (idTransport, idScore, score) => {
+  const transportUpdated = await Transportation.findOneAndUpdate(
+    { _id: idTransport },
     { $push: { scores: idScore } },
     { new: true, useFindAndModify: false, runValidators: true }
   );
   //Modify the total score. Since there is only one vote, we will not calculate it with the aggregate function
-  transportationUpdated.totalScore = {
+  transportUpdated.totalScore = {
     average: score,
     votes: 1,
     points: score,
   };
-  return transportationUpdated;
+  return transportUpdated;
 };
 
-const getTransportationById = async (
-  idTransportation,
-  idUser,
-  additionalInfo
-) => {
+const getTransportationById = async (idTransport, idUser, additionalInfo) => {
   if (additionalInfo && !isValidParameter(paramValueInclude, additionalInfo))
     errMalformed("Wrong query parameter");
 
-  const transport = await Transportation.findOne({ _id: idTransportation })
+  const transport = await Transportation.findOne({ _id: idTransport })
     .select({ resourceType: 0 })
     .populate({ path: "idUser", select: "email id" })
     .populate({ path: "idTravel", select: "name" })
@@ -133,7 +94,7 @@ const getTransportationById = async (
   }
 
   if (additionalInfo === "totalScore") {
-    const total = await getScores(idTransportation);
+    const total = await getScores(Transportation, idTransport);
     if (total.length === 1) {
       transport.totalScore = total[0];
     }
@@ -179,7 +140,7 @@ const deleteTransportation = async (_id) => {
 };
 
 const updateTransportation = async (_id, transportInfo) => {
-  const transportationUpdated = await Transportation.findOneAndUpdate(
+  const transportUpdated = await Transportation.findOneAndUpdate(
     { _id },
     transportInfo,
     { new: true, runValidators: true }
@@ -187,10 +148,10 @@ const updateTransportation = async (_id, transportInfo) => {
     .lean({ getters: true, virtuals: true })
     .exec();
 
-  if (transportationUpdated === null) {
+  if (transportUpdated === null) {
     errMalformed(`Transportation not found`);
   }
-  return transportationUpdated;
+  return transportUpdated;
 };
 
 module.exports = {

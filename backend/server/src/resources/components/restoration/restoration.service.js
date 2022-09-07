@@ -6,6 +6,7 @@ const Travel = require("../../travel/travel.model");
 const Comment = require("../../comments/comments.model");
 const User = require("../../users/user.model");
 const Score = require("../../score/score.model");
+const { getScores } = require("../component.service");
 
 const paramValueInclude = ["totalScore"];
 
@@ -22,42 +23,6 @@ const addFirstScore = async (idRestoration, idScore, score) => {
     points: score,
   };
   return restorationUpdated;
-};
-
-const getScores = async (idRestoration) => {
-  const filterBy = idRestoration
-    ? {
-        $match: { _id: { $eq: mongoose.Types.ObjectId(idRestoration) } },
-      }
-    : { $match: {} };
-
-  const totales = await Restoration.aggregate(
-    [
-      {
-        $lookup: {
-          from: "scores",
-          localField: "scores",
-          foreignField: "_id",
-          as: "resultingArray",
-        },
-      },
-      { $unwind: "$resultingArray" },
-      {
-        $group: {
-          _id: "$_id",
-          average: { $avg: "$resultingArray.score" },
-          points: { $sum: "$resultingArray.score" },
-          votes: { $sum: 1 },
-        },
-      },
-      filterBy,
-    ],
-    function (err, result) {
-      // console.log(result);
-      // console.log(err);
-    }
-  );
-  return totales;
 };
 
 const createOne = async (data) => {
@@ -119,7 +84,7 @@ const getOne = async (idRestoration, idUser, additionalInfo) => {
   }
 
   if (additionalInfo === "totalScore") {
-    const total = await getScores(idRestoration);
+    const total = await getScores(Restoration, idRestoration);
     if (total.length === 1) {
       rest.totalScore = total[0];
     }
@@ -152,7 +117,7 @@ const getByTravelId = async (idTravel, additionalInfo) => {
     .exec();
 
   if (restorationList && additionalInfo === "totalScore") {
-    const totales = await getScores();
+    const totales = await getScores(Restoration);
 
     if (totales) {
       const completRestorations = restorationList.map((restorationAct) => {
