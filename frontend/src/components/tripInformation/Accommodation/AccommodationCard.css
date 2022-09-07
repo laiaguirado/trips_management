@@ -141,3 +141,7 @@ a .link {
   text-decoration: underline;
   font-weight: 100;
 }
+
+.slash {
+  position: absolute;
+}

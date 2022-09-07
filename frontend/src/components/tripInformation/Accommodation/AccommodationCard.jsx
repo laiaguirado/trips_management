@@ -13,6 +13,8 @@ import {
   faEnvelope,
   faMugSaucer,
   faStarHalfStroke,
+  faSlash,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
@@ -136,41 +138,53 @@ function AccommodationCard({ accommodation }) {
                 (accommodation.petFriendly === true ? (
                   <FontAwesomeIcon icon={faDog} className="icon" />
                 ) : (
-                  <FontAwesomeIcon
-                    icon={faDog}
-                    className="icon"
-                    style={{ color: "#AD3D25" }}
-                  />
+                  <div>
+                    <FontAwesomeIcon
+                      icon={faSlash}
+                      className="icon slash"
+                      style={{ color: "#AD3D25" }}
+                    />
+                    <FontAwesomeIcon icon={faDog} className="icon" />
+                  </div>
                 ))}
               {accommodation.internet !== null &&
                 (accommodation.internet === true ? (
                   <FontAwesomeIcon icon={faWifi} className="icon" />
                 ) : (
-                  <FontAwesomeIcon
-                    icon={faWifi}
-                    className="icon"
-                    style={{ color: "#AD3D25" }}
-                  />
+                  <div>
+                    <FontAwesomeIcon
+                      icon={faSlash}
+                      className="icon slash"
+                      style={{ color: "#AD3D25" }}
+                    />
+                    <FontAwesomeIcon icon={faWifi} className="icon" />
+                  </div>
                 ))}
               {accommodation.swimmingPool !== null &&
                 (accommodation.swimmingPool === true ? (
                   <FontAwesomeIcon icon={faPersonSwimming} className="icon" />
                 ) : (
-                  <FontAwesomeIcon
-                    icon={faPersonSwimming}
-                    className="icon"
-                    style={{ color: "#AD3D25" }}
-                  />
+                  <div>
+                    <FontAwesomeIcon
+                      icon={faSlash}
+                      className="icon slash"
+                      style={{ color: "#AD3D25" }}
+                    />
+                    <FontAwesomeIcon icon={faPersonSwimming} className="icon" />
+                  </div>
                 ))}
               {accommodation.breakfast !== null &&
                 (accommodation.breakfast == true ? (
                   <FontAwesomeIcon icon={faMugSaucer} className="icon" />
                 ) : (
-                  <FontAwesomeIcon
-                    icon={faMugSaucer}
-                    className="icon"
-                    style={{ color: "#AD3D25" }}
-                  />
+                  <div>
+                    <FontAwesomeIcon
+                      icon={faSlash}
+                      className="icon slash"
+                      style={{ color: "#AD3D25" }}
+                    />
+                    <FontAwesomeIcon icon={faMugSaucer} className="icon" />
+                  </div>
                 ))}
             </div>
           )}
