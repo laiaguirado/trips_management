@@ -126,10 +126,10 @@ function AccommodationCard({ accommodation }) {
               </div>
             </div>
           )}
-          {(accommodation.petFriendly ||
-            accommodation.internet ||
-            accommodation.swimmingPool ||
-            accommodation.breakfast) && (
+          {(accommodation.petFriendly !== null ||
+            accommodation.internet !== null ||
+            accommodation.swimmingPool !== null ||
+            accommodation.breakfast !== null) && (
             <div className="accommodation-booleans accommodation-detail">
               <h3>Details: </h3>
               {accommodation.petFriendly !== null &&

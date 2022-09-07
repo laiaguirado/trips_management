@@ -39,6 +39,14 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
     swimmingPool ? true : false,
     swimmingPool ? false : swimmingPool !== null ? true : false,
   ]);
+  const [breakfastChecked, setBreakfastChecked] = useState([
+    breakfast ? true : false,
+    breakfast ? false : breakfast !== null ? true : false,
+  ]);
+  const [boardChecked, setBoardChecked] = useState([
+    board ? true : false,
+    board ? false : board !== null ? true : false,
+  ]);
 
   function setDateValue(value) {
     if (value === "" || value === undefined || value === null) {
@@ -156,6 +164,58 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
       } else {
         setSwimmingPool(false);
         setSwimmingPoolChecked([false, true]);
+        e.target.checked = true;
+      }
+    }
+  }
+
+  function changeBreakfast(e, option) {
+    if (option) {
+      const otherValue = breakfastChecked[1];
+      if (breakfastChecked[0]) {
+        setBreakfast(null);
+        setBreakfastChecked([false, otherValue]);
+        e.target.checked = false;
+      } else {
+        setBreakfast(true);
+        setBreakfastChecked([true, false]);
+        e.target.checked = true;
+      }
+    } else {
+      const otherValue = breakfastChecked[0];
+      if (breakfastChecked[1]) {
+        setBreakfast(null);
+        setBreakfastChecked([otherValue, false]);
+        e.target.checked = false;
+      } else {
+        setBreakfast(false);
+        setBreakfastChecked([false, true]);
+        e.target.checked = true;
+      }
+    }
+  }
+
+  function changeBoard(e, option) {
+    if (option) {
+      const otherValue = boardChecked[1];
+      if (boardChecked[0]) {
+        setBoard(null);
+        setBoardChecked([false, otherValue]);
+        e.target.checked = false;
+      } else {
+        setBoard("Full");
+        setBoardChecked([true, false]);
+        e.target.checked = true;
+      }
+    } else {
+      const otherValue = boardChecked[0];
+      if (boardChecked[1]) {
+        setBoard(null);
+        setBoardChecked([otherValue, false]);
+        e.target.checked = false;
+      } else {
+        setBoard("Half");
+        setBoardChecked([false, true]);
         e.target.checked = true;
       }
     }
@@ -439,7 +499,10 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                         type="radio"
                         value={true}
                         checked={breakfast === true}
-                        onChange={() => setBreakfast(true)}
+                        onClick={(e) => {
+                          changeBreakfast(e, true);
+                        }}
+                        onChange={(e) => {}}
                       />
                       <label className="checkbox-option">Yes</label>
                       <input
@@ -447,7 +510,10 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                         type="radio"
                         value={false}
                         checked={breakfast === false}
-                        onChange={() => setBreakfast(false)}
+                        onClick={(e) => {
+                          changeBreakfast(e, false);
+                        }}
+                        onChange={(e) => {}}
                       />
                       <label className="checkbox-option">No</label>
                     </div>
@@ -464,7 +530,10 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                         type="radio"
                         value={"Full"}
                         checked={board === "Full"}
-                        onChange={() => setBoard("Full")}
+                        onClick={(e) => {
+                          changeBoard(e, true);
+                        }}
+                        onChange={(e) => {}}
                       />
                       <label className="checkbox-option">Full</label>
                       <input
@@ -472,7 +541,10 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                         type="radio"
                         value={"Half"}
                         checked={board === "Half"}
-                        onChange={() => setBoard("Half")}
+                        onClick={(e) => {
+                          changeBoard(e, false);
+                        }}
+                        onChange={(e) => {}}
                       />
                       <label className="checkbox-option">Half</label>
                     </div>
