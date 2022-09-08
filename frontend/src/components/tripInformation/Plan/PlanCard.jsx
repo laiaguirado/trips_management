@@ -1,5 +1,6 @@
 import React from "react";
 import "./PlanCard.css";
+import ScoreDetailsCard from "../../score/ScoreDetailsCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faStar,
@@ -87,55 +88,10 @@ function PlanCard({ plan }) {
     );
   }
 
-  function getScore(score) {
-    return (
-      <div className="rating">
-        <h5>{Math.round(score * 10) / 10}</h5>
-        {0.5 <= score && score < 1 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 1 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {1.5 <= score && score < 2 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 2 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {2.5 <= score && score < 3 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 3 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {3.5 <= score && score < 4 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 4 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {4.5 <= score && score < 5 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 5 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        <span> {plan.totalScore.votes} votes</span>
-      </div>
-    );
-  }
-
   return (
     <div className="plan-card">
       <h1 className="details-title">{plan.name}</h1>
-      {plan.totalScore && getScore(plan.totalScore.average)}
-
+      {plan.totalScore && <ScoreDetailsCard totalScore={plan.totalScore} />}
       <div className="details-icon">
         <div className="dot"></div>
         <div className="dotted-line"></div>

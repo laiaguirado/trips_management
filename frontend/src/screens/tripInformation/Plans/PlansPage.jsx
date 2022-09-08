@@ -5,6 +5,7 @@ import Loading from "../../../components/Loading";
 import * as api from "../../../api";
 import "./PlansPage.css";
 import AddPlanCard from "../../../components/tripInformation/Plan/AddPlanCard";
+import ScoreCard from "../../../components/score/ScoreCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -78,48 +79,6 @@ function PlansPage() {
     );
   }
 
-  function getScore(score) {
-    return (
-      <div className="rating">
-        {0.5 <= score && score < 1 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 1 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {1.5 <= score && score < 2 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 2 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {2.5 <= score && score < 3 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 3 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {3.5 <= score && score < 4 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 4 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {4.5 <= score && score < 5 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 5 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-      </div>
-    );
-  }
-
   return (
     <div className="plan-page">
       <Bar mode="login" />
@@ -152,8 +111,8 @@ function PlansPage() {
               >
                 <h3 className="info-name">{plan.name}</h3>
                 <div className="info-main">{plan.location}</div>
-                {plan.totalScore.average ? (
-                  getScore(plan.totalScore.average)
+                {plan.totalScore && plan.totalScore.average ? (
+                  <ScoreCard totalScore={plan.totalScore} />
                 ) : (
                   <div className="info-other-empty">
                     <FontAwesomeIcon icon={faStarRegular} className="icon" />

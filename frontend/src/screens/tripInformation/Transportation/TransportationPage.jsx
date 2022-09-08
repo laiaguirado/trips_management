@@ -13,6 +13,7 @@ import {
   faStar,
   faStarHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
+import ScoreCard from "../../../components/score/ScoreCard";
 
 function TransportationPage() {
   const [transportationList, setTransportationList] = useState(null);
@@ -85,48 +86,6 @@ function TransportationPage() {
     );
   }
 
-  function getScore(score) {
-    return (
-      <div className="rating">
-        {0.5 <= score && score < 1 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 1 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {1.5 <= score && score < 2 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 2 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {2.5 <= score && score < 3 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 3 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {3.5 <= score && score < 4 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 4 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {4.5 <= score && score < 5 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 5 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-      </div>
-    );
-  }
-
   return (
     <div className="transportation-page">
       <Bar mode="login" />
@@ -164,7 +123,7 @@ function TransportationPage() {
                 <div className="info-main">{transportation.type}</div>
                 {transportation.totalScore &&
                 transportation.totalScore.average ? (
-                  getScore(transportation.totalScore.average)
+                  <ScoreCard totalScore={transportation.totalScore} />
                 ) : (
                   <div className="info-other-empty">
                     <FontAwesomeIcon icon={faStarRegular} className="icon" />

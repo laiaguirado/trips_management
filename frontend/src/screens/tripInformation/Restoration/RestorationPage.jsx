@@ -5,6 +5,7 @@ import Loading from "../../../components/Loading";
 import Bar from "../../../components/Bar";
 import * as api from "../../../api";
 import AddRestorationCard from "../../../components/tripInformation/Restoration/AddRestorationCard";
+import ScoreCard from "../../../components/score/ScoreCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -82,48 +83,6 @@ function RestorationPage() {
     );
   }
 
-  function getScore(score) {
-    return (
-      <div className="rating">
-        {0.5 <= score && score < 1 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 1 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {1.5 <= score && score < 2 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 2 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {2.5 <= score && score < 3 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 3 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {3.5 <= score && score < 4 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 4 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-        {4.5 <= score && score < 5 ? (
-          <FontAwesomeIcon icon={faStarHalfStroke} className="icon" />
-        ) : score < 5 ? (
-          <FontAwesomeIcon icon={faStarRegular} className="icon" />
-        ) : (
-          <FontAwesomeIcon icon={faStar} className="icon" />
-        )}
-      </div>
-    );
-  }
-
   return (
     <div className="restoration-page">
       <Bar mode="login" />
@@ -157,7 +116,7 @@ function RestorationPage() {
                 <h3 className="info-name">{restoration.name}</h3>
                 <div className="info-main">{restoration.location}</div>
                 {restoration.totalScore && restoration.totalScore.average ? (
-                  getScore(restoration.totalScore.average)
+                  <ScoreCard totalScore={restoration.totalScore} />
                 ) : (
                   <div className="info-other-empty">
                     <FontAwesomeIcon icon={faStarRegular} className="icon" />
