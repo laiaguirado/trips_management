@@ -89,7 +89,7 @@ function RestorationCard({ restoration }) {
 
   return (
     <div className="restoration-card">
-      <h1 className="details-title">RESTORATION</h1>
+      <h1 className="details-title">{restoration.name}</h1>
       {restoration.totalScore && getScore(restoration.totalScore.average)}
 
       <div className="details-icon">
@@ -101,10 +101,6 @@ function RestorationCard({ restoration }) {
       </div>
 
       <div className="restoration-info">
-        <div className="restoration-name restoration-detail">
-          <h3>Name: </h3>
-          <div>{restoration.name}</div>
-        </div>
         <div className="restoration-location restoration-detail">
           <h3>Location: </h3>
           <div>{restoration.location}</div>

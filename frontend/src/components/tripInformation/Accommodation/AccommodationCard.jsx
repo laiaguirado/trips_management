@@ -67,7 +67,7 @@ function AccommodationCard({ accommodation }) {
 
   return (
     <div className="accommodation-card">
-      <h1 className="details-title">ACCOMMODATION</h1>
+      <h1 className="details-title">{accommodation.name}</h1>
       {accommodation.totalScore && getScore(accommodation.totalScore.average)}
 
       <div className="details-dates">
@@ -104,10 +104,6 @@ function AccommodationCard({ accommodation }) {
 
       <div className="details-flex">
         <div className="accommodation-info">
-          <div className="accommodation-name accommodation-detail">
-            <h3>Name: </h3>
-            <div>{accommodation.name}</div>
-          </div>
           {accommodation.type && (
             <div className="accommodation-type accommodation-detail">
               <h3>Accommodation type: </h3>

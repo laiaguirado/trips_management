@@ -133,7 +133,7 @@ function PlanCard({ plan }) {
 
   return (
     <div className="plan-card">
-      <h1 className="details-title">PLAN</h1>
+      <h1 className="details-title">{plan.name}</h1>
       {plan.totalScore && getScore(plan.totalScore.average)}
 
       <div className="details-icon">
@@ -145,10 +145,6 @@ function PlanCard({ plan }) {
       </div>
 
       <div className="plan-info">
-        <div className="plan-name plan-detail">
-          <h3>Name: </h3>
-          <div>{plan.name} </div>
-        </div>
         <div className="plan-location plan-detail">
           <h3>Location: </h3>
           <div>{plan.location}</div>

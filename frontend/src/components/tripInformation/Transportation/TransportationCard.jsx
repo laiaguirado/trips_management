@@ -97,19 +97,33 @@ function TransportationCard({ transportation }) {
 
   return (
     <div className="transportation-card">
-      <h1 className="details-title">TRANSPORTATION</h1>
+      <h1 className="details-title">{transportation.name}</h1>
       {transportation.totalScore && getScore(transportation.totalScore.average)}
 
       <div className="details-dates">
         <div className="details-date-info">
-          <h3>Departure: </h3>
+          {transportation.origin ||
+          transportation.departure ||
+          transportation.arrival ||
+          transportation.destination ? (
+            <h3>Departure </h3>
+          ) : (
+            <h3></h3>
+          )}
           {transportation.origin && <div>{transportation.origin}</div>}
           {transportation.departure && (
             <div>{getDepartureArrival(transportation.departure)}</div>
           )}
         </div>
         <div className="details-date-info">
-          <h3>Arrival: </h3>
+          {transportation.origin ||
+          transportation.departure ||
+          transportation.arrival ||
+          transportation.destination ? (
+            <h3>Arrival </h3>
+          ) : (
+            <h3></h3>
+          )}
           {transportation.destination && (
             <div>{transportation.destination}</div>
           )}
@@ -127,10 +141,6 @@ function TransportationCard({ transportation }) {
       </div>
 
       <div className="transportation-info">
-        <div className="transportation-name transportation-detail">
-          <h3>Name: </h3>
-          <div>{transportation.name}</div>
-        </div>
         <div className="transportation-type transportation-detail">
           <h3>Type: </h3>
           <div>{transportation.type}</div>

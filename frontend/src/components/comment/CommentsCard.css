@@ -14,6 +14,10 @@
   gap: 0.25rem;
 }
 
+.comments .error {
+  margin: 0rem;
+}
+
 .add-comment {
   display: flex;
   justify-content: space-around;
