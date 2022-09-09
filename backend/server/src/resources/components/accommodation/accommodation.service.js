@@ -118,9 +118,9 @@ const updateAccomodation = async (_id, accommodationData) => {
   const accomUpdated = await Accommodation.findOneAndUpdate(
     { _id },
     accommodationData,
-    { new: true }
+    { new: true, runValidators: true }
   )
-    .lean({ getters: true, virtuals: true, runValidators: true })
+    .lean({ getters: true, virtuals: true })
     .exec();
 
   if (accomUpdated === null) {
