@@ -205,6 +205,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     type="number"
                     min="0"
                     step="0.01"
+                    required={currency && !maxPrice ? "required" : ""}
                     placeholder="Min price"
                     defaultValue={minPrice}
                     onChange={(event) => setMinPrice(event.target.value)}
@@ -229,6 +230,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                     type="number"
                     min={minPrice}
                     step="0.01"
+                    required={currency && !minPrice ? "required" : ""}
                     placeholder="Max price"
                     defaultValue={maxPrice}
                     onChange={(event) => setMaxPrice(event.target.value)}

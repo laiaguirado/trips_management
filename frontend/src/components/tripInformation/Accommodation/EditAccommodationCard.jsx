@@ -369,6 +369,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   type="number"
                   min="0"
                   step="0.01"
+                  required={currency ? "required" : ""}
                   placeholder="Price"
                   defaultValue={price}
                   onChange={(event) => setPrice(event.target.value)}
