@@ -156,6 +156,7 @@ function AddPlanCard({ onAdd, message, adding, tripId }) {
                 min="0"
                 step="0.01"
                 type="number"
+                required={currency && !priceChildren ? "required" : ""}
                 placeholder="Adult's price"
                 value={priceAdult}
                 onChange={(event) => setPriceAdult(event.target.value)}
@@ -181,6 +182,7 @@ function AddPlanCard({ onAdd, message, adding, tripId }) {
                 min="0"
                 step="0.01"
                 type="number"
+                required={currency && !priceAdult ? "required" : ""}
                 placeholder="Children's price"
                 value={priceChildren}
                 onChange={(event) => setPriceChildren(event.target.value)}
