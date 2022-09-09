@@ -149,6 +149,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                 <div className="form-data">
                   <input
                     className="input price"
+                    required={currency ? "required" : ""}
                     type="number"
                     min="0"
                     step="0.01"

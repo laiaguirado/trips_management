@@ -129,6 +129,7 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
               <FontAwesomeIcon icon={faSackDollar} className="icon" />
               <input
                 className="input price"
+                required={currency ? "required" : ""}
                 type="number"
                 min="0"
                 step="0.01"

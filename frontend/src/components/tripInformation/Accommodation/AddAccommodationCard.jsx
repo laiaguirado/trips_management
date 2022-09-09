@@ -339,6 +339,7 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
               <input
                 className="input price"
                 type="number"
+                required={currency ? "required" : ""}
                 min="0"
                 step="0.01"
                 placeholder="Price"
