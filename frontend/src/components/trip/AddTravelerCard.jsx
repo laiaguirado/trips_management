@@ -6,9 +6,8 @@ import {
   faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AddTravelerCard({ onAdd, tripMessage, adding, trip, tripId }) {
+function AddTravelerCard({ onAdd, message, setMessage, adding, trip, tripId }) {
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState(tripMessage);
   const add = (e) => {
     e.preventDefault();
     let addTraveler = true;

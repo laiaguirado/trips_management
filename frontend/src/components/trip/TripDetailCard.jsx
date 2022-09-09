@@ -59,7 +59,8 @@ function TripDetailCard({
       return (
         <AddTravelerCard
           onAdd={addTraveler}
-          tripMessage={message}
+          message={message}
+          setMessage={setMessage}
           adding={() => {
             setAdding(false);
             setMessage(null);
