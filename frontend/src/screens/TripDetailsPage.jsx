@@ -8,12 +8,15 @@ import EditTripCard from "../components/trip/EditTripCard";
 import TripDetailCard from "../components/trip/TripDetailCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faXmark, faPen } from "@fortawesome/free-solid-svg-icons";
+import { ModelContext } from "../model";
+import { useContext } from "react";
 
 function TripDetailsPage() {
   const [trip, setTrip] = useState(null);
   const [message, setMessage] = useState(null);
   const [editing, setEditing] = useState(false);
   const { tripId } = useParams();
+  const { userData } = useContext(ModelContext);
   const navigate = useNavigate();
 
   document.body.style.overflow = "unset";
@@ -39,6 +42,9 @@ function TripDetailsPage() {
       setTrip(deleted);
     } else {
       setMessage([error, "trip"]);
+    }
+    if (email === userData.email) {
+      navigate(`/`, { replace: false });
     }
   };
 
@@ -118,7 +124,7 @@ function TripDetailsPage() {
           </div>
         )}
         <div className="details-error error">
-          {message && message[1] !== "traveller" ? message : null}
+          {message && message[1] !== "traveller" ? message[0] : null}
         </div>
         {showComponentMode()}
       </div>
