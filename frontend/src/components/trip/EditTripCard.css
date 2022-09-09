@@ -1,14 +1,11 @@
-.edit-card .trip-name {
-  margin: 2rem auto;
-}
-
-.edit-card .edit-trip-name {
+.edit-card .edit-name {
   text-decoration: underline;
   width: auto;
   font-size: 2em;
   font-family: Allerta;
   font-weight: 100;
   text-align: center;
+  margin: 2rem auto;
 }
 
 .edit-card .details-title {

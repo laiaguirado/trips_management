@@ -112,9 +112,21 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
 
   return (
     <div className="restoration-card edit-card">
-      <h1 className="details-title">RESTORATION</h1>
       <div className="restoration-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
+          <div className="restoration-name restoration-detail">
+            <label>
+              <input
+                className="input edit-name"
+                maxLength="50"
+                required
+                type="text"
+                placeholder="Restoration's name *"
+                defaultValue={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </label>
+          </div>
           <div className="restoration-rating restoration-detail">
             <h3>Rating: </h3>
             <label>
@@ -136,24 +148,6 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
                 </select>
               </div>
             </label>
-          </div>
-          <div className="restoration-name restoration-detail">
-            <h3>Name: </h3>
-            <div>
-              <label>
-                <div className="form-data">
-                  <input
-                    className="input"
-                    maxLength="50"
-                    required
-                    type="text"
-                    placeholder="Restoration's name *"
-                    defaultValue={name}
-                    onChange={(event) => setName(event.target.value)}
-                  />
-                </div>
-              </label>
-            </div>
           </div>
           <div className="restoration-location restoration-detail">
             <h3>Location: </h3>
