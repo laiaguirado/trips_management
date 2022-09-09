@@ -41,3 +41,7 @@
   color: white;
   cursor: pointer;
 }
+
+.plan-card .details-flex .details-illustration {
+  width: 30vw;
+}

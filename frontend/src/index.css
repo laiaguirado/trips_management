@@ -17,7 +17,8 @@
 */
 
 :root {
-  background: url(./assets/backgroundImage.png) no-repeat center center fixed;
+  background: url(./assets/illustrations/backgroundImage.png) no-repeat bottom
+    center fixed;
   background-size: cover;
   background-attachment: fixed;
   font-family: "Open Sans";
