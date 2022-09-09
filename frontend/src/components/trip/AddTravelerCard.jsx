@@ -13,7 +13,7 @@ function AddTravelerCard({ onAdd, message, setMessage, adding, trip, tripId }) {
     let addTraveler = true;
     for (let j = 0; j < trip.travellers.length; j++) {
       if (trip.travellers[j].user.email === email) {
-        setMessage(`Traveler already added to the trip`);
+        setMessage([`Traveler already added to the trip`, "traveller"]);
         addTraveler = false;
       }
     }

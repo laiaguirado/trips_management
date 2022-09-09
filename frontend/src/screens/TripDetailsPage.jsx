@@ -25,7 +25,7 @@ function TripDetailsPage() {
       setMessage(null);
     } else {
       setTrip(null);
-      setMessage(error);
+      setMessage([error, "trip"]);
     }
   };
 
@@ -38,7 +38,7 @@ function TripDetailsPage() {
     if (success) {
       setTrip(deleted);
     } else {
-      setMessage(error);
+      setMessage([error, "trip"]);
     }
   };
 
@@ -54,7 +54,7 @@ function TripDetailsPage() {
       setEditing(false);
       setMessage(null);
     } else {
-      setMessage(error);
+      setMessage([error, "trip"]);
     }
   };
 
@@ -117,7 +117,9 @@ function TripDetailsPage() {
             <FontAwesomeIcon icon={faPen} size="2x" />{" "}
           </div>
         )}
-        <div className="details-error error">{message}</div>
+        <div className="details-error error">
+          {message && message[1] !== "traveller" ? message : null}
+        </div>
         {showComponentMode()}
       </div>
     </div>
