@@ -342,6 +342,7 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                 required={currency ? "required" : ""}
                 min="0"
                 step="0.01"
+                required={currency ? "required" : ""}
                 placeholder="Price"
                 value={price}
                 onChange={(event) => setPrice(event.target.value)}

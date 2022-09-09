@@ -181,6 +181,7 @@ function EditPlanCard({ plan, planId, onEdit }) {
                     type="number"
                     min="0"
                     step="0.01"
+                    required={currency && !priceChildren ? "required" : ""}
                     placeholder="Adult's price"
                     defaultValue={priceAdult}
                     onChange={(event) => setPriceAdult(event.target.value)}
@@ -205,6 +206,7 @@ function EditPlanCard({ plan, planId, onEdit }) {
                     type="number"
                     min="0"
                     step="0.01"
+                    required={currency && !priceAdult ? "required" : ""}
                     placeholder="Children's price"
                     defaultValue={priceChildren}
                     onChange={(event) => setPriceChildren(event.target.value)}

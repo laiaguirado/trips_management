@@ -32,7 +32,9 @@ function AddTravelerCard({ onAdd, message, setMessage, adding, trip, tripId }) {
         </div>
         <form className="add-form" onSubmit={(e) => add(e)}>
           <h1 className="title">New Traveler</h1>
-          <div className="details-error error">{message}</div>
+          <div className="details-error error">
+            {message ? message[0] : null}
+          </div>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />

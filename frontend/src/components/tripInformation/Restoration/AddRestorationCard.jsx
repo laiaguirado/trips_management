@@ -188,6 +188,7 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
                 min="0"
                 step="0.01"
                 type="number"
+                required={currency && !maxPrice ? "required" : ""}
                 placeholder="Min price"
                 value={minPrice}
                 onChange={(event) => setMinPrice(event.target.value)}
@@ -213,6 +214,7 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
                 min={minPrice}
                 step="0.01"
                 type="number"
+                required={currency && !minPrice ? "required" : ""}
                 placeholder="Max price"
                 value={maxPrice}
                 onChange={(event) => setMaxPrice(event.target.value)}
