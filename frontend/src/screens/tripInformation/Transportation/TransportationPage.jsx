@@ -75,6 +75,7 @@ function TransportationPage() {
   useEffect(() => {
     loadTransportationList();
     window.scrollTo(0, 0);
+    document.body.style.overflow = "unset";
   }, []);
 
   if (transportationList === null) {

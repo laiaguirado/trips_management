@@ -68,6 +68,7 @@ function PlansPage() {
   useEffect(() => {
     loadPlanList();
     window.scrollTo(0, 0);
+    document.body.style.overflow = "unset";
   }, []);
 
   if (planList === null) {
