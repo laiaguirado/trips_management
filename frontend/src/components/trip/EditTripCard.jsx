@@ -145,10 +145,11 @@ function EditTripCard({ trip, tripId, onEdit }) {
       </div>
       <div className="uploading-new-image">
         {tripImage && imageUrl === "" ? (
-          <img className="trip-image image-editing" src={tripImage}></img>
+          <img className="image-editing" src={tripImage}></img>
         ) : (
-          <img className="trip-image image-editing" src={imageUrl}></img>
+          <img className="image-editing" src={imageUrl}></img>
         )}
+
         <label>
           <input
             className="input upload"
