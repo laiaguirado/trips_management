@@ -154,57 +154,60 @@ function AccommodationCard({ accommodation }) {
               <div className="notation-text">{accommodation.notation}</div>
             </div>
           )}
+        </div>
 
-          {(accommodation.web ||
-            accommodation.phone ||
-            accommodation.email) && (
-            <div className="accommodation-contact">
-              {accommodation.web && (
-                <div>
-                  {accommodation !== "" ? (
-                    !accommodation.web.startsWith("https://") &&
-                    !accommodation.web.startsWith("http://") &&
-                    accommodation.web !== null &&
-                    accommodation.web !== "" ? (
-                      <a href={"https://" + accommodation.web} target="_blank">
-                        <FontAwesomeIcon icon={faGlobe} className="icon" />
-                        <div>Web:</div>
-                        <div className="link">{accommodation.web}</div>
-                      </a>
-                    ) : (
-                      <a href={accommodation.web} target="_blank">
-                        <FontAwesomeIcon icon={faGlobe} className="icon" />
-                        <div>Web:</div>
-                        <div className="link">{accommodation.web}</div>
-                      </a>
-                    )
-                  ) : (
-                    <p></p>
-                  )}
-                </div>
-              )}
-              {accommodation.phone && (
-                <div>
-                  <a href={"tel:" + accommodation.phone}>
-                    <FontAwesomeIcon icon={faPhone} className="icon" />
-                    <div>Phone:</div>
-                    <div className="link">{accommodation.phone}</div>
+        <img
+          className="details-illustration"
+          src={"../../../src/assets/illustrations/accommodation.svg"}
+        ></img>
+      </div>
+
+      {(accommodation.web || accommodation.phone || accommodation.email) && (
+        <div className="accommodation-contact">
+          {accommodation.web && (
+            <div>
+              {accommodation !== "" ? (
+                !accommodation.web.startsWith("https://") &&
+                !accommodation.web.startsWith("http://") &&
+                accommodation.web !== null &&
+                accommodation.web !== "" ? (
+                  <a href={"https://" + accommodation.web} target="_blank">
+                    <FontAwesomeIcon icon={faGlobe} className="icon" />
+                    <div>Web:</div>
+                    <div className="link">{accommodation.web}</div>
                   </a>
-                </div>
-              )}
-              {accommodation.email && (
-                <div>
-                  <a href={"mailto:" + accommodation.email}>
-                    <FontAwesomeIcon icon={faEnvelope} className="icon" />
-                    <div>Email:</div>
-                    <div className="link">{accommodation.email}</div>
+                ) : (
+                  <a href={accommodation.web} target="_blank">
+                    <FontAwesomeIcon icon={faGlobe} className="icon" />
+                    <div>Web:</div>
+                    <div className="link">{accommodation.web}</div>
                   </a>
-                </div>
+                )
+              ) : (
+                <p></p>
               )}
             </div>
           )}
+          {accommodation.phone && (
+            <div>
+              <a href={"tel:" + accommodation.phone}>
+                <FontAwesomeIcon icon={faPhone} className="icon" />
+                <div>Phone:</div>
+                <div className="link">{accommodation.phone}</div>
+              </a>
+            </div>
+          )}
+          {accommodation.email && (
+            <div>
+              <a href={"mailto:" + accommodation.email}>
+                <FontAwesomeIcon icon={faEnvelope} className="icon" />
+                <div>Email:</div>
+                <div className="link">{accommodation.email}</div>
+              </a>
+            </div>
+          )}
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -48,9 +48,21 @@ function EditPlanCard({ plan, planId, onEdit }) {
 
   return (
     <div className="plan-card edit-card">
-      <h1 className="details-title">PLAN</h1>
       <div className="plan-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
+          <div className="plan-name plan-detail">
+            <label>
+              <input
+                className="input edit-name"
+                maxLength="50"
+                required
+                type="text"
+                placeholder="Plan's name *"
+                defaultValue={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </label>
+          </div>
           <div className="plan-rating plan-detail">
             <h3>Rating: </h3>
             <div>
@@ -71,24 +83,6 @@ function EditPlanCard({ plan, planId, onEdit }) {
                     <option value="2">&#xf005;&#xf005;</option>
                     <option value="1">&#xf005;</option>
                   </select>
-                </div>
-              </label>
-            </div>
-          </div>
-          <div className="plan-name plan-detail">
-            <h3>Name: </h3>
-            <div>
-              <label>
-                <div className="form-data">
-                  <input
-                    className="input"
-                    maxLength="50"
-                    required
-                    type="text"
-                    placeholder="Plan's name *"
-                    defaultValue={name}
-                    onChange={(event) => setName(event.target.value)}
-                  />
                 </div>
               </label>
             </div>

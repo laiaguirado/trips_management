@@ -75,6 +75,7 @@ function AccommodationPage() {
   useEffect(() => {
     loadAccommodationList();
     window.scrollTo(0, 0);
+    document.body.style.overflow = "unset";
   }, []);
 
   if (accommodationList === null) {

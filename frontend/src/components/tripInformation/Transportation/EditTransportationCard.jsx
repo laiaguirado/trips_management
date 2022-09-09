@@ -57,9 +57,21 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
 
   return (
     <div className="transportation-card edit-card">
-      <h1 className="details-title">TRANSPORTATION</h1>
       <div className="transportation-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
+          <div className="transportation-name transportation-detail">
+            <label>
+              <input
+                className="input edit-name"
+                maxLength="50"
+                required
+                type="text"
+                placeholder="Transport's name *"
+                defaultValue={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </label>
+          </div>
           <div className="transportation-rating transportation-detail">
             <h3>Rating: </h3>
             <div>
@@ -80,24 +92,6 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     <option value="2">&#xf005;&#xf005;</option>
                     <option value="1">&#xf005;</option>
                   </select>
-                </div>
-              </label>
-            </div>
-          </div>
-          <div className="transportation-name transportation-detail">
-            <h3>Name: </h3>
-            <div>
-              <label>
-                <div className="form-data">
-                  <input
-                    className="input"
-                    maxLength="50"
-                    required
-                    type="text"
-                    placeholder="Transport's name *"
-                    defaultValue={name}
-                    onChange={(event) => setName(event.target.value)}
-                  />
                 </div>
               </label>
             </div>

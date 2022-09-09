@@ -223,9 +223,19 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
 
   return (
     <div className="accommodation-card edit-card">
-      <h1 className="details-title">ACCOMMODATION</h1>
       <div className="accommodation-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
+          <div className="accommodation-name ">
+            <label>
+              <input
+                className="input edit-name"
+                required
+                type="text"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </label>
+          </div>
           <div className="accommodation-rating accommodation-detail">
             <h3>Rating: </h3>
             <label>
@@ -248,22 +258,7 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
               </div>
             </label>
           </div>
-          <div className="accommodation-name accommodation-detail">
-            <h3>Name: </h3>
-            <div>
-              <label>
-                <div className="form-data">
-                  <input
-                    className="input"
-                    required
-                    type="text"
-                    value={name}
-                    onChange={(event) => setName(event.target.value)}
-                  />
-                </div>
-              </label>
-            </div>
-          </div>
+
           <div className="accommodation-type accommodation-detail">
             <h3>Accommodation type: </h3>
             <div>

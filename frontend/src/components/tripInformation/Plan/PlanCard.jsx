@@ -100,95 +100,101 @@ function PlanCard({ plan }) {
         <div className="dot"></div>
       </div>
 
-      <div className="plan-info">
-        <div className="plan-location plan-detail">
-          <h3>Location: </h3>
-          <div>{plan.location}</div>
+      <div className="details-flex">
+        <div className="plan-info">
+          <div className="plan-location plan-detail">
+            <h3>Location: </h3>
+            <div>{plan.location}</div>
+          </div>
+          {(plan.openingHour || plan.closingHour) && (
+            <div className="plan-hours plan-detail">
+              <h3>Hours (opening - closing):</h3>
+              <div>{getHours()}</div>
+            </div>
+          )}
+          {plan.closed && (
+            <div className="plan-phone plan-detail">
+              <h3>Closed: </h3>
+              <div>{plan.closed}</div>
+            </div>
+          )}
+          {plan.duration && (
+            <div className="plan-duration plan-detail">
+              <h3>Duration: </h3>
+              <div>{plan.duration}</div>
+            </div>
+          )}
+          {(plan.priceAdultWithCurrency || plan.priceChildrenWithCurrency) && (
+            <div className="plan-price plan-detail">
+              <h3>Price: </h3>
+              {getPrice()}
+            </div>
+          )}
+          {plan.discount && (
+            <div className="plan-discount plan-detail">
+              <h3>Discount: </h3>
+              <div>{plan.discount}</div>
+            </div>
+          )}
+          {plan.notation && (
+            <div className="plan-notation plan-detail">
+              <h3>Notes: </h3>
+              <div className="notation-text">{plan.notation}</div>
+            </div>
+          )}
         </div>
-        {(plan.openingHour || plan.closingHour) && (
-          <div className="plan-hours plan-detail">
-            <h3>Hours (opening - closing):</h3>
-            <div>{getHours()}</div>
-          </div>
-        )}
-        {plan.closed && (
-          <div className="plan-phone plan-detail">
-            <h3>Closed: </h3>
-            <div>{plan.closed}</div>
-          </div>
-        )}
-        {plan.duration && (
-          <div className="plan-duration plan-detail">
-            <h3>Duration: </h3>
-            <div>{plan.duration}</div>
-          </div>
-        )}
-        {(plan.priceAdultWithCurrency || plan.priceChildrenWithCurrency) && (
-          <div className="plan-price plan-detail">
-            <h3>Price: </h3>
-            {getPrice()}
-          </div>
-        )}
-        {plan.discount && (
-          <div className="plan-discount plan-detail">
-            <h3>Discount: </h3>
-            <div>{plan.discount}</div>
-          </div>
-        )}
-        {plan.notation && (
-          <div className="plan-notation plan-detail">
-            <h3>Notes: </h3>
-            <div className="notation-text">{plan.notation}</div>
-          </div>
-        )}
-
-        {(plan.web || plan.phone || plan.email) && (
-          <div className="plan-contact">
-            {plan.web && (
-              <div>
-                {plan !== "" ? (
-                  !plan.web.startsWith("https://") &&
-                  !plan.web.startsWith("http://") &&
-                  plan.web !== null &&
-                  plan.web !== "" ? (
-                    <a href={"https://" + plan.web} target="_blank">
-                      <FontAwesomeIcon icon={faGlobe} className="icon" />
-                      <div>Web:</div>
-                      <div className="link">{plan.web}</div>
-                    </a>
-                  ) : (
-                    <a href={plan.web} target="_blank">
-                      <FontAwesomeIcon icon={faGlobe} className="icon" />
-                      <div>Web:</div>
-                      <div className="link">{plan.web}</div>
-                    </a>
-                  )
-                ) : (
-                  <p></p>
-                )}
-              </div>
-            )}
-            {plan.phone && (
-              <div>
-                <a href={"tel:" + plan.phone}>
-                  <FontAwesomeIcon icon={faPhone} className="icon" />
-                  <div>Phone:</div>
-                  <div className="link">{plan.phone}</div>
-                </a>
-              </div>
-            )}
-            {plan.email && (
-              <div>
-                <a href={"mailto:" + plan.email}>
-                  <FontAwesomeIcon icon={faEnvelope} className="icon" />
-                  <div>Email:</div>
-                  <div className="link">{plan.email}</div>
-                </a>
-              </div>
-            )}
-          </div>
-        )}
+        <img
+          className="details-illustration"
+          src={"../../../src/assets/illustrations/plan.svg"}
+        ></img>
       </div>
+
+      {(plan.web || plan.phone || plan.email) && (
+        <div className="plan-contact">
+          {plan.web && (
+            <div>
+              {plan !== "" ? (
+                !plan.web.startsWith("https://") &&
+                !plan.web.startsWith("http://") &&
+                plan.web !== null &&
+                plan.web !== "" ? (
+                  <a href={"https://" + plan.web} target="_blank">
+                    <FontAwesomeIcon icon={faGlobe} className="icon" />
+                    <div>Web:</div>
+                    <div className="link">{plan.web}</div>
+                  </a>
+                ) : (
+                  <a href={plan.web} target="_blank">
+                    <FontAwesomeIcon icon={faGlobe} className="icon" />
+                    <div>Web:</div>
+                    <div className="link">{plan.web}</div>
+                  </a>
+                )
+              ) : (
+                <p></p>
+              )}
+            </div>
+          )}
+          {plan.phone && (
+            <div>
+              <a href={"tel:" + plan.phone}>
+                <FontAwesomeIcon icon={faPhone} className="icon" />
+                <div>Phone:</div>
+                <div className="link">{plan.phone}</div>
+              </a>
+            </div>
+          )}
+          {plan.email && (
+            <div>
+              <a href={"mailto:" + plan.email}>
+                <FontAwesomeIcon icon={faEnvelope} className="icon" />
+                <div>Email:</div>
+                <div className="link">{plan.email}</div>
+              </a>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

@@ -67,6 +67,7 @@ function MainPage() {
   useEffect(() => {
     loadTripList();
     window.scrollTo(0, 0);
+    document.body.style.overflow = "unset";
   }, []);
 
   if (tripList === null) {
