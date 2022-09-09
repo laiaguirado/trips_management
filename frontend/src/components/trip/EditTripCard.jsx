@@ -144,7 +144,7 @@ function EditTripCard({ trip, tripId, onEdit }) {
         </div>
       </div>
       <div className="uploading-new-image">
-        {tripImage && imageUrl === "" ? (
+        {tripImage && (imageUrl === "" || !imageUrl) ? (
           <img className="image-editing" src={tripImage}></img>
         ) : (
           <img className="image-editing" src={imageUrl}></img>
@@ -154,12 +154,23 @@ function EditTripCard({ trip, tripId, onEdit }) {
           <input
             className="input upload"
             required={imageUrl ? false : true}
-            disabled={imageUrl ? true : false}
+            disabled={
+              imageUrl && imageUrl !== "" && imageUrl !== trip.image.url
+                ? true
+                : false
+            }
             placeholder="Select a file"
             type="file"
             onInput={(event) => {
-              setTripImage(URL.createObjectURL(event.target.files[0]));
-              setImageFile(event.target.files[0]);
+              if (event.target.files[0] !== undefined) {
+                setTripImage(URL.createObjectURL(event.target.files[0]));
+                setImageFile(event.target.files[0]);
+                setImageUrl(null);
+              } else {
+                setTripImage(null);
+                setImageFile(null);
+                setImageUrl(null);
+              }
             }}
           />
           <div> Or</div>
@@ -171,6 +182,7 @@ function EditTripCard({ trip, tripId, onEdit }) {
             type="url"
             onInput={(event) => {
               setImageUrl(event.target.value);
+              setTripImage(null);
             }}
           />
         </label>
