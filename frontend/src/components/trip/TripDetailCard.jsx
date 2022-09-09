@@ -45,12 +45,11 @@ function TripDetailCard({
       setMessage(null);
     } else {
       if (error.startsWith("Bad request")) {
-        setMessage([
-          `Couldn't add traveler ${error.substring(11, error.length)}`,
-          "traveller",
-        ]);
+        setMessage(
+          `Couldn't add traveler ${error.substring(11, error.length)}`
+        );
       } else {
-        setMessage([error, "traveller"]);
+        setMessage(error);
       }
     }
   };

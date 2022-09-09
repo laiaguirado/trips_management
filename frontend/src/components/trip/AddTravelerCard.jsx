@@ -13,7 +13,7 @@ function AddTravelerCard({ onAdd, message, setMessage, adding, trip, tripId }) {
     let addTraveler = true;
     for (let j = 0; j < trip.travellers.length; j++) {
       if (trip.travellers[j].user.email === email) {
-        setMessage([`Traveler already added to the trip`, "traveller"]);
+        setMessage(`Traveler already added to the trip`);
         addTraveler = false;
       }
     }
@@ -32,9 +32,7 @@ function AddTravelerCard({ onAdd, message, setMessage, adding, trip, tripId }) {
         </div>
         <form className="add-form" onSubmit={(e) => add(e)}>
           <h1 className="title">New Traveler</h1>
-          <div className="details-error error">
-            {message ? message[0] : null}
-          </div>
+          <div className="details-error error">{message}</div>
           <label>
             <div className="form-data">
               <FontAwesomeIcon icon={faPersonWalkingLuggage} className="icon" />
