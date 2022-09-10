@@ -6,6 +6,13 @@ const commentsSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
     },
+    resourceType: {
+      type: String,
+      required: true,
+      trim: true,
+      lowercase: true,
+      immutable: true,
+    },
     idTravel: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "travel",

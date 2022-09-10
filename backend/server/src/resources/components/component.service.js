@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 const { Component } = require("./component.model");
 
+const TYPE_RESOURCE = {
+  TRANSPORT: "transportation",
+  ACCOMMODATION: "accommodation",
+  RESTAURANT: "restoration",
+  PLANS: "plans",
+};
+
 const findComponentById = async (idComp) => {
   try {
     return await Component.findOne({ _id: idComp });
@@ -45,4 +52,4 @@ const getScores = async (model, id) => {
   return totales;
 };
 
-module.exports = { findComponentById, getScores };
+module.exports = { findComponentById, getScores, TYPE_RESOURCE };

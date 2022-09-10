@@ -5,14 +5,13 @@ const { catchErrors, TripManagementApiError } = require("../../errors");
 const { needsAuthToken } = require("../users/auth/auth.middleware");
 
 const Comment = require("./comments.service");
-const Accomodation = require("../components/accommodation/accommodation.service")
-const User = require("../users/user.service")
+const Accomodation = require("../components/accommodation/accommodation.service");
+const User = require("../users/user.service");
 const Travel = require("../travel/travel.service");
-const Restoration = require("../components/restoration/restoration.service")
-const Transportation = require("../components/transportation/transportation.service")
-const Plan = require("../components/plans/plans.services")
-
-
+const Restoration = require("../components/restoration/restoration.service");
+const Transportation = require("../components/transportation/transportation.service");
+const Plan = require("../components/plans/plans.services");
+const { TYPE_RESOURCE } = require("../components/component.service.js");
 
 const createAcom = async (req, res) => {
   const { idComp } = req.params;
@@ -24,11 +23,10 @@ const createAcom = async (req, res) => {
   const accommodation = await Accomodation.findOneById(idComp);
 
   accommodation.comments.push(comment);
-  await accommodation.save()
+  await accommodation.save();
 
   res.status(200).json(comment);
-
-}
+};
 
 const createRest = async (req, res) => {
   const { idComp } = req.params;
@@ -40,27 +38,32 @@ const createRest = async (req, res) => {
   const restoration = await Restoration.findOneById(idComp);
 
   restoration.comments.push(comment);
-  await restoration.save()
+  await restoration.save();
 
   res.status(200).json(comment);
-
-}
+};
 
 const createTransp = async (req, res) => {
   const { idComp } = req.params;
   const { email, _id, username } = req.userInfo;
   const { comment_text } = req.body;
   const { travelId } = req.params;
+  const resourceType = TYPE_RESOURCE.TRANSPORT;
 
-  const comment = await Comment.createOne(comment_text, idComp, _id, travelId);
+  const comment = await Comment.createOne(
+    comment_text,
+    idComp,
+    _id,
+    travelId,
+    resourceType
+  );
   const transportation = await Transportation.findOneById(idComp);
 
   transportation.comments.push(comment);
-  await transportation.save()
+  await transportation.save();
 
   res.status(200).json(comment);
-
-}
+};
 
 const createPlan = async (req, res) => {
   const { idComp } = req.params;

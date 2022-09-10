@@ -2,44 +2,52 @@ const Comment = require("./comments.model");
 const Travel = require("../travel/travel.model");
 const User = require("../users/user.model");
 const { default: mongoose } = require("mongoose");
+const { errMalformed } = require("../../errors");
+const { TYPE_RESOURCE } = require("../components/component.service.js");
+const Transportation = require("../components/transportation/transportation.model");
 
-const createOne = async (text, compId, _id,idTravel) => {
-   return await Comment.create({
+const createOne = async (text, compId, _id, idTravel, resourceType) => {
+  return await Comment.create({
     comment: text,
     idComponent: compId,
     idUser: _id,
-    idTravel:mongoose.Types.ObjectId(idTravel)
-
-  }).then(
-    comment => {
-      const result = Comment.findById(comment._id)
-        .populate({ path: "idUser", select: "email username" });
-      return result;
-    }
-  );
+    idTravel: mongoose.Types.ObjectId(idTravel),
+    resourceType,
+  }).then((comment) => {
+    const result = Comment.findById(comment._id).populate({
+      path: "idUser",
+      select: "email username",
+    });
+    return result;
+  });
 };
 
 const findAll = async () => {
   return await Comment.find()
-  .populate({ path: "idUser", select: "email username" })
-  .lean().exec();
+    .populate({ path: "idUser", select: "email username" })
+    .lean()
+    .exec();
 };
 
 const deleteComment = async (_id) => {
-  await Travel.findOneAndUpdate({ comments: _id }, {
-    $pull: { comments: { $in: _id }},
-}, {new:true});
-
-await User.findOneAndUpdate({ comments: _id }, {
-  $pull: { comments: { $in: _id }},
-}, {new:true});
-
-
-
   const deleted = await Comment.findByIdAndDelete({ _id }).lean().exec();
   if (deleted === null) {
-    errMalformed(`Comment with ${id} not found`);
+    errMalformed(`Comment not found`);
   }
+  let model;
+  switch (deleted.resourceType) {
+    case TYPE_RESOURCE.TRANSPORT:
+      model = Transportation;
+      break;
+  }
+
+  const commentDeleted = await model.findOneAndUpdate(
+    { comments: _id },
+    {
+      $pull: { comments: { $in: _id } },
+    },
+    { new: true }
+  );
   return deleted;
 };
 
