@@ -9,6 +9,8 @@ const { needsAuthToken } = require("../../users/auth/auth.middleware");
 const Transportation = require("./transportation.service");
 const Scores = require("../../score/score.service");
 const { TYPE_RESOURCE } = require("../component.service.js");
+const { componentAllowedAction } = require("../component.middelware");
+
 const RESOURCETYPE = TYPE_RESOURCE.TRANSPORT;
 
 const test = async (req, res) => {
@@ -152,6 +154,7 @@ routerByTransportation.get(
 routerByTransportation.delete(
   "/:_id",
   needsAuthToken,
+  componentAllowedAction,
   catchErrors(deleteTransportation)
 );
 routerByTransportation.put(

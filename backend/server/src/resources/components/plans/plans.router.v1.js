@@ -9,6 +9,7 @@ const { needsAuthToken } = require("../../users/auth/auth.middleware");
 const Plans = require("./plans.services");
 const Scores = require("../../score/score.service");
 const { TYPE_RESOURCE } = require("../component.service.js");
+const { componentAllowedAction } = require("../component.middelware");
 const RESOURCETYPE = TYPE_RESOURCE.PLANS;
 
 const test = async (req, res) => {
@@ -108,7 +109,12 @@ if (config.isDevelopment) {
 }
 
 routerPlansByPlan.get("/:_id", needsAuthToken, catchErrors(getPlanById));
-routerPlansByPlan.delete("/:_id", needsAuthToken, catchErrors(deletePlan));
+routerPlansByPlan.delete(
+  "/:_id",
+  needsAuthToken,
+  componentAllowedAction,
+  catchErrors(deletePlan)
+);
 routerPlansByPlan.put("/:_id", needsAuthToken, catchErrors(updatePlan));
 
 module.exports = { routerPlansByTravel, routerPlansByPlan };

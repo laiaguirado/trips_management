@@ -5,6 +5,7 @@ const { catchErrors, TripManagementApiError } = require("../../../errors");
 const { needsAuthToken } = require("../../users/auth/auth.middleware");
 const { runTransaction } = require("../../../helper");
 const Scores = require("../../score/score.service");
+const { componentAllowedAction } = require("../component.middelware");
 const { TYPE_RESOURCE } = require("../component.service.js");
 const RESOURCETYPE = TYPE_RESOURCE.RESTAURANT;
 
@@ -142,6 +143,7 @@ routerRestorationByTravel.get("/", needsAuthToken, catchErrors(getByTravel));
 routerRestorationByResporation.delete(
   "/:_id",
   needsAuthToken,
+  componentAllowedAction,
   catchErrors(deleteRestoration)
 );
 routerRestorationByResporation.get(

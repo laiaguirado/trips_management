@@ -52,4 +52,45 @@ const getScores = async (model, id) => {
   return totales;
 };
 
-module.exports = { findComponentById, getScores, TYPE_RESOURCE };
+const findComponent = async (id) => {
+  const filterBy = id
+    ? {
+        $match: { _id: { $eq: mongoose.Types.ObjectId(id) } },
+      }
+    : { $match: {} };
+  const component = await Component.aggregate(
+    [
+      {
+        $unionWith: {
+          coll: "plans",
+          pipeline: [filterBy],
+        },
+      },
+      {
+        $unionWith: {
+          coll: "accommodations",
+          pipeline: [filterBy],
+        },
+      },
+      {
+        $unionWith: {
+          coll: "transportations",
+          pipeline: [filterBy],
+        },
+      },
+      {
+        $unionWith: {
+          coll: "restorations",
+          pipeline: [filterBy],
+        },
+      },
+    ],
+    function (err, result) {
+      //    console.log(result);
+      //  console.log(err);
+    }
+  );
+  return component[0];
+};
+
+module.exports = { findComponentById, getScores, TYPE_RESOURCE, findComponent };

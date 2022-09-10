@@ -8,6 +8,8 @@ const Accommodation = require("./accommodation.service");
 const Travel = require("../../travel/travel.service");
 const User = require("../../users/user.service");
 const { runTransaction } = require("../../../helper");
+const { componentAllowedAction } = require("../component.middelware");
+
 const { TYPE_RESOURCE } = require("../component.service.js");
 
 const RESOURCETYPE = TYPE_RESOURCE.ACCOMMODATION;
@@ -146,7 +148,12 @@ routerAccommodationByTravel.post("/", needsAuthToken, catchErrors(create));
 routerAccommodationByAccommodation.get("/", needsAuthToken, catchErrors(geAllAccommodations));
 routerAccommodationByTravel.get("/", needsAuthToken, catchErrors(getAccommodationByTravel));
 routerAccommodationByAccommodation.get("/:id", needsAuthToken, catchErrors(getAccommodationById));
-routerAccommodationByAccommodation.delete("/:_id", needsAuthToken, catchErrors(deleteAccommodation));
+routerAccommodationByAccommodation.delete(
+  "/:_id",
+  needsAuthToken,
+  componentAllowedAction,
+  catchErrors(deleteAccommodation)
+);
 routerAccommodationByAccommodation.put("/:_id", needsAuthToken, catchErrors(updateAccomm));
 
 module.exports = { routerAccommodationByTravel, routerAccommodationByAccommodation };

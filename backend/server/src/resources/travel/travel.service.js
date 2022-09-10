@@ -83,20 +83,6 @@ const addUserToTravel = async (idTravel, idUser, type) => {
       .lean()
       .exec();
 
-    /*const travel = await Travel.findOne({_id: idTravel });
-     const travellerIds = []
-    for (trav of travel.travellers){
-     travellerIds.push(trav.user)
-    }
-    for(let i = 0; i <= travellerIds.length ; i++){
-      if (infoTravel.user.equals(travellerIds[i])){
-        throw new Error('User already in the travel');;
-      }
-    }
-    travel.travellers.push(infoTravel);
-    await travel.save()*/
-
-
     const user = await User.findOneAndUpdate(
       { _id: idUser },
       { $push: { travels: idTravel } },
@@ -106,6 +92,15 @@ const addUserToTravel = async (idTravel, idUser, type) => {
     return travel;
   });
   return travel;
+};
+
+const isTraveler = async (idTravel, idUser) => {
+  const travel = await Travel.findOne({
+    _id: idTravel,
+    travellers: { $elemMatch: { user: idUser } },
+  });
+  console.log(travel);
+  return travel != null;
 };
 
 const deleteUserToTravel = async (idTravel, idUser) => {
@@ -140,4 +135,5 @@ module.exports = {
   addUserToTravel,
   deleteUserToTravel,
   findTravel,
+  isTraveler,
 };
