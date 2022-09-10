@@ -33,8 +33,15 @@ const createRest = async (req, res) => {
   const { email, _id, username } = req.userInfo;
   const { comment_text } = req.body;
   const { travelId } = req.params;
+  const resourceType = TYPE_RESOURCE.RESTAURANT;
 
-  const comment = await Comment.createOne(comment_text, idComp, _id, travelId);
+  const comment = await Comment.createOne(
+    comment_text,
+    idComp,
+    _id,
+    travelId,
+    resourceType
+  );
   const restoration = await Restoration.findOneById(idComp);
 
   restoration.comments.push(comment);

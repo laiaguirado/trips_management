@@ -5,8 +5,8 @@ const { catchErrors, TripManagementApiError } = require("../../../errors");
 const { needsAuthToken } = require("../../users/auth/auth.middleware");
 const { runTransaction } = require("../../../helper");
 const Scores = require("../../score/score.service");
-
-const RESOURCETYPE = "Restoration";
+const { TYPE_RESOURCE } = require("../component.service.js");
+const RESOURCETYPE = TYPE_RESOURCE.RESTAURANT;
 
 const Restoration = require("./restoration.service");
 const Travel = require("../../travel/travel.service");
