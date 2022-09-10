@@ -8,8 +8,9 @@ const Accommodation = require("./accommodation.service");
 const Travel = require("../../travel/travel.service");
 const User = require("../../users/user.service");
 const { runTransaction } = require("../../../helper");
+const { TYPE_RESOURCE } = require("../component.service.js");
 
-const RESOURCETYPE = "Accommodation";
+const RESOURCETYPE = TYPE_RESOURCE.ACCOMMODATION;
 
 const addNewScoreToAccommodation = async (
   score,

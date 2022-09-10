@@ -18,8 +18,15 @@ const createAcom = async (req, res) => {
   const { email, _id, username } = req.userInfo;
   const { comment_text } = req.body;
   const { travelId } = req.params;
+  const resourceType = TYPE_RESOURCE.ACCOMMODATION;
 
-  const comment = await Comment.createOne(comment_text, idComp, _id, travelId);
+  const comment = await Comment.createOne(
+    comment_text,
+    idComp,
+    _id,
+    travelId,
+    resourceType
+  );
   const accommodation = await Accomodation.findOneById(idComp);
 
   accommodation.comments.push(comment);

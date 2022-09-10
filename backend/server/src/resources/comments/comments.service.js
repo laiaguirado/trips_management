@@ -6,6 +6,7 @@ const { errMalformed } = require("../../errors");
 const { TYPE_RESOURCE } = require("../components/component.service.js");
 const Transportation = require("../components/transportation/transportation.model");
 const Restoration = require("../components/restoration/restoration.model");
+const Accommodation = require("../components/accommodation/accommodation.model");
 
 const createOne = async (text, compId, _id, idTravel, resourceType) => {
   return await Comment.create({
@@ -42,6 +43,9 @@ const deleteComment = async (_id) => {
       break;
     case TYPE_RESOURCE.RESTAURANT:
       model = Restoration;
+      break;
+    case TYPE_RESOURCE.ACCOMMODATION:
+      model = Accommodation;
       break;
   }
 
