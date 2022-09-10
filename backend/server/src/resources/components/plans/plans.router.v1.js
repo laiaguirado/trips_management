@@ -67,14 +67,14 @@ const getAllPlansByTravel = async (req, res) => {
 };
 
 const getPlanById = async (req, res) => {
-  const { idPlan } = req.params;
+  const { _id: idPlan } = req.params;
   const { _id: idUser } = req.userInfo;
   const include = req.query._include;
   res.status(200).json(await Plans.getPlanById(idPlan, idUser, include));
 };
 
 const deletePlan = async (req, res) => {
-  const { idPlan } = req.params;
+  const { _id: idPlan } = req.params;
 
   res.status(200).json(await Plans.deletePlan(idPlan));
 };
@@ -82,7 +82,7 @@ const deletePlan = async (req, res) => {
 const updatePlan = async (req, res) => {
   const planInfo = req.body;
   const { _id: idUser } = req.userInfo;
-  const { idPlan } = req.params;
+  const { _id: idPlan } = req.params;
   const scoreUser = planInfo.score ? planInfo.score : null;
 
   delete planInfo.score;
@@ -97,7 +97,6 @@ const updatePlan = async (req, res) => {
   }
 };
 
-
 const routerPlansByTravel = express.Router();
 const routerPlansByPlan = express.Router();
 
@@ -108,8 +107,8 @@ if (config.isDevelopment) {
   routerPlansByPlan.get("/test", needsAuthToken, catchErrors(test));
 }
 
-routerPlansByPlan.get("/:idPlan", needsAuthToken, catchErrors(getPlanById));
-routerPlansByPlan.delete("/:idPlan", needsAuthToken, catchErrors(deletePlan));
-routerPlansByPlan.put("/:idPlan", needsAuthToken, catchErrors(updatePlan));
+routerPlansByPlan.get("/:_id", needsAuthToken, catchErrors(getPlanById));
+routerPlansByPlan.delete("/:_id", needsAuthToken, catchErrors(deletePlan));
+routerPlansByPlan.put("/:_id", needsAuthToken, catchErrors(updatePlan));
 
 module.exports = { routerPlansByTravel, routerPlansByPlan };
