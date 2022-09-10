@@ -45,6 +45,13 @@ const accommodationSchema = extendSchema(
     phone: {
       type: Number,
       trim: true,
+      validate: {
+        validator: (v) => {
+          console.log(v);
+          return v <= 999999999;
+        },
+        message: (props) => "Wrong phone number",
+      },
     },
     email: {
       type: String,
@@ -88,7 +95,17 @@ const accommodationSchema = extendSchema(
     type: {
       type: String,
       enum: {
-        values: ["Hotel", "Apartment", "Camping", "Bungalow", "Hostal", "Chalets", "Cottages", "Other", ""],
+        values: [
+          "Hotel",
+          "Apartment",
+          "Camping",
+          "Bungalow",
+          "Hostal",
+          "Chalets",
+          "Cottages",
+          "Other",
+          "",
+        ],
         message: "{VALUE} for {TYPE} is not suported",
       },
     },
