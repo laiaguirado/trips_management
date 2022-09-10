@@ -31,7 +31,7 @@ function EditTripCard({ trip, tripId, onEdit }) {
     if (imageFile != null) {
       formData.append("fileImage", imageFile);
     }
-    if (imageUrl != null) {
+    if (imageUrl != null && imageUrl != "") {
       formData.append("image", imageUrl);
     }
     formData.append("startDate", tripStartDate);
