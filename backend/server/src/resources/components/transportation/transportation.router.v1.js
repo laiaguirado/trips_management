@@ -81,7 +81,7 @@ const getAllTransportationByTravel = async (req, res) => {
 };
 
 const getTransportationById = async (req, res) => {
-  const { idTransportation } = req.params;
+  const { _id: idTransportation } = req.params;
   const { _id: idUser } = req.userInfo;
   const include = req.query._include;
   res
@@ -96,39 +96,32 @@ const getTransportationById = async (req, res) => {
 };
 
 const deleteTransportation = async (req, res) => {
-  const { idTransportation } = req.params;
+  const { _id: idTransport } = req.params;
 
-  res
-    .status(200)
-    .json(await Transportation.deleteTransportation(idTransportation));
+  res.status(200).json(await Transportation.deleteTransportation(idTransport));
 };
 
 const updateTransportation = async (req, res) => {
   const transportationInfo = req.body;
-  const { idTransportation } = req.params;
+  const { _id: idTransport } = req.params;
   const { _id: idUser } = req.userInfo;
   const scoreUser = transportationInfo.score ? transportationInfo.score : null;
 
   delete transportationInfo.score;
   const transportUpdated = await Transportation.updateTransportation(
-    idTransportation,
+    idTransport,
     transportationInfo
   );
-  console.log(`Modifico score tambieb ${scoreUser}`);
-  console.log(scoreUser);
   if (scoreUser) {
     res
       .status(201)
-      .json(
-        await updateScoreToTransportation(scoreUser, idTransportation, idUser)
-      );
-    // await updateScoreToTransportation(scoreUser, idTransportation, idUser);
+      .json(await updateScoreToTransportation(scoreUser, idTransport, idUser));
   } else {
     res
       .status(201)
       .json(
         await await Transportation.getTransportationById(
-          idTransportation,
+          idTransport,
           idUser,
           "totalScore"
         )
@@ -151,18 +144,18 @@ if (config.isDevelopment) {
 }
 
 routerByTransportation.get(
-  "/:idTransportation",
+  "/:_id",
   needsAuthToken,
   catchErrors(getTransportationById)
 );
 
 routerByTransportation.delete(
-  "/:idTransportation",
+  "/:_id",
   needsAuthToken,
   catchErrors(deleteTransportation)
 );
 routerByTransportation.put(
-  "/:idTransportation",
+  "/:_id",
   needsAuthToken,
   catchErrors(updateTransportation)
 );
