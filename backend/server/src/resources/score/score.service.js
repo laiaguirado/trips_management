@@ -19,13 +19,6 @@ const findAll = async () => {
 };
 
 const deleteScore = async (_id) => {
-  await Travel.findOneAndUpdate({ scores: _id }, {
-    $pull: { scores: { $in: _id } },
-  }, { new: true });
-  await User.findOneAndUpdate({ scores: _id }, {
-    $pull: { scores: { $in: _id } },
-  }, { new: true });
-
   const deleted = await Score.findByIdAndDelete({ _id }).lean().exec();
   if (deleted === null) {
     errMalformed(`Score with ${id} not found`);
