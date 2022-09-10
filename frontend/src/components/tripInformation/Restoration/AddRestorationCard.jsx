@@ -184,7 +184,6 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
               <FontAwesomeIcon icon={faSackDollar} className="icon" />
               <input
                 className="input price"
-                required={currency ? "required" : ""}
                 min="0"
                 step="0.01"
                 type="number"

@@ -133,7 +133,6 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
                 type="number"
                 min="0"
                 step="0.01"
-                required={currency ? "required" : ""}
                 placeholder="Price"
                 value={price}
                 onChange={(event) => setPrice(event.target.value)}
