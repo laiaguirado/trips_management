@@ -1,5 +1,6 @@
 .main-page {
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
 }
 .main-page .trips {
   display: flex;
