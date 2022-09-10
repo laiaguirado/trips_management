@@ -7,6 +7,7 @@ const { TYPE_RESOURCE } = require("../components/component.service.js");
 const Transportation = require("../components/transportation/transportation.model");
 const Restoration = require("../components/restoration/restoration.model");
 const Accommodation = require("../components/accommodation/accommodation.model");
+const Plans = require("../components/plans/plans.model");
 
 const createOne = async (text, compId, _id, idTravel, resourceType) => {
   return await Comment.create({
@@ -36,7 +37,7 @@ const deleteComment = async (_id) => {
   if (deleted === null) {
     errMalformed(`Comment not found`);
   }
-  let model;
+  let model = null;
   switch (deleted.resourceType) {
     case TYPE_RESOURCE.TRANSPORT:
       model = Transportation;
@@ -47,15 +48,19 @@ const deleteComment = async (_id) => {
     case TYPE_RESOURCE.ACCOMMODATION:
       model = Accommodation;
       break;
+    case TYPE_RESOURCE.PLANS:
+      model = Plans;
+      break;
   }
-
-  const commentDeleted = await model.findOneAndUpdate(
-    { comments: _id },
-    {
-      $pull: { comments: { $in: _id } },
-    },
-    { new: true }
-  );
+  if (model !== null) {
+    const commentDeleted = await model.findOneAndUpdate(
+      { comments: _id },
+      {
+        $pull: { comments: { $in: _id } },
+      },
+      { new: true }
+    );
+  }
   return deleted;
 };
 

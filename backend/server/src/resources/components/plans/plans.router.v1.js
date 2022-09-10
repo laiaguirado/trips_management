@@ -8,7 +8,8 @@ const config = require("../../../config");
 const { needsAuthToken } = require("../../users/auth/auth.middleware");
 const Plans = require("./plans.services");
 const Scores = require("../../score/score.service");
-const RESOURCETYPE = "Plans";
+const { TYPE_RESOURCE } = require("../component.service.js");
+const RESOURCETYPE = TYPE_RESOURCE.PLANS;
 
 const test = async (req, res) => {
   const { email, _id, username } = req.userInfo;
