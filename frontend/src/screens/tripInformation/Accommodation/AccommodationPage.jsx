@@ -101,7 +101,6 @@ function AccommodationPage() {
         <div>
           <h1 className="details-title list-page">ACCOMMODATION</h1>
           <div>
-            {addAccommodationForm()}{" "}
             <div className="add-info-button" onClick={() => setAdding(true)}>
               <FontAwesomeIcon icon={faCirclePlus} className="icon" />
             </div>
@@ -139,6 +138,7 @@ function AccommodationPage() {
           </div>
         </div>
       </div>
+      {addAccommodationForm()}
     </div>
   );
 }

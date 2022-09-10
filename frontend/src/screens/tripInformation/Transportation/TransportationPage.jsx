@@ -101,7 +101,6 @@ function TransportationPage() {
         <div>
           <h1 className="details-title list-page">TRANSPORTATION</h1>
           <div>
-            {addTransportationForm()}
             <div className="add-info-button" onClick={() => setAdding(true)}>
               <FontAwesomeIcon icon={faCirclePlus} className="icon" />
             </div>
@@ -139,6 +138,7 @@ function TransportationPage() {
           </div>
         </div>
       </div>
+      {addTransportationForm()}
     </div>
   );
 }

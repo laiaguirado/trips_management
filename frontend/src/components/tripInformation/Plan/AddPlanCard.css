@@ -1,15 +1,18 @@
 .add-plan-card {
   width: 100%;
-  height: auto;
+  height: 100%;
+  min-height: 70rem;
   top: 0;
   left: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  position: absolute;
 }
 
 .add-plan-card .form-container {
   margin: 2rem;
-  margin-top: calc(2rem + 6vw);
   width: 25rem;
+  position: sticky;
+  top: -40rem;
 }
