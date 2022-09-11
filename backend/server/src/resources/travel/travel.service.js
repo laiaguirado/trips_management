@@ -72,16 +72,27 @@ const addUserToTravel = async (idTravel, idUser, type) => {
   const travel = await runTransaction(async () => {
     const infoTravel = { user: idUser, type };
 
-    const travel = await Travel.findOneAndUpdate(
-      { _id: idTravel },
-      { $push: { travellers: infoTravel } },
-      { new: true, useFindAndModify: false, runValidators: true }
-    )
-      .populate({ path: "travellers", select: "-_id" })
-      .populate({ path: "travellers.user", select: "email username" })
-      .populate({ path: "creator", select: "email -_id" })
-      .lean()
-      .exec();
+    let travel = await Travel.findOne({ _id: idTravel });
+    const travellerIds = [];
+    for (trav of travel.travellers) {
+      travellerIds.push(trav.user);
+    }
+    for (let i = 0; i <= travellerIds.length; i++) {
+      if (infoTravel.user.equals(travellerIds[i])) {
+        throw new Error("User already in the travel");
+      }
+    }
+    console.log(travel);
+    travel = await Travel.findOneAndUpdate(
+         { _id: idTravel },
+         { $push: { travellers: infoTravel } },
+         { new: true, useFindAndModify: false, runValidators: true }
+       )
+         .populate({ path: "travellers", select: "-_id" })
+         .populate({ path: "travellers.user", select: "email username" })
+         .populate({ path: "creator", select: "email -_id" })
+         .lean()
+         .exec();
 
     const user = await User.findOneAndUpdate(
       { _id: idUser },
