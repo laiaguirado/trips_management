@@ -101,7 +101,12 @@ const updatePlan = async (req, res) => {
 const routerPlansByTravel = express.Router();
 const routerPlansByPlan = express.Router();
 
-routerPlansByTravel.post("/", needsAuthToken, catchErrors(createPlan));
+routerPlansByTravel.post(
+  "/",
+  needsAuthToken,
+  componentAllowedAction,
+  catchErrors(createPlan)
+);
 routerPlansByTravel.get("/", needsAuthToken, catchErrors(getAllPlansByTravel));
 
 if (config.isDevelopment) {

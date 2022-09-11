@@ -47,7 +47,6 @@ const accommodationSchema = extendSchema(
       trim: true,
       validate: {
         validator: (v) => {
-          console.log(v);
           return v <= 999999999;
         },
         message: (props) => "Wrong phone number",

@@ -137,7 +137,12 @@ const updateRest = async (req, res) => {
 const routerRestorationByTravel = express.Router();
 const routerRestorationByResporation = express.Router();
 
-routerRestorationByTravel.post("/", needsAuthToken, catchErrors(create));
+routerRestorationByTravel.post(
+  "/",
+  needsAuthToken,
+  componentAllowedAction,
+  catchErrors(create)
+);
 routerRestorationByTravel.get("/", needsAuthToken, catchErrors(getByTravel));
 
 routerRestorationByResporation.delete(

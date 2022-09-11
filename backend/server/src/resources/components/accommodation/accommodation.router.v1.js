@@ -144,7 +144,12 @@ const routerAccommodationByAccommodation = express.Router();
 
 const router = express.Router();
 
-routerAccommodationByTravel.post("/", needsAuthToken, catchErrors(create));
+routerAccommodationByTravel.post(
+  "/",
+  needsAuthToken,
+  componentAllowedAction,
+  catchErrors(create)
+);
 routerAccommodationByAccommodation.get("/", needsAuthToken, catchErrors(geAllAccommodations));
 routerAccommodationByTravel.get("/", needsAuthToken, catchErrors(getAccommodationByTravel));
 routerAccommodationByAccommodation.get("/:id", needsAuthToken, catchErrors(getAccommodationById));

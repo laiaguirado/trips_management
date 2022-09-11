@@ -134,7 +134,12 @@ const updateTransportation = async (req, res) => {
 const routerByTravel = express.Router();
 const routerByTransportation = express.Router();
 
-routerByTravel.post("/", needsAuthToken, catchErrors(createTransport));
+routerByTravel.post(
+  "/",
+  needsAuthToken,
+  componentAllowedAction,
+  catchErrors(createTransport)
+);
 routerByTravel.get(
   "/",
   needsAuthToken,

@@ -99,7 +99,6 @@ const isTraveler = async (idTravel, idUser) => {
     _id: idTravel,
     travellers: { $elemMatch: { user: idUser } },
   });
-  console.log(travel);
   return travel != null;
 };
 
