@@ -15,11 +15,11 @@ const addRoutesTo = (app) => {
   app.use(
     "/v1/travel/:idTravel/restoration",
     passParamsToRouterChild,
-    require("./restoration.router.v1").routerRestorationByTravel
+    require("./restoration.router.v1").routerRestaurantByTravel
   );
   app.use(
     "/v1/restoration",
-    require("./restoration.router.v1").routerRestorationByResporation
+    require("./restoration.router.v1").routerRestaurantByRestaurant
   );
 };
 

@@ -13,37 +13,37 @@ const Restoration = require("./restoration.service");
 const Travel = require("../../travel/travel.service");
 const User = require("../../users/user.service");
 
-const addNewScoreToRestoration = async (
+const addNewScoreToRestaurant = async (
   score,
-  idRestoration,
+  idRestaurant,
   idUser,
   idTravel
 ) => {
   //Si el plan te un score, cal guardar la info i retornar-la
   const scoreCreated = await Scores.createOne(
     score,
-    idRestoration,
+    idRestaurant,
     idUser,
     idTravel
   );
-  const planCreated = await Restoration.addFirstScore(
-    idRestoration,
+  const componentCreated = await Restoration.addFirstScore(
+    idRestaurant,
     scoreCreated._id,
     score
   );
-  return planCreated;
+  return componentCreated;
 };
 
-const updateScoreToRestoration = async (score, idRestoration, idUser) => {
+const updateScoreToRestaurant = async (score, idRestaurant, idUser) => {
   const scoreUpdated = await Scores.updateScore(score._id, {
     score: score.score,
   });
-  const restorationUpdated = await Restoration.getOne(
-    idRestoration,
+  const componentUpdated = await Restoration.getOne(
+    idRestaurant,
     idUser,
     "totalScore"
   );
-  return restorationUpdated;
+  return componentUpdated;
 };
 
 const create = async (req, res) => {
@@ -57,32 +57,27 @@ const create = async (req, res) => {
   data.idUser = _id;
   data.idTravel = idTravel;
 
-  const restoration = await runTransaction(async () => {
-    const restorationCreated = await Restoration.createOne(data);
+  const restaurant = await runTransaction(async () => {
+    const restaurantCreated = await Restoration.createOne(data);
 
     const travel = await Travel.findTravel(idTravel);
-    travel.restaurants.push(restorationCreated);
+    travel.restaurants.push(restaurantCreated);
     await travel.save();
-    return restorationCreated;
+    return restaurantCreated;
   });
 
   if (scoreUser) {
     res
       .status(201)
       .json(
-        await addNewScoreToRestoration(
-          scoreUser,
-          restoration._id,
-          _id,
-          idTravel
-        )
+        await addNewScoreToRestaurant(scoreUser, restaurant._id, _id, idTravel)
       );
   } else {
-    res.status(201).json(restoration);
+    res.status(201).json(restaurant);
   }
 };
 
-const deleteRestoration = async (req, res) => {
+const deleteRestaurant = async (req, res) => {
   const { _id } = req.params;
   res.status(200).json(await Restoration.deleteRest(_id));
 };
@@ -108,64 +103,64 @@ const getByTravel = async (req, res) => {
 };
 
 const updateRest = async (req, res) => {
-  const dataRestoration = req.body;
-  const { _id: idRestoration } = req.params;
+  const dataRestaurant = req.body;
+  const { _id: idRestaurant } = req.params;
   const { _id: idUser } = req.userInfo;
-  const scoreUser = dataRestoration.score ? dataRestoration.score : null;
+  const scoreUser = dataRestaurant.score ? dataRestaurant.score : null;
 
-  delete dataRestoration.score;
-  const restorationUpdated = await Restoration.updateRestoration(
-    idRestoration,
-    dataRestoration
+  delete dataRestaurant.score;
+  const restorationUpdated = await Restoration.updateRestaurant(
+    idRestaurant,
+    dataRestaurant
   );
 
   if (scoreUser) {
     res
       .status(201)
-      .json(await updateScoreToRestoration(scoreUser, idRestoration, idUser));
+      .json(await updateScoreToRestaurant(scoreUser, idRestaurant, idUser));
   } else {
     res
       .status(201)
       .json(
-        await await Restoration.getOne(idRestoration, idUser, "totalScore")
+        await await Restoration.getOne(idRestaurant, idUser, "totalScore")
       );
   }
 };
 
 //const router = express.Router();
 
-const routerRestorationByTravel = express.Router();
-const routerRestorationByResporation = express.Router();
+const routerRestaurantByTravel = express.Router();
+const routerRestaurantByRestaurant = express.Router();
 
-routerRestorationByTravel.post(
+routerRestaurantByTravel.post(
   "/",
   needsAuthToken,
   componentAllowedAction,
   catchErrors(create)
 );
-routerRestorationByTravel.get("/", needsAuthToken, catchErrors(getByTravel));
+routerRestaurantByTravel.get("/", needsAuthToken, catchErrors(getByTravel));
 
-routerRestorationByResporation.delete(
+routerRestaurantByRestaurant.delete(
   "/:_id",
   needsAuthToken,
   componentAllowedAction,
-  catchErrors(deleteRestoration)
+  catchErrors(deleteRestaurant)
 );
-routerRestorationByResporation.get(
+routerRestaurantByRestaurant.get(
   "/:_id",
   needsAuthToken,
   catchErrors(getById)
 );
-routerRestorationByResporation.put(
+routerRestaurantByRestaurant.put(
   "/:_id",
   needsAuthToken,
   componentAllowedAction,
   catchErrors(updateRest)
 );
 
-routerRestorationByResporation.get("/", needsAuthToken, catchErrors(getAll));
+routerRestaurantByRestaurant.get("/", needsAuthToken, catchErrors(getAll));
 
 module.exports = {
-  routerRestorationByTravel,
-  routerRestorationByResporation,
+  routerRestaurantByTravel,
+  routerRestaurantByRestaurant,
 };

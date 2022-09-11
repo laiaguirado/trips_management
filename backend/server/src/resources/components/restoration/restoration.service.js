@@ -10,19 +10,19 @@ const { getScores } = require("../component.service");
 
 const paramValueInclude = ["totalScore"];
 
-const addFirstScore = async (idRestoration, idScore, score) => {
-  const restorationUpdated = await Restoration.findOneAndUpdate(
-    { _id: idRestoration },
+const addFirstScore = async (idRestaurant, idScore, score) => {
+  const restaurantUpdated = await Restoration.findOneAndUpdate(
+    { _id: idRestaurant },
     { $push: { scores: idScore } },
     { new: true, useFindAndModify: false, runValidators: true }
   );
   //Modify the total score. Since there is only one vote, we will not calculate it with the aggregate function
-  restorationUpdated.totalScore = {
+  restaurantUpdated.totalScore = {
     average: score,
     votes: 1,
     points: score,
   };
-  return restorationUpdated;
+  return restaurantUpdated;
 };
 
 const createOne = async (data) => {
@@ -64,11 +64,11 @@ const deleteRest = async (_id) => {
   return restoration;
 };
 
-const getOne = async (idRestoration, idUser, additionalInfo) => {
+const getOne = async (idRestaurant, idUser, additionalInfo) => {
   if (additionalInfo && !isValidParameter(paramValueInclude, additionalInfo))
     errMalformed("Wrong query parameter");
 
-  const rest = await Restoration.findOne({ _id: idRestoration })
+  const rest = await Restoration.findOne({ _id: idRestaurant })
     .select({ resourceType: 0 })
     .populate({ path: "idUser", select: "email -_id" })
     .populate({
@@ -84,7 +84,7 @@ const getOne = async (idRestoration, idUser, additionalInfo) => {
   }
 
   if (additionalInfo === "totalScore") {
-    const total = await getScores(Restoration, idRestoration);
+    const total = await getScores(Restoration, idRestaurant);
     if (total.length === 1) {
       rest.totalScore = total[0];
     }
@@ -110,36 +110,36 @@ const getByTravelId = async (idTravel, additionalInfo) => {
     errMalformed("Wrong query parameter");
   }
 
-  const restorationList = await Restoration.find({ idTravel })
+  const restaurantList = await Restoration.find({ idTravel })
     .select({ resourceType: 0 })
     .populate({ path: "idUser", select: "email -_id" })
     .lean({ getters: true, virtuals: true })
     .exec();
 
-  if (restorationList && additionalInfo === "totalScore") {
+  if (restaurantList && additionalInfo === "totalScore") {
     const totales = await getScores(Restoration);
 
     if (totales) {
-      const completRestorations = restorationList.map((restorationAct) => {
+      const completRestaurants = restaurantList.map((restaurantAct) => {
         return {
-          ...restorationAct,
+          ...restaurantAct,
           totalScore: {
             ...totales.find((total) =>
               mongoose.Types.ObjectId(total._id).equals(
-                mongoose.Types.ObjectId(restorationAct._id)
+                mongoose.Types.ObjectId(restaurantAct._id)
               )
             ),
           },
         };
       });
-      return completRestorations;
+      return completRestaurants;
     }
   }
 
-  return restorationList;
+  return restaurantList;
 };
 
-const updateRestoration = async (_id, data) => {
+const updateRestaurant = async (_id, data) => {
   const restUpdated = await Restoration.findOneAndUpdate({ _id }, data, {
     new: true,
     runValidators: true,
@@ -159,7 +159,7 @@ module.exports = {
   findAll,
   getOne,
   getByTravelId,
-  updateRestoration,
+  updateRestaurant,
   findOne,
   findOneById,
   addFirstScore,
