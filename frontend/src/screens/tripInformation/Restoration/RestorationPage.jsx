@@ -98,7 +98,6 @@ function RestorationPage() {
         <div>
           <h1 className="details-title list-page">RESTORATION</h1>
           <div>
-            {addRestorationForm()}
             <div className="add-info-button" onClick={() => setAdding(true)}>
               <FontAwesomeIcon icon={faCirclePlus} className="icon" />
             </div>
@@ -132,6 +131,7 @@ function RestorationPage() {
           </div>
         </div>
       </div>
+      {addRestorationForm()}
     </div>
   );
 }

@@ -85,7 +85,6 @@ function MainPage() {
       <div className="error details-error">{message}</div>
       <div className="trips">
         <div className="new-trip">
-          {addTripForm()}
           <div className="new-trip-button" onClick={() => setAdding(true)}>
             <FontAwesomeIcon icon={faCirclePlus} className="icon" />
           </div>
@@ -103,6 +102,7 @@ function MainPage() {
           <p></p>
         )}
       </div>
+      {addTripForm()}
     </div>
   );
 }

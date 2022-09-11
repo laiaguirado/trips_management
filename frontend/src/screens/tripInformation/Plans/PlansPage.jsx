@@ -94,7 +94,6 @@ function PlansPage() {
         <div>
           <h1 className="details-title list-page">PLANS</h1>
           <div>
-            {addPlanForm()}
             <div className="add-info-button" onClick={() => setAdding(true)}>
               <FontAwesomeIcon icon={faCirclePlus} className="icon" />
             </div>
@@ -128,6 +127,7 @@ function PlansPage() {
           </div>
         </div>
       </div>
+      {addPlanForm()}
     </div>
   );
 }
