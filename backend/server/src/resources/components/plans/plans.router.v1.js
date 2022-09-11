@@ -115,6 +115,11 @@ routerPlansByPlan.delete(
   componentAllowedAction,
   catchErrors(deletePlan)
 );
-routerPlansByPlan.put("/:_id", needsAuthToken, catchErrors(updatePlan));
+routerPlansByPlan.put(
+  "/:_id",
+  needsAuthToken,
+  componentAllowedAction,
+  catchErrors(updatePlan)
+);
 
 module.exports = { routerPlansByTravel, routerPlansByPlan };

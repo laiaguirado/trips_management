@@ -154,6 +154,11 @@ routerAccommodationByAccommodation.delete(
   componentAllowedAction,
   catchErrors(deleteAccommodation)
 );
-routerAccommodationByAccommodation.put("/:_id", needsAuthToken, catchErrors(updateAccomm));
+routerAccommodationByAccommodation.put(
+  "/:_id",
+  needsAuthToken,
+  componentAllowedAction,
+  catchErrors(updateAccomm)
+);
 
 module.exports = { routerAccommodationByTravel, routerAccommodationByAccommodation };

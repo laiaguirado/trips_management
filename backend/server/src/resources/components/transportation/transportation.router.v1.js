@@ -160,6 +160,7 @@ routerByTransportation.delete(
 routerByTransportation.put(
   "/:_id",
   needsAuthToken,
+  componentAllowedAction,
   catchErrors(updateTransportation)
 );
 

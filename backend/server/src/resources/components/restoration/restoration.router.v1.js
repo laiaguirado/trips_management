@@ -154,6 +154,7 @@ routerRestorationByResporation.get(
 routerRestorationByResporation.put(
   "/:_id",
   needsAuthToken,
+  componentAllowedAction,
   catchErrors(updateRest)
 );
 

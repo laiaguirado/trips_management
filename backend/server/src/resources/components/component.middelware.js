@@ -4,7 +4,7 @@ const { isTraveler } = require("../travel/travel.service");
 
 const componentAllowedAction = async (req, res, next) => {
   try {
-    if (req.method == "DELETE") {
+    if (req.method == "DELETE" || req.method == "PUT") {
       const { _id } = req.userInfo;
       const { _id: idComponent } = req.params;
 
