@@ -187,6 +187,7 @@ router.delete(
 router.put(
   "/:_id",
   needsAuthToken,
+  allowedAction,
   upload.single("fileImage"),
   catchErrors(updateTravel)
 );
