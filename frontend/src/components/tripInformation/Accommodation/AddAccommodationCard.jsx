@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./AddAccommodationCard.css";
+import * as helper from "../../../helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGlobe,
@@ -78,110 +79,6 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  function changePetFriendly(e, option) {
-    if (option) {
-      const otherValue = petFriendlyChecked[1];
-      if (petFriendlyChecked[0]) {
-        setPetFriendly(null);
-        setPetFriendlyChecked([false, otherValue]);
-        e.target.checked = false;
-      } else {
-        setPetFriendly(true);
-        setPetFriendlyChecked([true, false]);
-        e.target.checked = true;
-      }
-    } else {
-      const otherValue = petFriendlyChecked[0];
-      if (petFriendlyChecked[1]) {
-        setPetFriendly(null);
-        setPetFriendlyChecked([otherValue, false]);
-        e.target.checked = false;
-      } else {
-        setPetFriendly(false);
-        setPetFriendlyChecked([false, true]);
-        e.target.checked = true;
-      }
-    }
-  }
-
-  function changeInternet(e, option) {
-    if (option) {
-      const otherValue = internetChecked[1];
-      if (internetChecked[0]) {
-        setInternet(null);
-        setInternetChecked([false, otherValue]);
-        e.target.checked = false;
-      } else {
-        setInternet(true);
-        setInternetChecked([true, false]);
-        e.target.checked = true;
-      }
-    } else {
-      const otherValue = internetChecked[0];
-      if (internetChecked[1]) {
-        setInternet(null);
-        setInternetChecked([otherValue, false]);
-        e.target.checked = false;
-      } else {
-        setInternet(false);
-        setInternetChecked([false, true]);
-        e.target.checked = true;
-      }
-    }
-  }
-
-  function changeSwimmingPool(e, option) {
-    if (option) {
-      const otherValue = swimmingPoolChecked[1];
-      if (swimmingPoolChecked[0]) {
-        setSwimmingPool(null);
-        setSwimmingPoolChecked([false, otherValue]);
-        e.target.checked = false;
-      } else {
-        setSwimmingPool(true);
-        setSwimmingPoolChecked([true, false]);
-        e.target.checked = true;
-      }
-    } else {
-      const otherValue = swimmingPoolChecked[0];
-      if (swimmingPoolChecked[1]) {
-        setSwimmingPool(null);
-        setSwimmingPoolChecked([otherValue, false]);
-        e.target.checked = false;
-      } else {
-        setSwimmingPool(false);
-        setSwimmingPoolChecked([false, true]);
-        e.target.checked = true;
-      }
-    }
-  }
-
-  function changeBreakfast(e, option) {
-    if (option) {
-      const otherValue = breakfastChecked[1];
-      if (breakfastChecked[0]) {
-        setBreakfast(null);
-        setBreakfastChecked([false, otherValue]);
-        e.target.checked = false;
-      } else {
-        setBreakfast(true);
-        setBreakfastChecked([true, false]);
-        e.target.checked = true;
-      }
-    } else {
-      const otherValue = breakfastChecked[0];
-      if (breakfastChecked[1]) {
-        setBreakfast(null);
-        setBreakfastChecked([otherValue, false]);
-        e.target.checked = false;
-      } else {
-        setBreakfast(false);
-        setBreakfastChecked([false, true]);
-        e.target.checked = true;
-      }
-    }
-  }
 
   function changeBoard(e, option) {
     if (option) {
@@ -378,7 +275,13 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                   type="radio"
                   value={true}
                   onClick={(e) => {
-                    changePetFriendly(e, true);
+                    helper.changeBoolean(
+                      e,
+                      true,
+                      setPetFriendly,
+                      petFriendlyChecked,
+                      setPetFriendlyChecked
+                    );
                   }}
                 />
                 <label className="checkbox-option">Yes</label>
@@ -387,7 +290,13 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                   type="radio"
                   value={false}
                   onClick={(e) => {
-                    changePetFriendly(e, false);
+                    helper.changeBoolean(
+                      e,
+                      false,
+                      setPetFriendly,
+                      petFriendlyChecked,
+                      setPetFriendlyChecked
+                    );
                   }}
                 />
                 <label className="checkbox-option">No</label>
@@ -404,7 +313,13 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                   type="radio"
                   value={true}
                   onClick={(e) => {
-                    changeInternet(e, true);
+                    helper.changeBoolean(
+                      e,
+                      true,
+                      setInternet,
+                      internetChecked,
+                      setInternetChecked
+                    );
                   }}
                 />
                 <label className="checkbox-option">Yes</label>
@@ -413,7 +328,13 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                   type="radio"
                   value={false}
                   onClick={(e) => {
-                    changeInternet(e, false);
+                    helper.changeBoolean(
+                      e,
+                      false,
+                      setInternet,
+                      internetChecked,
+                      setInternetChecked
+                    );
                   }}
                 />
                 <label className="checkbox-option">No</label>
@@ -430,7 +351,13 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                   type="radio"
                   value={true}
                   onClick={(e) => {
-                    changeSwimmingPool(e, true);
+                    helper.changeBoolean(
+                      e,
+                      true,
+                      setSwimmingPool,
+                      swimmingPoolChecked,
+                      setSwimmingPoolChecked
+                    );
                   }}
                 />
                 <label className="checkbox-option">Yes</label>
@@ -439,7 +366,13 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                   type="radio"
                   value={false}
                   onClick={(e) => {
-                    changeSwimmingPool(e, false);
+                    helper.changeBoolean(
+                      e,
+                      false,
+                      setSwimmingPool,
+                      swimmingPoolChecked,
+                      setSwimmingPoolChecked
+                    );
                   }}
                 />
                 <label className="checkbox-option">No</label>
@@ -458,7 +391,13 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                       type="radio"
                       value={true}
                       onClick={(e) => {
-                        changeBreakfast(e, true);
+                        helper.changeBoolean(
+                          e,
+                          true,
+                          setBreakfast,
+                          breakfastChecked,
+                          setBreakfastChecked
+                        );
                       }}
                     />
                     <label className="checkbox-option">Yes</label>
@@ -467,7 +406,13 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                       type="radio"
                       value={false}
                       onClick={(e) => {
-                        changeBreakfast(e, false);
+                        helper.changeBoolean(
+                          e,
+                          false,
+                          setBreakfast,
+                          breakfastChecked,
+                          setBreakfastChecked
+                        );
                       }}
                     />
                     <label className="checkbox-option">No</label>

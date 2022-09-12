@@ -54,3 +54,29 @@ export function localDate(initialDate) {
     return date;
 }
 
+export function changeBoolean(e, option, setFunction, booleanChecked, setFunctionChecked) {
+    if (option) {
+        const otherValue = booleanChecked[1];
+        if (booleanChecked[0]) {
+            setFunction(null);
+            setFunctionChecked([false, otherValue]);
+            e.target.checked = false;
+        } else {
+            setFunction(true);
+            setFunctionChecked([true, false]);
+            e.target.checked = true;
+        }
+    } else {
+        const otherValue = booleanChecked[0];
+        if (booleanChecked[1]) {
+            setFunction(null);
+            setFunctionChecked([otherValue, false]);
+            e.target.checked = false;
+        } else {
+            setFunction(false);
+            setFunctionChecked([false, true]);
+            e.target.checked = true;
+        }
+    }
+}
+

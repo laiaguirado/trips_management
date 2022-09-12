@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./AddRestorationCard.css";
+import * as helper from "../../../helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
@@ -66,58 +67,6 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  function changeTakeAway(e, option) {
-    if (option) {
-      const otherValue = takeAwayChecked[1];
-      if (takeAwayChecked[0]) {
-        setTakeAway(null);
-        setTakeAwayChecked([false, otherValue]);
-        e.target.checked = false;
-      } else {
-        setTakeAway(true);
-        setTakeAwayChecked([true, false]);
-        e.target.checked = true;
-      }
-    } else {
-      const otherValue = takeAwayChecked[0];
-      if (takeAwayChecked[1]) {
-        setTakeAway(null);
-        setTakeAwayChecked([otherValue, false]);
-        e.target.checked = false;
-      } else {
-        setTakeAway(false);
-        setTakeAwayChecked([false, true]);
-        e.target.checked = true;
-      }
-    }
-  }
-
-  function changeReserved(e, option) {
-    if (option) {
-      const otherValue = reservedChecked[1];
-      if (reservedChecked[0]) {
-        setReserved(null);
-        setReservedChecked([false, otherValue]);
-        e.target.checked = false;
-      } else {
-        setReserved(true);
-        setReservedChecked([true, false]);
-        e.target.checked = true;
-      }
-    } else {
-      const otherValue = reservedChecked[0];
-      if (reservedChecked[1]) {
-        setReserved(null);
-        setReservedChecked([otherValue, false]);
-        e.target.checked = false;
-      } else {
-        setReserved(false);
-        setReservedChecked([false, true]);
-        e.target.checked = true;
-      }
-    }
-  }
 
   return (
     <div className="add-card add-restoration-card">
@@ -291,7 +240,13 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
                   type="radio"
                   value={true}
                   onClick={(e) => {
-                    changeTakeAway(e, true);
+                    helper.changeBoolean(
+                      e,
+                      true,
+                      setTakeAway,
+                      takeAwayChecked,
+                      setTakeAwayChecked
+                    );
                   }}
                 />
                 <label className="checkbox-option">Yes</label>
@@ -300,7 +255,13 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
                   type="radio"
                   value={false}
                   onClick={(e) => {
-                    changeTakeAway(e, false);
+                    helper.changeBoolean(
+                      e,
+                      false,
+                      setTakeAway,
+                      takeAwayChecked,
+                      setTakeAwayChecked
+                    );
                   }}
                 />
                 <label className="checkbox-option">No</label>
@@ -317,7 +278,13 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
                   type="radio"
                   value={true}
                   onClick={(e) => {
-                    changeReserved(e, true);
+                    helper.changeBoolean(
+                      e,
+                      true,
+                      setReserved,
+                      reservedChecked,
+                      setReservedChecked
+                    );
                   }}
                 />
                 <label className="checkbox-option">Yes</label>
@@ -326,7 +293,13 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
                   type="radio"
                   value={false}
                   onClick={(e) => {
-                    changeReserved(e, false);
+                    helper.changeBoolean(
+                      e,
+                      false,
+                      setReserved,
+                      reservedChecked,
+                      setReservedChecked
+                    );
                   }}
                 />
                 <label className="checkbox-option">No</label>
