@@ -94,7 +94,11 @@ function RestorationDetailsPage() {
       setEditing(false);
       setMessage(null);
     } else {
-      setMessage(error);
+      if (error.startsWith(" -  'email' is invalid.")) {
+        setMessage("Not the correct email format");
+      } else {
+        setMessage(error);
+      }
       if (idNewScoreAdded != null) {
         const {
           success: scoreSuccess,

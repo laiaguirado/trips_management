@@ -67,7 +67,7 @@ const plansSchema = extendSchema(componentSchema, {
     required: false,
     trim: true,
     lowercase: true,
-    match: [/\S+@\S+\.\S+/, " '{VALUE}' is invalid"],
+    match: [/\S+@\S+\.\S+/, " '{PATH}' is invalid"],
   },
   priceAdult: {
     type: Number,
