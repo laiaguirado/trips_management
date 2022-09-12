@@ -45,6 +45,7 @@ function PlansDetailsPage() {
   };
 
   const onEdit = async (planId, planData, score) => {
+    let idNewScoreAdded = null;
     if (plan.scores[0]) {
       if (score === "") {
         const {
@@ -71,6 +72,7 @@ function PlansDetailsPage() {
       } = await api.addScore(tripId, planId, "plan", { value: score });
       if (scoreSuccess) {
         setMessage(null);
+        idNewScoreAdded = newScore._id;
       } else {
         setMessage(scoreError);
       }
@@ -87,6 +89,13 @@ function PlansDetailsPage() {
       setMessage(null);
     } else {
       setMessage(error);
+      if (idNewScoreAdded != null) {
+        const {
+          success: scoreSuccess,
+          result: newScore,
+          error: scoreError,
+        } = await api.deleteScore(idNewScoreAdded);
+      }
     }
     window.scrollTo(0, 0);
   };

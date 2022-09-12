@@ -49,6 +49,7 @@ function TransportationDetailsPage() {
   };
 
   const onEdit = async (transportationId, transportationData, score) => {
+    let idNewScoreAdded = null;
     if (transportation.scores[0]) {
       if (score === "") {
         const {
@@ -77,6 +78,7 @@ function TransportationDetailsPage() {
       });
       if (scoreSuccess) {
         setMessage(null);
+        idNewScoreAdded = newScore._id;
       } else {
         setMessage(scoreError);
       }
@@ -94,6 +96,13 @@ function TransportationDetailsPage() {
       setMessage(null);
     } else {
       setMessage(error);
+      if (idNewScoreAdded != null) {
+        const {
+          success: scoreSuccess,
+          result: newScore,
+          error: scoreError,
+        } = await api.deleteScore(idNewScoreAdded);
+      }
     }
     window.scrollTo(0, 0);
   };
