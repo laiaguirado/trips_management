@@ -49,6 +49,7 @@ function RestorationDetailsPage() {
   };
 
   const onEdit = async (restorationId, restorationData, score) => {
+    let idNewScoreAdded = null;
     if (restoration.scores[0]) {
       if (score === "") {
         const {
@@ -77,6 +78,7 @@ function RestorationDetailsPage() {
       });
       if (scoreSuccess) {
         setMessage(null);
+        idNewScoreAdded = newScore._id;
       } else {
         setMessage(scoreError);
       }
@@ -93,6 +95,13 @@ function RestorationDetailsPage() {
       setMessage(null);
     } else {
       setMessage(error);
+      if (idNewScoreAdded != null) {
+        const {
+          success: scoreSuccess,
+          result: newScore,
+          error: scoreError,
+        } = await api.deleteScore(idNewScoreAdded);
+      }
     }
     window.scrollTo(0, 0);
   };

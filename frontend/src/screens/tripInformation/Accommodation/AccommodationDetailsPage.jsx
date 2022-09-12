@@ -49,6 +49,7 @@ function AccommodationDetailsPage() {
   };
 
   const onEdit = async (accommodationId, accommodationData, score) => {
+    let idNewScoreAdded = null;
     if (accommodation.scores[0]) {
       if (score === "") {
         const {
@@ -77,6 +78,7 @@ function AccommodationDetailsPage() {
       });
       if (scoreSuccess) {
         setMessage(null);
+        idNewScoreAdded = newScore._id;
       } else {
         setMessage(scoreError);
       }
@@ -96,6 +98,13 @@ function AccommodationDetailsPage() {
         setMessage("Not the correct email format");
       } else {
         setMessage(error);
+      }
+      if (idNewScoreAdded != null) {
+        const {
+          success: scoreSuccess,
+          result: newScore,
+          error: scoreError,
+        } = await api.deleteScore(idNewScoreAdded);
       }
     }
     window.scrollTo(0, 0);
