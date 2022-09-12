@@ -92,7 +92,11 @@ function AccommodationDetailsPage() {
       setEditing(false);
       setMessage(null);
     } else {
-      setMessage(error);
+      if (error.startsWith(" -  'email' is invalid.")) {
+        setMessage("Not the correct email format");
+      } else {
+        setMessage(error);
+      }
     }
     window.scrollTo(0, 0);
   };

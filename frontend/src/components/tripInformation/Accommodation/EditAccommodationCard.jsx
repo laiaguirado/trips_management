@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./EditAccommodationCard.css";
+import * as helper from "../../../helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
@@ -308,10 +309,22 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   <input
                     id="date"
                     className="input date"
-                    placeholder="Start Date"
-                    type="date"
-                    max={endDate}
-                    defaultValue={startDate}
+                    placeholder={
+                      startDate ? helper.localDate(startDate) : "Start Date"
+                    }
+                    max={endDate ? endDate : "9999-12-31"}
+                    onFocus={(event) => {
+                      event.target.type = "date";
+                      event.target.value = startDate;
+                    }}
+                    onBlur={(event) => {
+                      if (startDate) {
+                        event.target.type = "date";
+                      } else {
+                        event.target.type = "text";
+                        event.target.value = "Start Date";
+                      }
+                    }}
                     onChange={(event) => setStartDate(event.target.value)}
                   />
                 </div>
@@ -321,10 +334,23 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   <input
                     id="date"
                     className="input date"
-                    placeholder="End Date"
-                    type="date"
+                    placeholder={
+                      endDate ? helper.localDate(endDate) : "End Date"
+                    }
                     min={startDate}
-                    defaultValue={endDate}
+                    max={"9999-12-31"}
+                    onFocus={(event) => {
+                      event.target.type = "date";
+                      event.target.value = endDate;
+                    }}
+                    onBlur={(event) => {
+                      if (endDate) {
+                        event.target.type = "date";
+                      } else {
+                        event.target.type = "text";
+                        event.target.value = "End Date";
+                      }
+                    }}
                     onChange={(event) => setEndDate(event.target.value)}
                   />
                 </div>

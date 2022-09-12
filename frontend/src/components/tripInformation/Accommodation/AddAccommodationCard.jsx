@@ -274,14 +274,18 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                 id="date"
                 className="input date"
                 placeholder="Start Date"
-                max={endDate}
+                max={endDate ? endDate : "9999-12-31"}
                 onFocus={(event) => {
                   event.target.type = "date";
                   event.target.value = startDate;
                 }}
                 onBlur={(event) => {
-                  event.target.type = "text";
-                  event.target.value = getDateValue(startDate, "Start Date");
+                  if (startDate) {
+                    event.target.type = "date";
+                  } else {
+                    event.target.type = "text";
+                    event.target.value = "Start Date";
+                  }
                 }}
                 onChange={(event) => setStartDate(event.target.value)}
               />
@@ -295,13 +299,18 @@ function AddAccommodationCard({ onAdd, message, adding, tripId }) {
                 className="input date"
                 placeholder="End Date"
                 min={startDate}
+                max={"9999-12-31"}
                 onFocus={(event) => {
                   event.target.type = "date";
                   event.target.value = endDate;
                 }}
                 onBlur={(event) => {
-                  event.target.type = "text";
-                  event.target.value = getDateValue(endDate, "End Date");
+                  if (endDate) {
+                    event.target.type = "date";
+                  } else {
+                    event.target.type = "text";
+                    event.target.value = "End Date";
+                  }
                 }}
                 onChange={(event) => setEndDate(event.target.value)}
               />
