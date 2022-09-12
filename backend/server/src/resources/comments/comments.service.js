@@ -78,6 +78,11 @@ const findByCompId = async (idComponent) => {
   .exec();
 };
 
+
+const findCommentById = async (_id) => {
+  return await Comment.findOne({ _id }).lean().exec();
+};
+
 const findByTravelAndComp = async (idTravel,idComponent) => {
   return await Comment.find({ idComponent: idComponent, idTravel:idTravel })
   .populate({ path: "idUser", select: "email username" })
@@ -94,4 +99,13 @@ const updateComm = async (_id, commentData) => {
   return comentUpdated;
 };
 
-module.exports = { createOne, findAll, deleteComment, findByTravelId, findByCompId, findByTravelAndComp, updateComm };
+module.exports = {
+  createOne,
+  findAll,
+  deleteComment,
+  findByTravelId,
+  findByCompId,
+  findByTravelAndComp,
+  updateComm,
+  findCommentById,
+};
