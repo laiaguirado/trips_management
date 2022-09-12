@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./EditAccommodationCard.css";
+import * as helper from "../../../helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
@@ -90,110 +91,6 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
       score
     );
   };
-
-  function changePetFriendly(e, option) {
-    if (option) {
-      const otherValue = petFriendlyChecked[1];
-      if (petFriendlyChecked[0]) {
-        setPetFriendly(null);
-        setPetFriendlyChecked([false, otherValue]);
-        e.target.checked = false;
-      } else {
-        setPetFriendly(true);
-        setPetFriendlyChecked([true, false]);
-        e.target.checked = true;
-      }
-    } else {
-      const otherValue = petFriendlyChecked[0];
-      if (petFriendlyChecked[1]) {
-        setPetFriendly(null);
-        setPetFriendlyChecked([otherValue, false]);
-        e.target.checked = false;
-      } else {
-        setPetFriendly(false);
-        setPetFriendlyChecked([false, true]);
-        e.target.checked = true;
-      }
-    }
-  }
-
-  function changeInternet(e, option) {
-    if (option) {
-      const otherValue = internetChecked[1];
-      if (internetChecked[0]) {
-        setInternet(null);
-        setInternetChecked([false, otherValue]);
-        e.target.checked = false;
-      } else {
-        setInternet(true);
-        setInternetChecked([true, false]);
-        e.target.checked = true;
-      }
-    } else {
-      const otherValue = internetChecked[0];
-      if (internetChecked[1]) {
-        setInternet(null);
-        setInternetChecked([otherValue, false]);
-        e.target.checked = false;
-      } else {
-        setInternet(false);
-        setInternetChecked([false, true]);
-        e.target.checked = true;
-      }
-    }
-  }
-
-  function changeSwimmingPool(e, option) {
-    if (option) {
-      const otherValue = swimmingPoolChecked[1];
-      if (swimmingPoolChecked[0]) {
-        setSwimmingPool(null);
-        setSwimmingPoolChecked([false, otherValue]);
-        e.target.checked = false;
-      } else {
-        setSwimmingPool(true);
-        setSwimmingPoolChecked([true, false]);
-        e.target.checked = true;
-      }
-    } else {
-      const otherValue = swimmingPoolChecked[0];
-      if (swimmingPoolChecked[1]) {
-        setSwimmingPool(null);
-        setSwimmingPoolChecked([otherValue, false]);
-        e.target.checked = false;
-      } else {
-        setSwimmingPool(false);
-        setSwimmingPoolChecked([false, true]);
-        e.target.checked = true;
-      }
-    }
-  }
-
-  function changeBreakfast(e, option) {
-    if (option) {
-      const otherValue = breakfastChecked[1];
-      if (breakfastChecked[0]) {
-        setBreakfast(null);
-        setBreakfastChecked([false, otherValue]);
-        e.target.checked = false;
-      } else {
-        setBreakfast(true);
-        setBreakfastChecked([true, false]);
-        e.target.checked = true;
-      }
-    } else {
-      const otherValue = breakfastChecked[0];
-      if (breakfastChecked[1]) {
-        setBreakfast(null);
-        setBreakfastChecked([otherValue, false]);
-        e.target.checked = false;
-      } else {
-        setBreakfast(false);
-        setBreakfastChecked([false, true]);
-        e.target.checked = true;
-      }
-    }
-  }
 
   function changeBoard(e, option) {
     if (option) {
@@ -308,10 +205,22 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   <input
                     id="date"
                     className="input date"
-                    placeholder="Start Date"
-                    type="date"
-                    max={endDate}
-                    defaultValue={startDate}
+                    placeholder={
+                      startDate ? helper.localDate(startDate) : "Start Date"
+                    }
+                    max={endDate ? endDate : "9999-12-31"}
+                    onFocus={(event) => {
+                      event.target.type = "date";
+                      event.target.value = startDate;
+                    }}
+                    onBlur={(event) => {
+                      if (startDate) {
+                        event.target.type = "date";
+                      } else {
+                        event.target.type = "text";
+                        event.target.value = "Start Date";
+                      }
+                    }}
                     onChange={(event) => setStartDate(event.target.value)}
                   />
                 </div>
@@ -321,10 +230,23 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                   <input
                     id="date"
                     className="input date"
-                    placeholder="End Date"
-                    type="date"
+                    placeholder={
+                      endDate ? helper.localDate(endDate) : "End Date"
+                    }
                     min={startDate}
-                    defaultValue={endDate}
+                    max={"9999-12-31"}
+                    onFocus={(event) => {
+                      event.target.type = "date";
+                      event.target.value = endDate;
+                    }}
+                    onBlur={(event) => {
+                      if (endDate) {
+                        event.target.type = "date";
+                      } else {
+                        event.target.type = "text";
+                        event.target.value = "End Date";
+                      }
+                    }}
                     onChange={(event) => setEndDate(event.target.value)}
                   />
                 </div>
@@ -400,7 +322,13 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                       value={true}
                       checked={petFriendly === true}
                       onClick={(e) => {
-                        changePetFriendly(e, true);
+                        helper.changeBoolean(
+                          e,
+                          true,
+                          setPetFriendly,
+                          petFriendlyChecked,
+                          setPetFriendlyChecked
+                        );
                       }}
                       onChange={(e) => {}}
                     />
@@ -411,7 +339,13 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                       value={false}
                       checked={petFriendly === false}
                       onClick={(e) => {
-                        changePetFriendly(e, false);
+                        helper.changeBoolean(
+                          e,
+                          false,
+                          setPetFriendly,
+                          petFriendlyChecked,
+                          setPetFriendlyChecked
+                        );
                       }}
                       onChange={(e) => {}}
                     />
@@ -432,7 +366,13 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     value={true}
                     checked={internet === true}
                     onClick={(e) => {
-                      changeInternet(e, true);
+                      helper.changeBoolean(
+                        e,
+                        true,
+                        setInternet,
+                        internetChecked,
+                        setInternetChecked
+                      );
                     }}
                     onChange={(e) => {}}
                   />
@@ -443,7 +383,13 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     value={false}
                     checked={internet === false}
                     onClick={(e) => {
-                      changeInternet(e, false);
+                      helper.changeBoolean(
+                        e,
+                        false,
+                        setInternet,
+                        internetChecked,
+                        setInternetChecked
+                      );
                     }}
                     onChange={(e) => {}}
                   />
@@ -463,7 +409,13 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     value={true}
                     checked={swimmingPool === true}
                     onClick={(e) => {
-                      changeSwimmingPool(e, true);
+                      helper.changeBoolean(
+                        e,
+                        true,
+                        setSwimmingPool,
+                        swimmingPoolChecked,
+                        setSwimmingPoolChecked
+                      );
                     }}
                     onChange={(e) => {}}
                   />
@@ -474,7 +426,13 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                     value={false}
                     checked={swimmingPool === false}
                     onClick={(e) => {
-                      changeSwimmingPool(e, false);
+                      helper.changeBoolean(
+                        e,
+                        false,
+                        setSwimmingPool,
+                        swimmingPoolChecked,
+                        setSwimmingPoolChecked
+                      );
                     }}
                     onChange={(e) => {}}
                   />
@@ -496,7 +454,13 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                         value={true}
                         checked={breakfast === true}
                         onClick={(e) => {
-                          changeBreakfast(e, true);
+                          helper.changeBoolean(
+                            e,
+                            true,
+                            setBreakfast,
+                            breakfastChecked,
+                            setBreakfastChecked
+                          );
                         }}
                         onChange={(e) => {}}
                       />
@@ -507,7 +471,13 @@ function EditAccommodationCard({ accommodation, accommodationId, onEdit }) {
                         value={false}
                         checked={breakfast === false}
                         onClick={(e) => {
-                          changeBreakfast(e, false);
+                          helper.changeBoolean(
+                            e,
+                            false,
+                            setBreakfast,
+                            breakfastChecked,
+                            setBreakfastChecked
+                          );
                         }}
                         onChange={(e) => {}}
                       />

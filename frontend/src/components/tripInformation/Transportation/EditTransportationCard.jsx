@@ -213,7 +213,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     className="input date"
                     placeholder="Departure time"
                     type="datetime-local"
-                    max={arrival}
+                    max={arrival ? arrival : "9999-12-31T23:59"}
                     defaultValue={departure}
                     onChange={(event) => setDeparture(event.target.value)}
                   />
@@ -226,6 +226,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     placeholder="Arrival time"
                     type="datetime-local"
                     min={departure}
+                    max={"9999-12-31T23:59"}
                     defaultValue={arrival}
                     onChange={(event) => {
                       setArrival(event.target.value);
