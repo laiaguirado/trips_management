@@ -1,6 +1,6 @@
 const Travel = require("./travel.model");
 const User = require("../users/user.model");
-const { errMalformed } = require("../../errors");
+const { errMalformed, TripManagementApiError } = require("../../errors");
 const { runTransaction } = require("../../helper");
 
 const getTravelById = async (_id) => {
@@ -79,20 +79,20 @@ const addUserToTravel = async (idTravel, idUser, type) => {
     }
     for (let i = 0; i <= travellerIds.length; i++) {
       if (infoTravel.user.equals(travellerIds[i])) {
-        throw new Error("User already in the travel");
+        throw new TripManagementApiError(403, "User already in the travel");
       }
     }
-    console.log(travel);
+
     travel = await Travel.findOneAndUpdate(
-         { _id: idTravel },
-         { $push: { travellers: infoTravel } },
-         { new: true, useFindAndModify: false, runValidators: true }
-       )
-         .populate({ path: "travellers", select: "-_id" })
-         .populate({ path: "travellers.user", select: "email username" })
-         .populate({ path: "creator", select: "email -_id" })
-         .lean()
-         .exec();
+      { _id: idTravel },
+      { $push: { travellers: infoTravel } },
+      { new: true, useFindAndModify: false, runValidators: true }
+    )
+      .populate({ path: "travellers", select: "-_id" })
+      .populate({ path: "travellers.user", select: "email username" })
+      .populate({ path: "creator", select: "email -_id" })
+      .lean()
+      .exec();
 
     const user = await User.findOneAndUpdate(
       { _id: idUser },
