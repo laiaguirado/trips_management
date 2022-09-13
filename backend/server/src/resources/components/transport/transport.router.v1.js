@@ -16,7 +16,7 @@ const test = async (req, res) => {
     .json({ api: "transport", ok: true, email, id: _id, username });
 };
 
-const addNewScoreToTransporation = async (score, idPlan, idUser, idTravel) => {
+const addNewScoreToTransport = async (score, idPlan, idUser, idTravel) => {
   const scoreCreated = await Scores.createOne(score, idPlan, idUser, idTravel);
   const transportUpdated = await Transport.addFirstScore(
     idPlan,
@@ -56,7 +56,7 @@ const createTransport = async (req, res) => {
     res
       .status(201)
       .json(
-        await addNewScoreToTransporation(
+        await addNewScoreToTransport(
           scoreUser,
           transportCreated._id,
           idUser,
