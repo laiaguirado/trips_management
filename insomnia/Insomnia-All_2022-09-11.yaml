@@ -2711,8 +2711,8 @@ resources:
     modified: 1662118826385
     created: 1662052833630
     url: "{{ _.base_url }}/{{ _.version
-      }}/score/travel/{{travelId}}/transportation/{{ transportationId }}"
-    name: Post Score in Transportation
+      }}/score/travel/{{travelId}}/transport/{{ transportId }}"
+    name: Post Score in Transport
     description: ""
     method: POST
     body:
@@ -2941,8 +2941,8 @@ resources:
     modified: 1662052508132
     created: 1662051784320
     url: "{{ _.base_url }}/{{ _.version
-      }}/comment/travel/{{travelId}}/transportation/{{ transportationId }}"
-    name: Post Comment in Transportation
+      }}/comment/travel/{{travelId}}/transport/{{ transportId }}"
+    name: Post Comment in Transport
     description: ""
     method: POST
     body:
@@ -3678,7 +3678,7 @@ resources:
     parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
     modified: 1662917462929
     created: 1659566988650
-    url: "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/transportation"
+    url: "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/transport"
     name: Create Transport
     description: ""
     method: POST
@@ -3734,7 +3734,7 @@ resources:
     parentId: fld_99bc7f8461b0421499a00d9dbfc9aa9b
     modified: 1659566988642
     created: 1659566988642
-    name: Transportation
+    name: Transport
     description: ""
     environment: {}
     environmentPropertyOrder: {}
@@ -3745,7 +3745,7 @@ resources:
     modified: 1662917546779
     created: 1659566988656
     url: "{{ _.base_url }}/{{ _.version
-      }}/travel/{{travelId}}/transportation?_include=totalScore"
+      }}/travel/{{travelId}}/transport?_include=totalScore"
     name: Get Transports by travelId
     description: ""
     method: GET
@@ -3770,7 +3770,7 @@ resources:
     modified: 1662917670319
     created: 1659566988664
     url: "{{ _.base_url }}/{{ _.version
-      }}/transportation/{{transportationId}}?_include=totalScore"
+      }}/transport/{{transportId}}?_include=totalScore"
     name: Get Transport by id
     description: ""
     method: GET
@@ -3794,8 +3794,8 @@ resources:
     parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
     modified: 1662047815612
     created: 1659566988672
-    url: "{{ _.base_url }}/{{ _.version }}/transportation/test"
-    name: Test Transportation
+    url: "{{ _.base_url }}/{{ _.version }}/transport/test"
+    name: Test Transport
     description: ""
     method: GET
     body: {}
@@ -3818,7 +3818,7 @@ resources:
     parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
     modified: 1662048187601
     created: 1659566988680
-    url: "{{ _.base_url }}/{{ _.version }}/transportation/{{ _.transportationId }}"
+    url: "{{ _.base_url }}/{{ _.version }}/transport/{{ _.transportId }}"
     name: Delete Transport
     description: ""
     method: DELETE
@@ -3842,7 +3842,7 @@ resources:
     parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
     modified: 1662917928642
     created: 1659624261308
-    url: "{{ _.base_url }}/{{ _.version }}/transportation/{{ _.transportationId }}"
+    url: "{{ _.base_url }}/{{ _.version }}/transport/{{ _.transportId }}"
     name: Modify Transport
     description: ""
     method: PUT
@@ -3884,7 +3884,7 @@ resources:
     parentId: fld_3c3020614fe14c38b129d2d87cc2b2bd
     modified: 1662917932920
     created: 1662917918132
-    url: "{{ _.base_url }}/{{ _.version }}/transportation/{{ _.transportationId }}"
+    url: "{{ _.base_url }}/{{ _.version }}/transport/{{ _.transportId }}"
     name: Modify Transport and Score
     description: ""
     method: PUT
@@ -4424,7 +4424,7 @@ resources:
       userEmail: b@b.com
       travelerEmail: b@b.com
       travelId: 631df37cc1b3149bae8957b4
-      transportationId: 631e1b59df4995ca4a0d6d32
+      transportId: 631e1b59df4995ca4a0d6d32
       planId: 631e1c77df4995ca4a0d6d88
       restaurantId: 631e1d4adf4995ca4a0d6dd7
       accommodationId: 631e1e2bdf4995ca4a0d6e2d
@@ -4440,7 +4440,7 @@ resources:
         - userEmail
         - travelerEmail
         - travelId
-        - transportationId
+        - transportId
         - planId
         - restaurantId
         - accommodationId

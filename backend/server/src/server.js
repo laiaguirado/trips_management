@@ -30,7 +30,7 @@ require("./resources/components/restaurant/restaurant.controller").addRoutesTo(
   app
 );
 
-require("./resources/components/transportation/transportation.controller").addRoutesTo(
+require("./resources/components/transport/transport.controller").addRoutesTo(
   app
 );
 

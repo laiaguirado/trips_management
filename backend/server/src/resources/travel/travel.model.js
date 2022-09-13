@@ -4,7 +4,7 @@ const image = require("../../SchemaType/SchemaImageType");
 const Plans = require("../components/plans/plans.model");
 const Accommodation = require("../components/accommodation/accommodation.model");
 const Restaurant = require("../components/restaurant/restaurant.model");
-const Transportation = require("../components/transportation/transportation.model");
+const Transport = require("../components/transport/transport.model");
 const Comment = require("../comments/comments.model");
 const Score = require("../score/score.model");
 const Users = require("../users/user.model");
@@ -107,18 +107,18 @@ const travelSchema = new mongoose.Schema(
         },
       },
     ],
-    transportation: [
+    transport: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "transportation",
+        ref: "transport",
         validate: {
           isAsync: true,
           validator: async function (v) {
-            return await FKIntegrity(mongoose.model("transportation"), v).catch(
+            return await FKIntegrity(mongoose.model("transport"), v).catch(
               (err) => false
             );
           },
-          message: `Transportation doesn't exist`,
+          message: `Transport doesn't exist`,
         },
       },
     ],
@@ -147,7 +147,7 @@ travelSchema.pre("findOneAndDelete", async function (next) {
   await Comment.deleteMany({ idTravel: idTravel }).exec();
   await Score.deleteMany({ idTravel: idTravel }).exec();
   await Plans.deleteMany({ idTravel: idTravel }).exec();
-  await Transportation.deleteMany({ idTravel: idTravel }).exec();
+  await Transport.deleteMany({ idTravel: idTravel }).exec();
   await Accommodation.deleteMany({ idTravel: idTravel }).exec();
   await Restaurant.deleteMany({ idTravel: idTravel }).exec();
 

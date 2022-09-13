@@ -1,11 +1,11 @@
-.transportation-card {
+.transport-card {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
 }
 
-.transportation-card .transportation-info {
+.transport-card .transport-info {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -13,16 +13,16 @@
   width: 100%;
 }
 
-.transportation-card .transportation-detail {
+.transport-card .transport-detail {
   display: flex;
   align-items: baseline;
 }
 
-.transportation-card h3 {
+.transport-card h3 {
   margin: 0.5rem 0.5rem;
 }
 
-.transportation-contact {
+.transport-contact {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -32,7 +32,7 @@
   margin: 1rem 0;
 }
 
-.transportation-contact .icon {
+.transport-contact .icon {
   width: 1.25rem;
   height: auto;
   padding: 0.75rem;

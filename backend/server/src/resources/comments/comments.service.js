@@ -4,7 +4,7 @@ const User = require("../users/user.model");
 const { default: mongoose } = require("mongoose");
 const { errMalformed } = require("../../errors");
 const { TYPE_RESOURCE } = require("../components/component.service.js");
-const Transportation = require("../components/transportation/transportation.model");
+const Transport = require("../components/transport/transport.model");
 const Restaurant = require("../components/restaurant/restaurant.model");
 const Accommodation = require("../components/accommodation/accommodation.model");
 const Plans = require("../components/plans/plans.model");
@@ -40,7 +40,7 @@ const deleteComment = async (_id) => {
   let model = null;
   switch (deleted.resourceType) {
     case TYPE_RESOURCE.TRANSPORT:
-      model = Transportation;
+      model = Transport;
       break;
     case TYPE_RESOURCE.RESTAURANT:
       model = Restaurant;

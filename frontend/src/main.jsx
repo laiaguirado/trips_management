@@ -6,12 +6,12 @@ import "./index.css";
 import App from "./App";
 import TripDetailsPage from "./screens/TripDetailsPage";
 import AccommodationPage from "./screens/tripInformation/Accommodation/AccommodationPage";
-import TransportationPage from "./screens/tripInformation/Transportation/TransportationPage";
+import TransportPage from "./screens/tripInformation/Transport/TransportPage";
 import PlansPage from "./screens/tripInformation/Plans/PlansPage";
 import RestaurantPage from "./screens/tripInformation/Restaurant/RestaurantPage";
 import ProtectedRoute from "./screens/ProtectedRoute";
 import AccommodationDetailsPage from "./screens/tripInformation/Accommodation/AccommodationDetailsPage";
-import TransportationDetailsPage from "./screens/tripInformation/Transportation/TransportationDetailsPage";
+import TransportDetailsPage from "./screens/tripInformation/Transport/TransportDetailsPage";
 import PlansDetailsPage from "./screens/tripInformation/Plans/PlansDetailsPage";
 import RestaurantDetailsPage from "./screens/tripInformation/Restaurant/RestaurantDetailsPage";
 
@@ -64,20 +64,20 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             }
           ></Route>
           <Route
-            path="/trip/:tripId/transportation"
+            path="/trip/:tripId/transport"
             exact
             element={
               <ProtectedRoute>
-                <TransportationPage />
+                <TransportPage />
               </ProtectedRoute>
             }
           ></Route>
           <Route
-            path="/trip/:tripId/transportation/:transportationId"
+            path="/trip/:tripId/transport/:transportId"
             exact
             element={
               <ProtectedRoute>
-                <TransportationDetailsPage />
+                <TransportDetailsPage />
               </ProtectedRoute>
             }
           ></Route>

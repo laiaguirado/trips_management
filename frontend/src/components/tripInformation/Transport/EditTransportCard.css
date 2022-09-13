@@ -1,4 +1,4 @@
-.edit-card .transportation-info {
+.edit-card .transport-info {
   width: 100%;
 }
 
@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.edit-card .transportation-detail div {
+.edit-card .transport-detail div {
   flex-grow: 1;
 }
 

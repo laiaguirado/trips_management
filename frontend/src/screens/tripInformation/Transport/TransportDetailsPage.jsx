@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./TransportationDetailsPage.css";
+import "./TransportDetailsPage.css";
 import * as api from "../../../api";
 import Bar from "../../../components/Bar";
 import Loading from "../../../components/Loading";
 import CommentsCard from "../../../components/comment/CommentsCard";
-import TransportationCard from "../../../components/tripInformation/Transportation/TransportationCard";
-import EditTransportationCard from "../../../components/tripInformation/Transportation/EditTransportationCard.jsx";
+import TransportCard from "../../../components/tripInformation/Transport/TransportCard";
+import EditTransportCard from "../../../components/tripInformation/Transport/EditTransportCard.jsx";
 import DeleteCard from "../../../components/DeleteCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,55 +16,55 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
-function TransportationDetailsPage() {
-  const [transportation, setTransportation] = useState(null);
+function TransportDetailsPage() {
+  const [transport, setTransport] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState(null);
-  const { tripId, transportationId } = useParams();
+  const { tripId, transportId } = useParams();
   const navigate = useNavigate();
 
-  const loadTransportation = async () => {
+  const loadTransport = async () => {
     const {
       success,
-      result: transportation,
+      result: transport,
       error,
-    } = await api.getTransportation(transportationId);
+    } = await api.getTransport(transportId);
     if (success) {
-      setTransportation(transportation);
+      setTransport(transport);
       setMessage(null);
     } else {
-      setTransportation(null);
+      setTransport(null);
       setMessage(error);
     }
   };
 
-  const deleteTransportation = async (transportationId) => {
-    const { success, error } = await api.deleteTransportation(transportationId);
+  const deleteTransport = async (transportId) => {
+    const { success, error } = await api.deleteTransport(transportId);
     if (success) {
-      navigate(`/trip/${tripId}/transportation`, { replace: false });
+      navigate(`/trip/${tripId}/transport`, { replace: false });
     } else {
       setMessage(error);
     }
   };
 
-  const onEdit = async (transportationId, transportationData, score) => {
+  const onEdit = async (transportId, transportData, score) => {
     let idNewScoreAdded = null;
-    if (transportation.scores[0]) {
+    if (transport.scores[0]) {
       if (score === "") {
         const {
           success: scoreSuccess,
           result: newScore,
           error: scoreError,
-        } = await api.deleteScore(transportation.scores[0]._id);
+        } = await api.deleteScore(transport.scores[0]._id);
         if (scoreSuccess) {
           setMessage(null);
         } else {
           setMessage(scoreError);
         }
       } else {
-        transportationData.score = {
-          _id: transportation.scores[0]._id,
+        transportData.score = {
+          _id: transport.scores[0]._id,
           score: score,
         };
       }
@@ -73,7 +73,7 @@ function TransportationDetailsPage() {
         success: scoreSuccess,
         result: newScore,
         error: scoreError,
-      } = await api.addScore(tripId, transportationId, "transportation", {
+      } = await api.addScore(tripId, transportId, "transport", {
         value: score,
       });
       if (scoreSuccess) {
@@ -88,10 +88,10 @@ function TransportationDetailsPage() {
       success,
       result: edited,
       error,
-    } = await api.updateTransportation(transportationId, transportationData);
+    } = await api.updateTransport(transportId, transportData);
 
     if (success) {
-      setTransportation(edited);
+      setTransport(edited);
       setEditing(false);
       setMessage(null);
     } else {
@@ -116,20 +116,20 @@ function TransportationDetailsPage() {
     if (deleting) {
       return (
         <DeleteCard
-          onDelete={() => deleteTransportation(transportationId)}
+          onDelete={() => deleteTransport(transportId)}
           deleting={() => setDeleting(false)}
-          deleteType={"Transportation"}
+          deleteType={"Transport"}
         />
       );
     }
   }
 
   useEffect(() => {
-    loadTransportation();
+    loadTransport();
     window.scrollTo(0, 0);
-  }, [transportationId]);
+  }, [transportId]);
 
-  if (transportation === null) {
+  if (transport === null) {
     return (
       <div>
         <Bar mode="login" />
@@ -142,31 +142,31 @@ function TransportationDetailsPage() {
     if (!editing) {
       return (
         <>
-          <TransportationCard transportation={transportation} />
+          <TransportCard transport={transport} />
           <div>
             {" "}
             <div
-              className="delete-transportation"
+              className="delete-transport"
               onClick={() => {
                 setDeleting(true);
               }}
             >
-              <FontAwesomeIcon icon={faTrashCan} /> DELETE TRANSPORTATION
+              <FontAwesomeIcon icon={faTrashCan} /> DELETE TRANSPORT
             </div>
             {deleteButton()}
           </div>
           <CommentsCard
             tripId={tripId}
-            componentId={transportationId}
-            component="transportation"
+            componentId={transportId}
+            component="transport"
           />
         </>
       );
     } else {
       return (
-        <EditTransportationCard
-          transportation={transportation}
-          transportationId={transportationId}
+        <EditTransportCard
+          transport={transport}
+          transportId={transportId}
           onEdit={onEdit}
         />
       );
@@ -174,7 +174,7 @@ function TransportationDetailsPage() {
   }
 
   return (
-    <div className="transportation-details-page">
+    <div className="transport-details-page">
       <Bar mode="login" />
       {!editing ? (
         <div
@@ -204,4 +204,4 @@ function TransportationDetailsPage() {
   );
 }
 
-export default TransportationDetailsPage;
+export default TransportDetailsPage;

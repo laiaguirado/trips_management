@@ -82,20 +82,16 @@ export const deleteAccommodation = (accommodationId) =>
 export const updateAccommodation = (accommodationId, accommodationData) =>
   authApiCall("PUT", `/accommodation/${accommodationId}`, accommodationData);
 
-export const getTransportationList = (tripId) =>
-  authApiCall("GET", `/travel/${tripId}/transportation?_include=totalScore`);
-export const getTransportation = (transportationId) =>
-  authApiCall("GET", `/transportation/${transportationId}?_include=totalScore`);
-export const addTransportation = (tripId, newTransportationData) =>
-  authApiCall(
-    "POST",
-    `/travel/${tripId}/transportation`,
-    newTransportationData
-  );
-export const deleteTransportation = (transportationId) =>
-  authApiCall("DELETE", `/transportation/${transportationId}`);
-export const updateTransportation = (transportationId, transportationData) =>
-  authApiCall("PUT", `/transportation/${transportationId}`, transportationData);
+export const getTransportList = (tripId) =>
+  authApiCall("GET", `/travel/${tripId}/transport?_include=totalScore`);
+export const getTransport = (transportId) =>
+  authApiCall("GET", `/transport/${transportId}?_include=totalScore`);
+export const addTransport = (tripId, newTransportData) =>
+  authApiCall("POST", `/travel/${tripId}/transport`, newTransportData);
+export const deleteTransport = (transportId) =>
+  authApiCall("DELETE", `/transport/${transportId}`);
+export const updateTransport = (transportId, transportData) =>
+  authApiCall("PUT", `/transport/${transportId}`, transportData);
 
 export const getPlanList = (tripId) =>
   authApiCall("GET", `/travel/${tripId}/plans?_include=totalScore`);

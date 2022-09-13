@@ -225,11 +225,11 @@ function TripDetailCard({
         <div
           className="details-info"
           onClick={() =>
-            navigate(`/trip/${tripId}/transportation`, { replace: false })
+            navigate(`/trip/${tripId}/transport`, { replace: false })
           }
         >
           <FontAwesomeIcon className="icon" icon={faPlane} size="2x" />
-          Transportation
+          Transport
         </div>
         <div
           className="details-info"

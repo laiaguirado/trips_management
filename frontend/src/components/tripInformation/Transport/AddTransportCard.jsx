@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./AddTransportationCard.css";
+import "./AddTransportCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGlobe,
@@ -15,7 +15,7 @@ import {
   faRankingStar,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AddTransportationCard({ onAdd, message, adding, tripId }) {
+function AddTransportCard({ onAdd, message, adding, tripId }) {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [typeDetails, setTypeDetails] = useState("");
@@ -65,14 +65,14 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
   }, []);
 
   return (
-    <div className="add-card add-transportation-card">
+    <div className="add-card add-transport-card">
       <div className="background" onClick={adding}></div>
       <div className="form-container">
         <div className="return-icon" onClick={adding}>
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
         <form className="add-form" onSubmit={(e) => add(e)}>
-          <h1 className="title">New Transportation</h1>
+          <h1 className="title">New Transport</h1>
           <div className="error">{message}</div>
           <label>
             <div className="form-data">
@@ -98,7 +98,7 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
                 onChange={(event) => setType(event.target.value)}
               >
                 <option value="" disabled={true}>
-                  Select a transportation *
+                  Select a transport *
                 </option>
                 <option value="airplane">Airplane</option>
                 <option value="ship">Ship</option>
@@ -268,7 +268,7 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
           <input
             className="submit-button form-data"
             type="submit"
-            value="Create New Transportation"
+            value="Create New Transport"
           />
         </form>
       </div>
@@ -276,4 +276,4 @@ function AddTransportationCard({ onAdd, message, adding, tripId }) {
   );
 }
 
-export default AddTransportationCard;
+export default AddTransportCard;

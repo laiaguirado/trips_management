@@ -10,7 +10,7 @@ const Accomodation = require("../components/accommodation/accommodation.service"
 const User = require("../users/user.service");
 const Travel = require("../travel/travel.service");
 const Restaurant = require("../components/restaurant/restaurant.service");
-const Transportation = require("../components/transportation/transportation.service");
+const Transport = require("../components/transport/transport.service");
 const Plan = require("../components/plans/plans.services");
 const { TYPE_RESOURCE } = require("../components/component.service.js");
 
@@ -72,10 +72,10 @@ const createTransp = async (req, res) => {
     travelId,
     resourceType
   );
-  const transportation = await Transportation.findOneById(idComp);
+  const transport = await Transport.findOneById(idComp);
 
-  transportation.comments.push(comment);
-  await transportation.save();
+  transport.comments.push(comment);
+  await transport.save();
 
   res.status(200).json(comment);
 };
@@ -149,7 +149,7 @@ router.post(
   catchErrors(createRest)
 );
 router.post(
-  "/travel/:travelId/transportation/:idComp",
+  "/travel/:travelId/transport/:idComp",
   needsAuthToken,
   commentAllowedAction,
   catchErrors(createTransp)

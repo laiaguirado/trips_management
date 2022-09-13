@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Component } = require("./component.model");
 
 const TYPE_RESOURCE = {
-  TRANSPORT: "transportation",
+  TRANSPORT: "transport",
   ACCOMMODATION: "accommodation",
   RESTAURANT: "restaurant",
   PLANS: "plans",
@@ -74,7 +74,7 @@ const findComponent = async (id) => {
       },
       {
         $unionWith: {
-          coll: "transportations",
+          coll: "transports",
           pipeline: [filterBy],
         },
       },

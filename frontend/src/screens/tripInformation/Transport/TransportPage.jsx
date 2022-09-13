@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./TransportationPage.css";
+import "./TransportPage.css";
 import * as api from "../../../api";
 import Bar from "../../../components/Bar";
 import Loading from "../../../components/Loading";
-import AddTransportationCard from "../../../components/tripInformation/Transportation/AddTransportationCard";
+import AddTransportCard from "../../../components/tripInformation/Transport/AddTransportCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -15,39 +15,36 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ScoreCard from "../../../components/score/ScoreCard";
 
-function TransportationPage() {
-  const [transportationList, setTransportationList] = useState(null);
+function TransportPage() {
+  const [transportList, setTransportList] = useState(null);
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
   const navigate = useNavigate();
 
-  const loadTransportationList = async () => {
+  const loadTransportList = async () => {
     const {
       success,
-      result: transportationList,
+      result: transportList,
       error,
-    } = await api.getTransportationList(tripId);
+    } = await api.getTransportList(tripId);
     if (success) {
-      setTransportationList(transportationList);
+      setTransportList(transportList);
       setMessage(null);
     } else {
-      setTransportationList(null);
+      setTransportList(null);
       setMessage(error);
     }
   };
 
-  const addTransportation = async (tripId, newTransportationData) => {
+  const addTransport = async (tripId, newTransportData) => {
     const {
       success,
       result: added,
       error,
-    } = await api.addTransportation(tripId, newTransportationData);
+    } = await api.addTransport(tripId, newTransportData);
     if (success) {
-      setTransportationList((transportationList) => [
-        ...transportationList,
-        added,
-      ]);
+      setTransportList((transportList) => [...transportList, added]);
       setAdding(false);
       setMessage(null);
     } else {
@@ -56,11 +53,11 @@ function TransportationPage() {
     }
   };
 
-  function addTransportationForm() {
+  function addTransportForm() {
     if (adding) {
       return (
-        <AddTransportationCard
-          onAdd={addTransportation}
+        <AddTransportCard
+          onAdd={addTransport}
           message={message}
           adding={() => {
             setAdding(false);
@@ -73,12 +70,12 @@ function TransportationPage() {
   }
 
   useEffect(() => {
-    loadTransportationList();
+    loadTransportList();
     window.scrollTo(0, 0);
     document.body.style.overflow = "unset";
   }, []);
 
-  if (transportationList === null) {
+  if (transportList === null) {
     return (
       <div>
         <Bar mode="login" />
@@ -88,7 +85,7 @@ function TransportationPage() {
   }
 
   return (
-    <div className="transportation-page">
+    <div className="transport-page">
       <Bar mode="login" />
       <div className="info-container">
         <div
@@ -99,31 +96,27 @@ function TransportationPage() {
         </div>
         <div className="error details-error">{message}</div>
         <div>
-          <h1 className="details-title list-page">TRANSPORTATION</h1>
+          <h1 className="details-title list-page">TRANSPORT</h1>
           <div>
             <div className="add-info-button" onClick={() => setAdding(true)}>
               <FontAwesomeIcon icon={faCirclePlus} className="icon" />
             </div>
           </div>
           <div className="info-list">
-            {transportationList.map((transportation) => (
+            {transportList.map((transport) => (
               <div
                 className="info"
-                key={transportation._id}
+                key={transport._id}
                 onClick={() =>
-                  navigate(
-                    `/trip/${tripId}/transportation/${transportation._id}`,
-                    {
-                      replace: false,
-                    }
-                  )
+                  navigate(`/trip/${tripId}/transport/${transport._id}`, {
+                    replace: false,
+                  })
                 }
               >
-                <h3 className="info-name">{transportation.name}</h3>
-                <div className="info-main">{transportation.type}</div>
-                {transportation.totalScore &&
-                transportation.totalScore.average ? (
-                  <ScoreCard totalScore={transportation.totalScore} />
+                <h3 className="info-name">{transport.name}</h3>
+                <div className="info-main">{transport.type}</div>
+                {transport.totalScore && transport.totalScore.average ? (
+                  <ScoreCard totalScore={transport.totalScore} />
                 ) : (
                   <div className="info-other-empty">
                     <FontAwesomeIcon icon={faStarRegular} className="icon" />
@@ -138,9 +131,9 @@ function TransportationPage() {
           </div>
         </div>
       </div>
-      {addTransportationForm()}
+      {addTransportForm()}
     </div>
   );
 }
 
-export default TransportationPage;
+export default TransportPage;

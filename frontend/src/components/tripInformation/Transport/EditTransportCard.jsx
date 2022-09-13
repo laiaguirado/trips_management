@@ -1,25 +1,23 @@
 import React, { useState } from "react";
-import "./EditTransportationCard.css";
+import "./EditTransportCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
-function EditTransportationCard({ transportation, transportationId, onEdit }) {
-  const [name, setName] = useState(transportation.name);
-  const [type, setType] = useState(transportation.type);
-  const [typeDetails, setTypeDetails] = useState(transportation.typeDetails);
-  const [price, setPrice] = useState(transportation.price);
-  const [currency, setCurrency] = useState(transportation.currency);
-  const [origin, setOrigin] = useState(transportation.origin);
-  const [destination, setDestination] = useState(transportation.destination);
-  const [departure, setDeparture] = useState(
-    setDateValue(transportation.departure)
-  );
-  const [arrival, setArrival] = useState(setDateValue(transportation.arrival));
-  const [web, setWeb] = useState(transportation.web);
+function EditTransportCard({ transport, transportId, onEdit }) {
+  const [name, setName] = useState(transport.name);
+  const [type, setType] = useState(transport.type);
+  const [typeDetails, setTypeDetails] = useState(transport.typeDetails);
+  const [price, setPrice] = useState(transport.price);
+  const [currency, setCurrency] = useState(transport.currency);
+  const [origin, setOrigin] = useState(transport.origin);
+  const [destination, setDestination] = useState(transport.destination);
+  const [departure, setDeparture] = useState(setDateValue(transport.departure));
+  const [arrival, setArrival] = useState(setDateValue(transport.arrival));
+  const [web, setWeb] = useState(transport.web);
   const [score, setScore] = useState(
-    transportation.scores[0] ? transportation.scores[0].score : ""
+    transport.scores[0] ? transport.scores[0].score : ""
   );
-  const [notation, setNotation] = useState(transportation.notation);
+  const [notation, setNotation] = useState(transport.notation);
 
   function setDateValue(value) {
     if (value === "" || value === undefined || value === null) {
@@ -37,7 +35,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
   const update = (e) => {
     e.preventDefault();
     onEdit(
-      transportationId,
+      transportId,
       {
         name,
         type,
@@ -56,10 +54,10 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
   };
 
   return (
-    <div className="transportation-card edit-card">
-      <div className="transportation-info">
+    <div className="transport-card edit-card">
+      <div className="transport-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
-          <div className="transportation-name transportation-detail">
+          <div className="transport-name transport-detail">
             <label>
               <input
                 className="input edit-name"
@@ -72,7 +70,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
               />
             </label>
           </div>
-          <div className="transportation-rating transportation-detail">
+          <div className="transport-rating transport-detail">
             <h3>Rating: </h3>
             <div>
               <label>
@@ -96,7 +94,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
               </label>
             </div>
           </div>
-          <div className="transportation-type transportation-detail">
+          <div className="transport-type transport-detail">
             <h3>Type: </h3>
             <div>
               <label>
@@ -108,7 +106,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
                     onChange={(event) => setType(event.target.value)}
                   >
                     <option value="" disabled={true}>
-                      Select a transportation *
+                      Select a transport *
                     </option>
                     <option value="airplane">Airplane</option>
                     <option value="ship">Ship</option>
@@ -124,7 +122,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
             </div>
           </div>
 
-          <div className="transportation-typeDetails transportation-detail">
+          <div className="transport-typeDetails transport-detail">
             <h3>Type Details: </h3>
             <div>
               <label>
@@ -142,7 +140,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
             </div>
           </div>
 
-          <div className="transportation-price transportation-detail">
+          <div className="transport-price transport-detail">
             <h3>Price: </h3>
             <div>
               <label>
@@ -173,7 +171,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
             </div>
           </div>
 
-          <div className="transportation-location transportation-detail">
+          <div className="transport-location transport-detail">
             <h3>Origin - Destination:</h3>
             <div>
               <label>
@@ -203,7 +201,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
             </div>
           </div>
 
-          <div className="transportation-dates transportation-detail">
+          <div className="transport-dates transport-detail">
             <h3>Departure - Arrival:</h3>
             <div>
               {" "}
@@ -237,7 +235,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
             </div>
           </div>
 
-          <div className="transportation-web transportation-detail">
+          <div className="transport-web transport-detail">
             <h3>Web page: </h3>
             <div>
               <label>
@@ -254,7 +252,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
             </div>
           </div>
 
-          <div className="transportation-notation transportation-detail">
+          <div className="transport-notation transport-detail">
             <h3>Notes: </h3>
             <div className="notation-text">
               <label>
@@ -275,7 +273,7 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
           <input
             className="submit-button form-data"
             type="submit"
-            value="Update Transportation"
+            value="Update Transport"
           />
         </form>
       </div>
@@ -283,4 +281,4 @@ function EditTransportationCard({ transportation, transportationId, onEdit }) {
   );
 }
 
-export default EditTransportationCard;
+export default EditTransportCard;
