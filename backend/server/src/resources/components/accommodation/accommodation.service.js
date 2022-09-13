@@ -114,7 +114,7 @@ const deleteAccom = async (_id) => {
   return deleted;
 };
 
-const updateAccomodation = async (_id, accommodationData) => {
+const updateAccommodation = async (_id, accommodationData) => {
   const accomUpdated = await Accommodation.findOneAndUpdate(
     { _id },
     accommodationData,
@@ -124,7 +124,7 @@ const updateAccomodation = async (_id, accommodationData) => {
     .exec();
 
   if (accomUpdated === null) {
-    errMalformed(`Accomodation not found`);
+    errMalformed(`Accommodation not found`);
   }
   return accomUpdated;
 };
@@ -136,6 +136,6 @@ module.exports = {
   findOneById,
   findAccommodationById,
   deleteAccom,
-  updateAccomodation,
+  updateAccommodation,
   addFirstScore,
 };

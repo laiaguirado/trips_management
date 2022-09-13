@@ -1,16 +1,13 @@
-const { Router } = require("express");
-const { route } = require("express/lib/application");
 const express = require("express");
 const { catchErrors, TripManagementApiError } = require("../../errors");
 const { needsAuthToken } = require("../users/auth/auth.middleware");
 
 const Score = require("./score.service");
-const Accomodation = require("../components/accommodation/accommodation.service");
+const Accommodation = require("../components/accommodation/accommodation.service");
 const Restaurant = require("../components/restaurant/restaurant.service");
 const Transport = require("../components/transport/transport.service");
 const Plan = require("../components/plans/plans.services");
 const User = require("../users/user.service");
-const Travel = require("../travel/travel.service");
 
 const createAcom = async (req, res) => {
   const { compId } = req.params;
@@ -20,7 +17,7 @@ const createAcom = async (req, res) => {
 
   const score = await Score.createOne(value, compId, _id, _idTravel);
 
-  const accommodation = await Accomodation.findOneById(compId);
+  const accommodation = await Accommodation.findOneById(compId);
   accommodation.scores.push(score);
   await accommodation.save();
 
