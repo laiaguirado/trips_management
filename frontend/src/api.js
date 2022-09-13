@@ -23,7 +23,6 @@ const apiCall = async (method, path, body, headers, isMultipartForm) => {
     if (isSuccess(response.status)) {
       return { success: true, result: json };
     } else if (response.status === 401) {
-      // localStorage.setItem("token", null);
       return { success: false, error: json.error };
     } else {
       return { success: false, error: json.error };

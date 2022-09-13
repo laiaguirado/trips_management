@@ -15,7 +15,7 @@ const addFirstScore = async (idRestaurant, idScore, score) => {
     { $push: { scores: idScore } },
     { new: true, useFindAndModify: false, runValidators: true }
   );
-  //Modify the total score. Since there is only one vote, we will not calculate it with the aggregate function
+
   restaurantUpdated.totalScore = {
     average: score,
     votes: 1,

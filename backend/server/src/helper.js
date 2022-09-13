@@ -17,7 +17,7 @@ const FKIntegrity = (model, id) => {
 };
 
 const runTransaction = async (handler) => {
-  let result; //Wrapper for get result of session.withTransaction
+  let result;
   try {
     const session = await conn.startSession();
     await session.withTransaction(async () => {
@@ -62,5 +62,3 @@ module.exports = {
   getPriceWithCurrency,
   isValidParameter,
 };
-
-

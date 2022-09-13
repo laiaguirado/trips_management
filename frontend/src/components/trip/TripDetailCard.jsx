@@ -263,17 +263,6 @@ function TripDetailCard({
       ) : (
         <div></div>
       )}
-      <div className="trip-comments">
-        {/*<div>
-            {Array.isArray(trip) !== true ? (
-              trip.comments.map((comment) => (
-                <p key={comment._id}>{comment.username} : {comment.text}</p>
-              ))
-            ) : (
-              <p></p>
-            )}
-            </div>*/}
-      </div>
     </>
   );
 }

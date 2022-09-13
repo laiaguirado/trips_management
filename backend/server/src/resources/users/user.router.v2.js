@@ -31,8 +31,8 @@ const router = express.Router();
 router.post("/register", catchErrors(register));
 router.post("/login", catchErrors(login));
 if (config.isDevelopment) {
-  router.get("/test", /*needsAuthToken,*/ catchErrors(test));
-  router.get("/newTest", /*needsAuthToken,*/ catchErrors(newTest));
+  router.get("/test", catchErrors(test));
+  router.get("/newTest", catchErrors(newTest));
 }
 
 module.exports = router;

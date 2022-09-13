@@ -19,7 +19,7 @@ const addFirstScore = async (idAccommodation, idScore, score) => {
     { $push: { scores: idScore } },
     { new: true, useFindAndModify: false, runValidators: true }
   );
-  //Modify the total score. Since there is only one vote, we will not calculate it with the aggregate function
+
   accommodationUpdated.totalScore = {
     average: score,
     votes: 1,

@@ -16,7 +16,6 @@ const addNewScoreToRestaurant = async (
   idUser,
   idTravel
 ) => {
-  //Si el plan te un score, cal guardar la info i retornar-la
   const scoreCreated = await Scores.createOne(
     score,
     idRestaurant,

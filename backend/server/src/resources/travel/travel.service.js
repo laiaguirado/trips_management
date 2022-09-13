@@ -72,16 +72,6 @@ const addUserToTravel = async (idTravel, idUser, type) => {
   const travel = await runTransaction(async () => {
     const infoTravel = { user: idUser, type };
 
-    // let travel = await Travel.findOne({ _id: idTravel });
-    // const travellerIds = [];
-    // for (trav of travel.travellers) {
-    //   travellerIds.push(trav.user);
-    // }
-    // for (let i = 0; i <= travellerIds.length; i++) {
-    //   if (infoTravel.user === travellerIds[i]) {
-    //     throw new TripManagementApiError(403, "User already in the travel");
-    //   }
-    // }
     const isInTravel = await isTraveler(idTravel, idUser);
     if (isInTravel) {
       throw new TripManagementApiError(403, "User already in the travel");
