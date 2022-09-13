@@ -7,12 +7,7 @@ import Loading from "../../../components/Loading";
 import AddTransportCard from "../../../components/tripInformation/Transport/AddTransportCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
-import {
-  faCirclePlus,
-  faAngleLeft,
-  faStar,
-  faStarHalfStroke,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import ScoreCard from "../../../components/score/ScoreCard";
 
 function TransportPage() {

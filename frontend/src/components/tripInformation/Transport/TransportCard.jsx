@@ -4,7 +4,6 @@ import * as helper from "../../../helper";
 import ScoreDetailsCard from "../../score/ScoreDetailsCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faStar,
   faTruckPlane,
   faGlobe,
   faPlane,
@@ -14,9 +13,7 @@ import {
   faTram,
   faBus,
   faTrain,
-  faStarHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
-import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 function TransportCard({ transport }) {
   document.body.style.overflow = "unset";

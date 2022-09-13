@@ -8,12 +8,7 @@ import AddPlanCard from "../../../components/tripInformation/Plan/AddPlanCard";
 import ScoreCard from "../../../components/score/ScoreCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
-import {
-  faStar,
-  faCirclePlus,
-  faAngleLeft,
-  faStarHalfStroke,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 function PlansPage() {
   const [planList, setPlanList] = useState(null);

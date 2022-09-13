@@ -1493,7 +1493,7 @@
       "modified": 1659560047632,
       "created": 1658757190630,
       "url": "{{ _.base_url }}/{{ _.version }}/accommodation",
-      "name": "Get All Accomodations",
+      "name": "Get All Accommodations",
       "description": "",
       "method": "GET",
       "body": {},

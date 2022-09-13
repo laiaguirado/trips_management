@@ -4,7 +4,6 @@ import ScoreDetailsCard from "../../score/ScoreDetailsCard";
 import * as helper from "../../../helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faStar,
   faBed,
   faDog,
   faWifi,
@@ -13,11 +12,8 @@ import {
   faPhone,
   faEnvelope,
   faMugSaucer,
-  faStarHalfStroke,
   faSlash,
-  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 function AccommodationCard({ accommodation }) {
   document.body.style.overflow = "unset";

@@ -3,14 +3,11 @@ import "./RestaurantCard.css";
 import ScoreDetailsCard from "../../score/ScoreDetailsCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faStar,
   faGlobe,
   faPhone,
   faEnvelope,
-  faStarHalfStroke,
   faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
-import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 function RestaurantCard({ restaurant }) {
   document.body.style.overflow = "unset";

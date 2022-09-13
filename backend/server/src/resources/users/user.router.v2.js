@@ -1,7 +1,5 @@
-const { catchErrors, TripManagementApiError } = require("../../errors");
+const { catchErrors } = require("../../errors");
 const config = require("../../config");
-const { needsAuthToken } = require("./auth/auth.middleware");
-const User = require("./user.service");
 
 const test = async (req, res) => {
   res.status(200).json({

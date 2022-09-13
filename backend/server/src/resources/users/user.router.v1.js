@@ -1,9 +1,5 @@
 const express = require("express");
-const {
-  catchErrors,
-  TripManagementApiError,
-  errMalformed,
-} = require("../../errors");
+const { catchErrors, errMalformed } = require("../../errors");
 const config = require("../../config");
 const auth = require("../users/auth/auth.service");
 const { needsAuthToken } = require("./auth/auth.middleware");

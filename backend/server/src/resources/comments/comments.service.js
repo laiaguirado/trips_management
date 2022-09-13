@@ -1,6 +1,4 @@
 const Comment = require("./comments.model");
-const Travel = require("../travel/travel.model");
-const User = require("../users/user.model");
 const { default: mongoose } = require("mongoose");
 const { errMalformed } = require("../../errors");
 const { TYPE_RESOURCE } = require("../components/component.service.js");

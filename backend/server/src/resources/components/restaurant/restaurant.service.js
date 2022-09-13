@@ -4,7 +4,6 @@ const { errMalformed } = require("../../../errors");
 const Restaurant = require("./restaurant.model");
 const Travel = require("../../travel/travel.model");
 const Comment = require("../../comments/comments.model");
-const User = require("../../users/user.model");
 const Score = require("../../score/score.model");
 const { getScores } = require("../component.service");
 

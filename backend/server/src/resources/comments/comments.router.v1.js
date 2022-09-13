@@ -1,14 +1,10 @@
-const { Router } = require("express");
-const { route } = require("express/lib/application");
 const express = require("express");
-const { catchErrors, TripManagementApiError } = require("../../errors");
+const { catchErrors } = require("../../errors");
 const { needsAuthToken } = require("../users/auth/auth.middleware");
 const { commentAllowedAction } = require("./comments.middelware");
 
 const Comment = require("./comments.service");
-const Accomodation = require("../components/accommodation/accommodation.service");
-const User = require("../users/user.service");
-const Travel = require("../travel/travel.service");
+const Accommodation = require("../components/accommodation/accommodation.service");
 const Restaurant = require("../components/restaurant/restaurant.service");
 const Transport = require("../components/transport/transport.service");
 const Plan = require("../components/plans/plans.services");
@@ -28,7 +24,7 @@ const createAcom = async (req, res) => {
     travelId,
     resourceType
   );
-  const accommodation = await Accomodation.findOneById(idComp);
+  const accommodation = await Accommodation.findOneById(idComp);
 
   accommodation.comments.push(comment);
   await accommodation.save();

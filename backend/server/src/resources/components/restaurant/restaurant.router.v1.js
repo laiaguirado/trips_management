@@ -1,7 +1,5 @@
-const { Router } = require("express");
-const { route } = require("express/lib/application");
 const express = require("express");
-const { catchErrors, TripManagementApiError } = require("../../../errors");
+const { catchErrors } = require("../../../errors");
 const { needsAuthToken } = require("../../users/auth/auth.middleware");
 const { runTransaction } = require("../../../helper");
 const Scores = require("../../score/score.service");
@@ -11,7 +9,6 @@ const RESOURCETYPE = TYPE_RESOURCE.RESTAURANT;
 
 const Restaurant = require("./restaurant.service");
 const Travel = require("../../travel/travel.service");
-const User = require("../../users/user.service");
 
 const addNewScoreToRestaurant = async (
   score,
@@ -124,8 +121,6 @@ const updateRest = async (req, res) => {
       .json(await await Restaurant.getOne(idRestaurant, idUser, "totalScore"));
   }
 };
-
-//const router = express.Router();
 
 const routerRestaurantByTravel = express.Router();
 const routerRestaurantByRestaurant = express.Router();

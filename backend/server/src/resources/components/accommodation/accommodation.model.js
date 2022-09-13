@@ -3,12 +3,7 @@ const extendSchema = require("mongoose-extend-schema");
 const mongooseLeanGetters = require("mongoose-lean-getters");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const { componentSchema } = require("../component.model");
-const {
-  capitalize,
-  getPrice,
-  setPrice,
-  getPriceWithCurrency,
-} = require("../../../helper");
+const { capitalize, getPriceWithCurrency } = require("../../../helper");
 
 function getPriceAccommodationWithCurrency() {
   return getPriceWithCurrency(this.price, this.currency);
@@ -143,7 +138,9 @@ const accommodationSchema = extendSchema(
 accommodationSchema.index({ phone: 1 });
 accommodationSchema.plugin(mongooseLeanGetters);
 accommodationSchema.plugin(mongooseLeanVirtuals);
-accommodationSchema.virtual("priceWithCurrency").get(getPriceAccommodationWithCurrency);
+accommodationSchema
+  .virtual("priceWithCurrency")
+  .get(getPriceAccommodationWithCurrency);
 
 const Accommodation = mongoose.model("accommodation", accommodationSchema);
 

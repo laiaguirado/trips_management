@@ -1,11 +1,3 @@
-// const addRoutesTo = (app) => {
-//     app.use("/v1/restaurant", require("./restaurant.router.v1"));
-
-//   };
-//   module.exports = {
-//     addRoutesTo,
-//   };
-
 const passParamsToRouterChild = (req, res, next) => {
   req.paramsParentRouter = { idTravel: req.params.idTravel };
   next();

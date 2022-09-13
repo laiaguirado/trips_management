@@ -8,12 +8,7 @@ import AddAccommodationCard from "../../../components/tripInformation/Accommodat
 import ScoreCard from "../../../components/score/ScoreCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
-import {
-  faCirclePlus,
-  faAngleLeft,
-  faStar,
-  faStarHalfStroke,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 function AccommodationPage() {
   const [accommodationList, setAccommodationList] = useState(null);

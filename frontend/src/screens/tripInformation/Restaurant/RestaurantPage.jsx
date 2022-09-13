@@ -8,12 +8,7 @@ import AddRestaurantCard from "../../../components/tripInformation/Restaurant/Ad
 import ScoreCard from "../../../components/score/ScoreCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
-import {
-  faStar,
-  faCirclePlus,
-  faAngleLeft,
-  faStarHalfStroke,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 function RestaurantPage() {
   const [restaurantList, setRestaurantList] = useState(null);

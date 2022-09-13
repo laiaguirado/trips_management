@@ -1,5 +1,5 @@
 const express = require("express");
-const { catchErrors, TripManagementApiError } = require("../../errors");
+const { catchErrors } = require("../../errors");
 const { needsAuthToken } = require("../users/auth/auth.middleware");
 
 const Score = require("./score.service");
@@ -7,7 +7,6 @@ const Accommodation = require("../components/accommodation/accommodation.service
 const Restaurant = require("../components/restaurant/restaurant.service");
 const Transport = require("../components/transport/transport.service");
 const Plan = require("../components/plans/plans.services");
-const User = require("../users/user.service");
 
 const createAcom = async (req, res) => {
   const { compId } = req.params;
