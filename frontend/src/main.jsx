@@ -8,12 +8,12 @@ import TripDetailsPage from "./screens/TripDetailsPage";
 import AccommodationPage from "./screens/tripInformation/Accommodation/AccommodationPage";
 import TransportationPage from "./screens/tripInformation/Transportation/TransportationPage";
 import PlansPage from "./screens/tripInformation/Plans/PlansPage";
-import RestorationPage from "./screens/tripInformation/Restoration/RestorationPage";
+import RestaurantPage from "./screens/tripInformation/Restaurant/RestaurantPage";
 import ProtectedRoute from "./screens/ProtectedRoute";
 import AccommodationDetailsPage from "./screens/tripInformation/Accommodation/AccommodationDetailsPage";
 import TransportationDetailsPage from "./screens/tripInformation/Transportation/TransportationDetailsPage";
 import PlansDetailsPage from "./screens/tripInformation/Plans/PlansDetailsPage";
-import RestorationDetailsPage from "./screens/tripInformation/Restoration/RestorationDetailsPage";
+import RestaurantDetailsPage from "./screens/tripInformation/Restaurant/RestaurantDetailsPage";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -100,20 +100,20 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             }
           ></Route>
           <Route
-            path="/trip/:tripId/restoration"
+            path="/trip/:tripId/restaurant"
             exact
             element={
               <ProtectedRoute>
-                <RestorationPage />
+                <RestaurantPage />
               </ProtectedRoute>
             }
           ></Route>
           <Route
-            path="/trip/:tripId/restoration/:restorationId"
+            path="/trip/:tripId/restaurant/:restaurantId"
             exact
             element={
               <ProtectedRoute>
-                <RestorationDetailsPage />
+                <RestaurantDetailsPage />
               </ProtectedRoute>
             }
           ></Route>

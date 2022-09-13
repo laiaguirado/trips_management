@@ -241,11 +241,11 @@ function TripDetailCard({
         <div
           className="details-info"
           onClick={() =>
-            navigate(`/trip/${tripId}/restoration`, { replace: false })
+            navigate(`/trip/${tripId}/restaurant`, { replace: false })
           }
         >
           <FontAwesomeIcon className="icon" icon={faUtensils} size="2x" />
-          Restoration
+          Restaurants
         </div>
       </div>
       {userData._id === obtainAdminUser()._id ? (

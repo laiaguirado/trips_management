@@ -1,11 +1,11 @@
-.restoration-card {
+.restaurant-card {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
 }
 
-.restoration-card .restoration-info {
+.restaurant-card .restaurant-info {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -13,16 +13,16 @@
   width: 100%;
 }
 
-.restoration-card .restoration-detail {
+.restaurant-card .restaurant-detail {
   display: flex;
   align-items: baseline;
 }
 
-.restoration-card h3 {
+.restaurant-card h3 {
   margin: 0.5rem 0.5rem;
 }
 
-.restoration-contact {
+.restaurant-contact {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -32,7 +32,7 @@
   margin: 1rem 0;
 }
 
-.restoration-contact .icon {
+.restaurant-contact .icon {
   width: 1.25rem;
   height: auto;
   padding: 0.75rem;

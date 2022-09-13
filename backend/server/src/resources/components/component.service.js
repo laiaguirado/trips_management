@@ -4,7 +4,7 @@ const { Component } = require("./component.model");
 const TYPE_RESOURCE = {
   TRANSPORT: "transportation",
   ACCOMMODATION: "accommodation",
-  RESTAURANT: "restoration",
+  RESTAURANT: "restaurant",
   PLANS: "plans",
 };
 
@@ -80,7 +80,7 @@ const findComponent = async (id) => {
       },
       {
         $unionWith: {
-          coll: "restorations",
+          coll: "restaurants",
           pipeline: [filterBy],
         },
       },

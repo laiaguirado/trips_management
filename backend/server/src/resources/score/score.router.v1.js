@@ -6,7 +6,7 @@ const { needsAuthToken } = require("../users/auth/auth.middleware");
 
 const Score = require("./score.service");
 const Accomodation = require("../components/accommodation/accommodation.service");
-const Restoration = require("../components/restoration/restoration.service");
+const Restaurant = require("../components/restaurant/restaurant.service");
 const Transportation = require("../components/transportation/transportation.service");
 const Plan = require("../components/plans/plans.services");
 const User = require("../users/user.service");
@@ -35,9 +35,9 @@ const createRest = async (req, res) => {
 
   const score = await Score.createOne(value, compId, _id, _idTravel);
 
-  const restoration = await Restoration.findOneById(compId);
-  restoration.scores.push(score);
-  await restoration.save();
+  const restaurant = await Restaurant.findOneById(compId);
+  restaurant.scores.push(score);
+  await restaurant.save();
 
   res.status(200).json(score);
 };
@@ -106,7 +106,7 @@ router.post(
   catchErrors(createAcom)
 );
 router.post(
-  "/travel/:_idTravel/restoration/:compId",
+  "/travel/:_idTravel/restaurant/:compId",
   needsAuthToken,
   catchErrors(createRest)
 );

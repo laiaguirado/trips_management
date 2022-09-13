@@ -9,7 +9,7 @@ const { componentAllowedAction } = require("../component.middelware");
 const { TYPE_RESOURCE } = require("../component.service.js");
 const RESOURCETYPE = TYPE_RESOURCE.RESTAURANT;
 
-const Restoration = require("./restoration.service");
+const Restaurant = require("./restaurant.service");
 const Travel = require("../../travel/travel.service");
 const User = require("../../users/user.service");
 
@@ -26,7 +26,7 @@ const addNewScoreToRestaurant = async (
     idUser,
     idTravel
   );
-  const componentCreated = await Restoration.addFirstScore(
+  const componentCreated = await Restaurant.addFirstScore(
     idRestaurant,
     scoreCreated._id,
     score
@@ -38,7 +38,7 @@ const updateScoreToRestaurant = async (score, idRestaurant, idUser) => {
   const scoreUpdated = await Scores.updateScore(score._id, {
     score: score.score,
   });
-  const componentUpdated = await Restoration.getOne(
+  const componentUpdated = await Restaurant.getOne(
     idRestaurant,
     idUser,
     "totalScore"
@@ -58,7 +58,7 @@ const create = async (req, res) => {
   data.idTravel = idTravel;
 
   const restaurant = await runTransaction(async () => {
-    const restaurantCreated = await Restoration.createOne(data);
+    const restaurantCreated = await Restaurant.createOne(data);
 
     const travel = await Travel.findTravel(idTravel);
     travel.restaurants.push(restaurantCreated);
@@ -79,11 +79,11 @@ const create = async (req, res) => {
 
 const deleteRestaurant = async (req, res) => {
   const { _id } = req.params;
-  res.status(200).json(await Restoration.deleteRest(_id));
+  res.status(200).json(await Restaurant.deleteRest(_id));
 };
 
 const getAll = async (req, res) => {
-  const docs = await Restoration.findAll();
+  const docs = await Restaurant.findAll();
   res.status(200).json({ results: [docs] });
 };
 
@@ -92,14 +92,14 @@ const getById = async (req, res) => {
   const { _id: idUser } = req.userInfo;
   const include = req.query._include;
 
-  res.status(200).json(await Restoration.getOne(_id, idUser, include));
+  res.status(200).json(await Restaurant.getOne(_id, idUser, include));
 };
 
 const getByTravel = async (req, res) => {
   const { idTravel } = req.paramsParentRouter;
   const include = req.query._include;
 
-  res.status(200).json(await Restoration.getByTravelId(idTravel, include));
+  res.status(200).json(await Restaurant.getByTravelId(idTravel, include));
 };
 
 const updateRest = async (req, res) => {
@@ -109,7 +109,7 @@ const updateRest = async (req, res) => {
   const scoreUser = dataRestaurant.score ? dataRestaurant.score : null;
 
   delete dataRestaurant.score;
-  const restorationUpdated = await Restoration.updateRestaurant(
+  const restaurantUpdated = await Restaurant.updateRestaurant(
     idRestaurant,
     dataRestaurant
   );
@@ -121,9 +121,7 @@ const updateRest = async (req, res) => {
   } else {
     res
       .status(201)
-      .json(
-        await await Restoration.getOne(idRestaurant, idUser, "totalScore")
-      );
+      .json(await await Restaurant.getOne(idRestaurant, idUser, "totalScore"));
   }
 };
 
@@ -146,11 +144,7 @@ routerRestaurantByRestaurant.delete(
   componentAllowedAction,
   catchErrors(deleteRestaurant)
 );
-routerRestaurantByRestaurant.get(
-  "/:_id",
-  needsAuthToken,
-  catchErrors(getById)
-);
+routerRestaurantByRestaurant.get("/:_id", needsAuthToken, catchErrors(getById));
 routerRestaurantByRestaurant.put(
   "/:_id",
   needsAuthToken,

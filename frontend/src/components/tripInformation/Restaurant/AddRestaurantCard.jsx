@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./AddRestorationCard.css";
+import "./AddRestaurantCard.css";
 import * as helper from "../../../helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,7 +20,7 @@ import {
   faRankingStar,
 } from "@fortawesome/free-solid-svg-icons";
 
-function AddRestorationCard({ onAdd, message, adding, tripId }) {
+function AddRestaurantCard({ onAdd, message, adding, tripId }) {
   const [name, setName] = useState("");
   const [kindOfFood, setKindOfFood] = useState("");
   const [location, setLocation] = useState("");
@@ -69,14 +69,14 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
   }, []);
 
   return (
-    <div className="add-card add-restoration-card">
+    <div className="add-card add-restaurant-card">
       <div className="background" onClick={adding}></div>
       <div className="form-container">
         <div className="return-icon" onClick={adding}>
           <FontAwesomeIcon icon={faAngleLeft} size="3x" />{" "}
         </div>
         <form className="add-form" onSubmit={(e) => add(e)}>
-          <h1 className="title">New Restoration</h1>
+          <h1 className="title">New Restaurant</h1>
           <div className="error">{message}</div>
           <label>
             <div className="form-data">
@@ -86,7 +86,7 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
                 maxLength="50"
                 required
                 type="text"
-                placeholder="Restoration's name *"
+                placeholder="Restaurant's name *"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
@@ -379,7 +379,7 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
           <input
             className="submit-button form-data"
             type="submit"
-            value="Create New Restoration"
+            value="Create New Restaurant"
           />
         </form>
       </div>
@@ -387,4 +387,4 @@ function AddRestorationCard({ onAdd, message, adding, tripId }) {
   );
 }
 
-export default AddRestorationCard;
+export default AddRestaurantCard;

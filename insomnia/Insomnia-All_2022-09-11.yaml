@@ -801,7 +801,8 @@ resources:
     method: POST
     body:
       mimeType: application/graphql
-      text: '{"query":"mutation {\n\tcreateStudent(\n\t\tstudent: {\n\t\t\tfirstName:
+      text:
+        '{"query":"mutation {\n\tcreateStudent(\n\t\tstudent: {\n\t\t\tfirstName:
         \"Jorge1\"\n\t\t\tmiddleName: \"Perez\"\n\t\t\tlastName:
         \"García\"\n\t\t\tbirthDate: \"2000-01-20\"\n\t\t\tadress: \"C/ bosc
         num. 989\"\n\t\t\tphone: \"933874853\"\n\t\t\tmobile:
@@ -2742,7 +2743,8 @@ resources:
     parentId: fld_5228dfbd832c44f6bee9b4e04d284573
     modified: 1662118827480
     created: 1662052840605
-    url: "{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}/plan/{{ planId
+    url:
+      "{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}/plan/{{ planId
       }}"
     name: Post Score in Plans
     description: ""
@@ -2775,9 +2777,10 @@ resources:
     parentId: fld_5228dfbd832c44f6bee9b4e04d284573
     modified: 1662118828629
     created: 1662052850527
-    url: "{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}/restoration/{{
-      restorationId }}"
-    name: Post Score in Restoration
+    url:
+      "{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}/restaurant/{{
+      restaurantId }}"
+    name: Post Score in Restaurant
     description: ""
     method: POST
     body:
@@ -3004,8 +3007,8 @@ resources:
     modified: 1662052515703
     created: 1662051806984
     url: "{{ _.base_url }}/{{ _.version
-      }}/comment/travel/{{travelId}}/restoration/{{ restorationId }}"
-    name: Post Comment in Restoration
+      }}/comment/travel/{{travelId}}/restaurant/{{ restaurantId }}"
+    name: Post Comment in Restaurant
     description: ""
     method: POST
     body:
@@ -3408,7 +3411,7 @@ resources:
     parentId: fld_a56f4b03bf8542e0a909f7ead70eec10
     modified: 1662918006396
     created: 1659566988613
-    url: "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/restoration"
+    url: "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/restaurant"
     name: Create Restaurant
     description: ""
     method: POST
@@ -3469,7 +3472,7 @@ resources:
     parentId: fld_99bc7f8461b0421499a00d9dbfc9aa9b
     modified: 1662050294595
     created: 1659566988604
-    name: Restoration
+    name: Restaurant
     description: ""
     environment: {}
     environmentPropertyOrder: {}
@@ -3479,7 +3482,7 @@ resources:
     parentId: fld_a56f4b03bf8542e0a909f7ead70eec10
     modified: 1662918122700
     created: 1659566988621
-    url: "{{ _.base_url }}/{{ _.version }}/restoration/{{ restorationId }}"
+    url: "{{ _.base_url }}/{{ _.version }}/restaurant/{{ restaurantId }}"
     name: Delete Restaurant
     description: ""
     method: DELETE
@@ -3503,7 +3506,7 @@ resources:
     parentId: fld_a56f4b03bf8542e0a909f7ead70eec10
     modified: 1662917991534
     created: 1659566988629
-    url: "{{ _.base_url }}/{{ _.version }}/restoration?_include=totalScore"
+    url: "{{ _.base_url }}/{{ _.version }}/restaurant?_include=totalScore"
     name: Get All Restaurants
     description: ""
     method: GET
@@ -3528,7 +3531,7 @@ resources:
     modified: 1662918127360
     created: 1659707325986
     url: "{{ _.base_url }}/{{ _.version
-      }}/travel/{{travelId}}/restoration?_include=totalScore"
+      }}/travel/{{travelId}}/restaurant?_include=totalScore"
     name: Get Restaurants by travelId
     description: ""
     method: GET
@@ -3552,7 +3555,7 @@ resources:
     parentId: fld_a56f4b03bf8542e0a909f7ead70eec10
     modified: 1662918066008
     created: 1659777810947
-    url: "{{ _.base_url }}/{{ _.version }}/restoration/{{restorationId}}"
+    url: "{{ _.base_url }}/{{ _.version }}/restaurant/{{restaurantId}}"
     name: Modify Restaurant
     description: ""
     method: PUT
@@ -3600,7 +3603,7 @@ resources:
     modified: 1662918117495
     created: 1659778551301
     url: "{{ _.base_url }}/{{ _.version
-      }}/restoration/{{restorationId}}?_include=totalScore"
+      }}/restaurant/{{restaurantId}}?_include=totalScore"
     name: Get Restaurant by id
     description: ""
     method: GET
@@ -3624,7 +3627,7 @@ resources:
     parentId: fld_a56f4b03bf8542e0a909f7ead70eec10
     modified: 1662918110428
     created: 1662918072667
-    url: "{{ _.base_url }}/{{ _.version }}/restoration/{{restorationId}}"
+    url: "{{ _.base_url }}/{{ _.version }}/restaurant/{{restaurantId}}"
     name: Modify Restaurant and Score
     description: ""
     method: PUT
@@ -4423,7 +4426,7 @@ resources:
       travelId: 631df37cc1b3149bae8957b4
       transportationId: 631e1b59df4995ca4a0d6d32
       planId: 631e1c77df4995ca4a0d6d88
-      restorationId: 631e1d4adf4995ca4a0d6dd7
+      restaurantId: 631e1d4adf4995ca4a0d6dd7
       accommodationId: 631e1e2bdf4995ca4a0d6e2d
       commentId: 6310e504c03fd86fea0c1f93
       scoreId: 6310ea23c03fd86fea0c2151
@@ -4439,7 +4442,7 @@ resources:
         - travelId
         - transportationId
         - planId
-        - restorationId
+        - restaurantId
         - accommodationId
         - commentId
         - scoreId

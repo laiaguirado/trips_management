@@ -1,4 +1,4 @@
-.restoration-details-page {
+.restaurant-details-page {
   width: auto;
   width: auto;
   min-width: 40vw;
@@ -9,7 +9,7 @@
   border-radius: 1rem;
 }
 
-.restoration-details-page .delete-restoration {
+.restaurant-details-page .delete-restaurant {
   color: #ad3d25;
   border: 2px solid #ad3d25;
   border-radius: 1.5rem;
@@ -19,7 +19,7 @@
   transition: all 0.1s ease-in-out;
 }
 
-.restoration-details-page .delete-restoration:hover {
+.restaurant-details-page .delete-restaurant:hover {
   cursor: pointer;
   transform: scale(1.2);
   background-color: #ad3e25;

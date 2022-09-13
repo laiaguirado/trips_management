@@ -1,5 +1,5 @@
 // const addRoutesTo = (app) => {
-//     app.use("/v1/restoration", require("./restoration.router.v1"));
+//     app.use("/v1/restaurant", require("./restaurant.router.v1"));
 
 //   };
 //   module.exports = {
@@ -13,13 +13,13 @@ const passParamsToRouterChild = (req, res, next) => {
 
 const addRoutesTo = (app) => {
   app.use(
-    "/v1/travel/:idTravel/restoration",
+    "/v1/travel/:idTravel/restaurant",
     passParamsToRouterChild,
-    require("./restoration.router.v1").routerRestaurantByTravel
+    require("./restaurant.router.v1").routerRestaurantByTravel
   );
   app.use(
-    "/v1/restoration",
-    require("./restoration.router.v1").routerRestaurantByRestaurant
+    "/v1/restaurant",
+    require("./restaurant.router.v1").routerRestaurantByRestaurant
   );
 };
 

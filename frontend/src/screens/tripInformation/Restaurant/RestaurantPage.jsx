@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./RestorationPage.css";
+import "./RestaurantPage.css";
 import Loading from "../../../components/Loading";
 import Bar from "../../../components/Bar";
 import * as api from "../../../api";
-import AddRestorationCard from "../../../components/tripInformation/Restoration/AddRestorationCard";
+import AddRestaurantCard from "../../../components/tripInformation/Restaurant/AddRestaurantCard";
 import ScoreCard from "../../../components/score/ScoreCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
@@ -15,36 +15,36 @@ import {
   faStarHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
 
-function RestorationPage() {
-  const [restorationList, setRestorationList] = useState(null);
+function RestaurantPage() {
+  const [restaurantList, setRestaurantList] = useState(null);
   const [adding, setAdding] = useState(false);
   const [message, setMessage] = useState(null);
   const { tripId } = useParams();
   const navigate = useNavigate();
 
-  const loadRestorationList = async () => {
+  const loadRestaurantList = async () => {
     const {
       success,
-      result: restorationList,
+      result: restaurantList,
       error,
-    } = await api.getRestorationList(tripId);
+    } = await api.getRestaurantList(tripId);
     if (success) {
-      setRestorationList(restorationList);
+      setRestaurantList(restaurantList);
       setMessage(null);
     } else {
-      setRestorationList(null);
+      setRestaurantList(null);
       setMessage(error);
     }
   };
 
-  const addRestoration = async (tripId, newRestorationData) => {
+  const addRestaurant = async (tripId, newRestaurantData) => {
     const {
       success,
       result: added,
       error,
-    } = await api.addRestoration(tripId, newRestorationData);
+    } = await api.addRestaurant(tripId, newRestaurantData);
     if (success) {
-      setRestorationList((restorationList) => [...restorationList, added]);
+      setRestaurantList((restaurantList) => [...restaurantList, added]);
       setAdding(false);
       setMessage(null);
     } else {
@@ -53,11 +53,11 @@ function RestorationPage() {
     }
   };
 
-  function addRestorationForm() {
+  function addRestaurantForm() {
     if (adding) {
       return (
-        <AddRestorationCard
-          onAdd={addRestoration}
+        <AddRestaurantCard
+          onAdd={addRestaurant}
           message={message}
           adding={() => {
             setAdding(false);
@@ -70,12 +70,12 @@ function RestorationPage() {
   }
 
   useEffect(() => {
-    loadRestorationList();
+    loadRestaurantList();
     window.scrollTo(0, 0);
     document.body.style.overflow = "unset";
   }, []);
 
-  if (restorationList === null) {
+  if (restaurantList === null) {
     return (
       <div>
         <Bar mode="login" />
@@ -85,7 +85,7 @@ function RestorationPage() {
   }
 
   return (
-    <div className="restoration-page">
+    <div className="restaurant-page">
       <Bar mode="login" />
       <div className="info-container">
         <div
@@ -96,27 +96,27 @@ function RestorationPage() {
         </div>
         <div className="error details-error">{message}</div>
         <div>
-          <h1 className="details-title list-page">RESTORATION</h1>
+          <h1 className="details-title list-page">RESTAURANTS</h1>
           <div>
             <div className="add-info-button" onClick={() => setAdding(true)}>
               <FontAwesomeIcon icon={faCirclePlus} className="icon" />
             </div>
           </div>
           <div className="info-list">
-            {restorationList.map((restoration) => (
+            {restaurantList.map((restaurant) => (
               <div
                 className="info"
-                key={restoration._id}
+                key={restaurant._id}
                 onClick={() =>
-                  navigate(`/trip/${tripId}/restoration/${restoration._id}`, {
+                  navigate(`/trip/${tripId}/restaurant/${restaurant._id}`, {
                     replace: false,
                   })
                 }
               >
-                <h3 className="info-name">{restoration.name}</h3>
-                <div className="info-main">{restoration.location}</div>
-                {restoration.totalScore && restoration.totalScore.average ? (
-                  <ScoreCard totalScore={restoration.totalScore} />
+                <h3 className="info-name">{restaurant.name}</h3>
+                <div className="info-main">{restaurant.location}</div>
+                {restaurant.totalScore && restaurant.totalScore.average ? (
+                  <ScoreCard totalScore={restaurant.totalScore} />
                 ) : (
                   <div className="info-other-empty">
                     <FontAwesomeIcon icon={faStarRegular} className="icon" />
@@ -131,9 +131,9 @@ function RestorationPage() {
           </div>
         </div>
       </div>
-      {addRestorationForm()}
+      {addRestaurantForm()}
     </div>
   );
 }
 
-export default RestorationPage;
+export default RestaurantPage;

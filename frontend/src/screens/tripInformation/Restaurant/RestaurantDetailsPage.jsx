@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./RestorationDetailsPage.css";
+import "./RestaurantDetailsPage.css";
 import * as api from "../../../api";
 import Bar from "../../../components/Bar";
 import Loading from "../../../components/Loading";
 import CommentsCard from "../../../components/comment/CommentsCard";
-import RestorationCard from "../../../components/tripInformation/Restoration/RestorationCard";
-import EditRestorationCard from "../../../components/tripInformation/Restoration/EditRestorationCard.jsx";
+import RestaurantCard from "../../../components/tripInformation/Restaurant/RestaurantCard";
+import EditRestaurantCard from "../../../components/tripInformation/Restaurant/EditRestaurantCard.jsx";
 import DeleteCard from "../../../components/DeleteCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,55 +16,55 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
-function RestorationDetailsPage() {
-  const [restoration, setRestoration] = useState(null);
+function RestaurantDetailsPage() {
+  const [restaurant, setRestaurant] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false);
   const [message, setMessage] = useState(null);
-  const { tripId, restorationId } = useParams();
+  const { tripId, restaurantId } = useParams();
   const navigate = useNavigate();
 
-  const loadRestoration = async () => {
+  const loadRestaurant = async () => {
     const {
       success,
-      result: restoration,
+      result: restaurant,
       error,
-    } = await api.getRestoration(restorationId);
+    } = await api.getRestaurant(restaurantId);
     if (success) {
-      setRestoration(restoration);
+      setRestaurant(restaurant);
       setMessage(null);
     } else {
-      setRestoration(null);
+      setRestaurant(null);
       setMessage(error);
     }
   };
 
-  const deleteRestoration = async (restorationId) => {
-    const { success, error } = await api.deleteRestoration(restorationId);
+  const deleteRestaurant = async (restaurantId) => {
+    const { success, error } = await api.deleteRestaurant(restaurantId);
     if (success) {
-      navigate(`/trip/${tripId}/restoration`, { replace: false });
+      navigate(`/trip/${tripId}/restaurant`, { replace: false });
     } else {
       setMessage(error);
     }
   };
 
-  const onEdit = async (restorationId, restorationData, score) => {
+  const onEdit = async (restaurantId, restaurantData, score) => {
     let idNewScoreAdded = null;
-    if (restoration.scores[0]) {
+    if (restaurant.scores[0]) {
       if (score === "") {
         const {
           success: scoreSuccess,
           result: newScore,
           error: scoreError,
-        } = await api.deleteScore(restoration.scores[0]._id);
+        } = await api.deleteScore(restaurant.scores[0]._id);
         if (scoreSuccess) {
           setMessage(null);
         } else {
           setMessage(scoreError);
         }
       } else {
-        restorationData.score = {
-          _id: restoration.scores[0]._id,
+        restaurantData.score = {
+          _id: restaurant.scores[0]._id,
           score: score,
         };
       }
@@ -73,7 +73,7 @@ function RestorationDetailsPage() {
         success: scoreSuccess,
         result: newScore,
         error: scoreError,
-      } = await api.addScore(tripId, restorationId, "restoration", {
+      } = await api.addScore(tripId, restaurantId, "restaurant", {
         value: score,
       });
       if (scoreSuccess) {
@@ -88,9 +88,9 @@ function RestorationDetailsPage() {
       success,
       result: edited,
       error,
-    } = await api.updateRestoration(restorationId, restorationData);
+    } = await api.updateRestaurant(restaurantId, restaurantData);
     if (success) {
-      setRestoration(edited);
+      setRestaurant(edited);
       setEditing(false);
       setMessage(null);
     } else {
@@ -119,20 +119,20 @@ function RestorationDetailsPage() {
     if (deleting) {
       return (
         <DeleteCard
-          onDelete={() => deleteRestoration(restorationId)}
+          onDelete={() => deleteRestaurant(restaurantId)}
           deleting={() => setDeleting(false)}
-          deleteType={"restoration"}
+          deleteType={"restaurant"}
         />
       );
     }
   }
 
   useEffect(() => {
-    loadRestoration();
+    loadRestaurant();
     window.scrollTo(0, 0);
-  }, [restorationId]);
+  }, [restaurantId]);
 
-  if (restoration === null) {
+  if (restaurant === null) {
     return (
       <div>
         <Bar mode="login" />
@@ -145,30 +145,30 @@ function RestorationDetailsPage() {
     if (!editing) {
       return (
         <>
-          <RestorationCard restoration={restoration} />
+          <RestaurantCard restaurant={restaurant} />
           <div>
             <div
-              className="delete-restoration"
+              className="delete-restaurant"
               onClick={() => {
                 setDeleting(true);
               }}
             >
-              <FontAwesomeIcon icon={faTrashCan} /> DELETE RESTORATION
+              <FontAwesomeIcon icon={faTrashCan} /> DELETE RESTAURANT
             </div>
             {deleteButton()}
           </div>
           <CommentsCard
             tripId={tripId}
-            componentId={restorationId}
-            component="restoration"
+            componentId={restaurantId}
+            component="restaurant"
           />
         </>
       );
     } else {
       return (
-        <EditRestorationCard
-          restoration={restoration}
-          restorationId={restorationId}
+        <EditRestaurantCard
+          restaurant={restaurant}
+          restaurantId={restaurantId}
           onEdit={onEdit}
         />
       );
@@ -176,7 +176,7 @@ function RestorationDetailsPage() {
   }
 
   return (
-    <div className="restoration-details-page">
+    <div className="restaurant-details-page">
       <Bar mode="login" />
       {!editing ? (
         <div
@@ -206,4 +206,4 @@ function RestorationDetailsPage() {
   );
 }
 
-export default RestorationDetailsPage;
+export default RestaurantDetailsPage;

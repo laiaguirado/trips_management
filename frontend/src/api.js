@@ -107,16 +107,16 @@ export const deletePlan = (planId) => authApiCall("DELETE", `/plans/${planId}`);
 export const updatePlan = (planId, planData) =>
   authApiCall("PUT", `/plans/${planId}`, planData);
 
-export const getRestorationList = (tripId) =>
-  authApiCall("GET", `/travel/${tripId}/restoration?_include=totalScore`);
-export const getRestoration = (restorationId) =>
-  authApiCall("GET", `/restoration/${restorationId}?_include=totalScore`);
-export const addRestoration = (tripId, newRestorationData) =>
-  authApiCall("POST", `/travel/${tripId}/restoration`, newRestorationData);
-export const deleteRestoration = (restorationId) =>
-  authApiCall("DELETE", `/restoration/${restorationId}`);
-export const updateRestoration = (restorationId, restorationData) =>
-  authApiCall("PUT", `/restoration/${restorationId}`, restorationData);
+export const getRestaurantList = (tripId) =>
+  authApiCall("GET", `/travel/${tripId}/restaurant?_include=totalScore`);
+export const getRestaurant = (restaurantId) =>
+  authApiCall("GET", `/restaurant/${restaurantId}?_include=totalScore`);
+export const addRestaurant = (tripId, newRestaurantData) =>
+  authApiCall("POST", `/travel/${tripId}/restaurant`, newRestaurantData);
+export const deleteRestaurant = (restaurantId) =>
+  authApiCall("DELETE", `/restaurant/${restaurantId}`);
+export const updateRestaurant = (restaurantId, restaurantData) =>
+  authApiCall("PUT", `/restaurant/${restaurantId}`, restaurantData);
 
 export const getCommentList = (tripId, componentId) =>
   authApiCall("GET", `/comment/travel/${tripId}/component/${componentId}`);

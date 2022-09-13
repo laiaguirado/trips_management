@@ -5,7 +5,7 @@ const { default: mongoose } = require("mongoose");
 const { errMalformed } = require("../../errors");
 const { TYPE_RESOURCE } = require("../components/component.service.js");
 const Transportation = require("../components/transportation/transportation.model");
-const Restoration = require("../components/restoration/restoration.model");
+const Restaurant = require("../components/restaurant/restaurant.model");
 const Accommodation = require("../components/accommodation/accommodation.model");
 const Plans = require("../components/plans/plans.model");
 
@@ -43,7 +43,7 @@ const deleteComment = async (_id) => {
       model = Transportation;
       break;
     case TYPE_RESOURCE.RESTAURANT:
-      model = Restoration;
+      model = Restaurant;
       break;
     case TYPE_RESOURCE.ACCOMMODATION:
       model = Accommodation;
@@ -65,33 +65,36 @@ const deleteComment = async (_id) => {
 };
 
 const findByTravelId = async (idTravel) => {
-  return await Comment.find({ idTravel:idTravel })
-  .populate({ path: "idUser", select: "email username" })
-  .lean()
-  .exec();
+  return await Comment.find({ idTravel: idTravel })
+    .populate({ path: "idUser", select: "email username" })
+    .lean()
+    .exec();
 };
 
 const findByCompId = async (idComponent) => {
   return await Comment.find({ idComponent })
-  .populate({ path: "idUser", select: "email username" })
-  .lean()
-  .exec();
+    .populate({ path: "idUser", select: "email username" })
+    .lean()
+    .exec();
 };
-
 
 const findCommentById = async (_id) => {
   return await Comment.findOne({ _id }).lean().exec();
 };
 
-const findByTravelAndComp = async (idTravel,idComponent) => {
-  return await Comment.find({ idComponent: idComponent, idTravel:idTravel })
-  .populate({ path: "idUser", select: "email username" })
-  .lean()
-  .exec();
+const findByTravelAndComp = async (idTravel, idComponent) => {
+  return await Comment.find({ idComponent: idComponent, idTravel: idTravel })
+    .populate({ path: "idUser", select: "email username" })
+    .lean()
+    .exec();
 };
 
 const updateComm = async (_id, commentData) => {
-  const comentUpdated = await Comment.findOneAndUpdate({ _id }, commentData, { new: true }).lean().exec();
+  const comentUpdated = await Comment.findOneAndUpdate({ _id }, commentData, {
+    new: true,
+  })
+    .lean()
+    .exec();
 
   if (comentUpdated === null) {
     errMalformed(`Comment not found`);

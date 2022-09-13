@@ -3,7 +3,12 @@ const extendSchema = require("mongoose-extend-schema");
 const mongooseLeanGetters = require("mongoose-lean-getters");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const { componentSchema } = require("../component.model");
-const { capitalize, getPrice, setPrice, getPriceWithCurrency } = require("../../../helper");
+const {
+  capitalize,
+  getPrice,
+  setPrice,
+  getPriceWithCurrency,
+} = require("../../../helper");
 
 function getMaxPriceWithCurrency() {
   return getPriceWithCurrency(this.maxPrice, this.currency);
@@ -13,7 +18,7 @@ function getMinPriceWithCurrency() {
   return getPriceWithCurrency(this.minPrice, this.currency);
 }
 
-const restorationSchema = extendSchema(componentSchema, {
+const restaurantSchema = extendSchema(componentSchema, {
   name: {
     type: String,
     maxlength: [50, "{PATH} is too long"],
@@ -107,12 +112,12 @@ const restorationSchema = extendSchema(componentSchema, {
   },
 });
 
-restorationSchema.index({ phone: 1 });
-restorationSchema.plugin(mongooseLeanGetters);
-restorationSchema.plugin(mongooseLeanVirtuals);
-restorationSchema.virtual("minPriceWithCurrency").get(getMinPriceWithCurrency);
-restorationSchema.virtual("maxPriceWithCurrency").get(getMaxPriceWithCurrency);
+restaurantSchema.index({ phone: 1 });
+restaurantSchema.plugin(mongooseLeanGetters);
+restaurantSchema.plugin(mongooseLeanVirtuals);
+restaurantSchema.virtual("minPriceWithCurrency").get(getMinPriceWithCurrency);
+restaurantSchema.virtual("maxPriceWithCurrency").get(getMaxPriceWithCurrency);
 
-const Restoration = mongoose.model("restoration", restorationSchema);
+const Restaurant = mongoose.model("restaurant", restaurantSchema);
 
-module.exports = Restoration;
+module.exports = Restaurant;

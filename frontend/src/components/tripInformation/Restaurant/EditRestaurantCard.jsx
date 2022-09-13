@@ -1,29 +1,29 @@
 import React, { useState } from "react";
-import "./EditRestorationCard.css";
+import "./EditRestaurantCard.css";
 import * as helper from "../../../helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
-function EditRestorationCard({ restoration, restorationId, onEdit }) {
-  const [name, setName] = useState(restoration.name);
-  const [kindOfFood, setKindOfFood] = useState(restoration.kindOfFood);
-  const [location, setLocation] = useState(restoration.location);
-  const [minPrice, setMinPrice] = useState(restoration.minPrice);
-  const [maxPrice, setMaxPrice] = useState(restoration.maxPrice);
-  const [currency, setCurrency] = useState(restoration.currency);
-  const [closed, setClosed] = useState(restoration.closed);
-  const [openingHour, setOpeningHour] = useState(restoration.openingHour);
-  const [closingHour, setClosingHour] = useState(restoration.closingHour);
-  const [speciality, setSpeciality] = useState(restoration.speciality);
-  const [takeAway, setTakeAway] = useState(restoration.takeAway);
-  const [reserved, setReserved] = useState(restoration.reserved);
-  const [web, setWeb] = useState(restoration.web);
-  const [phone, setPhone] = useState(restoration.phone);
-  const [email, setEmail] = useState(restoration.email);
+function EditRestaurantCard({ restaurant, restaurantId, onEdit }) {
+  const [name, setName] = useState(restaurant.name);
+  const [kindOfFood, setKindOfFood] = useState(restaurant.kindOfFood);
+  const [location, setLocation] = useState(restaurant.location);
+  const [minPrice, setMinPrice] = useState(restaurant.minPrice);
+  const [maxPrice, setMaxPrice] = useState(restaurant.maxPrice);
+  const [currency, setCurrency] = useState(restaurant.currency);
+  const [closed, setClosed] = useState(restaurant.closed);
+  const [openingHour, setOpeningHour] = useState(restaurant.openingHour);
+  const [closingHour, setClosingHour] = useState(restaurant.closingHour);
+  const [speciality, setSpeciality] = useState(restaurant.speciality);
+  const [takeAway, setTakeAway] = useState(restaurant.takeAway);
+  const [reserved, setReserved] = useState(restaurant.reserved);
+  const [web, setWeb] = useState(restaurant.web);
+  const [phone, setPhone] = useState(restaurant.phone);
+  const [email, setEmail] = useState(restaurant.email);
   const [score, setScore] = useState(
-    restoration.scores[0] ? restoration.scores[0].score : ""
+    restaurant.scores[0] ? restaurant.scores[0].score : ""
   );
-  const [notation, setNotation] = useState(restoration.notation);
+  const [notation, setNotation] = useState(restaurant.notation);
   const [takeAwayChecked, setTakeAwayChecked] = useState([
     takeAway ? true : false,
     takeAway ? false : takeAway !== null ? true : false,
@@ -36,7 +36,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
   const update = (e) => {
     e.preventDefault();
     onEdit(
-      restorationId,
+      restaurantId,
       {
         name,
         kindOfFood,
@@ -60,23 +60,23 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
   };
 
   return (
-    <div className="restoration-card edit-card">
-      <div className="restoration-info">
+    <div className="restaurant-card edit-card">
+      <div className="restaurant-info">
         <form className="add-form" onSubmit={(e) => update(e)}>
-          <div className="restoration-name restoration-detail">
+          <div className="restaurant-name restaurant-detail">
             <label>
               <input
                 className="input edit-name"
                 maxLength="50"
                 required
                 type="text"
-                placeholder="Restoration's name *"
+                placeholder="Restaurant's name *"
                 defaultValue={name}
                 onChange={(event) => setName(event.target.value)}
               />
             </label>
           </div>
-          <div className="restoration-rating restoration-detail">
+          <div className="restaurant-rating restaurant-detail">
             <h3>Rating: </h3>
             <label>
               <div className="form-data">
@@ -98,7 +98,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
               </div>
             </label>
           </div>
-          <div className="restoration-location restoration-detail">
+          <div className="restaurant-location restaurant-detail">
             <h3>Location: </h3>
             <div>
               <label>
@@ -117,7 +117,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
             </div>
           </div>
 
-          <div className="restoration-kindOfFood restoration-detail">
+          <div className="restaurant-kindOfFood restaurant-detail">
             <h3>Kind of Food: </h3>
             <div>
               <label>
@@ -144,7 +144,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
             </div>
           </div>
 
-          <div className="restoration-price restoration-detail">
+          <div className="restaurant-price restaurant-detail">
             <h3>Price (min - max):</h3>
             <div>
               <label>
@@ -200,7 +200,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
             </div>
           </div>
 
-          <div className="restoration-hours restoration-detail">
+          <div className="restaurant-hours restaurant-detail">
             <h3>Opening hour - Closing Hour:</h3>
             <div>
               <label>
@@ -230,7 +230,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
             </div>
           </div>
 
-          <div className="restoration-closed restoration-detail">
+          <div className="restaurant-closed restaurant-detail">
             <h3>Closed: </h3>
             <div>
               <label>
@@ -247,7 +247,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
             </div>
           </div>
 
-          <div className="restoration-speciality restoration-detail">
+          <div className="restaurant-speciality restaurant-detail">
             <h3>Speciality of the restaurant: </h3>
             <div>
               <label>
@@ -264,7 +264,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
             </div>
           </div>
 
-          <div className="restoration-takeAway restoration-detail">
+          <div className="restaurant-takeAway restaurant-detail">
             <h3>Take Away: </h3>
             <div>
               <label>
@@ -310,7 +310,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
             </div>
           </div>
 
-          <div className="restoration-reserved restoration-detail">
+          <div className="restaurant-reserved restaurant-detail">
             <h3>Reservation required: </h3>
             <div>
               <label>
@@ -356,7 +356,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
             </div>
           </div>
 
-          <div className="restoration-web restoration-detail">
+          <div className="restaurant-web restaurant-detail">
             <h3>Web page: </h3>
             <div>
               <label>
@@ -373,7 +373,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
             </div>
           </div>
 
-          <div className="restoration-phone restoration-detail">
+          <div className="restaurant-phone restaurant-detail">
             <h3>Phone number: </h3>
             <div>
               <label>
@@ -391,7 +391,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
             </div>
           </div>
 
-          <div className="restoration-email restoration-detail">
+          <div className="restaurant-email restaurant-detail">
             <h3>Email: </h3>
             <div>
               <label>
@@ -408,7 +408,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
             </div>
           </div>
 
-          <div className="restoration-notation restoration-detail">
+          <div className="restaurant-notation restaurant-detail">
             <h3>Notes: </h3>
             <div className="notation-text">
               <label>
@@ -429,7 +429,7 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
           <input
             className="submit-button form-data"
             type="submit"
-            value="Edit Restoration"
+            value="Edit Restaurant"
           />
         </form>
       </div>
@@ -437,4 +437,4 @@ function EditRestorationCard({ restoration, restorationId, onEdit }) {
   );
 }
 
-export default EditRestorationCard;
+export default EditRestaurantCard;
