@@ -225,11 +225,11 @@ function TripDetailCard({
         <div
           className="details-info"
           onClick={() =>
-            navigate(`/trip/${tripId}/transportation`, { replace: false })
+            navigate(`/trip/${tripId}/transport`, { replace: false })
           }
         >
           <FontAwesomeIcon className="icon" icon={faPlane} size="2x" />
-          Transportation
+          Transport
         </div>
         <div
           className="details-info"
@@ -241,11 +241,11 @@ function TripDetailCard({
         <div
           className="details-info"
           onClick={() =>
-            navigate(`/trip/${tripId}/restoration`, { replace: false })
+            navigate(`/trip/${tripId}/restaurant`, { replace: false })
           }
         >
           <FontAwesomeIcon className="icon" icon={faUtensils} size="2x" />
-          Restoration
+          Restaurants
         </div>
       </div>
       {userData._id === obtainAdminUser()._id ? (
@@ -263,17 +263,6 @@ function TripDetailCard({
       ) : (
         <div></div>
       )}
-      <div className="trip-comments">
-        {/*<div>
-            {Array.isArray(trip) !== true ? (
-              trip.comments.map((comment) => (
-                <p key={comment._id}>{comment.username} : {comment.text}</p>
-              ))
-            ) : (
-              <p></p>
-            )}
-            </div>*/}
-      </div>
     </>
   );
 }

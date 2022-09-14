@@ -23,7 +23,6 @@ const apiCall = async (method, path, body, headers, isMultipartForm) => {
     if (isSuccess(response.status)) {
       return { success: true, result: json };
     } else if (response.status === 401) {
-      // localStorage.setItem("token", null);
       return { success: false, error: json.error };
     } else {
       return { success: false, error: json.error };
@@ -82,20 +81,16 @@ export const deleteAccommodation = (accommodationId) =>
 export const updateAccommodation = (accommodationId, accommodationData) =>
   authApiCall("PUT", `/accommodation/${accommodationId}`, accommodationData);
 
-export const getTransportationList = (tripId) =>
-  authApiCall("GET", `/travel/${tripId}/transportation?_include=totalScore`);
-export const getTransportation = (transportationId) =>
-  authApiCall("GET", `/transportation/${transportationId}?_include=totalScore`);
-export const addTransportation = (tripId, newTransportationData) =>
-  authApiCall(
-    "POST",
-    `/travel/${tripId}/transportation`,
-    newTransportationData
-  );
-export const deleteTransportation = (transportationId) =>
-  authApiCall("DELETE", `/transportation/${transportationId}`);
-export const updateTransportation = (transportationId, transportationData) =>
-  authApiCall("PUT", `/transportation/${transportationId}`, transportationData);
+export const getTransportList = (tripId) =>
+  authApiCall("GET", `/travel/${tripId}/transport?_include=totalScore`);
+export const getTransport = (transportId) =>
+  authApiCall("GET", `/transport/${transportId}?_include=totalScore`);
+export const addTransport = (tripId, newTransportData) =>
+  authApiCall("POST", `/travel/${tripId}/transport`, newTransportData);
+export const deleteTransport = (transportId) =>
+  authApiCall("DELETE", `/transport/${transportId}`);
+export const updateTransport = (transportId, transportData) =>
+  authApiCall("PUT", `/transport/${transportId}`, transportData);
 
 export const getPlanList = (tripId) =>
   authApiCall("GET", `/travel/${tripId}/plans?_include=totalScore`);
@@ -107,16 +102,16 @@ export const deletePlan = (planId) => authApiCall("DELETE", `/plans/${planId}`);
 export const updatePlan = (planId, planData) =>
   authApiCall("PUT", `/plans/${planId}`, planData);
 
-export const getRestorationList = (tripId) =>
-  authApiCall("GET", `/travel/${tripId}/restoration?_include=totalScore`);
-export const getRestoration = (restorationId) =>
-  authApiCall("GET", `/restoration/${restorationId}?_include=totalScore`);
-export const addRestoration = (tripId, newRestorationData) =>
-  authApiCall("POST", `/travel/${tripId}/restoration`, newRestorationData);
-export const deleteRestoration = (restorationId) =>
-  authApiCall("DELETE", `/restoration/${restorationId}`);
-export const updateRestoration = (restorationId, restorationData) =>
-  authApiCall("PUT", `/restoration/${restorationId}`, restorationData);
+export const getRestaurantList = (tripId) =>
+  authApiCall("GET", `/travel/${tripId}/restaurant?_include=totalScore`);
+export const getRestaurant = (restaurantId) =>
+  authApiCall("GET", `/restaurant/${restaurantId}?_include=totalScore`);
+export const addRestaurant = (tripId, newRestaurantData) =>
+  authApiCall("POST", `/travel/${tripId}/restaurant`, newRestaurantData);
+export const deleteRestaurant = (restaurantId) =>
+  authApiCall("DELETE", `/restaurant/${restaurantId}`);
+export const updateRestaurant = (restaurantId, restaurantData) =>
+  authApiCall("PUT", `/restaurant/${restaurantId}`, restaurantData);
 
 export const getCommentList = (tripId, componentId) =>
   authApiCall("GET", `/comment/travel/${tripId}/component/${componentId}`);

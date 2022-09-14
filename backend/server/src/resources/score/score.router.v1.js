@@ -1,16 +1,12 @@
-const { Router } = require("express");
-const { route } = require("express/lib/application");
 const express = require("express");
-const { catchErrors, TripManagementApiError } = require("../../errors");
+const { catchErrors } = require("../../errors");
 const { needsAuthToken } = require("../users/auth/auth.middleware");
 
 const Score = require("./score.service");
-const Accomodation = require("../components/accommodation/accommodation.service");
-const Restoration = require("../components/restoration/restoration.service");
-const Transportation = require("../components/transportation/transportation.service");
+const Accommodation = require("../components/accommodation/accommodation.service");
+const Restaurant = require("../components/restaurant/restaurant.service");
+const Transport = require("../components/transport/transport.service");
 const Plan = require("../components/plans/plans.services");
-const User = require("../users/user.service");
-const Travel = require("../travel/travel.service");
 
 const createAcom = async (req, res) => {
   const { compId } = req.params;
@@ -20,7 +16,7 @@ const createAcom = async (req, res) => {
 
   const score = await Score.createOne(value, compId, _id, _idTravel);
 
-  const accommodation = await Accomodation.findOneById(compId);
+  const accommodation = await Accommodation.findOneById(compId);
   accommodation.scores.push(score);
   await accommodation.save();
 
@@ -35,9 +31,9 @@ const createRest = async (req, res) => {
 
   const score = await Score.createOne(value, compId, _id, _idTravel);
 
-  const restoration = await Restoration.findOneById(compId);
-  restoration.scores.push(score);
-  await restoration.save();
+  const restaurant = await Restaurant.findOneById(compId);
+  restaurant.scores.push(score);
+  await restaurant.save();
 
   res.status(200).json(score);
 };
@@ -50,9 +46,9 @@ const createTransp = async (req, res) => {
 
   const score = await Score.createOne(value, compId, _id, _idTravel);
 
-  const transportation = await Transportation.findOneById(compId);
-  transportation.scores.push(score);
-  await transportation.save();
+  const transport = await Transport.findOneById(compId);
+  transport.scores.push(score);
+  await transport.save();
 
   res.status(200).json(score);
 };
@@ -106,12 +102,12 @@ router.post(
   catchErrors(createAcom)
 );
 router.post(
-  "/travel/:_idTravel/restoration/:compId",
+  "/travel/:_idTravel/restaurant/:compId",
   needsAuthToken,
   catchErrors(createRest)
 );
 router.post(
-  "/travel/:_idTravel/transportation/:compId",
+  "/travel/:_idTravel/transport/:compId",
   needsAuthToken,
   catchErrors(createTransp)
 );

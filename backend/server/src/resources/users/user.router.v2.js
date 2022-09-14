@@ -1,7 +1,5 @@
-const { catchErrors, TripManagementApiError } = require("../../errors");
+const { catchErrors } = require("../../errors");
 const config = require("../../config");
-const { needsAuthToken } = require("./auth/auth.middleware");
-const User = require("./user.service");
 
 const test = async (req, res) => {
   res.status(200).json({
@@ -33,8 +31,8 @@ const router = express.Router();
 router.post("/register", catchErrors(register));
 router.post("/login", catchErrors(login));
 if (config.isDevelopment) {
-  router.get("/test", /*needsAuthToken,*/ catchErrors(test));
-  router.get("/newTest", /*needsAuthToken,*/ catchErrors(newTest));
+  router.get("/test", catchErrors(test));
+  router.get("/newTest", catchErrors(newTest));
 }
 
 module.exports = router;

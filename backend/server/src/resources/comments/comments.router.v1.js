@@ -1,16 +1,12 @@
-const { Router } = require("express");
-const { route } = require("express/lib/application");
 const express = require("express");
-const { catchErrors, TripManagementApiError } = require("../../errors");
+const { catchErrors } = require("../../errors");
 const { needsAuthToken } = require("../users/auth/auth.middleware");
 const { commentAllowedAction } = require("./comments.middelware");
 
 const Comment = require("./comments.service");
-const Accomodation = require("../components/accommodation/accommodation.service");
-const User = require("../users/user.service");
-const Travel = require("../travel/travel.service");
-const Restoration = require("../components/restoration/restoration.service");
-const Transportation = require("../components/transportation/transportation.service");
+const Accommodation = require("../components/accommodation/accommodation.service");
+const Restaurant = require("../components/restaurant/restaurant.service");
+const Transport = require("../components/transport/transport.service");
 const Plan = require("../components/plans/plans.services");
 const { TYPE_RESOURCE } = require("../components/component.service.js");
 
@@ -28,7 +24,7 @@ const createAcom = async (req, res) => {
     travelId,
     resourceType
   );
-  const accommodation = await Accomodation.findOneById(idComp);
+  const accommodation = await Accommodation.findOneById(idComp);
 
   accommodation.comments.push(comment);
   await accommodation.save();
@@ -50,10 +46,10 @@ const createRest = async (req, res) => {
     travelId,
     resourceType
   );
-  const restoration = await Restoration.findOneById(idComp);
+  const restaurant = await Restaurant.findOneById(idComp);
 
-  restoration.comments.push(comment);
-  await restoration.save();
+  restaurant.comments.push(comment);
+  await restaurant.save();
 
   res.status(200).json(comment);
 };
@@ -72,10 +68,10 @@ const createTransp = async (req, res) => {
     travelId,
     resourceType
   );
-  const transportation = await Transportation.findOneById(idComp);
+  const transport = await Transport.findOneById(idComp);
 
-  transportation.comments.push(comment);
-  await transportation.save();
+  transport.comments.push(comment);
+  await transport.save();
 
   res.status(200).json(comment);
 };
@@ -143,13 +139,13 @@ router.post(
   catchErrors(createAcom)
 );
 router.post(
-  "/travel/:travelId/restoration/:idComp",
+  "/travel/:travelId/restaurant/:idComp",
   needsAuthToken,
   commentAllowedAction,
   catchErrors(createRest)
 );
 router.post(
-  "/travel/:travelId/transportation/:idComp",
+  "/travel/:travelId/transport/:idComp",
   needsAuthToken,
   commentAllowedAction,
   catchErrors(createTransp)
@@ -174,8 +170,20 @@ router.delete(
   commentAllowedAction,
   catchErrors(deleteOne)
 );
-router.get("/travel/:idTravel", needsAuthToken, catchErrors(getCommentsByTravel))
-router.get("/component/:idComp", needsAuthToken, catchErrors(getCommentsByComponent))
-router.get("/travel/:idTravel/component/:idComp", needsAuthToken, catchErrors(getCommentsByTravAndComp))
+router.get(
+  "/travel/:idTravel",
+  needsAuthToken,
+  catchErrors(getCommentsByTravel)
+);
+router.get(
+  "/component/:idComp",
+  needsAuthToken,
+  catchErrors(getCommentsByComponent)
+);
+router.get(
+  "/travel/:idTravel/component/:idComp",
+  needsAuthToken,
+  catchErrors(getCommentsByTravAndComp)
+);
 
 module.exports = router;

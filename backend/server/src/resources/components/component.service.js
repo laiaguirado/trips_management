@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const { Component } = require("./component.model");
 
 const TYPE_RESOURCE = {
-  TRANSPORT: "transportation",
+  TRANSPORT: "transport",
   ACCOMMODATION: "accommodation",
-  RESTAURANT: "restoration",
+  RESTAURANT: "restaurant",
   PLANS: "plans",
 };
 
@@ -23,32 +23,26 @@ const getScores = async (model, id) => {
       }
     : { $match: {} };
 
-  const totales = await model.aggregate(
-    [
-      {
-        $lookup: {
-          from: "scores",
-          localField: "scores",
-          foreignField: "_id",
-          as: "resultingArray",
-        },
+  const totales = await model.aggregate([
+    {
+      $lookup: {
+        from: "scores",
+        localField: "scores",
+        foreignField: "_id",
+        as: "resultingArray",
       },
-      { $unwind: "$resultingArray" },
-      {
-        $group: {
-          _id: "$_id",
-          average: { $avg: "$resultingArray.score" },
-          points: { $sum: "$resultingArray.score" },
-          votes: { $sum: 1 },
-        },
+    },
+    { $unwind: "$resultingArray" },
+    {
+      $group: {
+        _id: "$_id",
+        average: { $avg: "$resultingArray.score" },
+        points: { $sum: "$resultingArray.score" },
+        votes: { $sum: 1 },
       },
-      filterBy,
-    ],
-    function (err, result) {
-      // console.log(result);
-      // console.log(err);
-    }
-  );
+    },
+    filterBy,
+  ]);
   return totales;
 };
 
@@ -58,38 +52,32 @@ const findComponent = async (id) => {
         $match: { _id: { $eq: mongoose.Types.ObjectId(id) } },
       }
     : { $match: {} };
-  const component = await Component.aggregate(
-    [
-      {
-        $unionWith: {
-          coll: "plans",
-          pipeline: [filterBy],
-        },
+  const component = await Component.aggregate([
+    {
+      $unionWith: {
+        coll: "plans",
+        pipeline: [filterBy],
       },
-      {
-        $unionWith: {
-          coll: "accommodations",
-          pipeline: [filterBy],
-        },
+    },
+    {
+      $unionWith: {
+        coll: "accommodations",
+        pipeline: [filterBy],
       },
-      {
-        $unionWith: {
-          coll: "transportations",
-          pipeline: [filterBy],
-        },
+    },
+    {
+      $unionWith: {
+        coll: "transports",
+        pipeline: [filterBy],
       },
-      {
-        $unionWith: {
-          coll: "restorations",
-          pipeline: [filterBy],
-        },
+    },
+    {
+      $unionWith: {
+        coll: "restaurants",
+        pipeline: [filterBy],
       },
-    ],
-    function (err, result) {
-      //    console.log(result);
-      //  console.log(err);
-    }
-  );
+    },
+  ]);
   return component[0];
 };
 

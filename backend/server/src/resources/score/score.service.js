@@ -1,11 +1,8 @@
 const Score = require("./score.model");
-const Travel = require("../travel/travel.model");
-const User = require("../users/user.model")
 const { errMalformed } = require("../../errors");
 const { default: mongoose } = require("mongoose");
 
 const createOne = async (value, compId, user_id, idTravel) => {
-
   return await Score.create({
     score: value,
     idComponent: compId,
@@ -27,7 +24,11 @@ const deleteScore = async (_id) => {
 };
 
 const updateScore = async (_id, data) => {
-  const scoreUpdated = await Score.findOneAndUpdate({ _id }, data, { new: true }).lean().exec();
+  const scoreUpdated = await Score.findOneAndUpdate({ _id }, data, {
+    new: true,
+  })
+    .lean()
+    .exec();
 
   if (scoreUpdated === null) {
     errMalformed(`Score not found`);
@@ -39,13 +40,21 @@ const findByTravelId = async (idTravel) => {
   return await Score.find({ idTravel: idTravel })
     .populate({ path: "idUser", select: "email username" })
     .lean()
-    .exec();;
+    .exec();
 };
 
 const findByCompId = async (idComponent) => {
-  return await Score.find({ idComponent }).populate({ path: "idUser", select: "email username" })
+  return await Score.find({ idComponent })
+    .populate({ path: "idUser", select: "email username" })
     .lean()
     .exec();
 };
 
-module.exports = { createOne, findAll, deleteScore, findByTravelId, findByCompId, updateScore };
+module.exports = {
+  createOne,
+  findAll,
+  deleteScore,
+  findByTravelId,
+  findByCompId,
+  updateScore,
+};

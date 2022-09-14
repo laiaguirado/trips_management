@@ -1,1 +1,2091 @@
-{"_type":"export","__export_format":4,"__export_date":"2022-09-02T17:00:49.571Z","__export_source":"insomnia.desktop.app:v2022.5.1","resources":[{"_id":"req_b585d0bee3944d1da76648538a9b5bfe","parentId":"fld_521b7ce77e35449a8973d6d4b0e672e1","modified":1661956705829,"created":1659566954616,"url":"{{ _.base_url }}/{{ _.version }}/user/login","name":"Login","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"email\": \"laia@gmail.com\",\n\t\"password\": \"laia\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_b213597de4d54451acfe92e56e16ff72"}],"authentication":{},"metaSortKey":-1658929841174,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_521b7ce77e35449a8973d6d4b0e672e1","parentId":"fld_8451d969f4804899abc0dda8defa96b2","modified":1659567171389,"created":1659566954601,"name":"v1","description":"","environment":{"version":"v1"},"environmentPropertyOrder":{"&":["version"]},"metaSortKey":-1658675472458,"_type":"request_group"},{"_id":"fld_8451d969f4804899abc0dda8defa96b2","parentId":"wrk_59c677e025be480abdb281dc2d7d6730","modified":1661956811578,"created":1659566954590,"name":"User","description":"","environment":{},"environmentPropertyOrder":{},"metaSortKey":0,"_type":"request_group"},{"_id":"wrk_59c677e025be480abdb281dc2d7d6730","parentId":null,"modified":1659566923869,"created":1659566923869,"name":"API_Trip_Management.yaml","description":"","scope":"design","_type":"workspace"},{"_id":"req_f871a716ff81468b87f9cf73ceba6db8","parentId":"fld_521b7ce77e35449a8973d6d4b0e672e1","modified":1662118797053,"created":1659566954610,"url":"{{ _.base_url }}/{{ _.version }}/user/register","name":"Register","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"email\": \"test2@gmail.com\",\n\t\"password\": \"test2\",\n\t\"username\":\"tes2tUser\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_b213597de4d54451acfe92e56e16ff72"}],"authentication":{},"metaSortKey":-1658929841149,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_ad70333a7b2d4ed4bd53d25947b4fa3a","parentId":"fld_521b7ce77e35449a8973d6d4b0e672e1","modified":1662067180812,"created":1659898766277,"url":"{{ _.base_url }}/{{ _.version }}/user/me","name":"Get logged user","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658929841136.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_3f27d8e967424afaa1e311c263b71c6e","parentId":"fld_521b7ce77e35449a8973d6d4b0e672e1","modified":1661956836216,"created":1659566954627,"url":"{{ _.base_url }}/{{ _.version }}/user/","name":"Get all users","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658929841124,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_a1e8dc875af343d99b9e513745eb4810","parentId":"fld_521b7ce77e35449a8973d6d4b0e672e1","modified":1661956837408,"created":1659566954639,"url":"{{ _.base_url }}/{{ _.version }}/user/{{ _.userEmail }}","name":"Get user by email","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658926856739,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_7099005128cb452e8c0d3c6fc395e2c6","parentId":"fld_521b7ce77e35449a8973d6d4b0e672e1","modified":1661956838601,"created":1661956582625,"url":"{{ _.base_url }}/{{ _.version }}/user/authenticated","name":"Get if user is authenticated","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658925364546.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_8cb4c9b86ec54ac4adaa6fd57c448517","parentId":"fld_521b7ce77e35449a8973d6d4b0e672e1","modified":1661957157418,"created":1659566954634,"url":"{{ _.base_url }}/{{ _.version }}/user/me/travel","name":"Get travels of the logged user","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658923872354,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_193ecbb0895a41f291590f526d48b2cc","parentId":"fld_13cc3fed9b844d14a8811ff055aa3e3e","modified":1662118804456,"created":1659566974952,"url":"{{ _.base_url }}/{{ _.version }}/travel/test","name":"Test Travel","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658907189457,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_13cc3fed9b844d14a8811ff055aa3e3e","parentId":"fld_1066b8bbb36441619284a0414b96e8d5","modified":1659566974945,"created":1659566974945,"name":"V1","description":"","environment":{"version":"V1"},"environmentPropertyOrder":{"&":["version"]},"metaSortKey":-1658915848969,"_type":"request_group"},{"_id":"fld_1066b8bbb36441619284a0414b96e8d5","parentId":"wrk_59c677e025be480abdb281dc2d7d6730","modified":1661956811578,"created":1659566974930,"name":"Travel","description":"","environment":{},"environmentPropertyOrder":{},"metaSortKey":100,"_type":"request_group"},{"_id":"req_877813e2af18496ab03cbd76419b7adb","parentId":"fld_13cc3fed9b844d14a8811ff055aa3e3e","modified":1662118801221,"created":1659566975010,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}","name":"Get Travel by id","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658866177067.461,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_590c5f1af65a46bbb9aa012a2a46f2a7","parentId":"fld_13cc3fed9b844d14a8811ff055aa3e3e","modified":1662118814698,"created":1659566974975,"url":"{{ _.base_url }}/{{ _.version }}/travel","name":"Get all travels","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658845670872.6914,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_f51da6b2114e418ca45d41d6ae6b8498","parentId":"fld_13cc3fed9b844d14a8811ff055aa3e3e","modified":1662138022296,"created":1659566974964,"url":"{{ _.base_url }}/{{ _.version }}/travel","name":"Create Travel","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"name\": \"Trip 1\",\n\t\"description\": \"This is the description\",\n\t\"location\": \"Barcelona\",\n\t\"startDate\": \"2022-08-01\",\n\t\"endDate\": \"2022-08-15\",\n\t\"image\": \t\"url-image\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_7ca51590d29840f2a44445ab650e8600"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658825164677.9219,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_adf5663ce68b49478d593ee0d6df241b","parentId":"fld_13cc3fed9b844d14a8811ff055aa3e3e","modified":1662046192184,"created":1659566974984,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}","name":"Modify Travel","description":"","method":"PUT","body":{"mimeType":"application/json","text":"{\n\t\"name\": \"Trip 1 modified\",\n\t\"description\": \"This is the description\",\n\t\"location\": \"Barcelona\",\n\t\"startDate\": \"2022-08-01\",\n\t\"endDate\": \"2022-08-15\",\n\t\"image\": {\t\t\n\t\t\"url\": \"ads\"\n\t}\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_7ca51590d29840f2a44445ab650e8600"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658784152288.3828,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_53104e29e1424637b47270f818736f13","parentId":"fld_13cc3fed9b844d14a8811ff055aa3e3e","modified":1662046193989,"created":1659566974992,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}","name":"Delete Travel","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658763646093.6133,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_f2eed4da07dd425780600571fe50cb47","parentId":"fld_13cc3fed9b844d14a8811ff055aa3e3e","modified":1662132341977,"created":1659566975001,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{ _.travelId }}/traveler/{{ travelerEmail }}","name":"Add traveler by email","description":"","method":"POST","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658609849632.8418,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_58b4faf076424d81816afb787ac3f87b","parentId":"fld_13cc3fed9b844d14a8811ff055aa3e3e","modified":1662133820246,"created":1659566975026,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{ travelId }}/traveler/me","name":"Add logged traveler","description":"","method":"POST","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658602159809.8032,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_e3d827207a594ed98fd89f16c55c5cbe","parentId":"fld_13cc3fed9b844d14a8811ff055aa3e3e","modified":1662064577921,"created":1659566975018,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/traveler/{{ travelerEmail }}","name":"Delete traveler by email","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658600237354.0435,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_f7c34a8f881043c1912e0a56b4f140ea","parentId":"fld_13cc3fed9b844d14a8811ff055aa3e3e","modified":1662132274072,"created":1659566975034,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/traveler/me","name":"Delete logged traveler","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1658598314898.284,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_bab6f73631da4c6eac89fb10a8f19a58","parentId":"fld_3c3020614fe14c38b129d2d87cc2b2bd","modified":1662047815612,"created":1659566988672,"url":"{{ _.base_url }}/{{ _.version }}/transportation/test","name":"Test Transportation","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659547882682,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_3c3020614fe14c38b129d2d87cc2b2bd","parentId":"fld_c4785ecbbf3941b2ab034b0328772219","modified":1659567917093,"created":1659566988646,"name":"V1","description":"","environment":{"version":"V1"},"environmentPropertyOrder":{"&":["version"]},"metaSortKey":-1659475910299,"_type":"request_group"},{"_id":"fld_c4785ecbbf3941b2ab034b0328772219","parentId":"fld_99bc7f8461b0421499a00d9dbfc9aa9b","modified":1659566988642,"created":1659566988642,"name":"Transportation","description":"","environment":{},"environmentPropertyOrder":{},"metaSortKey":-1659475673635,"_type":"request_group"},{"_id":"fld_99bc7f8461b0421499a00d9dbfc9aa9b","parentId":"wrk_59c677e025be480abdb281dc2d7d6730","modified":1661956811578,"created":1659566988544,"name":"Components","description":"","environment":{},"environmentPropertyOrder":{},"metaSortKey":200,"_type":"request_group"},{"_id":"req_5cb44b5e8ac94442a7ae4dac34aa4565","parentId":"fld_3c3020614fe14c38b129d2d87cc2b2bd","modified":1662051437188,"created":1659566988664,"url":"{{ _.base_url }}/{{ _.version }}/transportation/{{transportationId}}","name":"Get Transport by id","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659547882632,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_57502560ad7e47bea1bcf8cffa0905ca","parentId":"fld_3c3020614fe14c38b129d2d87cc2b2bd","modified":1662050820955,"created":1659566988656,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/transportation","name":"Get Transports by travelId","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659547882607,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_86d9a315a8c14c6f81b3e659259d19b0","parentId":"fld_3c3020614fe14c38b129d2d87cc2b2bd","modified":1662050714073,"created":1659566988650,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/transportation","name":"Create Transport","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"name\": \"Vuelo\",\n\t\"type\": \"airplane\",\n\t\"typeDetails\": \"Terminal A\",\n\t\"price\": 20,\n\t\"currency\":\"€\",\n\t\"origin\": \"Barcelona\",\n\t\"destination\": \"Paris\",\n\t\"departure\": \"2022-08-01 10:00\",\n\t\"arrival\": \"2022-08-01 12:00\",\n\t\"web\": \"http://www.google.com\",\n\t\"notation\": \"Notas sobre el transporte\"\t\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_2b9592e41cce4475bfa2f5b0de29f2d4"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659547882582,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_7743574a555946de9b971581e27fb34e","parentId":"fld_3c3020614fe14c38b129d2d87cc2b2bd","modified":1662048135228,"created":1659624261308,"url":"{{ _.base_url }}/{{ _.version }}/transportation/{{ _.transportationId }}","name":"Modify Transport","description":"","method":"PUT","body":{"mimeType":"application/json","text":"{\n\t\"name\": \"Vuelo Modificado!\",\n\t\"type\": \"airplane\",\n\t\"typeDetails\": \"Terminal A\",\n\t\"price\": 20,\n\t\"currency\":\"€\",\n\t\"origin\": \"Barcelona\",\n\t\"destination\": \"Paris\",\n\t\"departure\": \"2022-08-01 10:00\",\n\t\"arrival\": \"2022-08-01 12:00\",\n\t\"web\": \"http://www.google.com\",\n\t\"notation\": \"Notas sobre el transporte\"\t\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_d960299bd4c14cf99e46005d376460c4"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659503931424.0156,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_965f5fdd18e6405886983bd9be78b88e","parentId":"fld_3c3020614fe14c38b129d2d87cc2b2bd","modified":1662048187601,"created":1659566988680,"url":"{{ _.base_url }}/{{ _.version }}/transportation/{{ _.transportationId }}","name":"Delete Transport","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659459980266.0312,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_df0058e991924bfbaba127a613420cb7","parentId":"fld_d1a60b2c6dcb4dbc86a8801693593ffb","modified":1662048659693,"created":1659611560456,"url":"{{ _.base_url }}/{{ _.version }}/plans/test","name":"Test Plans","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659547882632,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_d1a60b2c6dcb4dbc86a8801693593ffb","parentId":"fld_7ab384115f264c35b4705d10f54229f6","modified":1659611741263,"created":1659611560424,"name":"V1","description":"","environment":{"version":"V1"},"environmentPropertyOrder":{"&":["version"]},"metaSortKey":-1659475910299,"_type":"request_group"},{"_id":"fld_7ab384115f264c35b4705d10f54229f6","parentId":"fld_99bc7f8461b0421499a00d9dbfc9aa9b","modified":1662048643526,"created":1659611560403,"name":"Plans","description":"","environment":{},"environmentPropertyOrder":{},"metaSortKey":-1659420886053.5,"_type":"request_group"},{"_id":"req_a5db7a37a9df4000a59aebf701136215","parentId":"fld_d1a60b2c6dcb4dbc86a8801693593ffb","modified":1662051428939,"created":1659611560449,"url":"{{ _.base_url }}/{{ _.version }}/plans/{{planId}}","name":"Get Plan by id","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659547882607,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_90c586f33a134d53a151e47e5b1861d5","parentId":"fld_d1a60b2c6dcb4dbc86a8801693593ffb","modified":1662050809731,"created":1659611560442,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/plans","name":"Get Plans by travelId","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659547882594.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_ba293ca2d97348048914444f553a9784","parentId":"fld_d1a60b2c6dcb4dbc86a8801693593ffb","modified":1662050097296,"created":1659611560433,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/plans","name":"Create Plan","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"name\": \"Plan\",\n\t\"location\": \"C/ Pierre 18\",\n\t\"openingHour\": \"10:00\",\n\t\"closingHour\": \"18:00\",\n\t\"closed\" : \"Primer lunes de cada mes\",\n\t\"duration\": \"Unas 3h si ves los jardines 4h\",\n\t\"priceAdult\": 100,\n\t\"priceChildren\": 50,\t\n\t\"currency\":\"€\",\n\t\"discount\": \"5% con carnet de estudiante\",\n\t\"web\": \"http://www.google.com\",\n\t\"phone\": \"098778789\",\n\t\"email\": \"aaa@aa.com\",\n\t\"notation\": \"Notas sobre el plan\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_2b9592e41cce4475bfa2f5b0de29f2d4"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659547882582,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_ff1bc496844342baaa800a39037826aa","parentId":"fld_d1a60b2c6dcb4dbc86a8801693593ffb","modified":1662049628646,"created":1659624842092,"url":"{{ _.base_url }}/{{ _.version }}/plans/{{planId}}","name":"Modify Plan","description":"","method":"PUT","body":{"mimeType":"application/json","text":"{\n\t\"name\": \"Plan modificado\",\n\t\"location\": \"C/ Pierre 18\",\n\t\"openingHour\": \"10:00\",\n\t\"closingHour\": \"18:00\",\n\t\"closed\" : \"Primer lunes de cada mes\",\n\t\"duration\": \"Unas 3h si ves los jardines 4h\",\n\t\"priceAdult\": 100,\n\t\"priceChildren\": 50,\t\n\t\"currency\":\"€\",\n\t\"discount\": \"5% con carnet de estudiante\",\n\t\"web\": \"http://www.google.com\",\n\t\"phone\": \"098778789\",\n\t\"email\": \"aaa@aa.com\",\n\t\"notation\": \"Notas sobre el plan\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_c7a27dd52b9f4e26b3ea205a74abf331"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659503931424.0156,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_d8945d847e374e0697eeb47daf6d883e","parentId":"fld_d1a60b2c6dcb4dbc86a8801693593ffb","modified":1662049603665,"created":1659611560464,"url":"{{ _.base_url }}/{{ _.version }}/plans/{{ _.planId }}","name":"Delete Plan","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659459980266.0312,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_14c53f29a3444787bb247e34372143fa","parentId":"fld_a56f4b03bf8542e0a909f7ead70eec10","modified":1662051424054,"created":1659778551301,"url":"{{ _.base_url }}/{{ _.version }}/restoration/{{restorationId}}","name":"Get Restaurant by id","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659778551301,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_a56f4b03bf8542e0a909f7ead70eec10","parentId":"fld_4e8990a9f76146ed8bd922ef6f5a92ab","modified":1662050313653,"created":1659566988607,"name":"v1","description":"","environment":{"version":"v1"},"environmentPropertyOrder":{"&":["version"]},"metaSortKey":-1659366098472,"_type":"request_group"},{"_id":"fld_4e8990a9f76146ed8bd922ef6f5a92ab","parentId":"fld_99bc7f8461b0421499a00d9dbfc9aa9b","modified":1662050294595,"created":1659566988604,"name":"Restoration","description":"","environment":{},"environmentPropertyOrder":{},"metaSortKey":-1659366091972,"_type":"request_group"},{"_id":"req_297ea5984c40401398bccd01c46a5d7e","parentId":"fld_a56f4b03bf8542e0a909f7ead70eec10","modified":1662050788986,"created":1659707325986,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/restoration","name":"Get Restaurants by travelId","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659778181124,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_2fafcf41e887489fa9bf93aa5de7699b","parentId":"fld_a56f4b03bf8542e0a909f7ead70eec10","modified":1662050517677,"created":1659566988629,"url":"{{ _.base_url }}/{{ _.version }}/restoration","name":"Get All Restaurants","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659777996035.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_26507457f9494719b7b7ed9afb795133","parentId":"fld_a56f4b03bf8542e0a909f7ead70eec10","modified":1662051322754,"created":1659566988613,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/restoration","name":"Create Restaurant","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"name\":\"Bar Pepe\",\n\t\"location\": \"Barcelona\",\n\t\"kindOfFood\":\"mediterranean\",\n\t\"minPrice\":\"4\",\t\n\t\"maxPrice\":\"6\",\n\t\"currency\": \"€\",\n\t\"openingHour\":\"10:00\",\n\t\"closingHour\":\"23:00\",\n\t\"closed\":\"Todos los domingos cerrado\",\n\t\"speciality\":\"La especialidad de la casa son las croquetas\",\n\t\"takeAway\":\"true\",\n\t\"reserved\":\"false\",\n\t\"web\": \"www.google.com\",\n\t\"phone\": \"123443545\",\n\t\"email\": \"a@cccc.com\",\n\t\"notation\":\"Notas sobre el restaurante\"\n}\n"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_608bc4e552e04c859fe1221554d60f95"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659777903491.25,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_f551ed0a87cc4223b1b33292b8fd77c8","parentId":"fld_a56f4b03bf8542e0a909f7ead70eec10","modified":1662050733075,"created":1659777810947,"url":"{{ _.base_url }}/{{ _.version }}/restoration/{{restorationId}}","name":"Modify Restaurant","description":"","method":"PUT","body":{"mimeType":"application/json","text":"{\n\t \"name\":\"Bar Pepe Modificado\",\n\t\"location\": \"Barcelona\",\n\t\"kindOfFood\":\"mediterranean\",\n\t\"minPrice\":\"4\",\t\n\t\"maxPrice\":\"6\",\n\t\"currency\": \"€\",\n\t\"openingHour\":\"10:00\",\n\t\"closingHour\":\"23:00\",\n\t\"closed\":\"Todos los domingos cerrado\",\n\t\"speciality\":\"La especialidad de la casa son las croquetas\",\n\t\"takeAway\":\"true\",\n\t\"reserved\":\"false\",\n\t\"web\": \"www.google.com\",\n\t\"phone\": \"123443545\",\n\t\"email\": \"a@cccc.com\",\n\t\"notation\":\"Notas sobre el restaurante\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_9e92717836434b9883840eb7e497f402"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659777810947,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_77a82194eb9b4a519a8cb8e80919175e","parentId":"fld_a56f4b03bf8542e0a909f7ead70eec10","modified":1662050748430,"created":1659566988621,"url":"{{ _.base_url }}/{{ _.version }}/restoration/{{ restorationId }}","name":"Delete Restaurant","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"},"metaSortKey":-1659444775442,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_eb4373e68b124544ba082c7ec87399e3","parentId":"fld_c27ff179c6fc431fb28a828c75624e66","modified":1662051489088,"created":1659566988585,"url":"{{ _.base_url }}/{{ _.version }}/accommodation/{{accommodationId}}","name":"Get Accommodation by id","description":"","method":"GET","body":{"mimeType":"application/json","text":""},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_56233795f50b49fb85eebe838c2771d2"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1659778121555,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_c27ff179c6fc431fb28a828c75624e66","parentId":"fld_09cf2a0efc444e20a159935196a35e1e","modified":1659566988558,"created":1659566988558,"name":"v1","description":"","environment":{"version":"V1"},"environmentPropertyOrder":{"&":["version"]},"metaSortKey":-1658757181123,"_type":"request_group"},{"_id":"fld_09cf2a0efc444e20a159935196a35e1e","parentId":"fld_99bc7f8461b0421499a00d9dbfc9aa9b","modified":1659566988554,"created":1659566988554,"name":"Accommodation","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1658744276940,"_type":"request_group"},{"_id":"req_4724fe641f924b8dab4311ca82fed5f3","parentId":"fld_c27ff179c6fc431fb28a828c75624e66","modified":1662051492718,"created":1659566988577,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/accommodation","name":"Get Accommodation by travelId","description":"","method":"GET","body":{"mimeType":"application/json","text":""},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_5f323f17035c489e8081cf9e2fd77b87"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1659778121530,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_ae4e6fd3af03447fa7278e0ae3d43deb","parentId":"fld_c27ff179c6fc431fb28a828c75624e66","modified":1662057859911,"created":1659566988570,"url":"{{ _.base_url }}/{{ _.version }}/accommodation","name":"Get All Accomodations","description":"","method":"GET","body":{},"parameters":[],"headers":[{"id":"pair_9bd18982784541388423545d2837d084","name":"Content-Type","value":"application/json","description":""}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1659778121523.75,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_ac682b23bc3842eba83f29be3b34b020","parentId":"fld_c27ff179c6fc431fb28a828c75624e66","modified":1662058205534,"created":1659566988563,"url":"{{ _.base_url }}/{{ _.version }}/travel/{{ _.travelId }}/accommodation","name":"Create Accommodation","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"name\": \"Accommodation\",\n\t\"resourceType\": \"hotel\",\n\t\"location\": \"Barcelona\",\n\t\"startDate\": \"2022-08-01\",\n\t\"endDate\": \"2022-08-15\",\n\t\"checkInHour\":\"11:00\",\n\t\"checkOutHour\":\"12:00\",\n\t\"price\":\"200\",\n\t\"currency\":\"€\",\n\t\"petFriendly\":\"true\",\n\t\"internet\":\"false\",\n\t\"swimmingPool\":\"true\",\n\t\"web\": \"www.google.com\",\n\t\"phone\": \"123456789\",\n\t\"email\": \"a@aa.com\",\n\t\"notation\":\"Notas sobre el alojamiento\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_4e19e2eddeac41839031c9d30f80abf2"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1659778121517.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_e57b45d57a164c66ae41cf50648108eb","parentId":"fld_c27ff179c6fc431fb28a828c75624e66","modified":1662051514539,"created":1659778121505,"url":"{{ _.base_url }}/{{ _.version }}/accommodation/{{accommodationId}}","name":"Modify Accommodation","description":"","method":"PUT","body":{"mimeType":"application/json","text":"{\n\t \"name\": \"Accommodation Modificado\",\n\t\"resourceType\": \"hotel\",\n\t\"location\": \"Barcelona\",\n\t\"startDate\": \"2022-08-01\",\n\t\"endDate\": \"2022-08-15\",\n\t\"checkInHour\":\"11:00\",\n\t\"checkOutHour\":\"12:00\",\n\t\"price\":\"200\",\n\t\"currency\":\"€\",\n\t\"petFriendly\":\"true\",\n\t\"internet\":\"false\",\n\t\"swimmingPool\":\"true\",\n\t\"web\": \"www.google.com\",\n\t\"phone\": \"123456789\",\n\t\"email\": \"a@aa.com\",\n\t\"notation\":\"Notas sobre el alojamiento\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_0793643f339e47bc8b85d32df32be892"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1659778121505,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_9df49cf9b9dd491688a0f64eb972471a","parentId":"fld_c27ff179c6fc431fb28a828c75624e66","modified":1662053029630,"created":1659566988592,"url":"{{ _.base_url }}/{{ _.version }}/accommodation/{{accommodationId}}","name":"Delete Accommodation","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1659426861954,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_aa61821cd9f9467788a022c9ce7ff96f","parentId":"fld_5dff87fb2587488581c0eb2594595d6f","modified":1662058224898,"created":1660226862438,"url":"{{ _.base_url }}/{{ _.version }}/comment/travel/{{travelId}}/component/{{accommodationId}}","name":"Get Comments by TravelId and ComponentId","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1660226862438,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_5dff87fb2587488581c0eb2594595d6f","parentId":"fld_41043d3f90f148c5abf9afecc5ae5ebf","modified":1659567013168,"created":1659567013168,"name":"v1","description":"","environment":{"version":"V1"},"environmentPropertyOrder":{"&":["version"]},"metaSortKey":-1658908787491,"_type":"request_group"},{"_id":"fld_41043d3f90f148c5abf9afecc5ae5ebf","parentId":"wrk_59c677e025be480abdb281dc2d7d6730","modified":1661956811578,"created":1659567013153,"name":"Comments","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":400,"_type":"request_group"},{"_id":"req_9a1c1857776545b58b893fc589c74957","parentId":"fld_5dff87fb2587488581c0eb2594595d6f","modified":1662058221888,"created":1660155961223,"url":"{{ _.base_url }}/{{ _.version }}/comment/travel/{{travelId}}","name":"Get Comments by TravelId","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1660155961223,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_f04b8f2e3ee949a38c3672381aebe207","parentId":"fld_5dff87fb2587488581c0eb2594595d6f","modified":1662058217995,"created":1662052015651,"url":"{{ _.base_url }}/{{ _.version }}/comment/component/{{accommodationId}}","name":"Get Comments by ComponentId","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1659967256262,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_85771644f91b4ca9bf2172cf280b53d4","parentId":"fld_5dff87fb2587488581c0eb2594595d6f","modified":1662052480745,"created":1659567013186,"url":"{{ _.base_url }}/{{ _.version }}/comment","name":"Get All Comments","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658911010891,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_3411840993ca4675bcd4a5073dc057d2","parentId":"fld_5dff87fb2587488581c0eb2594595d6f","modified":1662058210792,"created":1659567013175,"url":"{{ _.base_url }}/{{ _.version }}/comment/travel/{{travelId}}/accommodation/{{accommodationId}}","name":"Post Comment in Accommodation","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"comment_text\":\"test comment\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_420fb7d5234749ed8e2153d758656d88"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658908791423,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_2dbce28de35e4f019995c7b44a3851d7","parentId":"fld_5dff87fb2587488581c0eb2594595d6f","modified":1662052508132,"created":1662051784320,"url":"{{ _.base_url }}/{{ _.version }}/comment/travel/{{travelId}}/transportation/{{ transportationId }}","name":"Post Comment in Transportation","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"comment_text\":\"test comment\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_420fb7d5234749ed8e2153d758656d88"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658907990440,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_629b5c50427347c7a0a1a89202c83eb8","parentId":"fld_5dff87fb2587488581c0eb2594595d6f","modified":1662052780108,"created":1662051797327,"url":"{{ _.base_url }}/{{ _.version }}/comment/travel/{{travelId}}/plan/{{ planId }}","name":"Post Comment in Plans","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"comment_text\":\"test comment\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_420fb7d5234749ed8e2153d758656d88"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658907589948.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_e35d0623be25404b9f07686fa15ab0b1","parentId":"fld_5dff87fb2587488581c0eb2594595d6f","modified":1662052515703,"created":1662051806984,"url":"{{ _.base_url }}/{{ _.version }}/comment/travel/{{travelId}}/restoration/{{ restorationId }}","name":"Post Comment in Restoration","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"comment_text\":\"test comment\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_420fb7d5234749ed8e2153d758656d88"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658907389702.75,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_099781cbcb0b4b5eac9eb6ed59b793e1","parentId":"fld_5dff87fb2587488581c0eb2594595d6f","modified":1662052518621,"created":1662052187947,"url":"{{ _.base_url }}/{{ _.version }}/comment/{{commentId}}","name":"Modify Comment","description":"","method":"PUT","body":{"mimeType":"application/json","text":"{\n\t\"comment\":\"comment modified\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_204e3659abbd4aeaa3f9112b690fb927"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658907389677.75,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_f663530536ea4d7f9b7806849b1eba44","parentId":"fld_5dff87fb2587488581c0eb2594595d6f","modified":1662052794028,"created":1662052100475,"url":"{{ _.base_url }}/{{ _.version }}/comment/{{commentId}}","name":"Delete Comment","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658907389652.75,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_014e2d407f9b455e8ec7ecc38d86284f","parentId":"fld_5228dfbd832c44f6bee9b4e04d284573","modified":1662118832378,"created":1660156780864,"url":"{{ _.base_url }}/{{ _.version }}/score/component/{{accommodationId}}","name":"Get Score by ComponentId","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1660156780864,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_5228dfbd832c44f6bee9b4e04d284573","parentId":"fld_c7b8edbe495045e0b3a05070c8b0d1a2","modified":1659567001244,"created":1659567001244,"name":"v1","description":"","environment":{"version":"V1"},"environmentPropertyOrder":{"&":["version"]},"metaSortKey":-1658917900008,"_type":"request_group"},{"_id":"fld_c7b8edbe495045e0b3a05070c8b0d1a2","parentId":"wrk_59c677e025be480abdb281dc2d7d6730","modified":1661956818298,"created":1659567001228,"name":"Score","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":450,"_type":"request_group"},{"_id":"req_cfd1475a9f6a4a3a958710b80a035c78","parentId":"fld_5228dfbd832c44f6bee9b4e04d284573","modified":1662118822721,"created":1660156771278,"url":"{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}","name":"Get Score by TravelId","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1660156771278,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_b1ff04b28ce44343bf220418757ba2a7","parentId":"fld_5228dfbd832c44f6bee9b4e04d284573","modified":1662118823816,"created":1659567001262,"url":"{{ _.base_url }}/{{ _.version }}/score","name":"Get All Scores","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658932758278,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_40563482f1b4430fb36d6670d7bb443a","parentId":"fld_5228dfbd832c44f6bee9b4e04d284573","modified":1662132154366,"created":1659567001251,"url":"{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}/accomodation/{{accommodationId}}","name":"Post Score in Accommodation","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"value\":\"3\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_d6837ad56ea647b18b568c70e614d377"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658917903584,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_9751529412ba42e19004f23a60e9a0d1","parentId":"fld_5228dfbd832c44f6bee9b4e04d284573","modified":1662118826385,"created":1662052833630,"url":"{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}/transportation/{{ transportationId }}","name":"Post Score in Transportation","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"value\":\"3\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_d6837ad56ea647b18b568c70e614d377"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658917041997.375,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_46ad1c6956c84950b708a0dce0dce2a6","parentId":"fld_5228dfbd832c44f6bee9b4e04d284573","modified":1662118827480,"created":1662052840605,"url":"{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}/plan/{{ planId }}","name":"Post Score in Plans","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"value\":\"3\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_d6837ad56ea647b18b568c70e614d377"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658916611204.0625,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_aaae6f3c424048fda1f47ffeaba5ee83","parentId":"fld_5228dfbd832c44f6bee9b4e04d284573","modified":1662118828629,"created":1662052850527,"url":"{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}/restoration/{{ restorationId }}","name":"Post Score in Restoration","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"value\":\"3\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_d6837ad56ea647b18b568c70e614d377"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658916395807.4062,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_fa5974fb8c1549f389f4b87cea1a2904","parentId":"fld_5228dfbd832c44f6bee9b4e04d284573","modified":1662118829648,"created":1662052736590,"url":"{{ _.base_url }}/{{ _.version }}/score/{{scoreId}}","name":"Modify Score","description":"","method":"PUT","body":{"mimeType":"application/json","text":"{\n\t\"score\":\"5\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_d6837ad56ea647b18b568c70e614d377"}],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658916180410.75,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_7564b196572f46ae9b949b53d310b1fe","parentId":"fld_5228dfbd832c44f6bee9b4e04d284573","modified":1662118830785,"created":1662052689191,"url":"{{ _.base_url }}/{{ _.version }}/score/{{scoreId}}","name":"Delete Score","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"},"metaSortKey":-1658914457237.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"env_a16acd8632a49ecdfbcf17b6d35886899c7496d5","parentId":"wrk_59c677e025be480abdb281dc2d7d6730","modified":1659567293445,"created":1659566923885,"name":"Base Environment","data":{},"dataPropertyOrder":{},"color":null,"isPrivate":false,"metaSortKey":1659566923885,"_type":"environment"},{"_id":"jar_a16acd8632a49ecdfbcf17b6d35886899c7496d5","parentId":"wrk_59c677e025be480abdb281dc2d7d6730","modified":1661883173436,"created":1661883173436,"name":"Default Jar","cookies":[],"_type":"cookie_jar"},{"_id":"spc_34f4530bd7e34d8bbdea6715a62950d7","parentId":"wrk_59c677e025be480abdb281dc2d7d6730","modified":1659566923871,"created":1659566923871,"fileName":"API_Trip_Management.yaml","contents":"","contentType":"yaml","_type":"api_spec"},{"_id":"env_e05d46e2726b4676b454759c137a612d","parentId":"env_a16acd8632a49ecdfbcf17b6d35886899c7496d5","modified":1662133815538,"created":1659567305026,"name":"Development","data":{"base_url":"{{ _.protocol }}://{{ _.server }}:{{ _.port }}","protocol":"http","server":"localhost","port":"8080","path":"api","userEmail":"laia@gmail.com","travelerEmail":"test@gmail.com","travelId":"6312261ad369040c693858d9","transportationId":"6310e608c03fd86fea0c1fe0","planId":"6310eb83c03fd86fea0c21ba","restorationId":"6310eba9c03fd86fea0c21e3","accommodationId":"6310fe4372025578b94b8a97","commentId":"6310e504c03fd86fea0c1f93","scoreId":"6310ea23c03fd86fea0c2151"},"dataPropertyOrder":{"&":["base_url","protocol","server","port","path","userEmail","travelerEmail","travelId","transportationId","planId","restorationId","accommodationId","commentId","scoreId"]},"color":"#256808","isPrivate":false,"metaSortKey":1659567305026,"_type":"environment"},{"_id":"env_be5b0b3f755b4d85ae75d2fb13656095","parentId":"env_a16acd8632a49ecdfbcf17b6d35886899c7496d5","modified":1662048304177,"created":1659567329480,"name":"Production","data":{"base_url":"{{ _.protocol }}://{{ _.server }}:{{ _.port }}","protocol":"http","server":"localhost","port":"8080","path":"api"},"dataPropertyOrder":{"&":["base_url","protocol","server","port","path"]},"color":"#a91919","isPrivate":false,"metaSortKey":1659567305076,"_type":"environment"}]}
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2022-09-02T17:00:49.571Z",
+  "__export_source": "insomnia.desktop.app:v2022.5.1",
+  "resources": [
+    {
+      "_id": "req_b585d0bee3944d1da76648538a9b5bfe",
+      "parentId": "fld_521b7ce77e35449a8973d6d4b0e672e1",
+      "modified": 1661956705829,
+      "created": 1659566954616,
+      "url": "{{ _.base_url }}/{{ _.version }}/user/login",
+      "name": "Login",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"laia@gmail.com\",\n\t\"password\": \"laia\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_b213597de4d54451acfe92e56e16ff72"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1658929841174,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_521b7ce77e35449a8973d6d4b0e672e1",
+      "parentId": "fld_8451d969f4804899abc0dda8defa96b2",
+      "modified": 1659567171389,
+      "created": 1659566954601,
+      "name": "v1",
+      "description": "",
+      "environment": { "version": "v1" },
+      "environmentPropertyOrder": { "&": ["version"] },
+      "metaSortKey": -1658675472458,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_8451d969f4804899abc0dda8defa96b2",
+      "parentId": "wrk_59c677e025be480abdb281dc2d7d6730",
+      "modified": 1661956811578,
+      "created": 1659566954590,
+      "name": "User",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": {},
+      "metaSortKey": 0,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_59c677e025be480abdb281dc2d7d6730",
+      "parentId": null,
+      "modified": 1659566923869,
+      "created": 1659566923869,
+      "name": "API_Trip_Management.yaml",
+      "description": "",
+      "scope": "design",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_f871a716ff81468b87f9cf73ceba6db8",
+      "parentId": "fld_521b7ce77e35449a8973d6d4b0e672e1",
+      "modified": 1662118797053,
+      "created": 1659566954610,
+      "url": "{{ _.base_url }}/{{ _.version }}/user/register",
+      "name": "Register",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"test2@gmail.com\",\n\t\"password\": \"test2\",\n\t\"username\":\"tes2tUser\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_b213597de4d54451acfe92e56e16ff72"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1658929841149,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_ad70333a7b2d4ed4bd53d25947b4fa3a",
+      "parentId": "fld_521b7ce77e35449a8973d6d4b0e672e1",
+      "modified": 1662067180812,
+      "created": 1659898766277,
+      "url": "{{ _.base_url }}/{{ _.version }}/user/me",
+      "name": "Get logged user",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658929841136.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_3f27d8e967424afaa1e311c263b71c6e",
+      "parentId": "fld_521b7ce77e35449a8973d6d4b0e672e1",
+      "modified": 1661956836216,
+      "created": 1659566954627,
+      "url": "{{ _.base_url }}/{{ _.version }}/user/",
+      "name": "Get all users",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658929841124,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_a1e8dc875af343d99b9e513745eb4810",
+      "parentId": "fld_521b7ce77e35449a8973d6d4b0e672e1",
+      "modified": 1661956837408,
+      "created": 1659566954639,
+      "url": "{{ _.base_url }}/{{ _.version }}/user/{{ _.userEmail }}",
+      "name": "Get user by email",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658926856739,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_7099005128cb452e8c0d3c6fc395e2c6",
+      "parentId": "fld_521b7ce77e35449a8973d6d4b0e672e1",
+      "modified": 1661956838601,
+      "created": 1661956582625,
+      "url": "{{ _.base_url }}/{{ _.version }}/user/authenticated",
+      "name": "Get if user is authenticated",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658925364546.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_8cb4c9b86ec54ac4adaa6fd57c448517",
+      "parentId": "fld_521b7ce77e35449a8973d6d4b0e672e1",
+      "modified": 1661957157418,
+      "created": 1659566954634,
+      "url": "{{ _.base_url }}/{{ _.version }}/user/me/travel",
+      "name": "Get travels of the logged user",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658923872354,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_193ecbb0895a41f291590f526d48b2cc",
+      "parentId": "fld_13cc3fed9b844d14a8811ff055aa3e3e",
+      "modified": 1662118804456,
+      "created": 1659566974952,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/test",
+      "name": "Test Travel",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658907189457,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_13cc3fed9b844d14a8811ff055aa3e3e",
+      "parentId": "fld_1066b8bbb36441619284a0414b96e8d5",
+      "modified": 1659566974945,
+      "created": 1659566974945,
+      "name": "V1",
+      "description": "",
+      "environment": { "version": "V1" },
+      "environmentPropertyOrder": { "&": ["version"] },
+      "metaSortKey": -1658915848969,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_1066b8bbb36441619284a0414b96e8d5",
+      "parentId": "wrk_59c677e025be480abdb281dc2d7d6730",
+      "modified": 1661956811578,
+      "created": 1659566974930,
+      "name": "Travel",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": {},
+      "metaSortKey": 100,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_877813e2af18496ab03cbd76419b7adb",
+      "parentId": "fld_13cc3fed9b844d14a8811ff055aa3e3e",
+      "modified": 1662118801221,
+      "created": 1659566975010,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}",
+      "name": "Get Travel by id",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658866177067.461,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_590c5f1af65a46bbb9aa012a2a46f2a7",
+      "parentId": "fld_13cc3fed9b844d14a8811ff055aa3e3e",
+      "modified": 1662118814698,
+      "created": 1659566974975,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel",
+      "name": "Get all travels",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658845670872.6914,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_f51da6b2114e418ca45d41d6ae6b8498",
+      "parentId": "fld_13cc3fed9b844d14a8811ff055aa3e3e",
+      "modified": 1662138022296,
+      "created": 1659566974964,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel",
+      "name": "Create Travel",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Trip 1\",\n\t\"description\": \"This is the description\",\n\t\"location\": \"Barcelona\",\n\t\"startDate\": \"2022-08-01\",\n\t\"endDate\": \"2022-08-15\",\n\t\"image\": \t\"url-image\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_7ca51590d29840f2a44445ab650e8600"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658825164677.9219,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_adf5663ce68b49478d593ee0d6df241b",
+      "parentId": "fld_13cc3fed9b844d14a8811ff055aa3e3e",
+      "modified": 1662046192184,
+      "created": 1659566974984,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}",
+      "name": "Modify Travel",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Trip 1 modified\",\n\t\"description\": \"This is the description\",\n\t\"location\": \"Barcelona\",\n\t\"startDate\": \"2022-08-01\",\n\t\"endDate\": \"2022-08-15\",\n\t\"image\": {\t\t\n\t\t\"url\": \"ads\"\n\t}\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_7ca51590d29840f2a44445ab650e8600"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658784152288.3828,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_53104e29e1424637b47270f818736f13",
+      "parentId": "fld_13cc3fed9b844d14a8811ff055aa3e3e",
+      "modified": 1662046193989,
+      "created": 1659566974992,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}",
+      "name": "Delete Travel",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658763646093.6133,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_f2eed4da07dd425780600571fe50cb47",
+      "parentId": "fld_13cc3fed9b844d14a8811ff055aa3e3e",
+      "modified": 1662132341977,
+      "created": 1659566975001,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{ _.travelId }}/traveler/{{ travelerEmail }}",
+      "name": "Add traveler by email",
+      "description": "",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658609849632.8418,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_58b4faf076424d81816afb787ac3f87b",
+      "parentId": "fld_13cc3fed9b844d14a8811ff055aa3e3e",
+      "modified": 1662133820246,
+      "created": 1659566975026,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{ travelId }}/traveler/me",
+      "name": "Add logged traveler",
+      "description": "",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658602159809.8032,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_e3d827207a594ed98fd89f16c55c5cbe",
+      "parentId": "fld_13cc3fed9b844d14a8811ff055aa3e3e",
+      "modified": 1662064577921,
+      "created": 1659566975018,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/traveler/{{ travelerEmail }}",
+      "name": "Delete traveler by email",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658600237354.0435,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_f7c34a8f881043c1912e0a56b4f140ea",
+      "parentId": "fld_13cc3fed9b844d14a8811ff055aa3e3e",
+      "modified": 1662132274072,
+      "created": 1659566975034,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/traveler/me",
+      "name": "Delete logged traveler",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1658598314898.284,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_bab6f73631da4c6eac89fb10a8f19a58",
+      "parentId": "fld_3c3020614fe14c38b129d2d87cc2b2bd",
+      "modified": 1662047815612,
+      "created": 1659566988672,
+      "url": "{{ _.base_url }}/{{ _.version }}/transport/test",
+      "name": "Test Transport",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659547882682,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_3c3020614fe14c38b129d2d87cc2b2bd",
+      "parentId": "fld_c4785ecbbf3941b2ab034b0328772219",
+      "modified": 1659567917093,
+      "created": 1659566988646,
+      "name": "V1",
+      "description": "",
+      "environment": { "version": "V1" },
+      "environmentPropertyOrder": { "&": ["version"] },
+      "metaSortKey": -1659475910299,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_c4785ecbbf3941b2ab034b0328772219",
+      "parentId": "fld_99bc7f8461b0421499a00d9dbfc9aa9b",
+      "modified": 1659566988642,
+      "created": 1659566988642,
+      "name": "Transport",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": {},
+      "metaSortKey": -1659475673635,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_99bc7f8461b0421499a00d9dbfc9aa9b",
+      "parentId": "wrk_59c677e025be480abdb281dc2d7d6730",
+      "modified": 1661956811578,
+      "created": 1659566988544,
+      "name": "Components",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": {},
+      "metaSortKey": 200,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_5cb44b5e8ac94442a7ae4dac34aa4565",
+      "parentId": "fld_3c3020614fe14c38b129d2d87cc2b2bd",
+      "modified": 1662051437188,
+      "created": 1659566988664,
+      "url": "{{ _.base_url }}/{{ _.version }}/transport/{{transportId}}",
+      "name": "Get Transport by id",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659547882632,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_57502560ad7e47bea1bcf8cffa0905ca",
+      "parentId": "fld_3c3020614fe14c38b129d2d87cc2b2bd",
+      "modified": 1662050820955,
+      "created": 1659566988656,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/transport",
+      "name": "Get Transports by travelId",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659547882607,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_86d9a315a8c14c6f81b3e659259d19b0",
+      "parentId": "fld_3c3020614fe14c38b129d2d87cc2b2bd",
+      "modified": 1662050714073,
+      "created": 1659566988650,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/transport",
+      "name": "Create Transport",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Vuelo\",\n\t\"type\": \"airplane\",\n\t\"typeDetails\": \"Terminal A\",\n\t\"price\": 20,\n\t\"currency\":\"€\",\n\t\"origin\": \"Barcelona\",\n\t\"destination\": \"Paris\",\n\t\"departure\": \"2022-08-01 10:00\",\n\t\"arrival\": \"2022-08-01 12:00\",\n\t\"web\": \"http://www.google.com\",\n\t\"notation\": \"Notas sobre el transporte\"\t\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_2b9592e41cce4475bfa2f5b0de29f2d4"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659547882582,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_7743574a555946de9b971581e27fb34e",
+      "parentId": "fld_3c3020614fe14c38b129d2d87cc2b2bd",
+      "modified": 1662048135228,
+      "created": 1659624261308,
+      "url": "{{ _.base_url }}/{{ _.version }}/transport/{{ _.transportId }}",
+      "name": "Modify Transport",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Vuelo Modificado!\",\n\t\"type\": \"airplane\",\n\t\"typeDetails\": \"Terminal A\",\n\t\"price\": 20,\n\t\"currency\":\"€\",\n\t\"origin\": \"Barcelona\",\n\t\"destination\": \"Paris\",\n\t\"departure\": \"2022-08-01 10:00\",\n\t\"arrival\": \"2022-08-01 12:00\",\n\t\"web\": \"http://www.google.com\",\n\t\"notation\": \"Notas sobre el transporte\"\t\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_d960299bd4c14cf99e46005d376460c4"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659503931424.0156,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_965f5fdd18e6405886983bd9be78b88e",
+      "parentId": "fld_3c3020614fe14c38b129d2d87cc2b2bd",
+      "modified": 1662048187601,
+      "created": 1659566988680,
+      "url": "{{ _.base_url }}/{{ _.version }}/transport/{{ _.transportId }}",
+      "name": "Delete Transport",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659459980266.0312,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_df0058e991924bfbaba127a613420cb7",
+      "parentId": "fld_d1a60b2c6dcb4dbc86a8801693593ffb",
+      "modified": 1662048659693,
+      "created": 1659611560456,
+      "url": "{{ _.base_url }}/{{ _.version }}/plans/test",
+      "name": "Test Plans",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659547882632,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_d1a60b2c6dcb4dbc86a8801693593ffb",
+      "parentId": "fld_7ab384115f264c35b4705d10f54229f6",
+      "modified": 1659611741263,
+      "created": 1659611560424,
+      "name": "V1",
+      "description": "",
+      "environment": { "version": "V1" },
+      "environmentPropertyOrder": { "&": ["version"] },
+      "metaSortKey": -1659475910299,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_7ab384115f264c35b4705d10f54229f6",
+      "parentId": "fld_99bc7f8461b0421499a00d9dbfc9aa9b",
+      "modified": 1662048643526,
+      "created": 1659611560403,
+      "name": "Plans",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": {},
+      "metaSortKey": -1659420886053.5,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_a5db7a37a9df4000a59aebf701136215",
+      "parentId": "fld_d1a60b2c6dcb4dbc86a8801693593ffb",
+      "modified": 1662051428939,
+      "created": 1659611560449,
+      "url": "{{ _.base_url }}/{{ _.version }}/plans/{{planId}}",
+      "name": "Get Plan by id",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659547882607,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_90c586f33a134d53a151e47e5b1861d5",
+      "parentId": "fld_d1a60b2c6dcb4dbc86a8801693593ffb",
+      "modified": 1662050809731,
+      "created": 1659611560442,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/plans",
+      "name": "Get Plans by travelId",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659547882594.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_ba293ca2d97348048914444f553a9784",
+      "parentId": "fld_d1a60b2c6dcb4dbc86a8801693593ffb",
+      "modified": 1662050097296,
+      "created": 1659611560433,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/plans",
+      "name": "Create Plan",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Plan\",\n\t\"location\": \"C/ Pierre 18\",\n\t\"openingHour\": \"10:00\",\n\t\"closingHour\": \"18:00\",\n\t\"closed\" : \"Primer lunes de cada mes\",\n\t\"duration\": \"Unas 3h si ves los jardines 4h\",\n\t\"priceAdult\": 100,\n\t\"priceChildren\": 50,\t\n\t\"currency\":\"€\",\n\t\"discount\": \"5% con carnet de estudiante\",\n\t\"web\": \"http://www.google.com\",\n\t\"phone\": \"098778789\",\n\t\"email\": \"aaa@aa.com\",\n\t\"notation\": \"Notas sobre el plan\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_2b9592e41cce4475bfa2f5b0de29f2d4"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659547882582,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_ff1bc496844342baaa800a39037826aa",
+      "parentId": "fld_d1a60b2c6dcb4dbc86a8801693593ffb",
+      "modified": 1662049628646,
+      "created": 1659624842092,
+      "url": "{{ _.base_url }}/{{ _.version }}/plans/{{planId}}",
+      "name": "Modify Plan",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Plan modificado\",\n\t\"location\": \"C/ Pierre 18\",\n\t\"openingHour\": \"10:00\",\n\t\"closingHour\": \"18:00\",\n\t\"closed\" : \"Primer lunes de cada mes\",\n\t\"duration\": \"Unas 3h si ves los jardines 4h\",\n\t\"priceAdult\": 100,\n\t\"priceChildren\": 50,\t\n\t\"currency\":\"€\",\n\t\"discount\": \"5% con carnet de estudiante\",\n\t\"web\": \"http://www.google.com\",\n\t\"phone\": \"098778789\",\n\t\"email\": \"aaa@aa.com\",\n\t\"notation\": \"Notas sobre el plan\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_c7a27dd52b9f4e26b3ea205a74abf331"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659503931424.0156,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_d8945d847e374e0697eeb47daf6d883e",
+      "parentId": "fld_d1a60b2c6dcb4dbc86a8801693593ffb",
+      "modified": 1662049603665,
+      "created": 1659611560464,
+      "url": "{{ _.base_url }}/{{ _.version }}/plans/{{ _.planId }}",
+      "name": "Delete Plan",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659459980266.0312,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_14c53f29a3444787bb247e34372143fa",
+      "parentId": "fld_a56f4b03bf8542e0a909f7ead70eec10",
+      "modified": 1662051424054,
+      "created": 1659778551301,
+      "url": "{{ _.base_url }}/{{ _.version }}/restaurant/{{restaurantId}}",
+      "name": "Get Restaurant by id",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659778551301,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_a56f4b03bf8542e0a909f7ead70eec10",
+      "parentId": "fld_4e8990a9f76146ed8bd922ef6f5a92ab",
+      "modified": 1662050313653,
+      "created": 1659566988607,
+      "name": "v1",
+      "description": "",
+      "environment": { "version": "v1" },
+      "environmentPropertyOrder": { "&": ["version"] },
+      "metaSortKey": -1659366098472,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_4e8990a9f76146ed8bd922ef6f5a92ab",
+      "parentId": "fld_99bc7f8461b0421499a00d9dbfc9aa9b",
+      "modified": 1662050294595,
+      "created": 1659566988604,
+      "name": "Restaurant",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": {},
+      "metaSortKey": -1659366091972,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_297ea5984c40401398bccd01c46a5d7e",
+      "parentId": "fld_a56f4b03bf8542e0a909f7ead70eec10",
+      "modified": 1662050788986,
+      "created": 1659707325986,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/restaurant",
+      "name": "Get Restaurants by travelId",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659778181124,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_2fafcf41e887489fa9bf93aa5de7699b",
+      "parentId": "fld_a56f4b03bf8542e0a909f7ead70eec10",
+      "modified": 1662050517677,
+      "created": 1659566988629,
+      "url": "{{ _.base_url }}/{{ _.version }}/restaurant",
+      "name": "Get All Restaurants",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659777996035.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_26507457f9494719b7b7ed9afb795133",
+      "parentId": "fld_a56f4b03bf8542e0a909f7ead70eec10",
+      "modified": 1662051322754,
+      "created": 1659566988613,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/restaurant",
+      "name": "Create Restaurant",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\":\"Bar Pepe\",\n\t\"location\": \"Barcelona\",\n\t\"kindOfFood\":\"mediterranean\",\n\t\"minPrice\":\"4\",\t\n\t\"maxPrice\":\"6\",\n\t\"currency\": \"€\",\n\t\"openingHour\":\"10:00\",\n\t\"closingHour\":\"23:00\",\n\t\"closed\":\"Todos los domingos cerrado\",\n\t\"speciality\":\"La especialidad de la casa son las croquetas\",\n\t\"takeAway\":\"true\",\n\t\"reserved\":\"false\",\n\t\"web\": \"www.google.com\",\n\t\"phone\": \"123443545\",\n\t\"email\": \"a@cccc.com\",\n\t\"notation\":\"Notas sobre el restaurante\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_608bc4e552e04c859fe1221554d60f95"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659777903491.25,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_f551ed0a87cc4223b1b33292b8fd77c8",
+      "parentId": "fld_a56f4b03bf8542e0a909f7ead70eec10",
+      "modified": 1662050733075,
+      "created": 1659777810947,
+      "url": "{{ _.base_url }}/{{ _.version }}/restaurant/{{restaurantId}}",
+      "name": "Modify Restaurant",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t \"name\":\"Bar Pepe Modificado\",\n\t\"location\": \"Barcelona\",\n\t\"kindOfFood\":\"mediterranean\",\n\t\"minPrice\":\"4\",\t\n\t\"maxPrice\":\"6\",\n\t\"currency\": \"€\",\n\t\"openingHour\":\"10:00\",\n\t\"closingHour\":\"23:00\",\n\t\"closed\":\"Todos los domingos cerrado\",\n\t\"speciality\":\"La especialidad de la casa son las croquetas\",\n\t\"takeAway\":\"true\",\n\t\"reserved\":\"false\",\n\t\"web\": \"www.google.com\",\n\t\"phone\": \"123443545\",\n\t\"email\": \"a@cccc.com\",\n\t\"notation\":\"Notas sobre el restaurante\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_9e92717836434b9883840eb7e497f402"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659777810947,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_77a82194eb9b4a519a8cb8e80919175e",
+      "parentId": "fld_a56f4b03bf8542e0a909f7ead70eec10",
+      "modified": 1662050748430,
+      "created": 1659566988621,
+      "url": "{{ _.base_url }}/{{ _.version }}/restaurant/{{ restaurantId }}",
+      "name": "Delete Restaurant",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'always', 60 %}"
+      },
+      "metaSortKey": -1659444775442,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_eb4373e68b124544ba082c7ec87399e3",
+      "parentId": "fld_c27ff179c6fc431fb28a828c75624e66",
+      "modified": 1662051489088,
+      "created": 1659566988585,
+      "url": "{{ _.base_url }}/{{ _.version }}/accommodation/{{accommodationId}}",
+      "name": "Get Accommodation by id",
+      "description": "",
+      "method": "GET",
+      "body": { "mimeType": "application/json", "text": "" },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_56233795f50b49fb85eebe838c2771d2"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1659778121555,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_c27ff179c6fc431fb28a828c75624e66",
+      "parentId": "fld_09cf2a0efc444e20a159935196a35e1e",
+      "modified": 1659566988558,
+      "created": 1659566988558,
+      "name": "v1",
+      "description": "",
+      "environment": { "version": "V1" },
+      "environmentPropertyOrder": { "&": ["version"] },
+      "metaSortKey": -1658757181123,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_09cf2a0efc444e20a159935196a35e1e",
+      "parentId": "fld_99bc7f8461b0421499a00d9dbfc9aa9b",
+      "modified": 1659566988554,
+      "created": 1659566988554,
+      "name": "Accommodation",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1658744276940,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_4724fe641f924b8dab4311ca82fed5f3",
+      "parentId": "fld_c27ff179c6fc431fb28a828c75624e66",
+      "modified": 1662051492718,
+      "created": 1659566988577,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{travelId}}/accommodation",
+      "name": "Get Accommodation by travelId",
+      "description": "",
+      "method": "GET",
+      "body": { "mimeType": "application/json", "text": "" },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_5f323f17035c489e8081cf9e2fd77b87"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1659778121530,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_ae4e6fd3af03447fa7278e0ae3d43deb",
+      "parentId": "fld_c27ff179c6fc431fb28a828c75624e66",
+      "modified": 1662057859911,
+      "created": 1659566988570,
+      "url": "{{ _.base_url }}/{{ _.version }}/accommodation",
+      "name": "Get All Accommodations",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_9bd18982784541388423545d2837d084",
+          "name": "Content-Type",
+          "value": "application/json",
+          "description": ""
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1659778121523.75,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_ac682b23bc3842eba83f29be3b34b020",
+      "parentId": "fld_c27ff179c6fc431fb28a828c75624e66",
+      "modified": 1662058205534,
+      "created": 1659566988563,
+      "url": "{{ _.base_url }}/{{ _.version }}/travel/{{ _.travelId }}/accommodation",
+      "name": "Create Accommodation",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Accommodation\",\n\t\"resourceType\": \"hotel\",\n\t\"location\": \"Barcelona\",\n\t\"startDate\": \"2022-08-01\",\n\t\"endDate\": \"2022-08-15\",\n\t\"checkInHour\":\"11:00\",\n\t\"checkOutHour\":\"12:00\",\n\t\"price\":\"200\",\n\t\"currency\":\"€\",\n\t\"petFriendly\":\"true\",\n\t\"internet\":\"false\",\n\t\"swimmingPool\":\"true\",\n\t\"web\": \"www.google.com\",\n\t\"phone\": \"123456789\",\n\t\"email\": \"a@aa.com\",\n\t\"notation\":\"Notas sobre el alojamiento\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_4e19e2eddeac41839031c9d30f80abf2"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1659778121517.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_e57b45d57a164c66ae41cf50648108eb",
+      "parentId": "fld_c27ff179c6fc431fb28a828c75624e66",
+      "modified": 1662051514539,
+      "created": 1659778121505,
+      "url": "{{ _.base_url }}/{{ _.version }}/accommodation/{{accommodationId}}",
+      "name": "Modify Accommodation",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t \"name\": \"Accommodation Modificado\",\n\t\"resourceType\": \"hotel\",\n\t\"location\": \"Barcelona\",\n\t\"startDate\": \"2022-08-01\",\n\t\"endDate\": \"2022-08-15\",\n\t\"checkInHour\":\"11:00\",\n\t\"checkOutHour\":\"12:00\",\n\t\"price\":\"200\",\n\t\"currency\":\"€\",\n\t\"petFriendly\":\"true\",\n\t\"internet\":\"false\",\n\t\"swimmingPool\":\"true\",\n\t\"web\": \"www.google.com\",\n\t\"phone\": \"123456789\",\n\t\"email\": \"a@aa.com\",\n\t\"notation\":\"Notas sobre el alojamiento\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_0793643f339e47bc8b85d32df32be892"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1659778121505,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_9df49cf9b9dd491688a0f64eb972471a",
+      "parentId": "fld_c27ff179c6fc431fb28a828c75624e66",
+      "modified": 1662053029630,
+      "created": 1659566988592,
+      "url": "{{ _.base_url }}/{{ _.version }}/accommodation/{{accommodationId}}",
+      "name": "Delete Accommodation",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1659426861954,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_aa61821cd9f9467788a022c9ce7ff96f",
+      "parentId": "fld_5dff87fb2587488581c0eb2594595d6f",
+      "modified": 1662058224898,
+      "created": 1660226862438,
+      "url": "{{ _.base_url }}/{{ _.version }}/comment/travel/{{travelId}}/component/{{accommodationId}}",
+      "name": "Get Comments by TravelId and ComponentId",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1660226862438,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_5dff87fb2587488581c0eb2594595d6f",
+      "parentId": "fld_41043d3f90f148c5abf9afecc5ae5ebf",
+      "modified": 1659567013168,
+      "created": 1659567013168,
+      "name": "v1",
+      "description": "",
+      "environment": { "version": "V1" },
+      "environmentPropertyOrder": { "&": ["version"] },
+      "metaSortKey": -1658908787491,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_41043d3f90f148c5abf9afecc5ae5ebf",
+      "parentId": "wrk_59c677e025be480abdb281dc2d7d6730",
+      "modified": 1661956811578,
+      "created": 1659567013153,
+      "name": "Comments",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 400,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_9a1c1857776545b58b893fc589c74957",
+      "parentId": "fld_5dff87fb2587488581c0eb2594595d6f",
+      "modified": 1662058221888,
+      "created": 1660155961223,
+      "url": "{{ _.base_url }}/{{ _.version }}/comment/travel/{{travelId}}",
+      "name": "Get Comments by TravelId",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1660155961223,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_f04b8f2e3ee949a38c3672381aebe207",
+      "parentId": "fld_5dff87fb2587488581c0eb2594595d6f",
+      "modified": 1662058217995,
+      "created": 1662052015651,
+      "url": "{{ _.base_url }}/{{ _.version }}/comment/component/{{accommodationId}}",
+      "name": "Get Comments by ComponentId",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1659967256262,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_85771644f91b4ca9bf2172cf280b53d4",
+      "parentId": "fld_5dff87fb2587488581c0eb2594595d6f",
+      "modified": 1662052480745,
+      "created": 1659567013186,
+      "url": "{{ _.base_url }}/{{ _.version }}/comment",
+      "name": "Get All Comments",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658911010891,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_3411840993ca4675bcd4a5073dc057d2",
+      "parentId": "fld_5dff87fb2587488581c0eb2594595d6f",
+      "modified": 1662058210792,
+      "created": 1659567013175,
+      "url": "{{ _.base_url }}/{{ _.version }}/comment/travel/{{travelId}}/accommodation/{{accommodationId}}",
+      "name": "Post Comment in Accommodation",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"comment_text\":\"test comment\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_420fb7d5234749ed8e2153d758656d88"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658908791423,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_2dbce28de35e4f019995c7b44a3851d7",
+      "parentId": "fld_5dff87fb2587488581c0eb2594595d6f",
+      "modified": 1662052508132,
+      "created": 1662051784320,
+      "url": "{{ _.base_url }}/{{ _.version }}/comment/travel/{{travelId}}/transport/{{ transportId }}",
+      "name": "Post Comment in Transport",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"comment_text\":\"test comment\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_420fb7d5234749ed8e2153d758656d88"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658907990440,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_629b5c50427347c7a0a1a89202c83eb8",
+      "parentId": "fld_5dff87fb2587488581c0eb2594595d6f",
+      "modified": 1662052780108,
+      "created": 1662051797327,
+      "url": "{{ _.base_url }}/{{ _.version }}/comment/travel/{{travelId}}/plan/{{ planId }}",
+      "name": "Post Comment in Plans",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"comment_text\":\"test comment\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_420fb7d5234749ed8e2153d758656d88"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658907589948.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_e35d0623be25404b9f07686fa15ab0b1",
+      "parentId": "fld_5dff87fb2587488581c0eb2594595d6f",
+      "modified": 1662052515703,
+      "created": 1662051806984,
+      "url": "{{ _.base_url }}/{{ _.version }}/comment/travel/{{travelId}}/restaurant/{{ restaurantId }}",
+      "name": "Post Comment in Restaurant",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"comment_text\":\"test comment\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_420fb7d5234749ed8e2153d758656d88"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658907389702.75,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_099781cbcb0b4b5eac9eb6ed59b793e1",
+      "parentId": "fld_5dff87fb2587488581c0eb2594595d6f",
+      "modified": 1662052518621,
+      "created": 1662052187947,
+      "url": "{{ _.base_url }}/{{ _.version }}/comment/{{commentId}}",
+      "name": "Modify Comment",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"comment\":\"comment modified\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_204e3659abbd4aeaa3f9112b690fb927"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658907389677.75,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_f663530536ea4d7f9b7806849b1eba44",
+      "parentId": "fld_5dff87fb2587488581c0eb2594595d6f",
+      "modified": 1662052794028,
+      "created": 1662052100475,
+      "url": "{{ _.base_url }}/{{ _.version }}/comment/{{commentId}}",
+      "name": "Delete Comment",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658907389652.75,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_014e2d407f9b455e8ec7ecc38d86284f",
+      "parentId": "fld_5228dfbd832c44f6bee9b4e04d284573",
+      "modified": 1662118832378,
+      "created": 1660156780864,
+      "url": "{{ _.base_url }}/{{ _.version }}/score/component/{{accommodationId}}",
+      "name": "Get Score by ComponentId",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1660156780864,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_5228dfbd832c44f6bee9b4e04d284573",
+      "parentId": "fld_c7b8edbe495045e0b3a05070c8b0d1a2",
+      "modified": 1659567001244,
+      "created": 1659567001244,
+      "name": "v1",
+      "description": "",
+      "environment": { "version": "V1" },
+      "environmentPropertyOrder": { "&": ["version"] },
+      "metaSortKey": -1658917900008,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_c7b8edbe495045e0b3a05070c8b0d1a2",
+      "parentId": "wrk_59c677e025be480abdb281dc2d7d6730",
+      "modified": 1661956818298,
+      "created": 1659567001228,
+      "name": "Score",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 450,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_cfd1475a9f6a4a3a958710b80a035c78",
+      "parentId": "fld_5228dfbd832c44f6bee9b4e04d284573",
+      "modified": 1662118822721,
+      "created": 1660156771278,
+      "url": "{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}",
+      "name": "Get Score by TravelId",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1660156771278,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_b1ff04b28ce44343bf220418757ba2a7",
+      "parentId": "fld_5228dfbd832c44f6bee9b4e04d284573",
+      "modified": 1662118823816,
+      "created": 1659567001262,
+      "url": "{{ _.base_url }}/{{ _.version }}/score",
+      "name": "Get All Scores",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658932758278,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_40563482f1b4430fb36d6670d7bb443a",
+      "parentId": "fld_5228dfbd832c44f6bee9b4e04d284573",
+      "modified": 1662132154366,
+      "created": 1659567001251,
+      "url": "{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}/accommodation/{{accommodationId}}",
+      "name": "Post Score in Accommodation",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"value\":\"3\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_d6837ad56ea647b18b568c70e614d377"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658917903584,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_9751529412ba42e19004f23a60e9a0d1",
+      "parentId": "fld_5228dfbd832c44f6bee9b4e04d284573",
+      "modified": 1662118826385,
+      "created": 1662052833630,
+      "url": "{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}/transport/{{ transportId }}",
+      "name": "Post Score in Transport",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"value\":\"3\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_d6837ad56ea647b18b568c70e614d377"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658917041997.375,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_46ad1c6956c84950b708a0dce0dce2a6",
+      "parentId": "fld_5228dfbd832c44f6bee9b4e04d284573",
+      "modified": 1662118827480,
+      "created": 1662052840605,
+      "url": "{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}/plan/{{ planId }}",
+      "name": "Post Score in Plans",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"value\":\"3\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_d6837ad56ea647b18b568c70e614d377"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658916611204.0625,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_aaae6f3c424048fda1f47ffeaba5ee83",
+      "parentId": "fld_5228dfbd832c44f6bee9b4e04d284573",
+      "modified": 1662118828629,
+      "created": 1662052850527,
+      "url": "{{ _.base_url }}/{{ _.version }}/score/travel/{{travelId}}/restaurant/{{ restaurantId }}",
+      "name": "Post Score in Restaurant",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"value\":\"3\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_d6837ad56ea647b18b568c70e614d377"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658916395807.4062,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_fa5974fb8c1549f389f4b87cea1a2904",
+      "parentId": "fld_5228dfbd832c44f6bee9b4e04d284573",
+      "modified": 1662118829648,
+      "created": 1662052736590,
+      "url": "{{ _.base_url }}/{{ _.version }}/score/{{scoreId}}",
+      "name": "Modify Score",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"score\":\"5\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_d6837ad56ea647b18b568c70e614d377"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658916180410.75,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_7564b196572f46ae9b949b53d310b1fe",
+      "parentId": "fld_5228dfbd832c44f6bee9b4e04d284573",
+      "modified": 1662118830785,
+      "created": 1662052689191,
+      "url": "{{ _.base_url }}/{{ _.version }}/score/{{scoreId}}",
+      "name": "Delete Score",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_b585d0bee3944d1da76648538a9b5bfe', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'never', 60 %}"
+      },
+      "metaSortKey": -1658914457237.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_a16acd8632a49ecdfbcf17b6d35886899c7496d5",
+      "parentId": "wrk_59c677e025be480abdb281dc2d7d6730",
+      "modified": 1659567293445,
+      "created": 1659566923885,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": {},
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1659566923885,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_a16acd8632a49ecdfbcf17b6d35886899c7496d5",
+      "parentId": "wrk_59c677e025be480abdb281dc2d7d6730",
+      "modified": 1661883173436,
+      "created": 1661883173436,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_34f4530bd7e34d8bbdea6715a62950d7",
+      "parentId": "wrk_59c677e025be480abdb281dc2d7d6730",
+      "modified": 1659566923871,
+      "created": 1659566923871,
+      "fileName": "API_Trip_Management.yaml",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    },
+    {
+      "_id": "env_e05d46e2726b4676b454759c137a612d",
+      "parentId": "env_a16acd8632a49ecdfbcf17b6d35886899c7496d5",
+      "modified": 1662133815538,
+      "created": 1659567305026,
+      "name": "Development",
+      "data": {
+        "base_url": "{{ _.protocol }}://{{ _.server }}:{{ _.port }}",
+        "protocol": "http",
+        "server": "localhost",
+        "port": "8080",
+        "path": "api",
+        "userEmail": "laia@gmail.com",
+        "travelerEmail": "test@gmail.com",
+        "travelId": "6312261ad369040c693858d9",
+        "transportId": "6310e608c03fd86fea0c1fe0",
+        "planId": "6310eb83c03fd86fea0c21ba",
+        "restaurantId": "6310eba9c03fd86fea0c21e3",
+        "accommodationId": "6310fe4372025578b94b8a97",
+        "commentId": "6310e504c03fd86fea0c1f93",
+        "scoreId": "6310ea23c03fd86fea0c2151"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "base_url",
+          "protocol",
+          "server",
+          "port",
+          "path",
+          "userEmail",
+          "travelerEmail",
+          "travelId",
+          "transportId",
+          "planId",
+          "restaurantId",
+          "accommodationId",
+          "commentId",
+          "scoreId"
+        ]
+      },
+      "color": "#256808",
+      "isPrivate": false,
+      "metaSortKey": 1659567305026,
+      "_type": "environment"
+    },
+    {
+      "_id": "env_be5b0b3f755b4d85ae75d2fb13656095",
+      "parentId": "env_a16acd8632a49ecdfbcf17b6d35886899c7496d5",
+      "modified": 1662048304177,
+      "created": 1659567329480,
+      "name": "Production",
+      "data": {
+        "base_url": "{{ _.protocol }}://{{ _.server }}:{{ _.port }}",
+        "protocol": "http",
+        "server": "localhost",
+        "port": "8080",
+        "path": "api"
+      },
+      "dataPropertyOrder": {
+        "&": ["base_url", "protocol", "server", "port", "path"]
+      },
+      "color": "#a91919",
+      "isPrivate": false,
+      "metaSortKey": 1659567305076,
+      "_type": "environment"
+    }
+  ]
+}

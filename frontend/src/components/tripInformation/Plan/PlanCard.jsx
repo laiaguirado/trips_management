@@ -3,17 +3,13 @@ import "./PlanCard.css";
 import ScoreDetailsCard from "../../score/ScoreDetailsCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faStar,
-  faStarHalfStroke,
   faGlobe,
   faPhone,
   faEnvelope,
-  faChildren,
   faBaby,
   faPerson,
   faCamera,
 } from "@fortawesome/free-solid-svg-icons";
-import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 function PlanCard({ plan }) {
   document.body.style.overflow = "unset";

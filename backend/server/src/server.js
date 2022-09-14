@@ -26,11 +26,11 @@ require("./resources/components/accommodation/accommodation.controller").addRout
 );
 require("./resources/comments/comments.controller").addRoutesTo(app);
 require("./resources/score/score.controller").addRoutesTo(app);
-require("./resources/components/restoration/restoration.controller").addRoutesTo(
+require("./resources/components/restaurant/restaurant.controller").addRoutesTo(
   app
 );
 
-require("./resources/components/transportation/transportation.controller").addRoutesTo(
+require("./resources/components/transport/transport.controller").addRoutesTo(
   app
 );
 

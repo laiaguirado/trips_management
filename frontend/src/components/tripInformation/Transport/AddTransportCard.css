@@ -1,0 +1,26 @@
+.add-transport-card {
+  width: 100%;
+  height: 100%;
+  min-height: 60rem;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: absolute;
+}
+
+.add-transport-card .form-container {
+  margin: 2rem;
+  width: auto;
+  position: sticky;
+  top: -25rem;
+}
+
+.add-transport-card .title {
+  margin: 2rem 4rem;
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+  cursor: pointer;
+}

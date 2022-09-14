@@ -18,7 +18,6 @@ const test = async (req, res) => {
 };
 
 const addNewScoreToPlan = async (score, idPlan, idUser, idTravel) => {
-  //Si el plan te un score, cal guardar la info i retornar-la
   const scoreCreated = await Scores.createOne(score, idPlan, idUser, idTravel);
   const planCreated = await Plans.addFirstScore(
     idPlan,

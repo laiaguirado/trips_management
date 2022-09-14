@@ -25,9 +25,7 @@ function CommentsCard({ tripId, componentId, component }) {
 
   const addComment = async (e) => {
     e.preventDefault();
-    if (comment === "") {
-      //setMessage("Can't post an empty comment");
-    } else {
+    if (comment !== "") {
       setMessage(null);
       const {
         success,
